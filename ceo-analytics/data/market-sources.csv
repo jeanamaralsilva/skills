@@ -1,0 +1,22 @@
+id,source,url_pattern,status,extracts,use_for,source
+M01,NN/g,https://www.nngroup.com/articles/<slug>/,abre texto completo,Artigos de pesquisa inteiros,Principios e evidencia,https://www.nngroup.com/articles/ten-usability-heuristics/
+M02,Laws of UX,https://lawsofux.com/<lei>/,abre,Leis com descricao e artigo,Principios,https://lawsofux.com/
+M03,UI Patterns,https://ui-patterns.com/patterns/<Nome>,abre,Problema uso e solucao,Padrao de componente,https://ui-patterns.com/patterns/Breadcrumbs
+M04,Baymard,https://baymard.com/blog/<slug>,abre (premium pede login),Achados de pesquisa,Formularios busca checkout,https://baymard.com/blog/mobile-ecommerce-search-and-navigation
+M05,Apple HIG (JSON),https://developer.apple.com/tutorials/data/design/human-interface-guidelines/<slug>.json,abre (a pagina HTML vem vazia),Texto integral das guidelines,Regras iOS,https://developer.apple.com/tutorials/data/design/human-interface-guidelines/tab-bars.json
+M06,Material (repo),https://raw.githubusercontent.com/material-components/material-components-android/master/docs/components/<Comp>.md,abre (m3.material.io vem vazio),Spec M3 em markdown,Regras Android,https://raw.githubusercontent.com/material-components/material-components-android/master/docs/components/BottomNavigation.md
+M07,Android Developers,https://developer.android.com/design/ui/mobile/guides/<...>,abre,Guidelines M3 para Android,Regras Android,https://developer.android.com/design/ui/mobile/guides/components/material-overview
+M08,Checklist Design,https://www.checklist.design/pages/<tela>,abre,Checklist por tela (essencial recomendado opcional),Estados e itens de tela,https://www.checklist.design/pages/login
+M09,App Store,https://apps.apple.com/br/app/<nome>/id<id>?see-all=reviews,abre (~10 reviews sem paginacao),Nota total e reviews,Voz do usuario e prints oficiais,https://apps.apple.com/br/app/uber-request-a-ride/id368677368
+M10,Google Play,https://play.google.com/store/apps/details?id=<pkg>&hl=pt_BR,abre,Nota contagem e reviews,Voz do usuario e prints oficiais,https://play.google.com/store/apps/details?id=com.ubercab&hl=pt_BR
+M11,Product Hunt,https://www.producthunt.com/products/<p>/reviews,abre,Reviews e nota,Voz do usuario,https://www.producthunt.com/categories/design-tools
+M12,Apple Design Awards,https://developer.apple.com/design/awards/,abre,Vencedores por categoria,Benchmark de excelencia,https://developer.apple.com/design/awards/
+M13,Google Play Best of,https://blog.google/products/google-play/best-apps-games-<ano>/,abre,Vencedores por categoria,Benchmark de excelencia,https://blog.google/products/google-play/best-apps-games-2025/
+M14,Webby Awards,https://winners.webbyawards.com/winners/apps-software-immersive,abre,Vencedores apps,Benchmark de excelencia,https://winners.webbyawards.com
+M15,Lapa Ninja,https://www.lapa.ninja/category/<cat>/,abre (busca nao funciona),Nome tagline link,Referencia visual web,https://www.lapa.ninja/category/saas/
+M16,SaaS Pages,https://saaspages.xyz,abre,Blocos por tipo (pricing CTA FAQ),Referencia visual web,https://saaspages.xyz
+M17,GoodUX,https://goodux.appcues.com,abre,Cases de onboarding,Onboarding,https://goodux.appcues.com
+M18,grep.app API,https://grep.app/api/search?q=<termo>,abre JSON,Uso real de componente em repos,Codigo real de UI,https://grep.app/api/search?q=BottomSheetModal
+M19,GitHub repos API,https://api.github.com/search/repositories?q=<q>&sort=stars,abre sem token,Repos com estrelas,Achar libs e apps de referencia,https://api.github.com/search/repositories?q=react-native+design-system
+M20,raw.githubusercontent,https://raw.githubusercontent.com/<org>/<repo>/<branch>/<path>,abre,Arquivo bruto,Ler codigo de app de referencia,https://raw.githubusercontent.com/gorhom/react-native-bottom-sheet/master/README.md
+M21,Bloqueados,Behance Reddit Mobbin(explore) Screenlane Dribbble(busca) Pinterest m3.material.io github.com/search,nao abre por fetch,Nada,Pedir print ao Jean ou usar navegador logado dele,https://www.nngroup.com/articles/ai-powered-tools-limitations/

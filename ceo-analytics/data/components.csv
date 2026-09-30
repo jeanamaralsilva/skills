@@ -1,0 +1,16 @@
+id,pattern,when,dont,ios,android,rn_lib,source
+C01,Sem indicador,Resposta abaixo de 1s,Spinner piscando em acao rapida,nativo,nativo,-,https://www.nngroup.com/articles/response-times-3-important-limits/
+C02,Skeleton,Carregamento de pagina inteira entre 2 e 10s com layout conhecido,Skeleton animado que distrai; skeleton diferente do layout final,Placeholder estatico,Placeholder estatico,react-native-reanimated 4,https://www.nngroup.com/articles/skeleton-screens/
+C03,Spinner,Modulo isolado carregando,Tela inteira bloqueada por spinner,ProgressView,LoadingIndicator M3 Expressive,ActivityIndicator,https://www.nngroup.com/articles/skeleton-screens/
+C04,Barra de progresso,Operacao acima de 10s,Spinner indeterminado em upload longo,ProgressView(value:),LinearProgressIndicator,-,https://www.nngroup.com/articles/response-times-3-important-limits/
+C05,Optimistic UI,Acao reversivel (like favoritar marcar),Acao destrutiva ou financeira,-,-,React 19 useOptimistic,https://react.dev/reference/react/useOptimistic
+C06,Bottom sheet,Interacao curta e contextual,Empilhar sheets; sheet no lugar de fluxo; so grab handle sem botao fechar,sheet com detents + Liquid Glass automatico,ModalBottomSheet,@gorhom/bottom-sheet 5,https://www.nngroup.com/articles/bottom-sheet/
+C07,Liquid Glass,Barras tab bar toolbar sheets controles flutuantes iOS 26+,Vidro sobre conteudo; vidro sobre vidro; opacity 0,glassEffect GlassEffectContainer buttonStyle(.glass),n/a (fallback solido ou blur Android 12+),expo-glass-effect ou @callstack/liquid-glass + expo-blur fallback,https://docs.expo.dev/versions/latest/sdk/glass-effect/
+C08,Material 3 Expressive,Android: navegacao shapes motion por spring,Aplicar visual iOS no Android,n/a,MotionScheme.expressive() shape morph button groups,react-native-bottom-tabs (Callstack) + springs Reanimated,https://design.google/library/expressive-material-design-google-research
+C09,Tab bar,Ate 5 destinos principais sempre visiveis,Hamburger escondendo navegacao principal,TabView tabBarMinimizeBehavior,NavigationBar,react-native-bottom-tabs,https://www.nngroup.com/articles/hamburger-menus/
+C10,Empty state,Lista ou area sem dados,Area em branco,Status + ensino + acao direta,Status + ensino + acao direta,-,https://www.nngroup.com/articles/empty-state-interface-design/
+C11,Onboarding contextual,Primeiro uso,Carrossel de tutorial antes de usar (nao melhora desempenho),Dica no momento da acao,Dica no momento da acao,-,https://www.nngroup.com/articles/mobile-app-onboarding/
+C12,Haptics,Confirmacao e selecao,Vibrar em todo toque,UIFeedbackGenerator consistente,performAndroidHapticsAsync (evitar impactAsync),expo-haptics,https://docs.expo.dev/versions/latest/sdk/haptics/
+C13,Alvo de toque,Todo elemento tocavel,Alvo menor que o minimo,44x44pt,48x48dp,hitSlop,https://developer.apple.com/design/human-interface-guidelines/
+C14,Animacao de gesto,Arrastar swipe pinch,Animacao na JS thread,-,-,react-native-gesture-handler 3 + reanimated 4,https://swmansion.com/blog/reanimated-4-stable-release-the-future-of-react-native-animations-ba68210c3713/
+C15,Grafico/desenho custom,Visual que componente nao faz (anel progresso shader),Lib abandonada (moti sem release desde jan/2025),Canvas,Canvas,@shopify/react-native-skia 2,https://github.com/Shopify/react-native-skia

@@ -1,0 +1,10 @@
+id,app,repo,stack,teaches,key_file
+R01,Bluesky,https://github.com/bluesky-social/social-app,Expo + RN + React Navigation 7,Navegacao central tabs com stacks web+mobile em um codigo,src/Navigation.tsx
+R02,Expensify,https://github.com/Expensify/App,RN + React Navigation 7,Catalogo explicito de rotas e telas (modelo de mapa de telas),src/ROUTES.ts src/SCREENS.ts
+R03,Mattermost,https://github.com/mattermost/mattermost-mobile,RN + WatermelonDB,App corporativo offline-first,app/screens
+R04,Rainbow,https://github.com/rainbow-me/rainbow,RN,Onboarding sheets microinteracoes,src/screens
+R05,Now in Android,https://github.com/android/nowinandroid,Kotlin Compose,Referencia oficial Google de arquitetura navegacao e DS,docs/ArchitectureLearningJourney.md
+R06,Ice Cubes,https://github.com/Dimillian/IceCubesApp,SwiftUI,Navegacao idiomatica iOS,Packages
+R07,Element X,https://github.com/element-hq/element-x-ios,SwiftUI (e Compose no repo android),Mesmo produto nativo nas duas plataformas,ElementX/Sources
+R08,Immich,https://github.com/immich-app/immich,Flutter,Galeria e sync em Flutter,mobile/lib
+R09,AppFlowy,https://github.com/AppFlowy-IO/AppFlowy,Flutter,Editor produtivo multiplataforma,frontend/appflowy_flutter

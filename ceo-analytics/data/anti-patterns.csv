@@ -1,0 +1,24 @@
+id,kind,name,detect,fix,source
+AV01,visual,Gradiente roxo/indigo default,indigo-500/purple ou gradiente roxo para azul como acento sem vir da marca,Paleta vem do brand/DS do projeto nunca do default do Tailwind,https://www.claude.com/blog/improving-frontend-design-through-skills
+AV02,visual,Uma fonte so (Inter/Roboto em tudo),Uma familia sem par display/texto e sem escala tipografica definida,Usar a fonte do DS; sem DS escolher par deliberado e escala,https://github.com/pbakaus/impeccable
+AV03,visual,SaaS card kit,Tudo em cards identicos mesmo radius mesma sombra rgba(0 0 0 .1) cards dentro de cards,Variar raio e elevacao por hierarquia; conteudo nao precisa de card,https://github.com/anthropics/skills/tree/main/skills/frontend-design
+AV04,visual,Template chrome,Eyebrow ALL-CAPS acima de todo titulo seta em todo botao palavra destacada no headline,Remover rotulos que nao informam,https://github.com/anthropics/skills/tree/main/skills/frontend-design
+AV05,visual,Hero generico,Hero centralizado numero grande + label tres feature boxes com icone,Abrir com o que e especifico do dominio,https://prg.sh/ramblings/Why-Your-AI-Keeps-Building-the-Same-Purple-Gradient-Website
+AV06,visual,Paleta de IA alternativa,Creme F4F1EA + serif + terracota ou preto + acento acido,Tratar como tell tambem,https://github.com/anthropics/skills/tree/main/skills/frontend-design
+AV07,visual,Emoji como icone,Emoji no lugar de SVG ou tile de icone repetido acima de todo heading,Um unico set de icones do DS,https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
+AV08,visual,Motion espalhado,Fade-slide-up em toda secao hover em todo card easing bounce,Um momento orquestrado; motion responde a acao do usuario,https://github.com/pbakaus/impeccable
+AV09,visual,Glass gratuito,Blur/vidro sobre conteudo ou vidro sobre vidro fora da camada de navegacao,Glass so em barras sheets e controles flutuantes; testar Reduce Transparency,https://developer.apple.com/documentation/technologyoverviews/adopting-liquid-glass
+AV10,visual,Estados ausentes,Tela sem empty/error/loading/offline; CTA Submit,Desenhar os 5 estados; CTA diz o que acontece,https://www.nngroup.com/articles/empty-state-interface-design/
+AA01,analysis,Recomendacao vaga,melhorar a acessibilidade / tornar mais intuitivo,Tela + elemento + problema + mudanca concreta,https://www.nngroup.com/articles/ai-powered-tools-limitations/
+AA02,analysis,Achado sem evidencia,Problema sem arquivo:linha print ou passo de reproducao,Ancorar em evidencia verificavel ou cortar,https://www.nngroup.com/articles/ai-powered-tools-limitations/
+AA03,analysis,Heuristica alucinada,Problema que nao aparece no codigo/print analisado (GPT-4o bateu so 21.2% com especialistas),Marcar confianca; so reportar o que foi visto,https://arxiv.org/abs/2506.16345
+AA04,analysis,Numero inventado,% contraste ou metrica sem medicao,Medir com script ou escrever nao medido,https://arxiv.org/abs/2506.16345
+AA05,analysis,Lista longa sem prioridade,Mais de 7 achados sem severidade,Top achados por P0-P3; resto vai para apendice ou some,https://www.nngroup.com/articles/ai-powered-tools-limitations/
+AA06,analysis,Dado obvio repetido,Descrever o que o usuario ja ve (a tela tem um botao azul),Reportar so o que muda decisao,https://www.nngroup.com/articles/ai-powered-tools-limitations/
+AA07,analysis,Analise so por texto,Conclusao de usabilidade sem ver render real,Capturar tela rodando ou export do design,https://www.nngroup.com/articles/ai-powered-tools-limitations/
+AA08,analysis,Fraqueza em eficiencia,IA erra heuristica flexibilidade/controle/eficiencia,Revisar essas heuristicas manualmente percorrendo o fluxo,https://arxiv.org/abs/2506.16345
+AE01,edit,Reinventar componente do DS,Componente novo com mesma funcao de um existente,Usar o do DS; gap vira pedido ao time de design,https://www.superdesign.dev/blog/ai-design-system-drift
+AE02,edit,Hardcode de token,Hex px ou nome de fonte na tela,Consumir token semantico,https://www.superdesign.dev/blog/ai-design-system-drift
+AE03,edit,Drift entre iteracoes,Padding e radius mudando entre versoes da mesma tela,Baseline screenshot + diff antes de entregar,https://www.superdesign.dev/blog/ai-design-system-drift
+AE04,edit,Mudar disposicao sem pedir,Layout reordenado em pedido de ajuste pontual,Regioes travadas; diff visual so na area pedida,https://www.superdesign.dev/blog/ai-design-system-drift
+AE05,edit,Convergencia por revisao,Cada rodada deixa a tela mais generica,Comparar com a versao original nao com a ultima,https://uxdesign.cc/ai-design-isnt-ugly-it-s-fluent-and-that-s-the-problem-131b2f4eb78c

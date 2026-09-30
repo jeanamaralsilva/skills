@@ -1,0 +1,21 @@
+id,heuristic,category,platform,detect,severity_default,source
+H01,Visibilidade do status do sistema,Nielsen,all,Acao sem feedback em 1s; loading sem indicador adequado ao tempo,P1,https://www.nngroup.com/articles/ten-usability-heuristics/
+H02,Correspondencia com o mundo real,Nielsen,all,Termo tecnico ou interno na copy (ID do banco nome de endpoint),P2,https://www.nngroup.com/articles/ten-usability-heuristics/
+H03,Controle e liberdade do usuario,Nielsen,all,Sem voltar/cancelar/desfazer; sheet sem botao fechar; Voltar do Android nao fecha,P1,https://www.nngroup.com/articles/ten-usability-heuristics/
+H04,Consistencia e padroes,Nielsen,all,Mesmo acao com nomes diferentes; componente fora do DS; padrao iOS no Android,P2,https://www.nngroup.com/articles/ten-usability-heuristics/
+H05,Prevencao de erros,Nielsen,all,Acao destrutiva sem confirmacao; input sem mascara/validacao,P1,https://www.nngroup.com/articles/ten-usability-heuristics/
+H06,Reconhecer em vez de lembrar,Nielsen,all,Navegacao principal escondida; dado de tela anterior exigido de memoria,P2,https://www.nngroup.com/articles/ten-usability-heuristics/
+H07,Flexibilidade e eficiencia,Nielsen,all,Tarefa frequente com muitos passos; sem atalho/busca/filtro salvo (IA erra muito aqui: revisar manualmente),P2,https://arxiv.org/abs/2506.16345
+H08,Estetica e minimalismo,Nielsen,all,Informacao que nao muda decisao competindo com a principal,P3,https://www.nngroup.com/articles/ten-usability-heuristics/
+H09,Ajudar a reconhecer e recuperar de erros,Nielsen,all,Erro vago ou que so pede desculpa; sem caminho de saida,P1,https://www.nngroup.com/articles/ten-usability-heuristics/
+H10,Ajuda e documentacao,Nielsen,all,Tarefa complexa sem dica contextual,P3,https://www.nngroup.com/articles/ten-usability-heuristics/
+H11,Limiar de Doherty,Laws of UX,all,Resposta acima de 400ms sem feedback,P2,https://lawsofux.com/doherty-threshold/
+H12,Lei de Fitts,Laws of UX,all,CTA principal pequeno ou longe do polegar,P2,https://lawsofux.com/fittss-law/
+H13,Lei de Hick,Laws of UX,all,Muitas opcoes de mesmo peso na mesma tela,P3,https://lawsofux.com/hicks-law/
+H14,Alvo de toque minimo,Plataforma,ios,Tocavel abaixo de 44x44pt,P1,https://developer.apple.com/design/human-interface-guidelines/
+H15,Alvo de toque minimo,Plataforma,android,Tocavel abaixo de 48x48dp,P1,https://m3.material.io/
+H16,Contraste de texto,WCAG 2.2,all,Texto abaixo de 4.5:1 (3:1 texto grande) medido com contrast.py,P1,https://www.w3.org/TR/WCAG22/
+H17,Tipo dinamico,Plataforma,all,Fonte fixa que nao escala com Dynamic Type/sp,P2,https://developer.apple.com/design/human-interface-guidelines/
+H18,Reduce Transparency/Motion,Plataforma,ios,Glass ou animacao sem fallback quando a opcao do sistema esta ligada,P2,https://developer.apple.com/documentation/technologyoverviews/adopting-liquid-glass
+H19,Gesto do sistema,Plataforma,all,Gesto custom conflitando com voltar/home do sistema,P1,https://github.com/pbakaus/impeccable
+H20,Legibilidade sobre glass,Plataforma,ios,Texto sobre vidro sobre imagem com contraste ruim (critica NN/g ao iOS 26),P1,https://www.nngroup.com/articles/liquid-glass/
