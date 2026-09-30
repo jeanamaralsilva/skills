@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Lints a ceo-analytics report for the AI tells the user does not want.
 
-Usage: python lint_report.py report.md [--max-words 600]
+Usage: python lint_report.py report.md [--max-words 350]
+       python lint_report.py - <<'EOF' ... EOF    (reads stdin, no file needed)
 Exit 0 when clean, 1 when there are findings. Each finding: line, rule, excerpt.
 
 Rules:
@@ -65,10 +66,13 @@ def lint(text: str, max_words: int) -> list[tuple[int, str, str]]:
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("report")
-    parser.add_argument("--max-words", type=int, default=600)
+    parser.add_argument("--max-words", type=int, default=350)
     args = parser.parse_args(argv)
-    with open(args.report, encoding="utf-8") as handle:
-        findings = lint(handle.read(), args.max_words)
+    if args.report == "-":
+        findings = lint(sys.stdin.read(), args.max_words)
+    else:
+        with open(args.report, encoding="utf-8") as handle:
+            findings = lint(handle.read(), args.max_words)
     for line, rule, excerpt in findings:
         print(f"{line}\t{rule}\t{excerpt}")
     if not findings:

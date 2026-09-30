@@ -14,6 +14,8 @@ Revise o relatório abaixo contra esta lista fechada:
    - P3: polimento
 7. Jargão (robusto, abrangente, seamless, elevar) ou travessão.
 8. Métrica de produto, persona ou "estudos mostram" sem link.
+9. Seção de arquivos lidos, ferramentas, metodologia ou passos.
+10. Texto acima do limite do modo (ajuste 150, proposta 350, análise com mapa 450).
 
 Responda só com as violações, uma por linha: `linha | regra | correção sugerida`.
 

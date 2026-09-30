@@ -19,7 +19,7 @@ Use `assets/screen-proposal-template.md`:
 1. **Hipótese** em uma frase.
 2. **Estrutura:** wireframe ou mockup, com a hierarquia de cima para baixo.
 3. **Componentes do DS** usados. Gap no DS vira pedido, não componente inventado.
-4. **Estados:** default, loading, vazio, erro, offline e sucesso. Desenhe pelo menos o loading e o erro.
+4. **Estados:** default, loading, vazio, erro, offline e sucesso. Todos aparecem na proposta, com uma linha cada dizendo o que o usuário vê. Desenhe pelo menos loading, vazio e erro. Proposta sem vazio e offline volta para a mesa.
 5. **iOS:** onde entra o Liquid Glass (só navegação e controles flutuantes).
 6. **Android:** quais elementos do Material 3 Expressive (motion por spring, button group, loading indicator).
 7. **Funções:** o que a tela faz de novo. Exemplos: Live Activity, optimistic UI, desfazer.
@@ -29,7 +29,7 @@ Use `assets/screen-proposal-template.md`:
 
 | Situação | Onde |
 |---|---|
-| O Jean usa Pencil ou o repo tem `.pen` | Pencil MCP: frame por alternativa, lado a lado |
+| O Jean usa Pencil ou o repo tem `.pen` | Pencil MCP: uma linha de telas por alternativa, com o fluxo de toque (`14-fluxo-no-pencil.md`) |
 | Exploração visual rápida, fora de repo | artifact do tipo Design |
 | Proposta já aprovada, para implementar | código no repo, com `pixel-perfect` contra a referência |
 | Repo INFLEET | componentes HeraDS (`infleet-herads`) |

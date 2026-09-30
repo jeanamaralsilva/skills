@@ -2,7 +2,12 @@
 
 - **Estrutura:** <wireframe ou print, de cima para baixo>
 - **Componentes do DS:** <lista; gap vira pedido>
-- **Estados:** default · loading · vazio · erro · offline · sucesso
+- **Estados:**
+  - loading: <o que aparece>
+  - vazio: <o que aparece e a ação>
+  - erro: <mensagem e saída>
+  - offline: <o que funciona sem rede>
+  - sucesso: <feedback>
 - **Funções:** <o que a tela faz de novo: optimistic UI, Live Activity, desfazer...>
 - **iOS:** <onde entra Liquid Glass; só navegação e controles flutuantes>
 - **Android:** <Material 3 Expressive: motion por spring, button group, loading indicator>

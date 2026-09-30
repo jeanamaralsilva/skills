@@ -11,7 +11,47 @@ import lint_report  # noqa: E402
 import map_routes  # noqa: E402
 import search  # noqa: E402
 
-FIXTURES = os.path.join(HERE, "fixtures")
+EXPO_APP = {
+    "app/_layout.tsx": "export default function RootLayout() { return null }",
+    "app/(tabs)/_layout.tsx": "export default function TabsLayout() { return null }",
+    "app/(tabs)/index.tsx": "export default function Home() { return null }",
+    "app/(tabs)/__tests__/home.test.tsx": 'test("x", () => {})',
+    "app/lesson/[id].tsx": "export default function Lesson() { return null }",
+    "app/lesson/lesson.spec.tsx": 'test("y", () => {})',
+    "app/profile/index.tsx": "export { default } from '@/screens/lesson-screen';",
+    "src/screens/lesson-screen.tsx": "export default function LessonScreen() { return null }",
+}
+RN_NAV = {
+    "src/Navigation.tsx": """const Stack = createNativeStackNavigator()
+const Tab = createBottomTabNavigator()
+export function Root() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+      />
+    </Tab.Navigator>
+  )
+}
+const Auth = createNativeStackNavigatorWithAuth()
+export function Lazy() {
+  return <Auth.Screen name="Moderation" getComponent={() => ModerationScreen} />
+}
+const HomeTab = createNativeStackNavigatorWithAuth<HomeTabParams>()
+""",
+}
+
+
+def build_tree(root, files):
+    """Fixtures are written at test time: route names like (tabs) and [id] are not valid in a .skill zip."""
+    for rel, content in files.items():
+        path = os.path.join(str(root), *rel.split("/"))
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "w", encoding="utf-8") as handle:
+            handle.write(content + "\n")
+    return str(root)
 
 
 def test_contrast_black_on_white_is_21():
@@ -50,8 +90,8 @@ def test_lint_word_budget():
     assert rules == ["too-long"]
 
 
-def test_map_routes_expo_router():
-    screen_map = map_routes.build_map(os.path.join(FIXTURES, "expo-app"))
+def test_map_routes_expo_router(tmp_path):
+    screen_map = map_routes.build_map(build_tree(tmp_path, EXPO_APP))
     screens = {r["route"] for r in screen_map["expo-router"] if r["kind"] == "screen"}
     assert screens == {"/", "/lesson/[id]", "/profile"}
     assert "expo-router" in screen_map["detected"]
@@ -59,8 +99,8 @@ def test_map_routes_expo_router():
     assert profile["target"] == os.path.join("src", "screens", "lesson-screen.tsx")
 
 
-def test_map_routes_react_navigation():
-    screen_map = map_routes.build_map(os.path.join(FIXTURES, "rn-nav"))
+def test_map_routes_react_navigation(tmp_path):
+    screen_map = map_routes.build_map(build_tree(tmp_path, RN_NAV))
     names = {(s["name"], s["component"]) for s in screen_map["react-navigation"]}
     assert names == {("Home", "HomeScreen"), ("Profile", "ProfileScreen"), ("Moderation", "ModerationScreen")}
     assert {n["type"] for n in screen_map["navigators"]} == {"NativeStack", "BottomTab"}
@@ -131,3 +171,11 @@ def test_report_template_example_passes_lint():
         "- **P1** Botão Salvar com 3.1:1 [medido] → usar token de texto primário [tela: Treino]\n"
     )
     assert lint_report.lint(example, max_words=600) == []
+
+
+def test_lint_reads_stdin_so_no_file_is_needed():
+    result = subprocess.run(
+        [sys.executable, os.path.join(SCRIPTS, "lint_report.py"), "-"],
+        input="Relatorio curto sem problemas\n", capture_output=True, text=True,
+    )
+    assert result.returncode == 0 and "clean" in result.stdout

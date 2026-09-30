@@ -18,6 +18,8 @@ Escreva, antes de editar, o que o pedido toca. Exemplo: "região: botão Salvar 
 
 No código, o diff tem que ficar contido nos elementos declarados. `git diff --stat` com arquivos fora do esperado é sinal de alerta.
 
+Não reindente o que não mudou. Se mover um bloco para dentro de um novo container obriga a reindentar, prefira uma estrutura que não obrigue (container irmão, `Fragment` já existente, estilo absoluto). O diff bruto não pode passar de 2x o `git diff -w`: diff inflado esconde a mudança real do revisor. Deixe o formatter do repo (Prettier) só para o que você tocou.
+
 ### 4. Diff visual depois
 
 ```bash

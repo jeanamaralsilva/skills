@@ -36,7 +36,9 @@ Para cada linha, pergunte: **se eu tirar isto, o Jean decide diferente?** Se a r
 ## O que o lint pega sozinho
 
 ```bash
-python <skill>/scripts/lint_report.py relatorio.md --max-words 600
+python <skill>/scripts/lint_report.py - <<'EOF'
+<texto da resposta>
+EOF
 ```
 
 | Regra | Pega |

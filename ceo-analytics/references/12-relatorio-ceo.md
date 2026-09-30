@@ -1,6 +1,6 @@
 # Relatório CEO
 
-Curto, de dono para CEO. O modelo está em `assets/report-template.md`.
+Curto, de dono para CEO. Se der para dizer em 5 linhas, são 5 linhas. O modelo está em `assets/report-template.md`.
 
 ## Estrutura
 
@@ -14,19 +14,28 @@ Curto, de dono para CEO. O modelo está em `assets/report-template.md`.
 
 ## Limites
 
-- **600 palavras** por padrão. Se o Jean pedir relatório completo, suba o limite com `--max-words` e mantenha o resto das regras.
-- **Nenhuma seção de "metodologia"** nem de "próximos passos genéricos".
+- **Limite por modo** (passe com `--max-words`):
+  - ajuste: 150
+  - proposta: 350 (padrão do lint)
+  - análise com mapa do app: 450
+
+  Se o Jean pedir relatório completo, suba o limite e mantenha o resto das regras. Estourou? Corte antes de entregar, começando pelo que o Jean já sabe.
+- **Nenhuma seção de "metodologia", "arquivos lidos", "ferramentas" ou "próximos passos genéricos".** A evidência mora dentro de cada achado.
+- **O mapa entra só se o Jean pediu para entender o app.** Num pedido de proposta ou ajuste, ele fica fora.
 - Nenhum travessão e nenhum jargão (`lint_report.py`).
 
 ## Onde entregar
 
-- Resposta no chat quando for curto.
-- Arquivo `.md` no repo (ex.: `docs/ux/<data>-analise.md`) quando o Jean for compartilhar com o time. Só crie no repo se ele pedir. Numa análise read-only (caso WAYUP), nada é escrito no repo.
+- **Padrão: resposta no chat.** Não crie arquivo.
+- Arquivo só se o Jean pedir (ex.: para compartilhar com o time). Numa análise read-only (caso WAYUP), nada é escrito no repo.
+- Proposta visual vai para o Pencil (`14-fluxo-no-pencil.md`), e o chat traz só o resumo.
 
 ## Checagem final
 
 ```bash
-python <skill>/scripts/lint_report.py relatorio.md
+python <skill>/scripts/lint_report.py - <<'EOF'
+<texto da resposta>
+EOF
 ```
 
 Depois, o subagente `agents/report-reviewer.md` com modelo barato. Aplique o que ele apontar que viole as regras. Sugestões de reescrita que mudam o sentido técnico são descartadas.
