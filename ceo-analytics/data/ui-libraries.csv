@@ -1,0 +1,28 @@
+id,lib,platform,version,date,use_for,when,risk,source
+L01,nativewind,RN/Expo,4.2.7 (5.0.0-rc.0 em preview),2026-09-14,Tailwind via className,time que já usa Tailwind,v5 em RC com motor novo; migração 4 para 5 provável breaking,https://registry.npmjs.org/nativewind
+L02,tamagui,RN/Expo/Web,2.7.7 (3.0 em beta),2026-08-15,design system + compilador de estilos universal,app que também roda na web,complexidade alta; v3 beta à vista,https://registry.npmjs.org/tamagui
+L03,gluestack-ui (@gluestack-ui/core),RN/Expo,5.0.15,2026-06-25,componentes copy-paste sobre NativeWind,componentes prontos e acessíveis,@gluestack-ui/themed parado desde 2025-04; não usar themed,https://registry.npmjs.org/@gluestack-ui/core
+L04,react-native-reusables,RN/Expo,0.7.1 (CLI),2026-03-14,port do shadcn/ui para RN,estética shadcn no mobile,CLI sem release há ~7 meses; código fica no seu repo,https://registry.npmjs.org/@react-native-reusables/cli
+L05,heroui-native,RN/Expo,1.0.10,2026-09-21,kit de componentes HeroUI,app novo no SDK 57+,exige RN>=0.81 e reanimated 4,https://registry.npmjs.org/heroui-native
+L06,react-native-unistyles,RN/Expo,3.5.0,2026-10-05,StyleSheet com temas e breakpoints sem re-render,StyleSheet com tema e performance,exige RN>=0.81; ativa,https://registry.npmjs.org/react-native-unistyles
+L07,@shopify/restyle,RN,2.4.5,2025-03-19,tema tipado em props,só projeto legado que já usa,sem release há ~18 meses,https://registry.npmjs.org/@shopify/restyle
+L08,react-native-paper,RN/Expo,5.15.3,2026-05-26,Material Design 3,app Android-first ou visual Material,6.0 alpha em andamento (breaking futuro),https://registry.npmjs.org/react-native-paper
+L09,@expo/ui,Expo,57.0.22,2026-10-06,componentes nativos SwiftUI e Jetpack Compose,pickers; menus; forms nativos de verdade,versionado por SDK; API evoluindo,https://registry.npmjs.org/@expo/ui
+L10,react-native-bottom-tabs,RN/Expo,1.4.0,2026-07-09,tab bar nativa (UITabBar/BottomNavigation),tab bar nativa com Liquid Glass no iOS 26,sobrepõe a Native Tabs do Expo Router; escolher uma,https://registry.npmjs.org/react-native-bottom-tabs
+L11,@gorhom/bottom-sheet,RN/Expo,5.2.14,2026-05-09,bottom sheet em JS/Reanimated,sheet muito customizado,sem release há ~5 meses,https://registry.npmjs.org/@gorhom/bottom-sheet
+L12,@lodev09/react-native-true-sheet,RN/Expo,3.11.18,2026-10-02,bottom sheet nativo (UISheetPresentationController),sheet com cara nativa e detents,exige reanimated>=4 + worklets,https://registry.npmjs.org/@lodev09/react-native-true-sheet
+L13,react-native-reanimated,RN/Expo,4.7.1,2026-10-02,animações no UI thread,base de quase toda animação,SDK 57 fixa 4.5.1; instale com npx expo install,https://registry.npmjs.org/react-native-reanimated
+L14,react-native-gesture-handler,RN/Expo,3.3.0,2026-09-11,gestos nativos,swipe; pan; pinch,SDK 57 fixa ~2.32; v3 provável breaking,https://registry.npmjs.org/react-native-gesture-handler
+L15,@shopify/react-native-skia,RN/Expo,2.14.0,2026-10-01,desenho 2D; shaders; gráficos custom,gráfico e efeito que View não faz,SDK 57 fixa 2.6.2; exige reanimated>=4,https://registry.npmjs.org/@shopify/react-native-skia
+L16,@shopify/flash-list,RN/Expo,2.3.3,2026-10-01,listas longas performáticas,listas grandes,SDK 57 fixa 2.0.2,https://registry.npmjs.org/@shopify/flash-list
+L17,@legendapp/list,RN/Expo/Web,3.6.0,2026-09-29,lista virtualizada em JS puro,chat; itens de altura variável,fora do bundledNativeModules do SDK 57,https://registry.npmjs.org/@legendapp/list
+L18,expo-glass-effect,Expo,57.0.4,2026-09-24,Liquid Glass (iOS 26),material de vidro nativo,efeito real só no iOS 26+; precisa de fallback,https://registry.npmjs.org/expo-glass-effect
+L19,@callstack/liquid-glass,RN,0.8.2,2026-09-15,Liquid Glass para RN sem Expo,projeto sem Expo,0.x (API instável); só iOS 26,https://registry.npmjs.org/@callstack/liquid-glass
+L20,expo-haptics,Expo,57.0.3,2026-09-11,feedback háptico,confirmar ação,silencioso em muito Android; nunca como único feedback,https://registry.npmjs.org/expo-haptics
+L21,react-native-keyboard-controller,RN/Expo,1.22.6,2026-09-29,teclado sincronizado com a UI,forms e chat; botão fixo acima do teclado,SDK 57 fixa 1.21.9,https://registry.npmjs.org/react-native-keyboard-controller
+L22,lottie-react-native,RN/Expo,7.5.0 (8.0 RC),2026-08-22,animação vetorial do After Effects,empty state; celebração,7.5 exige RN>=0.84,https://registry.npmjs.org/lottie-react-native
+L23,@rive-app/react-native,RN,0.5.3,2026-10-06,animação interativa com state machine (novo runtime),animação interativa em projeto novo,0.x; paridade incompleta; rive-react-native antigo em migração,https://registry.npmjs.org/@rive-app/react-native
+L24,moti,RN/Expo,0.30.0,2025-01-29,API declarativa sobre Reanimated,não usar em código novo,sem release há ~20 meses; Reanimated 4 tem CSS transitions,https://registry.npmjs.org/moti
+L25,shadcn_ui,Flutter,0.57.1,2026-09-24,port do shadcn para Flutter,estética shadcn em Flutter,0.x,https://pub.dev/packages/shadcn_ui
+L26,forui,Flutter,0.27.4,2026-10-04,kit minimalista estilo shadcn,alternativa ao shadcn_ui,0.x; ativa,https://pub.dev/packages/forui
+L27,flutter_animate,Flutter,4.5.2,2024-11-25,animações declarativas encadeadas,micro-animações,sem release há ~22 meses,https://pub.dev/packages/flutter_animate

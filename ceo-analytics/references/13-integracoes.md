@@ -14,6 +14,8 @@ A `ceo-analytics` decide **o quê** e **por quê**. As outras skills fazem o **c
 | Texto final do relatório ou do PR | `infleet:no-ai-slop` | Tira as marcas de texto gerado |
 | Nome de variável ou componente novo | `infleet:clean-code` | Nomes em inglês, sem abreviação |
 
+Skills externas da comunidade (motion, Expo UI, HIG/M3, QA no device): `15-comunidade-e-ecossistema.md`.
+
 ## Ordem típica de uma tela nova
 
 1. `ceo-analytics`: mapa, diagnóstico, benchmark e propostas. O Jean aprova uma.

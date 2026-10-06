@@ -60,6 +60,10 @@ Se a tarefa depende deles, diga no relatório que não foram consultados. Se o J
   - Silverman & Barasch: quebrar um streak leva ao abandono. Ofereça outra meta em vez de lembrar da falha.
   - Conclusão prática: streak ajuda pouco e pode punir. Prefira recompensar a volta.
 
+## Comunidade
+
+Reddit não abre; Hacker News abre pela API. Como pesar comentário contra poll e estudo: `15-comunidade-e-ecossistema.md`.
+
 ## Brief para o subagente
 
 Use `agents/market-researcher.md`. Preencha o problema da tela em uma frase e o público.

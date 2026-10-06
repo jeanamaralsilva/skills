@@ -2,7 +2,7 @@
 """Keyword search over the skill's data/*.csv (heuristics, anti-patterns, components, reference apps).
 
 Usage: python search.py "bottom sheet android" [--domain components] [--limit 5]
-Domains: heuristics, anti-patterns, components, reference-apps, market-sources (default: all).
+Domains: heuristics, anti-patterns, components, reference-apps, market-sources, ui-libraries (default: all).
 Scores with BM25 over every column, stdlib only, so it runs anywhere the skill runs.
 """
 import argparse
@@ -14,7 +14,7 @@ import sys
 import unicodedata
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data")
-DOMAINS = ("heuristics", "anti-patterns", "components", "reference-apps", "market-sources")
+DOMAINS = ("heuristics", "anti-patterns", "components", "reference-apps", "market-sources", "ui-libraries")
 K1, B = 1.5, 0.75
 
 

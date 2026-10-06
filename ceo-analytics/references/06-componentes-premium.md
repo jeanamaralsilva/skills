@@ -35,6 +35,10 @@ Na prática em RN: um componente de skeleton que recebe a mesma estrutura da tel
 - **iOS 26:** a sheet nativa ganha Liquid Glass sozinha. Detents `.medium` e `.large`.
 - **RN:** `@gorhom/bottom-sheet` 5 (aceita Reanimated 3.16+ ou 4). Use snap points, `enablePanDownToClose`, `BottomSheetBackdrop` e teclado tratado com `keyboardBehavior`.
 
+## Bibliotecas
+
+Antes de citar uma lib, confira versão, risco e o que o SDK fixa em `data/ui-libraries.csv` e `15-comunidade-e-ecossistema.md`. Regras de motion que valem sempre também estão lá.
+
 ## Motion e gestos
 
 - **Reanimated 4.7:** exige New Architecture. Tem API de animações CSS e springs. Tudo roda na UI thread.

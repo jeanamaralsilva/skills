@@ -1,10 +1,40 @@
-id,app,repo,stack,teaches,key_file
-R01,Bluesky,https://github.com/bluesky-social/social-app,Expo + RN + React Navigation 7,Navegacao central tabs com stacks web+mobile em um codigo,src/Navigation.tsx
-R02,Expensify,https://github.com/Expensify/App,RN + React Navigation 7,Catalogo explicito de rotas e telas (modelo de mapa de telas),src/ROUTES.ts src/SCREENS.ts
-R03,Mattermost,https://github.com/mattermost/mattermost-mobile,RN + WatermelonDB,App corporativo offline-first,app/screens
-R04,Rainbow,https://github.com/rainbow-me/rainbow,RN,Onboarding sheets microinteracoes,src/screens
-R05,Now in Android,https://github.com/android/nowinandroid,Kotlin Compose,Referencia oficial Google de arquitetura navegacao e DS,docs/ArchitectureLearningJourney.md
-R06,Ice Cubes,https://github.com/Dimillian/IceCubesApp,SwiftUI,Navegacao idiomatica iOS,Packages
-R07,Element X,https://github.com/element-hq/element-x-ios,SwiftUI (e Compose no repo android),Mesmo produto nativo nas duas plataformas,ElementX/Sources
-R08,Immich,https://github.com/immich-app/immich,Flutter,Galeria e sync em Flutter,mobile/lib
-R09,AppFlowy,https://github.com/AppFlowy-IO/AppFlowy,Flutter,Editor produtivo multiplataforma,frontend/appflowy_flutter
+id,app,repo,stack,category,teaches,key_file
+R01,Bluesky,https://github.com/bluesky-social/social-app,Expo + RN + React Navigation 7,social/chat,Navegacao central tabs com stacks web+mobile em um codigo,src/Navigation.tsx
+R02,Expensify,https://github.com/Expensify/App,RN + React Navigation 7,finanças/despesas,Catalogo explicito de rotas e telas (modelo de mapa de telas),src/ROUTES.ts src/SCREENS.ts
+R03,Mattermost,https://github.com/mattermost/mattermost-mobile,RN + WatermelonDB,social/chat,App corporativo offline-first,app/screens
+R04,Rainbow,https://github.com/rainbow-me/rainbow,RN,finanças/carteira,Onboarding sheets microinteracoes,src/screens
+R05,Now in Android,https://github.com/android/nowinandroid,Kotlin Compose,design system/referência,Referencia oficial Google de arquitetura navegacao e DS,docs/ArchitectureLearningJourney.md
+R06,Ice Cubes,https://github.com/Dimillian/IceCubesApp,SwiftUI,social/chat,Navegacao idiomatica iOS,Packages
+R07,Element X,https://github.com/element-hq/element-x-ios,SwiftUI (e Compose no repo android),social/chat,Mesmo produto nativo nas duas plataformas,ElementX/Sources
+R08,Immich,https://github.com/immich-app/immich,Flutter,mídia/fotos,Galeria e sync em Flutter,mobile/lib
+R09,AppFlowy,https://github.com/AppFlowy-IO/AppFlowy,Flutter,produtividade/notas,Editor produtivo multiplataforma,frontend/appflowy_flutter
+R10,wger Workout Manager,https://github.com/wger-project/flutter,Flutter,fitness/saúde,Fluxo de treino; rotinas; log de exercícios e nutrição com abas,master/lib/main.dart
+R11,openScale,https://github.com/oliexdev/openScale,Kotlin Compose,fitness/saúde,Dashboard de métricas corporais; gráficos de evolução; pareamento Bluetooth,master/android_app/app/build.gradle.kts
+R12,Android Health Samples,https://github.com/android/health-samples,Kotlin Compose (Android + Wear OS),fitness/saúde,Permissão e leitura/escrita do Health Connect; UI de exercício no Wear,main/README.md
+R13,Cashew,https://github.com/jameskokoska/Cashew,Flutter,finanças/carteira,Orçamentos; transações; cards de saldo e gráficos com Material You polido,main/budget/lib/main.dart
+R14,BlueWallet,https://github.com/BlueWallet/BlueWallet,React Native,finanças/carteira,Lista de carteiras; enviar/receber; master-detail para tablet,master/navigation/MasterView.tsx
+R15,Bitwarden iOS,https://github.com/bitwarden/ios,SwiftUI,finanças/segurança,Coordinator em SwiftUI; cofre; login e onboarding seguros,main/BitwardenShared/UI/Platform/Application/AppCoordinator.swift
+R16,Rocket.Chat RN,https://github.com/RocketChat/Rocket.Chat.ReactNative,React Native,social/chat,Stacks de chat: salas; threads; perfil; settings,master/app/stacks/InsideStack.tsx
+R17,FluffyChat,https://github.com/krille-chan/fluffychat,Flutter,social/chat,Rotas declarativas de messenger: lista; conversa; settings,main/lib/config/routes.dart
+R18,Zulip Flutter,https://github.com/zulip/zulip-flutter,Flutter,social/chat,Chat por tópicos; app shell e tema organizados,main/lib/widgets/app.dart
+R19,Mastodon iOS,https://github.com/mastodon/mastodon-ios,Swift UIKit+SwiftUI,social/chat,SceneCoordinator centralizando a navegação de rede social,main/Mastodon/Coordinator/SceneCoordinator.swift
+R20,Saber,https://github.com/saber-notes/saber,Flutter,produtividade/notas,Notas à mão: browser de arquivos; editor; rotas centralizadas,main/lib/data/routes.dart
+R21,Joplin Mobile,https://github.com/laurent22/joplin,React Native (monorepo),produtividade/notas,Drawer de cadernos; editor; telas de configuração,dev/packages/app-mobile/root.tsx
+R22,Tasks.org,https://github.com/tasks/tasks,Android Kotlin,produtividade/tarefas,Listas; filtros; lembretes; sync CalDAV,main/app/build.gradle.kts
+R23,WooCommerce Android,https://github.com/woocommerce/woocommerce-android,Android Kotlin (Navigation XML),e-commerce,Pedidos; produtos; grafo de navegação grande e real,trunk/WooCommerce/src/main/res/navigation/nav_graph_main.xml
+R24,Open Food Facts,https://github.com/openfoodfacts/smooth-app,Flutter,e-commerce/alimentação,Scanner de código de barras; cards de produto; score nutricional,develop/packages/smooth_app/lib/main.dart
+R25,Organic Maps,https://github.com/organicmaps/organicmaps,Nativo (C++ + Android/iOS),mapas/mobilidade,Mapa offline; busca; rota turn-by-turn,master/android/app/build.gradle
+R26,StreetComplete,https://github.com/streetcomplete/StreetComplete,Kotlin (Android),mapas/mobilidade,Quests sobre mapa; formulários contextuais rápidos; gamificação,master/app/build.gradle.kts
+R27,Pocket Casts Android,https://github.com/Automattic/pocket-casts-android,Kotlin Compose,mídia/podcast,Player; mini-player; descoberta e biblioteca em app de produção,main/app/build.gradle.kts
+R28,AntennaPod,https://github.com/AntennaPod/AntennaPod,Android Java/Kotlin,mídia/podcast,Fila; downloads; player no padrão Android clássico,master/app/build.gradle
+R29,Spotube,https://github.com/KRTirtho/spotube,Flutter,mídia/música,Home; playlists; álbum; player,master/lib/collections/routes.dart
+R30,AnkiDroid,https://github.com/ankidroid/Anki-Android,Android Kotlin/Java,educação,Deck picker; revisor; estatísticas de repetição espaçada,main/AnkiDroid/build.gradle.kts
+R31,Lichess Mobile,https://github.com/lichess-org/mobile,Flutter (Riverpod),educação/jogos,Puzzles; aulas; partidas; app shell e tema bem estruturados,main/lib/src/app.dart
+R32,Wikipedia iOS,https://github.com/wikimedia/wikipedia-ios,Swift/ObjC UIKit,educação,Leitura; explore feed; busca; onboarding,main/Wikipedia.xcodeproj/project.pbxproj
+R33,Expo Examples (with-router),https://github.com/expo/examples,Expo/React Native,design system/referência,Exemplos oficiais Expo Router (SDK 57): tabs; stacks; modais,main/with-router/package.json
+R34,React Native Reusables,https://github.com/founded-labs/react-native-reusables,Expo + NativeWind,design system/UI kit,Componentes estilo shadcn com showcase navegável,main/apps/showcase/app/_layout.tsx
+R35,Tamagui Starter,https://github.com/tamagui/starter-free,Expo + Tamagui (monorepo),design system/UI kit,Tokens e tema compartilhados entre Expo e web,main/apps/expo/app/_layout.tsx
+R36,Ignite Boilerplate,https://github.com/infinitered/ignite,Expo/React Native,design system/boilerplate,Navigators; tema e componentes base de RN maduro,master/boilerplate/app/navigators/AppNavigator.tsx
+R37,Compose Samples,https://github.com/android/compose-samples,Kotlin Compose,design system/referência,Apps-modelo do Google: Jetsnack (e-commerce); Jetcaster (podcast); Jetchat,main/Jetsnack/app/src/main/java/com/example/jetsnack/ui/JetsnackApp.kt
+R38,Apple Food Truck,https://github.com/apple/sample-food-truck,SwiftUI,design system/referência,Referência oficial Apple de navegação SwiftUI multiplataforma,main/App/Navigation/ContentView.swift
+R39,Flutter Compass App,https://github.com/flutter/samples,Flutter,design system/referência,Referência oficial de arquitetura e roteamento Flutter,main/compass_app/app/lib/routing/router.dart

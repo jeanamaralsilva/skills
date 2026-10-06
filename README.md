@@ -17,8 +17,8 @@ Antes de começar, ela lê a conversa e as decisões do repo. Responde curto, no
 ```
 ceo-analytics/
 ├── SKILL.md       roteador: fases 0 a 5 e regras
-├── references/    15 guias lidos sob demanda
-├── data/          5 CSVs com fonte (heurísticas, anti-padrões, componentes, apps, fontes de mercado)
+├── references/    16 guias lidos sob demanda
+├── data/          6 CSVs com fonte (heurísticas, anti-padrões, componentes, 39 apps, fontes de mercado, libs de UI)
 ├── scripts/       map_routes, search, contrast, lint_report + testes
 ├── agents/        briefings de subagentes
 ├── assets/        templates de relatório e proposta

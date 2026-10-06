@@ -14,3 +14,8 @@ C12,Haptics,Confirmacao e selecao,Vibrar em todo toque,UIFeedbackGenerator consi
 C13,Alvo de toque,Todo elemento tocavel,Alvo menor que o minimo,44x44pt,48x48dp,hitSlop,https://developer.apple.com/design/human-interface-guidelines/
 C14,Animacao de gesto,Arrastar swipe pinch,Animacao na JS thread,-,-,react-native-gesture-handler 3 + reanimated 4,https://swmansion.com/blog/reanimated-4-stable-release-the-future-of-react-native-animations-ba68210c3713/
 C15,Grafico/desenho custom,Visual que componente nao faz (anel progresso shader),Lib abandonada (moti sem release desde jan/2025),Canvas,Canvas,@shopify/react-native-skia 2,https://github.com/Shopify/react-native-skia
+C16,Press feedback,Todo elemento tocável,Botão sem resposta visual ao toque,scale 0.97 em 100-150ms (UIKit highlight),ripple Material,Reanimated 4 ou Pressable,https://github.com/emilkowalski/skill
+C17,Troca de tab,Navegação principal,Animação de slide entre tabs,sem animação,sem animação (fade curto no máximo),react-native-bottom-tabs ou Native Tabs,https://github.com/emilkowalski/skill
+C18,Números tabulares,Timer; carga; tabela; contador,Números que pulam de largura ao mudar,fontVariant tabular-nums,fontFeatureSettings tnum,fontVariant: ['tabular-nums'],https://github.com/raunofreiberg/interfaces
+C19,Ação destrutiva,Apagar; marcar falta; cancelar,Um toque sem volta,Confirmação ou Undo com toast,Snackbar com Desfazer,Alert ou toast com ação,https://github.com/vercel-labs/web-interface-guidelines
+C20,Lista longa,Feed; histórico; chat,ScrollView com map em lista grande,List/LazyVStack,LazyColumn,@shopify/flash-list ou @legendapp/list,https://registry.npmjs.org/@shopify/flash-list

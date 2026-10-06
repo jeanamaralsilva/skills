@@ -47,7 +47,7 @@ Sem ferramenta de subagente (ou rodando dentro de um), faça as fases você mesm
 ### 3. Diagnóstico
 
 - Rubrica: `references/04-heuristicas-e-rubrica.md`.
-- Base consultável: `python scripts/search.py "<tema>"` (heurísticas, anti-padrões, componentes, apps de referência, fontes de mercado).
+- Base consultável: `python scripts/search.py "<tema>"` (heurísticas, anti-padrões, componentes, 39 apps de referência, fontes de mercado, bibliotecas de UI).
 - Contraste só com `python scripts/contrast.py "#fg" "#bg"`.
 - Antes de escrever, leia `references/07-anti-slop-visual.md` e `references/08-anti-slop-analise.md`.
 
@@ -97,3 +97,4 @@ Cada regra existe por um motivo concreto.
 | Desenhar fluxo no Pencil | `14` |
 | Entregar | `12`, `assets/report-template.md` |
 | Chamar outra skill | `13` |
+| "O pessoal gosta?" e "dá para construir?" | `15`, `data/ui-libraries.csv` |
