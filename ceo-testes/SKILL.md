@@ -11,7 +11,7 @@ Você é o dono técnico da qualidade do app. Quem pede é o CEO (dono do produt
 
 - "Testa o app", "vê se está tudo funcionando", app novo ou release: **varredura**.
 - Vídeo, print ou relato do cliente: **caça-bug**.
-- "Mudei X", PR, upgrade de lib: **regressão** só do que mudou.
+- "Mudei X", "testa o PR 42", upgrade de lib, chamada da `ceo-deps`: **regressão** só do que o diff alcança, com revisão do patch.
 - Dois papéis na mesma tela, "o outro não vê": **multiusuário**.
 - "Estressa", "procura bug", antes de release: **estresse**.
 - Crash no TestFlight, "fechou sozinho": **evidência**.
@@ -21,7 +21,7 @@ Não use para: revisar código sem rodar (`ceo-cortex`), opinar sobre UX (`ceo-a
 ## Fluxo
 
 ### 0. Brief e config
-`references/00-brief-e-modos.md`. Leia `.ceo/config.md` (modelo em `assets/ceo-config.example.md`): repos e read-only, RAM e número de simuladores, bundle id, papéis, variáveis de credencial. Monte o brief em silêncio: objetivo, modo, alvo, papéis, entrada, ambiente, limites. Pergunte só o que mudaria a ação.
+`references/00-brief-e-modos.md`. Leia `.ceo/config.md` (modelo em `assets/ceo-config.example.md`): repos e read-only, RAM e número de simuladores, bundle id, papéis, variáveis de credencial. Monte o brief em silêncio: objetivo, modo, alvo, papéis, entrada, ambiente, limites. Pergunte só o que mudaria a ação. Rodada longa: plano de até 10 linhas para o CEO aprovar (casos, oráculos, ferramentas a instalar, tempo), depois lotes de ~45 min com relatório curto por lote. Tudo que a skill cria fica no repo fora do git (`.git/info/exclude`).
 
 ### 1. Estratégia
 `references/01-estrategia-e-risco.md`. Pontue risco por tela; escreva o oráculo de cada caso antes de rodar. Tours e heurísticas em `data/tours.csv`.
@@ -46,19 +46,22 @@ python scripts/sim_session.py create admin
 - Dois usuários: `references/05-multiusuario-tempo-real.md`, `scripts/phx_actor.mjs`, subagente `agents/actor-b.md`. Lado do servidor em `references/08-servidor-elixir.md`.
 - Estresse: `references/06-estresse-e-caos.md` (Toxiproxy, rede, ciclo de vida, memória, carga com `assets/k6-phoenix-ws.js`).
 - Performance: `references/09-performance-e-memoria.md` (xctrace, agent-device perf, orçamentos).
+- PR ou dependência: `references/13-regressao-de-pr-e-dependencias.md` (diff → telas → matriz → escada de verificação; `ceo-cortex` revisa o patch, `ceo-deps` a dependência).
 
 ### 5. Evidência e causa
 - Vídeo ou print do cliente: `references/07-analise-de-bug-video-e-imagem.md`, `scripts/video_frames.py`, subagente `agents/bug-analyst.md`.
 - TestFlight, iPhone físico e crash logs: `references/10-testflight-e-crashes.md`.
 - Toda reprodução gravada: `xcrun simctl io <UDID> recordVideo`; causa como `arquivo:linha`.
+- Bug reproduzido ganha **teste implementado** (skill `tdd`, em `test/ceo/` ou `src/__tests__/ceo/`, falhando no código atual) e patch em `runs/patches/`. Em repo próprio, aplica em branch; em read-only, fica para `git apply`.
 
 ### 6. Relatório
 `references/11-relatorio-ceo.md` e `assets/report-template.md`. `python scripts/lint_report.py - --max-words <limite>` antes de entregar.
 
 ### 7. Limpeza (sempre, inclusive após falha)
 ```bash
-python scripts/sim_session.py cleanup      # apaga ceo-* e runs/
+python scripts/sim_session.py cleanup      # apaga ceo-*, vídeos inteiros, prints, traces; preserva runs/patches e runs/keep
 ```
+Arquivo do repo alterado só para a rodada (ex.: perfil de simulador no `eas.json`) volta ao original.
 
 ## Regras duras
 
@@ -68,10 +71,11 @@ python scripts/sim_session.py cleanup      # apaga ceo-* e runs/
 - **Dois clientes para tempo real, sempre.** O segundo pode ser o `phx_actor.mjs`. Testar tempo real com um cliente só não testa.
 - **Servidor primeiro quando a hipótese é do servidor.** Um teste ExUnit de canal leva segundos; o simulador leva minutos.
 - **Um simulador por padrão em 16 GB.** Dois só com motivo escrito no brief. Nunca três.
-- **Prefixo `ceo-` em tudo que você cria; apague no fim.** Simuladores, vídeos, prints, traces. Os simuladores do desenvolvedor ficam.
+- **Prefixo `ceo-` em tudo que você cria; apague no fim.** Simuladores, vídeos inteiros, prints, traces, builds baixados. Ficam: testes implementados, `runs/patches/` e os clipes citados em `runs/keep/`. Os simuladores do desenvolvedor ficam.
+- **Plano antes de rodada longa, lotes durante.** O CEO delimita no plano; cada lote de ~45 min reporta só o delta.
 - **Nunca em produção, nunca com dado real.** Usuários de teste por papel; credencial só por variável de ambiente; token de produção nunca é copiado.
 - **Read-only é read-only.** Em repo marcado assim (config ou dono), nenhum arquivo, branch ou flow é escrito; relatório com patch sugerido.
-- **Correção vem com teste** (skill `tdd`): o teste que reproduz falha antes e passa depois. Sem isso, a correção não está pronta.
+- **Correção vem com teste implementado** (skill `tdd`): o teste que reproduz falha antes e passa depois, gravado no repo (fora do git quando read-only). "Correção sugerida" sem teste não é entrega.
 
 ## Quando outras skills entram
 `references/12-integracoes.md`: UX vai para `ceo-analytics`, versão e dependência para `ceo-deps`, patch para `ceo-cortex` com `tdd`, Elixir profundo para phxagents, PR pela skill da config.
@@ -86,3 +90,5 @@ python scripts/sim_session.py cleanup      # apaga ceo-* e runs/
 | "Abrir dois simuladores é mais realista" | Em 16 GB é mais lento e menos confiável. Ator por API prova o mesmo |
 | "Deixo o simulador para a próxima sessão" | Não. `cleanup` sempre |
 | "Está lento" | Quanto? `[medido]` ou não entra |
+| "Esse PR é pequeno, não precisa de regressão" | Diff pequeno em hook compartilhado alcança 10 telas. `13` decide, não o tamanho |
+| "Deixo o teste como sugestão no relatório" | Teste é implementado e rodando, ou o bug não está entregue |

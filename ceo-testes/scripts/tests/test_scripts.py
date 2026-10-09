@@ -215,13 +215,17 @@ def test_sim_session_creates_prefixed_devices_and_cleans_only_its_own(fake_xcrun
     assert {"ceo-papelA", "ceo-papelB"} <= names
     # a device that is not ours must survive cleanup
     subprocess.run([sim_session.XCRUN, "simctl", "create", "Meu iPhone", "x", "y"], check=True)
-    (tmp_path / "runs" / "old.mov").parent.mkdir(parents=True, exist_ok=True)
+    (tmp_path / "runs" / "keep").mkdir(parents=True, exist_ok=True)
+    (tmp_path / "runs" / "patches").mkdir(parents=True, exist_ok=True)
     (tmp_path / "runs" / "old.mov").write_bytes(b"0")
+    (tmp_path / "runs" / "keep" / "bug-00-12.mov").write_bytes(b"0")
+    (tmp_path / "runs" / "patches" / "fix.diff").write_bytes(b"0")
     removed = session.cleanup()
     assert set(removed["devices"]) == {a, b}
-    assert "old.mov" in removed["artifacts"][0]
+    assert [os.path.basename(p) for p in removed["artifacts"]] == ["old.mov"]
     assert {d["name"] for d in sim_session.list_devices()} == {"Meu iPhone"}
     assert not (tmp_path / "runs" / "old.mov").exists()
+    assert (tmp_path / "runs" / "keep" / "bug-00-12.mov").exists() and (tmp_path / "runs" / "patches" / "fix.diff").exists()
 
 
 def test_sim_session_refuses_more_than_max(fake_xcrun, tmp_path):

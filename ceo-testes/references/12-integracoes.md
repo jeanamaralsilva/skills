@@ -5,7 +5,8 @@
 | Situação | Chamar | Por quê |
 |---|---|---|
 | Bug é de UX, não de código (fluxo confuso, estado faltando, botão escondido) | `ceo-analytics` | diagnóstico de tela e proposta; `map_routes.py` dela complementa o `map_flows.py` |
-| Bug é de versão: módulo nativo duplicado, lib fora do SDK, CVE, build quebrando | `ceo-deps` | `expo_check.py`, `lock_audit.py`, escada de verificação sem build local |
+| Bug é de versão: módulo nativo duplicado, lib fora do SDK, CVE, build quebrando | `ceo-deps` | `expo_check.py`, `lock_audit.py`; e a `ceo-deps` chama esta skill (modo regressão) depois de mudar dependência nativa ou central (`13`) |
+| PR aberto: "o que pode quebrar?" | esta skill (`13`) + `ceo-cortex` | regressão do que o diff alcança e revisão do patch num relatório só |
 | Corrigir o bug no código (modo manter) | `ceo-cortex` | revisão sênior do patch; evita corrigir o sintoma |
 | Escrever o teste da correção | skill `tdd` | red-green-refactor: o teste que reproduz o bug falha antes e passa depois; sem isso a correção não está pronta |
 | Elixir/Phoenix a fundo (canal, Ecto, OTP) | plugin phxagents (`/phx:audit`, Iron Laws) | referência de arquitetura; os testes do servidor aqui são o mínimo |

@@ -30,6 +30,14 @@ Seções vazias não aparecem. Se há 1 bug, o relatório tem 5 linhas.
 
 Segurança (token aceito depois de revogado, autorização por objeto falha) é P0 sempre, com detalhes completos, mesmo que estoure o tamanho.
 
+## Bug encontrado: o que acompanha
+
+Em qualquer repo, cada bug reproduzido vem com **teste implementado e rodando** (skill `tdd`: o teste falha no código atual), gravado em `test/ceo/` ou `src/__tests__/ceo/`, e com o **patch** em `runs/patches/<bug>.diff` quando a causa é clara. Em repo próprio o patch pode ser aplicado em branch; em read-only fica como `.diff` para `git apply`. O relatório diz qual é o caso. "Correção sugerida" sem teste não conta como entregue.
+
+## Lotes
+
+Rodada longa reporta por lote (~45 min): só o delta, até 150 palavras, mesmo formato. O consolidado final repete os bugs abertos, lista o que passou e o que ficou de fora.
+
 ## Regras de evidência
 
 - Cada bug tem **como reproduzir** (passos ou nome do flow), **onde** (`arquivo:linha` da causa provável ou `[tela: X]`) e **prova** (`[video: ...]`, `[print: ...]`, `[cmd: ...]` ou log). Sem os três, é observação, não bug.

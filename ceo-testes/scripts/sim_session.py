@@ -8,7 +8,8 @@ Usage:
   python sim_session.py cleanup [--artifacts runs/]                    # shutdown+delete ceo-* devices, remove artifacts
 
 Every device the session creates is named `<prefix><role>` (default prefix `ceo-`), so cleanup
-only ever touches devices with that prefix: the developer's own simulators survive. The cap
+only ever touches devices with that prefix: the developer's own simulators survive. Cleanup also
+empties the artifacts folder except `patches/` and `keep/` (what the report needs). The cap
 (`--max`, default 2) exists because each booted simulator costs roughly 3-4 GB of RAM; on a 16 GB
 machine the plan is one simulator plus `phx_actor.mjs` for the second role, never two simulators
 by default. Set CEO_XCRUN to point at a fake xcrun in tests.
@@ -22,6 +23,7 @@ import sys
 
 XCRUN = os.environ.get("CEO_XCRUN", "xcrun")
 PREFIX = "ceo-"
+KEEP_DIRS = {"patches", "keep"}  # runs/patches (diffs) and runs/keep (clips cited in the report) are never deleted
 RAM_PER_SIM_GB = 4
 
 
@@ -84,6 +86,8 @@ class Session:
             removed["devices"].append(device["udid"])
         if os.path.isdir(self.artifacts):
             for name in sorted(os.listdir(self.artifacts)):
+                if name in KEEP_DIRS:
+                    continue  # patches and the clips the report cites survive the cleanup
                 path = os.path.join(self.artifacts, name)
                 removed["artifacts"].append(path)
                 shutil.rmtree(path) if os.path.isdir(path) else os.remove(path)

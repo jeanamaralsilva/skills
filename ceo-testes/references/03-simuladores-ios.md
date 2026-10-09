@@ -80,7 +80,7 @@ xcrun simctl runtime delete --dry-run --notUsedSinceDays 60   # veja antes; depo
 du -sh ~/Library/Developer/CoreSimulator/Devices ~/Library/Developer/Xcode/DerivedData
 ```
 
-`DerivedData` pode ser apagado quando o Xcode está fechado. `~/Library/Developer/CoreSimulator/Caches` não tem recomendação oficial da Apple; apague só `dyld` dentro dela se o disco estiver cheio e o Xcode fechado, e diga no relatório. O vídeo gravado para evidência sai do Mac junto com o relatório (anexo) e é apagado por `cleanup`; o que o CEO precisa guardar, ele pede.
+O `cleanup` preserva `runs/patches/` e `runs/keep/` (clipes de até 15 s citados no relatório, testes implementados ficam nas pastas do repo). Vídeos inteiros, prints, traces, logs e builds baixados vão embora. `DerivedData` pode ser apagado quando o Xcode está fechado. `~/Library/Developer/CoreSimulator/Caches` não tem recomendação oficial da Apple; apague só `dyld` dentro dela se o disco estiver cheio e o Xcode fechado, e diga no relatório. Antes do `cleanup`, corte o trecho citado (`ffmpeg -ss -to`) para `runs/keep/`; o resto da gravação some.
 
 ## Fontes
 
