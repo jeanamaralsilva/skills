@@ -8,7 +8,7 @@ Todas as fontes abaixo foram testadas por fetch em 30/09/2026. Tabela completa c
 
 ### 1. Por dentro primeiro
 
-O próprio app: a mesma solução pode já existir noutra tela. Se o repo for INFLEET, `infleet-herads/references/benchmark.md` e o censo de telas do HeraDS. Metade das vezes o benchmark termina aqui: "é variante do que já temos".
+O próprio app: a mesma solução pode já existir noutra tela. Se a config aponta um DS (`design.ds_skill`), o benchmark e o censo de telas dele. Metade das vezes o benchmark termina aqui: "é variante do que já temos".
 
 ### 2. Princípios
 
@@ -48,7 +48,7 @@ Apple Design Awards, Google Play Best of (post no blog.google) e Webby Awards de
 
 Behance, Reddit, Mobbin (além da home), Screenlane, a busca do Dribbble, Pinterest, m3.material.io, Sensor Tower e a busca web do GitHub.
 
-Se a tarefa depende deles, diga no relatório que não foram consultados. Se o Jean tiver prints ou um navegador logado, peça.
+Se a tarefa depende deles, diga no relatório que não foram consultados. Se o CEO tiver prints ou um navegador logado, peça.
 
 ## Estudos sobre o que usuários gostam (use com o recorte certo)
 

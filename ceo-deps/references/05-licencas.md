@@ -26,4 +26,4 @@ Expressão com OR (`MIT OR GPL-3.0`) vale a opção mais permissiva. Sem licenç
 - **Assets contam:** fontes, ícones e animações (Lottie) têm licença própria; CC-BY-NC é comum em ícone grátis.
 - **Elixir:** não há ferramenta oficial; `licensir` (`mix licenses`) está parado desde 2021. O `deps_scan.py` lê o `hex_metadata.config` direto.
 
-Achado de licença deny é P0 até alguém de jurídico decidir. Não remova a lib sozinho: vira pendência do Jean.
+Achado de licença deny é P0 até alguém de jurídico decidir. Não remova a lib sozinho: vira pendência do CEO.

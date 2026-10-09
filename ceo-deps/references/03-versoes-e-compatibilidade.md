@@ -24,12 +24,12 @@ O `expo_check.py` roda sem instalar nada. Sem `node_modules`, baixe o arquivo do
 | `HermesV1VersionCheck` | expo 55, 56 ou 57 abaixo de 57.0.9 com Hermes V1 tem regressão de memória | `npx expo install expo@^57.0.9 --fix` (57.0.9 leva o RN a 0.86.2) |
 | `InstalledDependencyVersionCheck` "Minor/Patch version mismatches" | pacote fora do range do SDK | `npx expo install --fix`; exceção intencional vai em `expo.install.exclude` |
 | `DependencyVersionOverrideCheck` | override quebrando a cadeia expo, @expo/cli, metro | remover o override |
-| `ReactNativeDirectoryCheck` | lib `unmaintained` ou sem New Architecture | trocar a lib (vira decisão do Jean se for central) |
+| `ReactNativeDirectoryCheck` | lib `unmaintained` ou sem New Architecture | trocar a lib (vira decisão do CEO se for central) |
 | `LockfileCheck` | lockfile ausente | gerar e commitar |
 | `StoreCompatibilityCheck` | targetSdkVersion abaixo do mínimo da Play | subir pelo `expo-build-properties` |
 | `VectorIconsCheck` / `ExpoRouterReactNavigationCheck` | dois sets de ícones; react-navigation direto junto do expo-router | ficar com um |
 
-Caso real da imagem do Jean (WAYUP, expo 57.0.4): `@expo/ui` 57.0.4 na raiz e 57.0.18 dentro de `expo-widgets`, regressão Hermes, flash-list 2.3.2 contra 2.0.2 exigido e 25 patches atrás. A causa da duplicata estava no `package.json`: `expo-widgets` fixo em 57.0.19 pedia o próprio `@expo/ui` 57.0.18. Subir `@expo/ui` e `expo-widgets` juntos para o patch atual do SDK deixou uma cópia só. Havia também um `package-lock.json` local, ignorado pelo git, com versões diferentes do `bun.lock`: não era a causa, mas é armadilha para quem rodar `npm i`.
+Caso real (expo 57.0.4): `@expo/ui` 57.0.4 na raiz e 57.0.18 dentro de `expo-widgets`, regressão Hermes, flash-list 2.3.2 contra 2.0.2 exigido e 25 patches atrás. A causa da duplicata estava no `package.json`: `expo-widgets` fixo em 57.0.19 pedia o próprio `@expo/ui` 57.0.18. Subir `@expo/ui` e `expo-widgets` juntos para o patch atual do SDK deixou uma cópia só. Havia também um `package-lock.json` local, ignorado pelo git, com versões diferentes do `bun.lock`: não era a causa, mas é armadilha para quem rodar `npm i`.
 
 ### Update OTA e runtimeVersion
 

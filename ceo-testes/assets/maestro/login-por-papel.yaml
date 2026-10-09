@@ -1,0 +1,22 @@
+# Login com credenciais por papel. Rode: maestro test -e APP_ID=<bundle> -e USERNAME=$TEST_USER_ADMIN -e PASSWORD=$TEST_PASS_ADMIN login-por-papel.yaml
+appId: ${APP_ID}
+env:
+  LOGIN_ID: "email"
+  PASSWORD_ID: "password"
+  SUBMIT_TEXT: "Entrar"
+---
+- launchApp:
+    clearState: true
+    clearKeychain: true
+- tapOn:
+    id: ${LOGIN_ID}
+- inputText: ${USERNAME}
+- tapOn:
+    id: ${PASSWORD_ID}
+- inputText: ${PASSWORD}
+- hideKeyboard
+- tapOn: ${SUBMIT_TEXT}
+- extendedWaitUntil:
+    notVisible: ${SUBMIT_TEXT}
+    timeout: 10000
+- takeScreenshot: runs/login-${USERNAME}

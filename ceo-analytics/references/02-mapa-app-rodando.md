@@ -10,7 +10,12 @@ O código diz o que a tela pode fazer. O app rodando diz o que ela faz de verdad
 | React Native / Expo | argent no simulador | iOS por padrão, Android quando o assunto for Android |
 | Nativo iOS/Android | simulador ou emulador com argent | mesmo ciclo |
 
-Os comandos de gravação, print e sessão estão em `send-pr/references/visual-evidence.md`. Não copie para cá: leia lá antes do primeiro `screen-recording-start` ou `agent-browser open`.
+Comandos mínimos, sem depender de outra skill:
+- iOS simulador: `xcrun simctl io booted screenshot <arq>.png`; vídeo `xcrun simctl io booted recordVideo --codec h264 --force <arq>.mp4` (Ctrl-C encerra).
+- Web: `npx playwright screenshot --viewport-size "390,844" <url> <arq>.png`.
+- Android (quando houver): `adb exec-out screencap -p > <arq>.png`; `adb shell screenrecord --time-limit 60 /sdcard/<arq>.mp4`.
+
+Se o time tem uma skill de evidência visual (ex.: a de PR na config), use a dela.
 
 Se o app não sobe (sem backend, sem credencial), pare e diga isso. Não descreva uma tela que você não viu.
 

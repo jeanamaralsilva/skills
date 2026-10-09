@@ -10,7 +10,7 @@ Curto, de dono para CEO. Modelo: `assets/report-template.md`.
    `- **P1** <problema> → <correção> \`<arquivo:linha>\``
    Evidência: arquivo do repo (`package.json:12`, `mix.exs:92`), `[cmd: npx expo-doctor]` ou `[fonte: url]`.
 4. **Feito** (modo manter): o que foi aplicado e até que degrau foi verificado.
-5. **Pendente do Jean:** só decisões com trade-off real.
+5. **Pendente do CEO:** só decisões com trade-off real.
 
 ## Severidade
 

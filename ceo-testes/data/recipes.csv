@@ -1,0 +1,67 @@
+id,area,recipe,command,detects,source
+T01,e2e,Rodar flow num device especifico,maestro --device <UDID> test flow.yaml,Regressao de fluxo principal,https://docs.maestro.dev/maestro-flows/flow-control-and-logic/specify-and-start-devices.md
+T02,e2e,Mesma suite em todos os devices,maestro test --shard-all 2 .maestro,Bug so numa plataforma,https://docs.maestro.dev/maestro-flows/flow-control-and-logic/specify-and-start-devices.md
+T03,e2e,Dividir suite entre devices listados,"maestro test --device ""A,B"" --shard-split 2 ./e2e",Lentidao da suite,https://docs.maestro.dev/maestro-flows/flow-control-and-logic/specify-and-start-devices.md
+T04,e2e,Passar credenciais por papel,maestro test -e USERNAME=$TEST_USER_ADMIN -e PASSWORD=$TEST_PASS_ADMIN flow.yaml,Erros de login por perfil,https://docs.maestro.dev/maestro-flows/flow-control-and-logic/parameters-and-constants
+T05,e2e,Relatorio JUnit e artefatos,maestro test --format junit --output build/report.xml --test-output-dir=build/maestro-results ./e2e,Evidencia para CI,https://docs.maestro.dev/cli/test-suites-and-reports
+T06,e2e,Gravar flow em video local,maestro record --local Flow.yaml,Evidencia visual do passo,https://docs.maestro.dev/maestro-flows/workspace-management/record-your-flow.md
+T07,e2e,Regressao visual,takeScreenshot path:X (run 1) e assertScreenshot path:X.png thresholdPercentage:98,Quebra de layout,https://docs.maestro.dev/reference/commands-available/assertscreenshot.md
+T08,e2e,Expor Maestro ao agente via MCP,claude mcp add maestro -- maestro mcp,Agente inspeciona tela e roda YAML inline,https://docs.maestro.dev/get-started/maestro-mcp
+T09,e2e,E2E na nuvem sem RAM local,EAS workflow job type: maestro com build_id flow_path shards retries record_screen,Bugs sem compilar no Mac,https://docs.expo.dev/eas/workflows/pre-packaged-jobs.md
+T10,exploratorio,QA exploratorio por agente,npx skills add https://github.com/callstackincubator/agent-device --skill dogfood,Bugs de UX e crash em runtime,https://mcpservers.org/th/agent-skills/callstackincubator/dogfood
+T11,exploratorio,Snapshot e toque por ref,agent-device open <app> --platform ios ; agent-device snapshot -i ; agent-device press @e12,Elementos sem label ou inacessiveis,https://oss.callstack.com/agent-device/docs/introduction
+T12,exploratorio,Argent no projeto Expo,npx @swmansion/argent init,Logs rede e profiling via agente,https://docs.expo.dev/agents/argent.md
+T13,simctl,Criar e bootar segundo simulador,xcrun simctl create ceo-papelB <device-type-id> <runtime-id> ; xcrun simctl boot <UDID>,Base para teste multiusuario,https://tessl.io/registry/dpearson2699/swift-ios-skills/3.9.0/files/skills/ios-simulator/references/simctl-commands.md
+T14,simctl,Instalar .app do EAS,xcrun simctl install <UDID> App.app,Build quebrado ou crash no start,https://tessl.io/registry/dpearson2699/swift-ios-skills/3.9.0/files/skills/ios-simulator/references/simctl-commands.md
+T15,simctl,Abrir deep link,xcrun simctl openurl <UDID> myapp://aula/123,Rota quebrada ou sem auth,https://tessl.io/registry/dpearson2699/swift-ios-skills/3.9.0/files/skills/ios-simulator/references/simctl-commands.md
+T16,simctl,Gravar video do simulador,xcrun simctl io <UDID> recordVideo --codec=h264 --force out.mov,Evidencia de bug,xcrun simctl help io
+T17,simctl,Simular push,xcrun simctl push <UDID> <bundle-id> payload.json,Push que nao abre tela certa,https://tessl.io/registry/dpearson2699/swift-ios-skills/3.9.0/files/skills/ios-simulator/references/simctl-commands.md
+T18,simctl,Negar permissao,xcrun simctl privacy <UDID> revoke location <bundle-id>,Tela sem fallback para permissao negada,https://tessl.io/registry/dpearson2699/swift-ios-skills/3.9.0/files/skills/ios-simulator/references/simctl-commands.md
+T19,simctl,Rota GPS simulada,"xcrun simctl location booted start --speed=15 --interval=1 37.3349,-122.0090 37.3317,-122.0307",Bugs de localizacao em movimento,https://tessl.io/registry/dpearson2699/swift-ios-skills/3.9.0/files/skills/ios-simulator/references/simctl-commands.md
+T20,simctl,Modo escuro,xcrun simctl ui booted appearance dark,Contraste e cores fixas,https://developer.apple.com/forums/thread/121115
+T21,simctl,Logs do simulador,xcrun simctl spawn booted log stream --level debug,Erros nativos e de rede,https://tessl.io/registry/dpearson2699/swift-ios-skills/3.9.0/files/skills/ios-simulator/references/simctl-commands.md
+T22,simctl,Reduzir RAM por simulador,simslim (ver doctor e measure),Permite 2 sims em Mac fraco,https://pkg.go.dev/github.com/mobai-app/simslim
+T23,adb,Emulador frio e com pouca RAM,emulator -avd <AVD> -no-snapshot -no-boot-anim -memory 1536,Bugs de cold start e low-end,https://developer.android.com/studio/run/emulator-commandline
+T24,adb,Rede lenta no emulador,emulator -avd <AVD> -netdelay gsm -netspeed edge,Timeouts e spinners infinitos,https://developer.android.com/studio/run/emulator-commandline
+T25,adb,Gravar tela Android,adb -s emulator-5554 shell screenrecord --time-limit 120 /sdcard/bug.mp4,Evidencia de bug (max 180s),https://developer.android.com/tools/adb
+T26,adb,Revogar permissao,adb shell pm revoke <pkg> android.permission.ACCESS_FINE_LOCATION,Crash por permissao,https://developer.android.com/tools/adb
+T27,fuzz,Monkey reprodutivel,adb shell monkey -p <pkg> -s 42 --throttle 50 --pct-touch 60 --pct-appswitch 5 --monitor-native-crashes -v -v 5000,Crash e ANR aleatorios,https://developer.android.com/studio/test/other-testing-tools/monkey
+T28,fuzz,Toques rapidos repetidos,agent-device press 300 500 --count 12 --interval-ms 45,Double submit e race de UI,https://oss.callstack.com/agent-device/docs/commands
+T29,fuzz,Modo aviao no meio da acao (Android),setAirplaneMode: enabled (no flow Maestro),Perda de estado offline,https://docs.maestro.dev/reference/commands-available/setairplanemode.md
+T30,fuzz,Matar app no meio do fluxo,xcrun simctl terminate <UDID> <bundle-id> ou adb shell am force-stop <pkg>,Estado nao restaurado,https://developer.android.com/tools/adb
+T31,multiuser,Dois papeis em paralelo,maestro --device A test -e ROLE=admin admin.yaml & maestro --device B test -e ROLE=user user.yaml & wait,Dessincronia entre papeis,https://docs.maestro.dev/maestro-flows/flow-control-and-logic/specify-and-start-devices.md
+T32,multiuser,Segundo ator via Phoenix fake,node script com new Socket(url) channel.join() channel.push(evt) channel.on(evt),Evento nao refletido no app,https://phoenix.hexdocs.pm/js/index.html
+T33,perf,Score de performance Android,"flashlight test --bundleId <pkg> --testCommand ""maestro test f.yaml"" --duration 10000 --resultsFilePath r.json ; flashlight report r.json",FPS CPU RAM ruins,https://docs.flashlight.dev/test
+T34,perf,Jank por fluxo,adb shell dumpsys gfxinfo <pkg> reset ; (fluxo) ; adb shell dumpsys gfxinfo <pkg>,Janky frames e P90 acima de 16ms,https://webarchive.library.unt.edu/web/20160706090017mp_/https://developer.android.com/training/testing/performance.html
+T35,perf,Trace de sistema,python3 record_android_trace -o t.perfetto-trace -t 10s -b 32mb -a '*' sched freq view ss input,Travamento de thread UI,https://perfetto.dev/docs/getting-started/system-tracing
+T36,perf,Frames e memoria via agente,agent-device perf frames --json ; agent-device perf memory sample --json,Jank e leak,https://oss.callstack.com/agent-device/docs/commands
+T37,video,Frames de mudanca de cena,"ffmpeg -i bug.mp4 -vf ""select='gt(scene,0.3)',showinfo"" -fps_mode vfr f%03d.png",Passo que dispara o bug,https://ffmpeg.org/ffmpeg.html#Advanced-Video-options
+T38,imagem,Diff de screenshots,magick compare -verbose -metric rmse a.png b.png diff.png,Diferenca visual entre devices,https://imagemagick.org/compare/
+T39,simctl,Modo escuro e fonte grande,xcrun simctl ui <UDID> appearance dark ; xcrun simctl ui <UDID> content_size accessibility-extra-extra-extra-large,Texto cortado e contraste,https://raw.githubusercontent.com/appium/node-simctl/master/lib/subcommands/ui.ts
+T40,simctl,Idioma e regiao do app,"xcrun simctl launch <UDID> <bundle-id> -AppleLanguages ""(pt-BR)"" -AppleLocale pt_BR",Virgula decimal e data errada,https://tessl.io/registry/dpearson2699/swift-ios-skills/3.9.0/files/skills/ios-simulator/references/simctl-commands.md
+T41,simctl,Fuso horario do app,SIMCTL_CHILD_TZ=America/Manaus xcrun simctl launch <UDID> <bundle-id>,Horario exibido errado (valor gruda; reinicie o simulador para trocar),https://developer.apple.com/forums/thread/86951
+T42,simctl,Barra de status limpa para print,xcrun simctl status_bar <UDID> override --time 9:41 --batteryLevel 100 --wifiBars 3,Evidencia limpa,xcrun simctl help status_bar
+T43,simctl,Limpar keychain e estado,xcrun simctl keychain <UDID> reset ; xcrun simctl erase <UDID>,Sessao velha sobrevivendo a reinstall,xcrun simctl help keychain
+T44,simctl,Logs so do app,"xcrun simctl spawn <UDID> log stream --predicate 'process == ""<AppName>""' --level debug",Erro nativo escondido,xcrun simctl help spawn
+T45,simctl,Diagnostico completo para anexar,xcrun simctl diagnose --no-archive --output <dir>,Crash e logs do sistema,xcrun simctl help diagnose
+T46,simctl,Apagar simuladores da sessao,xcrun simctl shutdown all ; xcrun simctl delete <UDID-criados> ; xcrun simctl delete unavailable,Disco e RAM livres,https://developer.apple.com/forums/thread/773153
+T47,perf,Hitches de animacao,"xcrun xctrace record --template ""Animation Hitches"" --device <UDID> --time-limit 30s --output hitch.trace --attach <pid>",Frames perdidos em transicao,xcrun xctrace help record
+T48,perf,CPU por fluxo,"xcrun xctrace record --template ""Time Profiler"" --device <UDID> --output cpu.trace --launch -- <App.app>",Thread principal ocupada,xcrun xctrace help record
+T49,perf,Frames e memoria sem Instruments,agent-device perf frames --json ; agent-device perf memory sample --json,Jank e leak,https://oss.callstack.com/agent-device/docs/commands
+T50,rede,Latencia e timeout no servidor,toxiproxy-cli create -l localhost:4001 -u localhost:4000 phx ; toxiproxy-cli toxic add -t latency -a latency=11000 phx,Push timeout de 10s e reenvio,https://raw.githubusercontent.com/Shopify/toxiproxy/main/README.md
+T51,rede,Queda de conexao no meio,toxiproxy-cli toxic add -t reset_peer -a timeout=2000 phx ; toxiproxy-cli toxic remove -n reset_peer_downstream phx,Reconexao e rejoin,https://raw.githubusercontent.com/Shopify/toxiproxy/main/README.md
+T52,rede,Rede lenta no Mac inteiro,Network Link Conditioner (Additional Tools for Xcode > Hardware) perfil 3G ou Very Bad Network,Spinner infinito e dado velho,https://www.avanderlee.com/debugging/network-link-conditioner-utility/
+T53,carga,N clientes WebSocket por sala,k6 run --vus 50 --duration 60s assets/k6-phoenix-ws.js,p95 de broadcast e timeout de join,https://grafana.com/docs/k6/latest/javascript-api/k6-websockets/
+T54,video,Contact sheet do video,"ffmpeg -i bug.mp4 -vf ""fps=1,tile=4x4"" -frames:v 1 sheet.png",Visao geral do bug em uma imagem,https://ffmpeg.org/ffmpeg-filters.html#tile
+T55,video,Cortar o trecho do bug,ffmpeg -ss 00:00:12 -to 00:00:18 -i bug.mp4 -c copy trecho.mp4,Evidencia curta para o relatorio,https://ffmpeg.org/ffmpeg.html
+T56,imagem,Montagem antes e depois,magick montage a.png b.png -tile 2x1 -geometry +4+4 -label '' m.png,Comparacao lado a lado,https://imagemagick.org/montage/
+T57,servidor,Teste de canal com dois clientes,"{:ok, _, a} = socket(UserSocket, ""a"", %{}) |> subscribe_and_join(Chan, ""room:1"") ; idem b ; push(a, ""msg"", %{}) ; assert_push ""msg"", _ duas vezes",Broadcast nao chega ao segundo,https://phoenix.hexdocs.pm/Phoenix.ChannelTest.html
+T58,servidor,Corrida de insercao,"Task.async_stream(1..50, fn _ -> Ctx.create(attrs) end, max_concurrency: 50) |> Enum.to_list()",Exatamente 1 sucesso com unique_constraint,https://ecto.hexdocs.pm/constraints-and-upserts.html
+T59,servidor,Job executado duas vezes,"perform_job(Worker, args) ; perform_job(Worker, args) ; assert efeito unico",Job nao idempotente,https://oban.hexdocs.pm/Oban.Testing.html
+T60,servidor,Propriedade com dados aleatorios,"use ExUnitProperties ; property ""x"" do check all s <- string(:printable), max_runs: 50 do ... end end",Parse quebrando com entrada estranha,https://stream-data.hexdocs.pm/ExUnitProperties.html
+T61,mobile,Rede do app no DevTools,pressionar j no terminal do npx expo start --dev-client ; aba Network (RN 0.83+),Request duplicado ou lento,https://reactnative.dev/docs/react-native-devtools
+T62,e2e,Ver a hierarquia da tela,maestro --device <UDID> hierarchy,id e texto para usar no flow,https://raw.githubusercontent.com/mobile-dev-inc/maestro/main/maestro-cli/src/main/java/maestro/cli/App.kt
+T63,e2e,Esperar com timeout real,"extendedWaitUntil: {visible: ""Aula iniciada"", timeout: 10000}",Tela que demora mais que o retry padrao,https://docs.maestro.dev/reference/commands-available/extendedwaituntil.md
+T64,e2e,Permissoes negadas no launch,"launchApp: {appId: <bundle>, clearState: true, permissions: {all: deny}}",Fallback de permissao negada,https://docs.maestro.dev/reference/commands-available/launchapp.md
+T65,feedback,Baixar feedback e crashes do TestFlight,"GET /v1/apps/{id}/betaFeedbackCrashSubmissions e .../{id}/crashLog (JWT ES256, aud appstoreconnect-v1, exp <= 20 min)",Crash reportado pelo cliente,https://developer.apple.com/documentation/appstoreconnectapi/beta-feedback-crash-submissions
+T66,feedback,Crash symbolicado no Xcode,Xcode > Window > Organizer > Crashes ; Control-clique > Show in Finder > .xccrashpoint,Linha exata do crash,https://developer.apple.com/documentation/xcode/acquiring-crash-reports-and-diagnostic-logs

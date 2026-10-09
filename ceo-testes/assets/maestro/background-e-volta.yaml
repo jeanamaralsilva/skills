@@ -1,0 +1,15 @@
+# Home no meio do fluxo e volta (bugs B15, B18, B42). Use com o app numa tela de tempo real.
+# maestro test -e APP_ID=<bundle> -e SCREEN_TEXT="Aula ao vivo" background-e-volta.yaml
+appId: ${APP_ID}
+---
+- launchApp
+- runFlow: login-por-papel.yaml
+- assertVisible: ${SCREEN_TEXT}
+- stopApp            # simula morte do processo; para background sem matar, use `pressKey: Home` no Android
+- launchApp:
+    stopApp: false
+- extendedWaitUntil:
+    visible: ${SCREEN_TEXT}
+    timeout: 15000
+- takeScreenshot: runs/pos-background
+# esperado: mesma tela, dado atualizado (o outro ator mudou algo enquanto o app estava fora)

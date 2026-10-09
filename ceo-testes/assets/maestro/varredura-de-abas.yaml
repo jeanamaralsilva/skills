@@ -1,0 +1,23 @@
+# Garbage-collector tour (TR07): passa por cada aba rápido, abre e fecha o primeiro item, volta. Acha crash de desmontagem.
+# maestro test -e APP_ID=<bundle> varredura-de-abas.yaml
+appId: ${APP_ID}
+---
+- launchApp
+- runFlow: login-por-papel.yaml
+- repeat:
+    times: 2
+    commands:
+      - tapOn:
+          id: "tab-0"
+          optional: true
+      - tapOn:
+          id: "tab-1"
+          optional: true
+      - tapOn:
+          id: "tab-2"
+          optional: true
+      - tapOn:
+          id: "tab-3"
+          optional: true
+- waitForAnimationToEnd
+- takeScreenshot: runs/varredura-final

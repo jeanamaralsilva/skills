@@ -14,5 +14,5 @@
 ## Feito
 <o que foi aplicado> · verificado até: <degrau da escada>
 
-## Pendente do Jean
+## Pendente do CEO
 <decisão com trade-off, se houver>

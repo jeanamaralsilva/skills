@@ -17,6 +17,6 @@
 
 <link ou print de cada alternativa>. Recomendada: <A/B/C>, porque <evidência em 1 frase>.
 
-## Pendente do Jean
+## Pendente do CEO
 
 <só se existir>

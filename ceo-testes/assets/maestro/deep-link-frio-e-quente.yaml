@@ -1,0 +1,19 @@
+# Deep link com o app fechado e aberto (bugs B28, B29).
+# maestro test -e APP_ID=<bundle> -e LINK="app://class/123" -e TARGET="Aula 123" deep-link-frio-e-quente.yaml
+appId: ${APP_ID}
+---
+- stopApp
+- openLink: ${LINK}          # frio: app fechado
+- extendedWaitUntil:
+    visible: ${TARGET}
+    timeout: 15000
+- takeScreenshot: runs/deeplink-frio
+- openLink: ${LINK}          # quente: app já aberto, mesma tela
+- assertVisible: ${TARGET}
+- launchApp:
+    clearState: true         # deslogado: deve pedir login e voltar ao destino
+- openLink: ${LINK}
+- extendedWaitUntil:
+    visible: "Entrar"
+    timeout: 10000
+- takeScreenshot: runs/deeplink-deslogado

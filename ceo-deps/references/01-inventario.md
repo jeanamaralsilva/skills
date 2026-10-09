@@ -24,7 +24,7 @@ Detecta, até 3 níveis de pasta:
 3. **Elixir:** `mix.lock` commitado, `.tool-versions`/`mise.toml`, Dockerfile (versão de Elixir/OTP da imagem).
 4. **Monorepo:** um package.json na raiz com workspaces muda as regras (`references/03-versoes-e-compatibilidade.md`, monorepo).
 
-## Exemplo real (WAYUP, out/2026)
+## Exemplo real (app Expo + server Phoenix, out/2026)
 
 - mobile: Expo `^57.0.0`, RN 0.86.0, **bun.lock e package-lock.json juntos**, Node fixado em `.tool-versions`, sem bot, sem CI.
 - server: Phoenix `~> 1.8.3`, LiveView `~> 1.1.0`, `elixir: "~> 1.15"`, heroicons por **tag**, Elixir/OTP não fixados, sem bot, sem CI.

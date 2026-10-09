@@ -39,4 +39,4 @@ Antes de remover, confirme:
 - Elixir: busque o módulo e o nome do app (`grep -rn "Timex\|:timex"`); `mix deps.unlock --check-unused` só olha o lock, não o uso.
 - Busque também em config, scripts do package.json e CI.
 
-Caso real (WAYUP, out/2026): mobile com `@legendapp/list` e `@legendapp/state` sem import (e `@shopify/flash-list` em 11 telas, provável troca de lista que ficou pela metade); server com `timex` e `waffle_ecto` sem referência.
+Caso real (app Expo + server Phoenix, out/2026): mobile com `@legendapp/list` e `@legendapp/state` sem import (e `@shopify/flash-list` em 11 telas, provável troca de lista que ficou pela metade); server com `timex` e `waffle_ecto` sem referência.

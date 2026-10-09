@@ -1,0 +1,15 @@
+# Duplo toque num botão que escreve dado (bug B01). Depois do flow, confira no servidor que existe UM registro.
+# maestro test -e APP_ID=<bundle> -e BUTTON="Enviar resposta" -e RESULT="Resposta enviada" duplo-toque.yaml
+appId: ${APP_ID}
+---
+- launchApp
+- runFlow: login-por-papel.yaml
+- tapOn:
+    text: ${BUTTON}
+    repeat: 5
+    delay: 40
+- extendedWaitUntil:
+    visible: ${RESULT}
+    timeout: 10000
+- takeScreenshot: runs/duplo-toque-${BUTTON}
+# esperado: um único toast/registro; botão desabilitado enquanto a mutation está pendente

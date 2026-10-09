@@ -5,7 +5,7 @@ A `ceo-deps` cuida das dependências. O resto ela chama:
 | Situação | Chamar |
 |---|---|
 | A correção mudou código (API nova de lib) | `ceo-cortex` (revisão de código, guias por linguagem) |
-| Abrir o PR com as correções | `send-pr` |
+| Abrir o PR com as correções | skill de PR da config (`fluxo.pr_skill`) ou `gh pr create` |
 | Elixir/Phoenix a fundo (arquitetura, LiveView, Ecto, OTP) | plugin phxagents: `/phx:audit`, `/phx:deps-audit`, `/phx:verify` |
 | Tela ou componente afetado por troca de lib de UI | `ceo-analytics` |
 | Escolher lib de UI nova (versão, risco) | `ceo-analytics` (`data/ui-libraries.csv`) |

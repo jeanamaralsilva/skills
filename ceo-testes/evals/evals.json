@@ -1,0 +1,26 @@
+{
+  "skill_name": "ceo-testes",
+  "evals": [
+    {
+      "id": 1,
+      "name": "varredura-app-com-servidor",
+      "prompt": "testa o app inteiro (mobile em apps/mobile, servidor Phoenix em apps/server). o cliente ta achando muito bug. quero saber o que ta quebrado, com prova",
+      "expected_output": "Brief em silêncio; map_flows e map_realtime rodados; plano de até 10 linhas com oráculos; execução do fluxo principal e dos caminhos tristes das telas de maior risco com um simulador ceo-* e phx_actor como segundo papel; relatório CEO com bugs P0-P3 cada um com repro, evidência e arquivo:linha; lista de não testado; cleanup executado",
+      "files": ["apps/mobile", "apps/server"]
+    },
+    {
+      "id": 2,
+      "name": "caca-bug-por-video",
+      "prompt": "olha esse video que o cliente mandou, a resposta dele foi enviada duas vezes e a lista do outro lado nao atualizou",
+      "expected_output": "video_frames.py no vídeo; frames lidos com timestamps; 2 ou 3 hipóteses de bugs.csv (B01, B41, B09/B43); reprodução mínima no simulador com phx_actor; causa em arquivo:linha para cada bug reproduzido; correção proposta com teste; relatório até 300 palavras, lint clean",
+      "files": ["bug.mp4", "apps/mobile", "apps/server"]
+    },
+    {
+      "id": 3,
+      "name": "regressao-de-um-botao",
+      "prompt": "mudei o botao de enviar resposta (src/features/answer/use-send.ts). ve se nao quebrei nada",
+      "expected_output": "Só o fluxo tocado e o principal: feliz, duplo toque, sem rede, background no meio; nenhum simulador extra; relatório de até 150 palavras; nada de suíte inteira",
+      "files": ["apps/mobile/src/features/answer/use-send.ts"]
+    }
+  ]
+}

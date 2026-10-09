@@ -31,7 +31,7 @@ Lê `mix.lock`, `bun.lock`, `package-lock.json` e `pnpm-lock.yaml` (ignorando lo
 
 Fontes: `https://osv.dev/list?ecosystem=Hex&q=<pacote>` (ou `ecosystem=npm`), `https://github.com/advisories?query=ecosystem%3Aerlang+<pacote>` e a página de advisories do pacote no hex.pm. Para cada CVE, anote a versão corrigida e se cabe no requisito atual do `mix.exs`/`package.json` (update seguro) ou exige major (decisão).
 
-Numa auditoria de teste do WAYUP (out/2026), essa checagem apontou CVEs em bandit 1.10.3, plug 1.19.1, phoenix 1.8.5, mint 1.7.1, postgrex 0.22.0, guardian 2.4.0, oban_web 2.12.3 e req 0.5.17, quase todas corrigidas dentro dos requisitos atuais (lista não reconferida item a item: confirme cada advisory antes de agir). Uma auditoria que só tentou `mix hex.audit` e parou deixou tudo isso de fora.
+Numa auditoria de teste de um app Phoenix (out/2026), essa checagem apontou CVEs em bandit 1.10.3, plug 1.19.1, phoenix 1.8.5, mint 1.7.1, postgrex 0.22.0, guardian 2.4.0, oban_web 2.12.3 e req 0.5.17, quase todas corrigidas dentro dos requisitos atuais (lista não reconferida item a item: confirme cada advisory antes de agir). Uma auditoria que só tentou `mix hex.audit` e parou deixou tudo isso de fora.
 
 Regras:
 - **Não use `npm audit fix --force`.** A própria doc avisa que pode instalar major. Corrija com upgrade dirigido e verificação.

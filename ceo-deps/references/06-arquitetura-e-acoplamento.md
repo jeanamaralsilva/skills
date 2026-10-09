@@ -18,7 +18,7 @@ Conta quantos arquivos de produção (testes fora) importam cada lib de terceiro
 
 Regra (phxagents Iron Law 20, vale para qualquer stack): **encapsule a API de lib de terceiro num módulo seu.** Padrões: Adapter, Repository, Anti-corruption layer. O ACL custa uma camada a mais e não deve ter regra de negócio.
 
-Exemplos reais (WAYUP, out/2026):
+Exemplos reais (app Expo + server Phoenix, out/2026):
 - mobile: `@lodev09/react-native-true-sheet` direto em 42 arquivos; `sonner-native` em 29. Um wrapper `Sheet` e um `toast()` próprios reduzem cada troca futura a um arquivo.
 - server: `Guardian` em 6 arquivos e `Req` em 4. Aceitável; vale centralizar o `Req` num cliente com timeout e retry configurados.
 
@@ -47,4 +47,4 @@ O que quebra entre repos não aparece em nenhum audit de pacote:
 | Mesma regra validada diferente nos dois lados | um lado aceita o que o outro recusa; comparar schemas |
 | Upgrade coordenado | mudança que exige deploy do server antes do app vira item de pendência com ordem |
 
-O WAYUP já tem `src/api/__tests__/contract-fixtures.test.ts` no mobile: é o lugar para ancorar o contrato.
+Se o mobile já tem teste de fixtures da API (ex.: `src/api/__tests__/`), é o lugar para ancorar o contrato.

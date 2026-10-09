@@ -1,6 +1,6 @@
 # Verificação sem build nativo local
 
-O Mac do Jean não tem memória para build nativo. A escada vai do mais leve (roda em segundos no Mac) ao mais pesado (roda na nuvem). Suba só até onde a mudança exige, e diga no relatório até onde subiu.
+Muitas máquinas de dev não têm memória para build nativo (ver `máquina` em `.ceo/config.md`). A escada vai do mais leve (roda em segundos no Mac) ao mais pesado (roda na nuvem). Suba só até onde a mudança exige, e diga no relatório até onde subiu.
 
 ## Expo / React Native
 
@@ -17,7 +17,7 @@ O Mac do Jean não tem memória para build nativo. A escada vai do mais leve (ro
 
 Regras:
 - **Fingerprint igual ao do último build:** não precisa de build novo; uma atualização OTA (`eas update --channel <canal> --environment <env>`) basta. Fingerprint diferente: build novo.
-- **Nunca `eas build --local`** no Mac do Jean: é a mesma compilação que falta memória.
+- **Nunca `eas build --local`** numa máquina sem memória para isso: é a mesma compilação que falta memória.
 - **Simulador de iOS não exige conta Apple Developer** com o perfil `simulator: true`.
 - **Plano free do EAS:** 15 builds Android e 15 iOS por mês, fila de baixa prioridade, timeout de 45 min. Gaste build só quando o fingerprint mudou.
 - Mudou dependência nativa (duplicata, módulo do SDK, pods)? O degrau 6 é obrigatório antes de dizer "resolvido".

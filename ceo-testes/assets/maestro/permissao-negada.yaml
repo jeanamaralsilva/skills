@@ -1,0 +1,15 @@
+# Todas as permissões negadas no launch (bugs B26, B27): a tela precisa ter fallback, não loop.
+# maestro test -e APP_ID=<bundle> -e FEATURE="Tirar foto" permissao-negada.yaml
+appId: ${APP_ID}
+---
+- launchApp:
+    clearState: true
+    permissions:
+      all: deny
+- runFlow: login-por-papel.yaml
+- tapOn: ${FEATURE}
+- extendedWaitUntil:
+    visible:
+      text: ".*(Ajustes|Configurações|permiss).*"
+    timeout: 8000
+- takeScreenshot: runs/permissao-negada-${FEATURE}

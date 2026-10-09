@@ -12,7 +12,7 @@ Dependência envelhece sozinha. Sem bot, ninguém fica sabendo de CVE nova nem d
 | Não acompanha o framework | peerDependencies que não aceitam o React/RN/Elixir atual; sem suporte à New Architecture |
 | Ecossistema fechando | CocoaPods trunk fica read-only em 2026-12-02: pods novos e atualizações param de chegar pelo trunk |
 
-Lib abandonada e central (muitos arquivos, ver acoplamento) vira decisão do Jean com prazo. Lib abandonada e periférica: troque no modo manter.
+Lib abandonada e central (muitos arquivos, ver acoplamento) vira decisão do CEO com prazo. Lib abandonada e periférica: troque no modo manter.
 
 ## Bots
 

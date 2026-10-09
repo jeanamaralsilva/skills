@@ -1,10 +1,10 @@
 # Execução segura (modo manter e upgrade)
 
-O Jean quer que as coisas continuem funcionando. Você decide e aplica o que é seguro, prova com verificação e só devolve para ele o que tem trade-off real.
+O CEO quer que as coisas continuem funcionando. Você decide e aplica o que é seguro, prova com verificação e só devolve para ele o que tem trade-off real.
 
 ## Nunca em repo read-only
 
-WAYUP e qualquer repo que não é do Jean: só relatório e patch sugerido. Leia `references/00-brief-e-escopo.md`.
+Repo read-only (config ou pedido do CEO): só relatório e patch sugerido. Leia `references/00-brief-e-escopo.md`.
 
 ## O que aplicar sozinho
 
@@ -22,7 +22,7 @@ Sempre numa branch nova (`deps/<data>-<assunto>`), um assunto por commit:
 | Fixar toolchain | `.tool-versions` / `.nvmrc` com a versão que o CI já usa |
 | Dep git por tag | trocar `tag:` por `ref:` com o SHA atual da tag |
 
-## O que vira decisão do Jean
+## O que vira decisão do CEO
 
 - Major de lib central, troca de lib, upgrade de SDK do Expo ou de Phoenix/LiveView.
 - Remover dependência "sem uso" que você não confirmou com knip/grep e build.
@@ -37,5 +37,5 @@ Formato: uma linha com a decisão, o custo e a sua recomendação.
 - **Override é curativo:** se precisar, comente no PR por que e quando sai.
 - **Sem `--force`, sem `--legacy-peer-deps` como solução.**
 - **Verifique antes de dizer pronto** (`references/10-verificacao-sem-build-local.md`). Se o degrau de build não pôde rodar, o relatório diz "não verificado em build".
-- **PR por `send-pr`:** ele roda os checks do CI, escreve sem marcas de IA e anexa evidência.
+- **PR:** pela skill de PR da config (`fluxo.pr_skill`), se houver; senão `gh pr create` com os checks do CI passando e a evidência no corpo.
 - **Revisão do código tocado:** se mexeu em código (API nova de lib), passe por `ceo-cortex`.

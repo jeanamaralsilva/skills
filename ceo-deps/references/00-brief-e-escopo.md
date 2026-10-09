@@ -1,13 +1,13 @@
 # Brief e escopo
 
-Antes de rodar qualquer comando, monte o brief em silêncio. Ele não entra na resposta.
+Antes de rodar qualquer comando, leia a config (`.ceo/config.md` na raiz do repo; depois `~/.ceo/profile.md`; modelo em `assets/ceo-config.example.md`) e monte o brief em silêncio. Ele não entra na resposta. Sem config, use os padrões abaixo e pergunte só o que mudaria a ação (ex.: "posso criar branch neste repo?").
 
 ```
 Repos:        <caminho de cada um e o papel: mobile, server, web, lib>
 Modo:         auditar | manter | upgrade
 Read-only?:   sim (só relatório) | não (pode criar branch)
 Licença:      saas | mobile (loja) | ambos
-Gatilho:      <o que o Jean colou ou pediu: saída do expo-doctor, CVE, erro de build...>
+Gatilho:      <o que o CEO colou ou pediu: saída do expo-doctor, CVE, erro de build...>
 Restrições:   <ex.: "não buildo local", "não mexe no SDK agora">
 ```
 
@@ -23,14 +23,14 @@ Na dúvida, o modo menor. Auditar não vira manter sem pedido.
 
 ## Read-only
 
-O WAYUP (mobile e server) é analisado em modo read-only: o código não é do Jean. Lá:
+Repo listado como `read-only` na config, ou que o CEO disse não ser dele, é analisado só para relatório. Lá:
 - Nenhuma escrita: nem branch, nem lockfile, nem `node_modules`.
 - `git` sempre com `--no-optional-locks` (um `git status` comum grava `.git/index.lock` e pode deixar trava).
-- Se o Jean pedir correção num repo read-only, entregue o patch e os comandos para quem é dono do repo aplicar.
+- Se o CEO pedir correção num repo read-only, entregue o patch e os comandos para quem é dono do repo aplicar.
 
 ## Gatilho colado
 
-Quando o Jean cola a saída de uma ferramenta (expo-doctor, `mix deps.get`, build do EAS), ela é o ponto de partida: cada linha da saída vira um item do relatório, com causa e correção. Confirme a causa no repo antes de propor (ex.: duplicata de `@expo/ui` aninhada em `expo-widgets`: rode `npm why @expo/ui` ou leia o lockfile).
+Quando o CEO cola a saída de uma ferramenta (expo-doctor, `mix deps.get`, build do EAS), ela é o ponto de partida: cada linha da saída vira um item do relatório, com causa e correção. Confirme a causa no repo antes de propor (ex.: duplicata de `@expo/ui` aninhada em `expo-widgets`: rode `npm why @expo/ui` ou leia o lockfile).
 
 ## Multi-repo
 
