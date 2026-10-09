@@ -1,0 +1,106 @@
+id,ecosystem,check,command,detects,severity,source
+JS01,expo,Diagnóstico geral do projeto,npx expo-doctor@latest --verbose,checks falhos (exit 1),high,https://docs.expo.dev/develop/tools/
+JS02,expo,Versões exigidas pelo SDK,npx expo install --check,pacotes fora de bundledNativeModules.json,high,https://docs.expo.dev/more/expo-cli/
+JS03,expo,Corrigir versões do SDK,npx expo install --fix,realinha deps ao SDK,high,https://github.com/expo/fyi/blob/main/resolving-dependency-issues.md
+JS04,expo,Exceções intencionais de versão,cat package.json (expo.install.exclude),pacotes excluídos da checagem,low,https://docs.expo.dev/versions/latest/config/package-json/
+JS05,expo,Duplicata de módulo nativo,npx expo-doctor (AutolinkingDependencyDuplicatesCheck) ou scripts/expo_check.py,Found duplicates for <pkg>,critical,https://github.com/expo/fyi/blob/main/resolving-dependency-issues.md
+JS06,js,Origem de cópia duplicada,npm why <pkg> ; pnpm why --depth=10 <pkg> ; yarn why <pkg> ; bun pm why <pkg>,quem puxa cada versão,high,https://github.com/expo/fyi/blob/main/resolving-dependency-issues.md
+JS07,js,Deduplicar transitivas,npm dedupe ; pnpm dedupe ; yarn dedupe,duplicatas no lockfile,medium,https://github.com/expo/fyi/blob/main/resolving-dependency-issues.md
+JS08,expo,Regressão Hermes V1,npx expo-doctor (HermesV1VersionCheck),expo 55-57 abaixo de 57.0.9 ou RN abaixo de 0.86.2 com Hermes V1,critical,https://expo.dev/changelog/sdk-57
+JS09,expo,Overrides que quebram cadeia crítica,npx expo-doctor (DependencyVersionOverrideCheck),override incompatível em expo/@expo/cli/metro,high,https://docs.expo.dev/develop/tools/
+JS10,rn,New Arch e manutenção,GET https://reactnative.directory/api/libraries/check?packages=a;b (vírgula na URL real),unmaintained; newArchitecture untested/unsupported,high,https://docs.expo.dev/versions/latest/config/package-json/
+JS11,expo,Compatibilidade com as lojas,npx expo-doctor (StoreCompatibilityCheck),targetSdkVersion abaixo do mínimo da Play,high,https://docs.expo.dev/develop/tools/
+JS12,js,Vulnerabilidades npm,npm audit --audit-level=high --omit=dev,advisories conhecidos,high,https://docs.npmjs.com/cli/v11/commands/npm-audit
+JS13,js,Vulnerabilidades pnpm,pnpm audit --audit-level high --prod,advisories conhecidos,high,https://pnpm.io/cli/audit
+JS14,js,Vulnerabilidades bun,bun audit --audit-level=high --prod,advisories via bun.lock,high,https://bun.com/docs/pm/cli/audit
+JS15,js,Vulnerabilidades OSV,osv-scanner scan -L package-lock.json,vulns OSV/GHSA/MAL,high,https://google.github.io/osv-scanner/usage/
+JS16,js,Assinaturas e provenance,npm audit signatures,pacotes sem assinatura ou atestação,medium,https://docs.npmjs.com/generating-provenance-statements
+JS17,js,Supply chain comportamental,socket ci,install scripts; rede; typosquat,high,https://www.npmjs.com/package/socket
+JS18,js,Install determinístico,npm ci --ignore-scripts,lockfile divergente; scripts maliciosos,critical,https://www.stepsecurity.io/blog/axios-compromised-on-npm-malicious-versions-drop-remote-access-trojan
+JS19,js,Idade mínima de release,grep min-release-age .npmrc ; grep minimumReleaseAge pnpm-workspace.yaml bunfig.toml,ausência de cooldown contra pacote recém-comprometido,high,https://pnpm.io/settings/dependency-resolution
+JS20,js,Metadados e risco por versão,curl https://api.deps.dev/v3/systems/npm/packages/<pkg>/versions/<v>,deprecated; licença; advisoryKeys; publishedAt,medium,https://docs.deps.dev/api/v3/
+JS21,js,Saúde do repositório upstream,scorecard --repo=github.com/<owner>/<repo>,score OpenSSF baixo,low,https://github.com/ossf/scorecard
+JS22,js,Desatualizadas,npm outdated --long,Current < Wanted < Latest,medium,https://docs.npmjs.com/cli/v11/commands/npm-outdated
+JS23,js,Depreciada ou sem release,npm view <pkg> deprecated time.modified,deprecated ou última release antiga,medium,https://docs.npmjs.com/cli/v11/commands/npm-view
+JS24,js,Deps não usadas ou não listadas,npx knip --dependencies --reporter json,dependencies; unlisted; binaries; unresolved,medium,https://knip.dev/reference/cli
+JS25,js,Árvore completa,npm ls --all,extraneous; missing; invalid,medium,https://docs.npmjs.com/cli/v11/commands/npm-ls
+JS26,expo,Tamanho de bundle,EXPO_ATLAS=true npx expo export && npx expo-atlas .expo/atlas.jsonl,módulos pesados no bundle,medium,https://docs.expo.dev/guides/analyzing-bundles/
+JS27,js,Licenças proibidas,npx license-checker-rseidelsohn --production --failOn "GPL-3.0;AGPL-3.0",copyleft em app comercial,high,https://www.npmjs.com/package/license-checker-rseidelsohn
+JS28,js,Relatório de licenças,npx license-report --only=prod --output=csv,inventário de licenças,low,https://www.npmjs.com/package/license-report
+JS29,js,Lockfile único commitado,ls package-lock.json pnpm-lock.yaml yarn.lock bun.lock (scripts/detect_stack.py),lockfile ausente ou mais de um,high,https://docs.expo.dev/guides/monorepos/
+JS30,js,Gerenciador e Node fixados,cat package.json (packageManager; engines) .nvmrc,versão de PM/Node não fixada,low,https://nodejs.org/dist/latest/docs/api/corepack.html
+JS31,expo,Mudou algo nativo,npx @expo/fingerprint fingerprint:generate e fingerprint:diff ; eas fingerprint:compare,mudança nativa que exige build novo (senão basta OTA),medium,https://docs.expo.dev/versions/latest/sdk/fingerprint/
+JS32,expo,Bundle JS compila,npx expo export --platform all,import quebrado; módulo não resolvido no Metro,high,https://docs.expo.dev/more/expo-cli/
+JS33,js,Tipos,npx tsc --noEmit,quebra de tipo depois de upgrade,high,https://www.typescriptlang.org/docs/handbook/compiler-options.html
+EX01,hex,Pacotes retirados ou com advisory,mix hex.audit,dependência retirada ou vulnerável (exit != 0 no Hex 2.5+),high,https://hex.hexdocs.pm/Mix.Tasks.Hex.Audit.html
+EX02,hex,Auditoria de CVEs pelo mix.lock,mix deps.audit --format json,advisories via mirego/elixir-security-advisories,high,https://github.com/mirego/mix_audit
+EX03,hex,Aviso de advisories no fetch,mix local.hex && mix deps.get,resumo de advisories ao resolver versões (Hex 2.5+),medium,https://hex.pm/blog/hex-v25-released
+EX04,phoenix,SAST do código Phoenix,mix sobelow --exit medium --format sarif,XSS; SQLi; traversal; config insegura,high,https://sobelow.hexdocs.pm/Mix.Tasks.Sobelow.html
+EX05,hex,Feed OSV da EEF CNA,curl -s https://cna.erlef.org/osv/all.json,CVEs do ecossistema BEAM,medium,https://cna.erlef.org/
+EX06,hex,Req com CVE-2026-49755/49756,mix hex.outdated req,req abaixo de 0.6.1 (extração sem limite; injeção CRLF),high,https://github.com/advisories/GHSA-655f-mp8p-96gv
+EX07,hex,Dependabot para mix,package-ecosystem: mix em .github/dependabot.yml,falta de PRs automáticos de update,medium,https://docs.github.com/en/code-security/dependabot/ecosystems-supported-by-dependabot/supported-ecosystems-and-repositories
+EX08,hex,Renovate com pin para app,rangeStrategy=pin no renovate.json (manager mix),ranges frouxos; lock sem manutenção,low,https://docs.renovatebot.com/modules/manager/mix/
+EX09,hex,Desatualizadas com transitivas,mix hex.outdated --all,versões atrás da última,medium,https://hex.hexdocs.pm/Mix.Tasks.Hex.Outdated.html
+EX10,hex,Update seguro dentro do ~>,mix hex.outdated --within-requirements,update dentro do requisito não aplicado (exit 1),medium,https://hex.hexdocs.pm/Mix.Tasks.Hex.Outdated.html
+EX11,mix,Entradas sobrando no lock,mix deps.unlock --check-unused,mix.lock com dependência removida do mix.exs,low,https://mix.hexdocs.pm/Mix.Tasks.Deps.Unlock.html
+EX12,mix,Limpar fontes e lock órfãos,mix deps.clean --unlock --unused,fontes e lock órfãos,low,https://mix.hexdocs.pm/Mix.Tasks.Deps.Clean.html
+EX13,hex,Cooldown contra release comprometida,mix hex.config cooldown 7d (ou hex: [cooldown: 7d]),adoção imediata de versão recém-publicada,medium,https://hex.hexdocs.pm/Mix.Tasks.Hex.Config.html
+EX14,mix,Dep git presa por tag ou ref,mix deps (ver [locked at REF]) ou scripts/detect_stack.py,tag mutável; dep fora do hex.audit,medium,https://mix.hexdocs.pm/Mix.Tasks.Deps.html
+EX15,elixir,Par Elixir/OTP na matriz,elixir --version,combinação não suportada (ex.: 1.19 com OTP 29),high,https://elixir.hexdocs.pm/compatibility-and-deprecations.html
+EX16,elixir,Elixir com suporte de segurança,grep elixir: mix.exs e .tool-versions/mise.toml,~> 1.15 permite versão sem patch de segurança,medium,https://elixir.hexdocs.pm/compatibility-and-deprecations.html
+EX17,elixir,Toolchain fixado com sufixo -otp,mise use erlang@29 elixir@1.20.4-otp-29,Elixir compilado para outro OTP,low,https://mise.jdx.dev/lang/elixir.html
+EX18,mix,Warnings como erro,mix compile --warnings-as-errors,deprecações do Phoenix 1.8/LiveView e bugs do type checker,medium,https://elixir-lang.org/blog/2026/06/03/elixir-v1-20-0-released/
+EX19,mix,Deps de compilação e ciclos,mix xref graph --label compile-connected --format cycles --fail-above 0,recompilação em cascata; acoplamento,medium,https://mix.hexdocs.pm/Mix.Tasks.Xref.html
+EX20,mix,Fronteiras entre contextos,compilers: [:boundary] ++ Mix.compilers() e mix compile,chamada proibida entre contextos,medium,https://github.com/sasa1977/boundary
+EX21,elixir,Lint estático,mix credo --strict,problemas de design/consistência (exit por bits),low,https://credo.hexdocs.pm/exit_statuses.html
+EX22,elixir,Dialyzer,mix dialyzer --format github,specs inconsistentes; chamadas impossíveis,low,https://github.com/jeremyjh/dialyxir
+EX23,phoenix,Alias precommit do Phoenix 1.8,mix precommit,compile/format/test/lock falhando antes do commit (template 1.8.1 tinha --warning-as-errors errado),medium,https://raw.githubusercontent.com/phoenixframework/phoenix/v1.8.5/installer/templates/phx_single/mix.exs
+EX24,hex,Inventário de licenças,mix licenses --csv (licensir; parado desde 2021) ou scripts/deps_scan.py,copyleft em dependência,medium,https://github.com/unnawut/licensir
+EX25,mix,Árvore de produção e NIFs,mix deps.tree --only prod,dep de dev na release; NIF (bcrypt) sem toolchain C no Docker,medium,https://mix.hexdocs.pm/Mix.Tasks.Release.html
+EX26,phoenix,Auditoria rápida phxagents,/phx:audit --quick ou /phx:deps-audit,5 tracks (arquitetura; performance; segurança; testes; deps),medium,https://github.com/oliver-kriska/claude-elixir-phoenix
+XL01,python,Vulnerabilidade,pip-audit -r requirements.txt --strict -s osv -f json,CVE/GHSA em deps Python,high,https://github.com/pypa/pip-audit
+XL02,python-uv,Vulnerabilidade lock uv,uv audit,advisories do uv.lock (flags não confirmadas),high,https://docs.astral.sh/uv/reference/cli/
+XL03,python,Não usado e transitivo,deptry .,DEP002 não usada; DEP003 transitiva importada; DEP004 dev em prod,medium,https://deptry.com/usage/
+XL04,python-poetry,Lockfile,poetry check --lock --strict,poetry.lock ausente ou inconsistente,medium,https://python-poetry.org/docs/cli/
+XL05,python-poetry,Desatualizado,poetry show --outdated --top-level,deps diretas com versão nova,low,https://python-poetry.org/docs/cli/
+XL06,python,Licença,pip-licenses --format=json --allow-only="MIT License;BSD License;Apache Software License",licença fora da allowlist,high,https://github.com/raimon49/pip-licenses
+XL07,go,Vulnerabilidade alcançável,govulncheck -show traces ./...,vuln com call stack no código,high,https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck
+XL08,go,Não usado e lockfile,go mod tidy -diff,go.mod/go.sum divergente (Go 1.23+),medium,https://go.dev/ref/mod
+XL09,go,Desatualizado e deprecado,go list -m -u all,updates; retracted; deprecated,medium,https://go.dev/ref/mod
+XL10,go,Licença,go-licenses check ./... --disallowed_types=forbidden,licença forbidden,high,https://github.com/google/go-licenses
+XL11,java-gradle,Vulnerabilidade,./gradlew dependencyCheckAnalyze,CVE via NVD/CPE (DC 12.1.0+; NVD API key),high,https://github.com/dependency-check/DependencyCheck
+XL12,java-maven,Vulnerabilidade,mvn org.owasp:dependency-check-maven:check,CVE via NVD/CPE; manter supressão,high,https://github.com/dependency-check/DependencyCheck
+XL13,java-gradle,Desatualizado,./gradlew dependencyUpdates -Drevision=release,updates inclusive version catalog,low,https://github.com/ben-manes/gradle-versions-plugin
+XL14,java-maven,Desatualizado,mvn org.codehaus.mojo:versions-maven-plugin:2.22.0:display-dependency-updates,updates de dependências,low,https://www.mojohaus.org/versions/versions-maven-plugin/display-dependency-updates-mojo.html
+XL15,java-gradle,Não usado,./gradlew buildHealth,unused; transitiva usada; api/implementation errado,medium,https://github.com/autonomousapps/dependency-analysis-gradle-plugin
+XL16,java-maven,Não usado,mvn dependency:analyze -DfailOnWarning=true,unused declared; used undeclared,medium,https://maven.apache.org/plugins/maven-dependency-plugin/analyze-mojo.html
+XL17,java-gradle,Lockfile,./gradlew dependencies --write-locks,sem gradle.lockfile (pré-requisito do OSV),medium,https://docs.gradle.org/current/userguide/dependency_locking.html
+XL18,swift,Vulnerabilidade,trivy fs --scanners vuln .,GHSA em Package.resolved e Podfile.lock,high,https://trivy.dev/docs/dev/coverage/language/swift/
+XL19,swift-cocoapods,Desatualizado e abandono,pod outdated,pods desatualizados; trunk read-only em 2026-12-02,medium,https://blog.cocoapods.org
+XL20,ruby,Vulnerabilidade,bundle-audit check --update --format json,gems vulneráveis; fontes http:// e git://,high,https://github.com/rubysec/bundler-audit
+XL21,rust,Vulnerabilidade,cargo audit,advisories RustSec no Cargo.lock,high,https://docs.rs/crate/cargo-audit/latest
+XL22,rust,Política completa,cargo deny check,advisories; duplicadas; licenças; sources,high,https://embarkstudios.github.io/cargo-deny/checks/index.html
+XL23,rust,Não usado,cargo machete --with-metadata,crates declaradas sem uso,medium,https://github.com/bnjbvr/cargo-machete
+XL24,php,Vulnerabilidade e abandono,composer audit --locked --abandoned=report --format=json,advisories e pacotes abandonados,high,https://getcomposer.org/doc/03-cli.md
+XL25,php,Desatualizado,composer outdated --direct --strict,diretas desatualizadas,low,https://getcomposer.org/doc/03-cli.md
+XL26,php,Licença e lockfile,composer licenses --format=json --no-dev && composer validate --check-lock --strict,licenças de prod; composer.lock desatualizado,medium,https://getcomposer.org/doc/03-cli.md
+XL27,dotnet,Vulnerabilidade,dotnet package list --vulnerable --include-transitive --format json,NuGet vulnerável (.NET 9 ou anterior: dotnet list package),high,https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-list-package
+XL28,dotnet,Desatualizado e deprecado,dotnet package list --outdated ; dotnet package list --deprecated,versões novas e deprecadas,medium,https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-list-package
+XL29,dart,Vulnerabilidade,dart pub get,advisories GHSA na resolução,high,https://dart.dev/tools/pub/security-advisories
+XL30,dart,Desatualizado,dart pub outdated --json --transitive,deps desatualizadas,low,https://dart.dev/tools/pub/cmd/pub-outdated
+XL31,dart,Não usado,dart pub global run dependency_validator,missing; unused; over/under-promoted,medium,https://pub.dev/packages/dependency_validator
+XL32,todos,Vulnerabilidade multi-ecossistema,osv-scanner scan -r . --format json,vulns em lockfiles suportados (não cobre Swift/CocoaPods),high,https://google.github.io/osv-scanner/usage/
+XL33,todos,Licença multi-ecossistema,osv-scanner --licenses .,resumo de licenças contra a allowlist,high,https://google.github.io/osv-scanner/usage/
+XL34,todos,SBOM e vulnerabilidade,syft . -o cyclonedx-json=cdx.json && grype sbom:cdx.json --fail-on high --only-fixed,SBOM CycloneDX + vulns com fix,high,https://oss.anchore.com/docs/guides/vulnerability/filter-results/
+XL35,todos,Saúde upstream e CI,scorecard --repo=github.com/ORG/REPO --format=json,Maintained; Pinned-Dependencies; Dangerous-Workflow,medium,https://github.com/ossf/scorecard
+XL36,ci,Actions fixadas por SHA,grep -rn "uses: .*@v" .github/workflows,action por tag mutável (caso trivy-action 2026-03-19),high,https://github.com/ossf/scorecard
+MR01,multi-repo,Contrato server x mobile,oasdiff breaking base.yaml rev.yaml,quebra de contrato da API,high,https://github.com/oasdiff/oasdiff
+MR02,multi-repo,Version skew do app,grep minimumVersion/forceUpdate no server e no mobile,app antigo em produção sem caminho de atualização,medium,https://developer.android.com/guide/playcore/in-app-updates
+MR03,multi-repo,Mesmas libs de validação/tipos,comparar schemas compartilhados (zod no mobile x Ecto changeset no server),regras de validação divergentes entre repos,medium,https://docs.expo.dev/guides/monorepos/
+IN01,infra,Timeouts em cliente HTTP,grep receive_timeout/timeout/AbortSignal.timeout,chamada externa sem timeout (Req padrão 15s; fetch do Node 300s),high,https://hexdocs.pm/req/Req.html
+IN02,infra,Retry só em operação idempotente,grep retry: :transient / retry em POST,POST repetido sem chave de idempotência,high,https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/
+IN03,infra,Circuit breaker em dependência crítica,grep fuse/circuit,serviço externo derrubando o app inteiro,medium,https://learn.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker
+IN04,infra,Wrapper para SDK de terceiro,scripts/deps_scan.py (coupling),lib externa espalhada em muitos arquivos (vendor lock-in),medium,https://learn.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer
+IN05,infra,Envio de e-mail e jobs confiáveis,grep Oban / deliver_later,e-mail ou webhook síncrono no request,medium,https://swoosh.hexdocs.pm/Swoosh.html
+JS34,expo,Policy do runtimeVersion,grep policy app.config.* (scripts/detect_stack.py),sdkVersion deixa OTA chegar a binário sem o nativo novo,high,https://docs.expo.dev/eas-update/runtime-versions/
+XL37,todos,Versões exatas do lock contra OSV,python scripts/lock_audit.py <repo> --query,CVE nas versões que realmente vão para produção,high,https://google.github.io/osv-scanner/usage/

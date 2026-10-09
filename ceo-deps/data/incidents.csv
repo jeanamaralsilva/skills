@@ -1,0 +1,7 @@
+id,date,ecosystem,incident,lesson,source
+IC01,2025-09-08,npm,chalk/debug: phishing contra mantenedor; 18 pacotes (~2 bi downloads/semana),lockfile + cooldown; npm ci,https://www.theregister.com/2025/09/08/dev_falls_for_phishing_email
+IC02,2025-09-15,npm,Shai-Hulud: worm comprometeu 500+ pacotes e roubou tokens,fixar versões anteriores; rotacionar credenciais; MFA resistente a phishing,https://www.cisa.gov/news-events/alerts/2025/09/23/widespread-supply-chain-compromise-impacting-npm-ecosystem
+IC04,2026-03-19,ci,Trivy v0.69.4 e tags do trivy-action comprometidos,fixar GitHub Actions por SHA completo,https://github.com/aquasecurity/trivy
+IC05,2026-03-31,npm,axios 1.14.1 e 0.30.4 publicados com token roubado (RAT via plain-crypto-js),cooldown de release; checar provenance/trusted publishing,https://www.stepsecurity.io/blog/axios-compromised-on-npm-malicious-versions-drop-remote-access-trojan
+IC06,2026-07,hex,req com CVE-2026-49755 (extração sem limite) e CVE-2026-49756 (CRLF),req >= 0.6.1; assent herda via Req,https://github.com/advisories/GHSA-655f-mp8p-96gv
+IC07,2026-07-07,expo,expo 57.0.4 com regressão de memória do Hermes V1 (corrigida em 57.0.9 / RN 0.86.2),rodar expo-doctor e acompanhar patch do SDK,https://expo.dev/changelog/sdk-57

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "minimumReleaseAge": "3 days",
+  "rangeStrategy": "pin",
+  "lockFileMaintenance": { "enabled": true, "schedule": ["before 6am on monday"] },
+  "schedule": ["before 6am on monday"],
+  "packageRules": [
+    {
+      "description": "Pacotes do Expo SDK seguem o SDK: upgrade com npx expo install expo@^N --fix",
+      "matchPackageNames": ["expo", "/^expo-/", "/^@expo\\//", "react-native", "react", "react-dom", "jest-expo"],
+      "enabled": false
+    },
+    {
+      "description": "Patch e minor agrupados em um PR",
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "dependências (patch e minor)"
+    },
+    {
+      "description": "GitHub Actions fixadas por SHA",
+      "matchManagers": ["github-actions"],
+      "pinDigests": true
+    }
+  ]
+}

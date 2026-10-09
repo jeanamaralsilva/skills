@@ -1,0 +1,31 @@
+# Copie para .github/dependabot.yml e remova os blocos do ecossistema que o repo não usa.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 3
+    groups:
+      patch-e-minor:
+        update-types: ["patch", "minor"]
+    ignore:
+      # Pacotes do Expo SDK seguem o SDK: upgrade com npx expo install expo@^N --fix
+      - dependency-name: "expo"
+      - dependency-name: "expo-*"
+      - dependency-name: "@expo/*"
+      - dependency-name: "react-native"
+  - package-ecosystem: "mix"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 7
+    groups:
+      patch-e-minor:
+        update-types: ["patch", "minor"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

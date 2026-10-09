@@ -1,0 +1,32 @@
+id,spdx,category,saas_policy,mobile_policy,note,source
+LC01,MIT,permissiva,allow,allow,manter aviso de copyright,https://www.apache.org/legal/resolved.html
+LC02,BSD-2-Clause,permissiva,allow,allow,manter aviso,https://www.apache.org/legal/resolved.html
+LC03,BSD-3-Clause,permissiva,allow,allow,manter aviso; sem endosso,https://www.apache.org/legal/resolved.html
+LC04,ISC,permissiva,allow,allow,equivalente MIT,https://www.apache.org/legal/resolved.html
+LC05,Apache-2.0,permissiva,allow,allow,manter NOTICE; concessão de patente,https://www.apache.org/legal/resolved.html
+LC06,0BSD,permissiva,allow,allow,sem exigência de aviso,https://spdx.org/licenses/0BSD.html
+LC07,Unlicense,domínio público,allow,allow,sem condições,https://spdx.org/licenses/Unlicense.html
+LC08,CC0-1.0,domínio público,allow,allow,comum em dados e assets,https://spdx.org/licenses/CC0-1.0.html
+LC09,BlueOak-1.0.0,permissiva,allow,allow,permissiva moderna,https://spdx.org/licenses/BlueOak-1.0.0.html
+LC10,Python-2.0,permissiva,allow,allow,licença do CPython,https://spdx.org/licenses/Python-2.0.html
+LC11,BSD-4-Clause,permissiva com cláusula de propaganda,review,review,Apache Categoria X por cláusula de propaganda,https://www.apache.org/legal/resolved.html
+LC12,MPL-2.0,copyleft fraco por arquivo,allow,review,publicar fonte dos arquivos MPL modificados,https://www.mozilla.org/en-US/MPL/2.0/FAQ/
+LC13,EPL-2.0,copyleft fraco,review,review,Apache Categoria B,https://www.apache.org/legal/resolved.html
+LC14,CDDL-1.0,copyleft fraco,review,review,Apache Categoria B,https://www.apache.org/legal/resolved.html
+LC15,LGPL-2.1-only,copyleft fraco,review,deny,seção 6 exige permitir relink; iOS costuma linkar estático,https://spdx.org/licenses/LGPL-2.1-only.html
+LC16,LGPL-2.1-or-later,copyleft fraco,review,deny,mesma lógica de relink,https://spdx.org/licenses/LGPL-2.1-or-later.html
+LC17,LGPL-3.0-only,copyleft fraco,review,deny,relink; Apache Categoria X,https://www.apache.org/legal/resolved.html
+LC18,LGPL-3.0-or-later,copyleft fraco,review,deny,relink; Apache Categoria X,https://www.apache.org/legal/resolved.html
+LC19,GPL-2.0-only,copyleft forte,review,deny,FSF 2010: termos da App Store conflitam com GPL,https://www.fsf.org/news/2010-05-app-store-compliance
+LC20,GPL-2.0-or-later,copyleft forte,review,deny,idem,https://www.fsf.org/news/2010-05-app-store-compliance
+LC21,GPL-3.0-only,copyleft forte,review,deny,idem; SaaS só aciona se distribuir binário,https://www.fsf.org/news/2010-05-app-store-compliance
+LC22,GPL-3.0-or-later,copyleft forte,review,deny,idem,https://www.fsf.org/news/2010-05-app-store-compliance
+LC23,AGPL-3.0-only,copyleft de rede,deny,deny,seção 13 obriga oferecer fonte ao usuário remoto,https://opensource.google/documentation/reference/using/agpl-policy
+LC24,AGPL-3.0-or-later,copyleft de rede,deny,deny,idem,https://opensource.google/documentation/reference/using/agpl-policy
+LC25,SSPL-1.0,source-available não OSI,deny,deny,OSI: não é open source,https://opensource.org/blog/the-sspl-is-not-an-open-source-license
+LC26,BUSL-1.1,source-available,deny,review,uso produtivo depende do Additional Use Grant; checar versão exata,https://mariadb.com/bsl11/
+LC27,Elastic-2.0,source-available,deny,review,proíbe oferecer como serviço gerenciado,https://www.elastic.co/licensing/elastic-license
+LC28,CC-BY-4.0,atribuição,allow,allow,comum em ícones e fontes; exige crédito,https://spdx.org/licenses/CC-BY-4.0.html
+LC29,CC-BY-NC-4.0,não comercial,deny,deny,proíbe uso comercial,https://spdx.org/licenses/CC-BY-NC-4.0.html
+LC30,NOASSERTION,desconhecida,review,review,licença não declarada; revisar à mão,https://spdx.org/licenses/
+LC31,UNLICENSED,proprietária,review,review,pacote privado ou sem licença pública,https://docs.npmjs.com/cli/v11/configuring-npm/package-json#license

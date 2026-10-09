@@ -1,0 +1,24 @@
+id,group,ecosystem,packages,keep_hint,source
+FG01,cliente HTTP,javascript,axios;ky;got;node-fetch;cross-fetch;superagent;ofetch;redaxios,fetch nativo ou um único cliente com timeout configurado,https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+FG02,datas,javascript,moment;dayjs;date-fns;luxon;@js-joda/core,um só; moment está em modo legado,https://momentjs.com/docs/
+FG03,utilitários,javascript,lodash;lodash-es;underscore;ramda;remeda;es-toolkit,um só (ou nativo),https://youmightnotneed.com/lodash
+FG04,estado global,javascript,redux;@reduxjs/toolkit;zustand;jotai;mobx;recoil;valtio;@legendapp/state,um só para estado de cliente,https://zustand.docs.pmnd.rs/
+FG05,cache de servidor,javascript,@tanstack/react-query;swr;@apollo/client;urql,um só cliente de dados remotos,https://tanstack.com/query/latest
+FG06,validação,javascript,zod;yup;joi;valibot;superstruct;@sinclair/typebox,um só schema para o app inteiro,https://zod.dev/
+FG07,formulários,javascript,react-hook-form;formik;@tanstack/react-form;final-form,um só,https://react-hook-form.com/
+FG08,estilo RN,javascript,nativewind;styled-components;@emotion/native;tamagui;react-native-unistyles;@shopify/restyle;twrnc,um só sistema de estilo,https://docs.expo.dev/guides/styling/
+FG09,ícones,javascript,@expo/vector-icons;react-native-vector-icons;lucide-react-native;phosphor-react-native;@tabler/icons-react-native,um set (expo-doctor VectorIconsCheck),https://docs.expo.dev/guides/icons/
+FG10,navegação,javascript,expo-router;@react-navigation/native;react-native-navigation,expo-router OU react-navigation direto (ExpoRouterReactNavigationCheck),https://docs.expo.dev/router/introduction/
+FG11,bottom sheet,javascript,@gorhom/bottom-sheet;@lodev09/react-native-true-sheet;react-native-actions-sheet;react-native-raw-bottom-sheet,um só,https://github.com/lodev09/react-native-true-sheet
+FG12,listas,javascript,@shopify/flash-list;@legendapp/list;recyclerlistview;biglist,uma lib de lista virtualizada,https://shopify.github.io/flash-list/
+FG13,armazenamento local,javascript,@react-native-async-storage/async-storage;react-native-mmkv;expo-secure-store;expo-sqlite;realm;@nozbe/watermelondb,papéis distintos são ok (segredo x cache x banco); dois para o mesmo papel não,https://docs.expo.dev/develop/user-interface/store-data/
+FG14,animação,javascript,react-native-reanimated;moti;react-native-animatable;lottie-react-native,reanimated como base; moti sem release desde 2025-01,https://docs.swmansion.com/react-native-reanimated/
+FG15,toast,javascript,react-native-toast-message;sonner-native;burnt;react-native-root-toast,um só,https://github.com/gunnartorfis/sonner-native
+FG16,uuid,javascript,uuid;nanoid;react-native-uuid;expo-crypto,crypto.randomUUID ou expo-crypto,https://docs.expo.dev/versions/latest/sdk/crypto/
+FG17,cliente HTTP,elixir,req;httpoison;tesla;finch;mint;hackney,req como padrão do Phoenix 1.8,https://hexdocs.pm/req/Req.html
+FG18,JSON,elixir,jason;poison;jsx,Jason (ou JSON nativo do Elixir 1.18+),https://hexdocs.pm/elixir/JSON.html
+FG19,hash de senha,elixir,bcrypt_elixir;argon2_elixir;pbkdf2_elixir,um só algoritmo,https://hexdocs.pm/bcrypt_elixir/
+FG20,auth e token,elixir,guardian;joken;pow;ueberauth;assent,papéis podem conviver (OAuth x token); revisar se duplicam emissão de token,https://hexdocs.pm/phoenix/mix_phx_gen_auth.html
+FG21,jobs,elixir,oban;exq;verk;quantum,Oban para jobs persistentes,https://hexdocs.pm/oban/Oban.html
+FG22,e-mail,elixir,swoosh;bamboo,Swoosh (padrão do Phoenix),https://hexdocs.pm/swoosh/Swoosh.html
+FG23,CSV,elixir,nimble_csv;csv;ex_csv,um só,https://hexdocs.pm/nimble_csv/

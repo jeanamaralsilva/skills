@@ -25,12 +25,28 @@ ceo-analytics/
 └── evals/         casos de teste
 ```
 
+## ceo-deps
+
+Dono técnico das dependências de um app inteiro, em um ou vários repos (ex.: mobile Expo + server Phoenix):
+
+- **Inventário multi-repo:** gerenciadores, lockfiles (inclusive os ignorados pelo git), toolchain, deps por git, overrides, bots, CI e risco de OTA (`runtimeVersion`).
+- **Segurança e supply chain:** audit de cada ecossistema, versões exatas do lock contra o OSV e defesas contra pacote malicioso (cooldown, `--ignore-scripts`, Actions fixadas por SHA).
+- **Versões e compatibilidade:** Expo SDK (`bundledNativeModules.json`), duplicata de módulo nativo, regressão de Hermes e matriz Elixir/OTP.
+- **Duplicadas e sem uso, licenças (SaaS e lojas), acoplamento, serviços externos e ciclo de vida.**
+- **Manter:** aplica o que é seguro em branch e verifica em degraus, com o build nativo na nuvem (EAS) e no CI, sem buildar no Mac.
+
+Scripts: `detect_stack.py`, `expo_check.py`, `lock_audit.py`, `deps_scan.py`. Dados: 105 checks com fonte (JS/Expo, Elixir e mais 10 linguagens), 31 licenças, 23 grupos de libs duplicadas e incidentes reais.
+
+## ceo-cortex
+
+Revisão e escrita de código no nível de engenheiro sênior, com memória entre sessões (`cortex`), detector de duplicação e mapa de símbolos. Tem guias de armadilhas por linguagem (Elixir com as 26 Iron Laws do phxagents, React Native, React, TypeScript/Node, Python, Go, Kotlin/Android, Swift/iOS, Java, SQL e desktop). Antes se chamava code-cortex.
+
 ## Instalar
 
-Copie a pasta `ceo-analytics/` para `~/.claude/skills/` ou instale o pacote `.skill` pelo app do Claude.
+Copie a pasta da skill para `~/.claude/skills/` (ou crie um link: `ln -s ~/orca/skills/<skill> ~/.claude/skills/<skill>`) ou instale o pacote `.skill` pelo app do Claude.
 
 ## Testar
 
 ```bash
-cd ceo-analytics && python3 -m pytest scripts/tests -q
+for s in ceo-analytics ceo-deps ceo-cortex; do (cd $s && python3 -m pytest scripts/tests -q); done
 ```
