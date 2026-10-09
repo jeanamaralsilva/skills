@@ -17,7 +17,7 @@ Pontue cada uma das 10 heurísticas (H01 a H10 em `data/heuristics.csv`):
 
 A nota final é a média das heurísticas pontuadas. `n/a` sai do denominador. Escreva quantas foram `n/a`: uma nota 3,8 com 6 `n/a` diz pouco.
 
-A nota não é o produto. O CEO quer os achados. Use a nota numa linha do veredito e siga em frente.
+A nota não é o produto. O Jean quer os achados. Use a nota numa linha do veredito e siga em frente.
 
 ## Severidade do achado
 

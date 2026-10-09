@@ -165,7 +165,7 @@ def test_short_reference_names_in_skill_md_resolve():
 
 def test_report_template_example_passes_lint():
     example = (
-        "# App de treino: análise UI/UX\n"
+        "# WAYUP: análise UI/UX\n"
         "**Veredito:** fluxo de treino funciona. Maior alavanca: registrar carga.\n"
         "- **P0** Carga não persiste → salvar por série `src/features/workout/useSets.ts:41`\n"
         "- **P1** Botão Salvar com 3.1:1 [medido] → usar token de texto primário [tela: Treino]\n"
@@ -179,15 +179,3 @@ def test_lint_reads_stdin_so_no_file_is_needed():
         input="Relatorio curto sem problemas\n", capture_output=True, text=True,
     )
     assert result.returncode == 0 and "clean" in result.stdout
-
-
-def test_search_finds_tab_icon_pulse_motion_pattern():
-    hits = search.rank("ícone de aba pulsar", search.load_rows(search.DATA_DIR, ["motion-patterns"]), 3)
-    assert hits and hits[0][2]["id"] in {"MO02", "MO01", "MO41"}
-
-
-def test_motion_patterns_rows_have_sources_and_platform():
-    import csv
-    rows = list(csv.DictReader(open(os.path.join(os.path.dirname(SCRIPTS), "data", "motion-patterns.csv"), encoding="utf-8")))
-    assert len(rows) >= 45
-    assert all(r["source"].startswith("http") and r["platform"] for r in rows)

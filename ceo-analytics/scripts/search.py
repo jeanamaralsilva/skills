@@ -14,7 +14,7 @@ import sys
 import unicodedata
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data")
-DOMAINS = ("heuristics", "anti-patterns", "components", "reference-apps", "market-sources", "ui-libraries", "motion-patterns")
+DOMAINS = ("heuristics", "anti-patterns", "components", "reference-apps", "market-sources", "ui-libraries")
 K1, B = 1.5, 0.75
 
 

@@ -1,10 +1,10 @@
 # Anti-slop na análise: relatório curto, sem dado que não precisa
 
-O CEO quer isso: relatório reduzido, sem os vícios de IA de encher análise com dado que não muda nada. Esta é a parte da skill que mais separa um designer sênior de um gerador de texto.
+O Jean pediu isso de forma explícita: relatório reduzido, sem os vícios de IA de encher análise com dado que não muda nada. Esta é a parte da skill que mais separa um designer sênior de um gerador de texto.
 
 ## O teste do corte
 
-Para cada linha, pergunte: **se eu tirar isto, o CEO decide diferente?** Se a resposta for não, corte. Isso elimina:
+Para cada linha, pergunte: **se eu tirar isto, o Jean decide diferente?** Se a resposta for não, corte. Isso elimina:
 
 - Descrever o que ele já vê ("a tela tem um header com o logo e um botão azul").
 - Repetir o mesmo achado com outras palavras em seções diferentes.

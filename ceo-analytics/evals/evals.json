@@ -3,24 +3,24 @@
   "evals": [
     {
       "id": 1,
-      "name": "analise-completa-app-com-server",
-      "prompt": "analisa o app mobile (ta em apps/mobile, o backend ta em apps/server). quero entender a estrutura de telas, pra que serve cada aba do aluno e do personal, e o que ta ruim de ux. relatorio curto, so o que importa",
+      "name": "analise-completa-wayup",
+      "prompt": "analisa o app wayup-mobile (ta em apps/wayup-mobile, o backend ta em apps/wayup-server). quero entender a estrutura de telas, pra que serve cada aba do aluno e do personal, e o que ta ruim de ux. relatorio curto, so o que importa",
       "expected_output": "Relatório CEO curto: mapa de telas vindo do código (aluno e personal), até 7 achados P0-P3 com arquivo:linha, nenhum número sem etiqueta, lint clean, sem alterar o repo",
-      "files": ["apps/mobile", "apps/server"]
+      "files": ["apps/wayup-mobile", "apps/wayup-server"]
     },
     {
       "id": 2,
       "name": "proposta-tela-execucao-treino",
-      "prompt": "quero uma tela nova de execucao de treino pro aluno no app (tema dark do app). tem que ter loading bom, um sheet pra trocar exercicio e registrar carga, e no android tem que ficar o mais bonito possivel, se for oq o pessoal mais gosta. me da as propostas",
+      "prompt": "quero uma tela nova de execucao de treino pro aluno no wayup (tema dark do app). tem que ter loading bom, um sheet pra trocar exercicio e registrar carga, e no android tem que ficar o mais bonito possivel, se for oq o pessoal mais gosta. me da as propostas",
       "expected_output": "2-3 alternativas com hipóteses diferentes, estados completos, componentes do repo, Liquid Glass só na navegação no iOS, M3 Expressive no Android, benchmark de apps de treino com fontes",
-      "files": ["apps/mobile"]
+      "files": ["apps/wayup-mobile"]
     },
     {
       "id": 3,
       "name": "ajuste-pontual-sem-mexer-layout",
       "prompt": "na tela de editar carga do aluno (src/screens/student/workouts/edit-load-screen.tsx) deixa o botao Salvar fixo no rodape, acima do teclado. so isso, nao mexe no resto da tela",
       "expected_output": "Diff contido no botão Salvar e no container dele; região declarada; nenhuma outra mudança de estilo, ordem ou texto",
-      "files": ["apps/mobile/src/screens/student/workouts/edit-load-screen.tsx"]
+      "files": ["apps/wayup-mobile/src/screens/student/workouts/edit-load-screen.tsx"]
     }
   ]
 }
