@@ -9,12 +9,12 @@ Faça isso em silêncio. O brief é para você, não entra na resposta.
 Leia, nesta ordem, e anote só o que muda o trabalho:
 
 1. **A mensagem atual.** Ela vence qualquer coisa anterior quando conflita.
-2. **O resto da conversa:** o que o Jean já pediu, corrigiu, aprovou ou rejeitou. Correção dele ("não precisa de arquivo", "diminui o texto") vale para o resto da sessão.
-3. **Memória e preferências** do Jean.
+2. **O resto da conversa:** o que o CEO já pediu, corrigiu, aprovou ou rejeitou. Correção dele ("não precisa de arquivo", "diminui o texto") vale para o resto da sessão.
+3. **Memória e preferências** do CEO.
 4. **O repo:** `CLAUDE.md` e documentos de decisão (ex.: `docs/**/decisoes*.md`). Decisão registrada no repo é restrição, não sugestão.
 
 ```
-Objetivo:        <o que o Jean quer no fim, em 1 frase>
+Objetivo:        <o que o CEO quer no fim, em 1 frase>
 Modo:            analisar | propor | ajustar | pergunta conceitual
 Entregável:      resposta no chat | frames no Pencil | código
 Restrições:      <"não mexe no resto", "tema dark", "read-only", decisão D13...>
@@ -25,7 +25,7 @@ Rejeitado:       <o que não voltar a propor>
 
 ## 2. Leia o que está por trás do pedido
 
-| O Jean escreve | O que precisa acontecer |
+| O CEO escreve | O que precisa acontecer |
 |---|---|
 | "só isso, não mexe no resto" | região travada e diff mínimo (`09`) |
 | "o mais bonito, se for o que o pessoal gosta" | padrão da plataforma + dado de preferência com fonte (`05`, `10`) |
@@ -38,7 +38,7 @@ Rejeitado:       <o que não voltar a propor>
 
 - **Analisar:** mapa + diagnóstico. Não escreve código nem arquivo.
 - **Propor:** analisa o necessário + propostas (Pencil ou chat).
-- **Ajustar:** mexe só na região pedida (`09`) e depois passa para `send-pr`.
+- **Ajustar:** mexe só na região pedida (`09`) e depois vai para PR.
 - **Pergunta conceitual:** responde direto, sem fases.
 
 Na dúvida entre dois modos, fique com o menor. Analisar não vira ajustar sem pedido.
@@ -46,7 +46,7 @@ Na dúvida entre dois modos, fique com o menor. Analisar não vira ajustar sem p
 ## 4. Ambiguidade e conflito
 
 - **Ambiguidade técnica:** resolva pelo padrão dominante do repo e siga. Não pergunte.
-- **Algo que só o Jean sabe** (público, prioridade de negócio, acesso): uma pergunta, curta, no fim da entrega. Não trave o trabalho por ela.
+- **Algo que só o CEO sabe** (público, prioridade de negócio, acesso): uma pergunta, curta, no fim da entrega. Não trave o trabalho por ela.
 - **Pedido que conflita com decisão do repo** (ex.: "tela nova" contra "D13: não criar segunda tela de execução"): siga a decisão, faça a proposta dentro dela e diga o conflito em uma linha. Nunca escolha em silêncio.
 - **Pedido que conflita com pedido anterior:** vale o mais recente.
 
@@ -56,4 +56,4 @@ Confira o brief item por item: cada restrição foi respeitada? O critério ocul
 
 ## Quando o próprio pedido é um prompt
 
-Se o Jean pede para analisar ou melhorar um prompt (de uma feature de IA do app, de um agente, de uma skill), use a mesma estrutura: objetivo, contexto que o modelo precisa, restrições, formato de saída e exemplos. Aponte o que falta ou é ambíguo e o que faria o modelo errar. Entregue o prompt revisado, não uma aula sobre prompts.
+Se o CEO pede para analisar ou melhorar um prompt (de uma feature de IA do app, de um agente, de uma skill), use a mesma estrutura: objetivo, contexto que o modelo precisa, restrições, formato de saída e exemplos. Aponte o que falta ou é ambíguo e o que faria o modelo errar. Entregue o prompt revisado, não uma aula sobre prompts.

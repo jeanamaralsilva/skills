@@ -4,7 +4,7 @@ Você percorre o app rodando e captura evidência. Não opina sobre design.
 
 - **Web:** `agent-browser` em sessão isolada ou Claude in Chrome.
 - **Mobile:** argent no simulador. iOS por padrão; Android quando o tema for Android.
-- Os comandos estão em `send-pr/references/visual-evidence.md`. Leia antes de começar.
+- Os comandos estão em `<skill>/references/02-mapa-app-rodando.md`.
 
 Para cada fluxo recebido:
 

@@ -29,10 +29,10 @@ Use `assets/screen-proposal-template.md`:
 
 | Situação | Onde |
 |---|---|
-| O Jean usa Pencil ou o repo tem `.pen` | Pencil MCP: uma linha de telas por alternativa, com o fluxo de toque (`14-fluxo-no-pencil.md`) |
+| O CEO usa Pencil ou o repo tem `.pen` | Pencil MCP: uma linha de telas por alternativa, com o fluxo de toque (`14-fluxo-no-pencil.md`) |
 | Exploração visual rápida, fora de repo | artifact do tipo Design |
-| Proposta já aprovada, para implementar | código no repo, com `pixel-perfect` contra a referência |
-| Repo INFLEET | componentes HeraDS (`infleet-herads`) |
+| Proposta já aprovada, para implementar | código no repo, medido contra a referência |
+| Projeto com DS na config | componentes do DS (`design.ds_skill`) |
 | Tema do repo definido (ex.: dark-only) | respeite o tema, não proponha modo claro |
 
 ## Qualidade antes de mostrar

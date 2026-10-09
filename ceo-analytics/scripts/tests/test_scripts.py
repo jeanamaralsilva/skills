@@ -165,7 +165,7 @@ def test_short_reference_names_in_skill_md_resolve():
 
 def test_report_template_example_passes_lint():
     example = (
-        "# WAYUP: análise UI/UX\n"
+        "# App de treino: análise UI/UX\n"
         "**Veredito:** fluxo de treino funciona. Maior alavanca: registrar carga.\n"
         "- **P0** Carga não persiste → salvar por série `src/features/workout/useSets.ts:41`\n"
         "- **P1** Botão Salvar com 3.1:1 [medido] → usar token de texto primário [tela: Treino]\n"
@@ -179,3 +179,68 @@ def test_lint_reads_stdin_so_no_file_is_needed():
         input="Relatorio curto sem problemas\n", capture_output=True, text=True,
     )
     assert result.returncode == 0 and "clean" in result.stdout
+
+
+def test_search_finds_tab_icon_pulse_motion_pattern():
+    hits = search.rank("ícone de aba pulsar", search.load_rows(search.DATA_DIR, ["motion-patterns"]), 3)
+    assert hits and hits[0][2]["id"] in {"MO02", "MO01", "MO41"}
+
+
+def test_motion_patterns_rows_have_sources_and_platform():
+    import csv
+    rows = list(csv.DictReader(open(os.path.join(os.path.dirname(SCRIPTS), "data", "motion-patterns.csv"), encoding="utf-8")))
+    assert len(rows) >= 45
+    assert all(r["source"].startswith("http") and r["platform"] for r in rows)
+
+
+# ---------- nav_audit ----------
+
+def test_nav_audit_flags_nested_tabs_repeated_labels_and_disguised_filters():
+    import nav_audit
+    outline = {
+        "title": "Financeiro - Auditoria",
+        "levels": [
+            ["Faturamento do mês", "Vínculos", "Resumão"],
+            ["Faturamento do mês", "Liberados 0", "Inadimplentes 137", "Cancelados 109"],
+            ["Todos 751", "Sem diferença 289", "Com diferença 462"],
+        ],
+        "heading": "Setembro de 2026",
+        "columns": {"Motivo": ["Posse sem cobrança", "Posse sem cobrança", "Posse sem cobrança"]},
+    }
+    findings = nav_audit.audit(outline)
+    rules = {f["rule"] for f in findings}
+    assert "abas-dentro-de-abas" in rules          # 2 tab rows (level 3 is a partition -> filter, still 2 tab rows)
+    assert "rotulo-repetido" in rules              # "Faturamento do mês" twice
+    assert "filtro-como-aba" in rules              # 289 + 462 == 751
+    assert "aba-vazia" in rules                    # Liberados 0
+    assert "coluna-constante" in rules             # Motivo identical
+    repeated = next(f for f in findings if f["rule"] == "rotulo-repetido")
+    assert "Faturamento do mês" in repeated["detail"]
+
+
+def test_nav_audit_is_quiet_on_a_clean_screen():
+    import nav_audit
+    outline = {
+        "title": "Auditoria de setembro",
+        "levels": [["Clientes 751", "Vínculos", "Resumo"]],
+        "filters": ["Todos 751", "Sem diferença 289", "Com diferença 462"],
+        "columns": {"Motivo": ["Posse sem cobrança", "Sem posse", "Cancelado"]},
+    }
+    assert nav_audit.audit(outline) == []
+
+
+def test_nav_audit_reads_plain_text_outline():
+    import nav_audit
+    text = "title: Financeiro\nL1: A | B\nL2: A | C 0\nheading: Setembro\n"
+    outline = nav_audit.parse_text(text)
+    assert outline["levels"] == [["A", "B"], ["A", "C 0"]]
+    rules = {f["rule"] for f in nav_audit.audit(outline)}
+    assert {"abas-dentro-de-abas", "rotulo-repetido", "aba-vazia"} <= rules
+
+
+def test_screen_checks_have_sources_and_cover_core_types():
+    import csv
+    rows = list(csv.DictReader(open(os.path.join(os.path.dirname(SCRIPTS), "data", "screen-checks.csv"), encoding="utf-8")))
+    assert len(rows) >= 30
+    assert all(r["source"].startswith("http") for r in rows)
+    assert {"formulario", "tabela", "dashboard", "vazio", "modal", "lista", "busca", "navegacao", "feedback"} <= {r["screen_type"] for r in rows}

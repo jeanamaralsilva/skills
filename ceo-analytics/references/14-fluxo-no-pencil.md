@@ -1,6 +1,6 @@
 # Fluxo no Pencil (pen.dev)
 
-Quando a entrega é visual, o Jean quer ver o fluxo, não só as telas: **onde tocar e para onde vai**. Cada fluxo vira um frame no canvas com as telas em ordem, um marcador numerado sobre cada ponto de toque e uma seta até a tela de destino.
+Quando a entrega é visual, o CEO quer ver o fluxo, não só as telas: **onde tocar e para onde vai**. Cada fluxo vira um frame no canvas com as telas em ordem, um marcador numerado sobre cada ponto de toque e uma seta até a tela de destino.
 
 Antes da primeira chamada, leia a skill do Pencil: `pencil__read_skill()` e depois `read_skill({path: "execute.md"})`. As regras de lá valem: `name` em todo nó, `placeholder: true` enquanto trabalha, nada solto na raiz do documento.
 

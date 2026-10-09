@@ -19,3 +19,10 @@ H17,Tipo dinamico,Plataforma,all,Fonte fixa que nao escala com Dynamic Type/sp,P
 H18,Reduce Transparency/Motion,Plataforma,ios,Glass ou animacao sem fallback quando a opcao do sistema esta ligada,P2,https://developer.apple.com/documentation/technologyoverviews/adopting-liquid-glass
 H19,Gesto do sistema,Plataforma,all,Gesto custom conflitando com voltar/home do sistema,P1,https://github.com/pbakaus/impeccable
 H20,Legibilidade sobre glass,Plataforma,ios,Texto sobre vidro sobre imagem com contraste ruim (critica NN/g ao iOS 26),P1,https://www.nngroup.com/articles/liquid-glass/
+H21,Uma linha de abas por tela,Navegacao,all,Dois ou mais niveis de abas empilhados (abas dentro de abas) ou abas de navegacao misturadas com abas de conteudo no mesmo controle,P1,https://www.nngroup.com/articles/tabs-used-right/
+H22,Rotulo aparece uma vez por tela,Navegacao,all,Mesmo texto no titulo da pagina e numa aba ou subaba; mesmo texto em dois niveis de navegacao,P2,https://www.nngroup.com/articles/tabs-used-right/
+H23,Aba e filtro sao coisas diferentes,Navegacao,all,Abas que mostram a mesma tabela com um filtro aplicado (particoes do mesmo conjunto) em vez de conteudo diferente; filtro apresentado como aba,P2,https://www.nngroup.com/articles/filters-vs-facets/
+H24,Rotulo de aba curto,Navegacao,all,Aba com mais de 2 palavras ou com termo interno em vez de linguagem do usuario,P3,https://www.nngroup.com/articles/tabs-used-right/
+H25,Aba vazia nao ocupa espaco,Navegacao,all,Aba com contagem 0 sem motivo visivel para existir; aba que nunca tem conteudo para o usuario atual,P3,https://www.nngroup.com/articles/tabs-used-right/
+H26,Coluna que nao varia vira filtro ou cabecalho,Densidade,web,Coluna de status ou motivo com o mesmo valor em todas as linhas visiveis; badge repetido linha a linha,P2,https://www.nngroup.com/articles/tabs-used-right/
+H27,Icone de alerta com legenda,Densidade,all,Icone de aviso ao lado do nome sem tooltip legenda ou coluna que explique o que significa,P2,https://www.nngroup.com/articles/ten-usability-heuristics/
