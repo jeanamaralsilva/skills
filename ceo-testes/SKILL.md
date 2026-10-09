@@ -47,6 +47,7 @@ python scripts/sim_session.py create admin
 - Estresse: `references/06-estresse-e-caos.md` (Toxiproxy, rede, ciclo de vida, memória, carga com `assets/k6-phoenix-ws.js`).
 - Performance: `references/09-performance-e-memoria.md` (xctrace, agent-device perf, orçamentos).
 - PR ou dependência: `references/13-regressao-de-pr-e-dependencias.md` (diff → telas → matriz → escada de verificação; `ceo-cortex` revisa o patch, `ceo-deps` a dependência).
+- O outro repo e a entrega: `references/14-um-chat-dois-repos-e-entrega.md`. O chat abre num repo; o bug atravessa app e servidor. A skill acha o repo irmão, analisa `origin/main` dos dois, corrige os dois lados quando preciso e, em repo próprio, leva até a main: branch, teste na suíte, revisão contra tudo, PR, CI, merge na ordem certa.
 
 ### 5. Evidência e causa
 - Vídeo ou print do cliente: `references/07-analise-de-bug-video-e-imagem.md`, `scripts/video_frames.py`, subagente `agents/bug-analyst.md`.
@@ -76,6 +77,8 @@ Arquivo do repo alterado só para a rodada (ex.: perfil de simulador no `eas.jso
 - **Nunca em produção, nunca com dado real.** Usuários de teste por papel; credencial só por variável de ambiente; token de produção nunca é copiado.
 - **Read-only é read-only.** Em repo marcado assim (config ou dono), nenhum arquivo, branch ou flow é escrito; relatório com patch sugerido.
 - **Correção vem com teste implementado** (skill `tdd`): o teste que reproduz falha antes e passa depois, gravado no repo (fora do git quando read-only). "Correção sugerida" sem teste não é entrega.
+- **Um chat, os dois repos.** "Isso é do mobile" não é resposta: ache o repo irmão (`14`), leia `origin/main` dos dois, e um bug só está corrigido quando os dois lados concordam.
+- **Merge na main só depois da revisão contra tudo** (`14`): suíte inteira, `ceo-cortex`, PRs abertos, `ceo-deps`, contrato com o outro repo, CI verde, decisão do CEO fechada. Nunca force push, nunca com CI vermelho.
 
 ## Quando outras skills entram
 `references/12-integracoes.md`: UX vai para `ceo-analytics`, versão e dependência para `ceo-deps`, patch para `ceo-cortex` com `tdd`, Elixir profundo para phxagents, PR pela skill da config.
@@ -92,3 +95,5 @@ Arquivo do repo alterado só para a rodada (ex.: perfil de simulador no `eas.jso
 | "Está lento" | Quanto? `[medido]` ou não entra |
 | "Esse PR é pequeno, não precisa de regressão" | Diff pequeno em hook compartilhado alcança 10 telas. `13` decide, não o tamanho |
 | "Deixo o teste como sugestão no relatório" | Teste é implementado e rodando, ou o bug não está entregue |
+| "A branch local que está aberta é o código" | O cliente usa `origin/main`. `git fetch` e `git show origin/main:<arquivo>` antes de acusar |
+| "Corrigi no servidor, o app se vira" | Se o app ainda bloqueia a ação, o bug continua. Os dois lados, ou o motivo de um bastar |

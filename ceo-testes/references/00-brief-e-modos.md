@@ -8,7 +8,7 @@ Ordem: `.ceo/config.md` na raiz do repo, depois `~/.ceo/profile.md`, depois perg
 
 | Campo | Para quê | Sem ele |
 |---|---|---|
-| `repos[]` com `papel` e `read_only` | onde está o app, onde está o servidor, onde pode escrever | procura `app/` ou `src/app/` (mobile) e `mix.exs`/`package.json` com `phoenix`/`socket.io` (servidor); trata tudo como read-only |
+| `repos[]` com `papel` e `read_only` | onde está o app, onde está o servidor, onde pode escrever | procura pastas irmãs `../<nome>-mobile`, `../<nome>-server` (`14`); trata tudo como read-only |
 | `maquina.ram_gb`, `simuladores_max` | quantos simuladores sobem juntos | assume 16 GB: 1 simulador + ator por API |
 | `maquina.apagar_testes_ao_fim` | limpeza no fim | sempre apaga o que criou |
 | `plataformas` | iOS, Android ou ambos | iOS |
@@ -41,6 +41,7 @@ Já sabido:     <bugs conhecidos, o que o CEO já testou>
 | **Multiusuário** | dois papéis na mesma tela, "o outro não vê", tempo real | matriz do `map_realtime.py`, um simulador + `phx_actor.mjs` (ou dois simuladores), ordem, reconexão, presença |
 | **Estresse** | "estressa", "procura bug", antes de release | tours do `data/tours.csv`, duplo toque, rede ruim (Toxiproxy), background, memória, lista grande, carga (k6) |
 | **Evidência** | "analisa esse vídeo", crash do TestFlight | frames do vídeo, crash log symbolicado, passo que dispara, correção |
+| **Entrega** | "corrige e sobe", "dá merge depois de revisar", repo próprio | branch, teste na suíte, revisão contra tudo, PR, CI, merge na main na ordem certa (`14-um-chat-dois-repos-e-entrega.md`) |
 
 Na dúvida, o modo menor. "Testa o botão de enviar" é regressão de uma ação, não varredura.
 

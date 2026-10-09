@@ -14,7 +14,7 @@
 | QA exploratório por agente | `dogfood` (Callstack) + `data/tours.csv` | roteiro de exploração com agent-device |
 | Tela web do produto | Claude in Chrome / agent-browser | mesmo processo, outro alvo |
 
-## Ordem típica de um bug reportado pelo cliente
+## Ordem típica de um bug reportado pelo cliente (repo próprio: segue até a main, `14`)
 
 1. `ceo-testes` `07`: vídeo → frames → hipótese (`bugs.csv`) → reprodução mínima → causa (`arquivo:linha`).
 2. `tdd`: teste que falha reproduzindo o bug (ExUnit no servidor, Jest/RNTL no app, ou flow Maestro na suíte).
