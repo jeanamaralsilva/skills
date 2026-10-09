@@ -16,7 +16,7 @@ Ordem: `.ceo/config.md` na raiz do repo, depois `~/.ceo/profile.md`, depois perg
 | `testes.servidor_ws`, `papeis`, `credenciais` | segundo ator, login por papel | pergunta o endpoint; credenciais só por variável de ambiente |
 | `testes.maestro_dir` | onde ficam os flows do time | `.maestro/` |
 
-Credencial nunca vai para arquivo, print ou relatório. Se a config pede `TEST_USER_ADMIN` e a variável não existe, diga isso e pare o fluxo que depende dela.
+Credencial, nesta ordem: (1) usuários do seed de teste do próprio servidor local (Phoenix: `priv/repo/seeds*.exs` ou script de seed de QA; Node: `prisma/seed`, `db:seed`), sem configurar nada; (2) variáveis de ambiente (`TEST_USER_<PAPEL>`, `TEST_PASS_<PAPEL>`) só quando o alvo é staging; (3) pergunta no chat, uma vez, sem gravar em arquivo. Credencial nunca vai para repo, print ou relatório. Produção nunca.
 
 ## Brief
 
@@ -58,5 +58,5 @@ Tudo que a rodada cria fica **dentro do repo, fora do git**: `.ceo/`, `runs/`, f
 ## Primeira pergunta, só se mudar a ação
 
 - Não há servidor rodando nem URL de staging e o fluxo precisa dele: "posso subir o servidor local com `mix phx.server` ou uso staging?"
-- Dois papéis e a config não diz as credenciais: "qual variável tem o login de cada papel?"
+- Dois papéis, servidor local sem seed e config sem credenciais: "qual login de cada papel?" (uma vez, no chat).
 - Mac com 16 GB e o CEO pediu dois simuladores: faça com um simulador e ator por API e diga no relatório; não pergunte.
