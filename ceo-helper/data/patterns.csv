@@ -1,0 +1,29 @@
+id,type,topic,rule,evidence,source
+PT01,padrao,camadas,Empty state que ensina antes de qualquer overlay,Empty state deve dizer o status dar a pista e ter o botão da ação,https://www.nngroup.com/articles/empty-state-interface-design/
+PT02,padrao,ajuda puxada,Disparar ajuda por sinal de necessidade no momento,Ajuda empurrada fora de contexto não é lembrada e precisa ser dispensada,https://www.nngroup.com/articles/onboarding-tutorials/
+PT03,padrao,coach mark,Uma ação por dica e uma dica por vez,Bombardear com dicas faz o usuário dispensá-las mais rápido; memória de curto prazo some em ~20 s,https://www.nngroup.com/articles/mobile-instructional-overlay/
+PT04,padrao,passos,Dica com 1 passo; mini-tour com no máximo 3,1-2 passos 73% de conclusão; 3-5 38%; 6-8 25%; 9+ 8% (SaaS web; 88 empresas),https://produktly.com/research/saas-onboarding-benchmarks-2026
+PT05,padrao,gatilho,Preferir disparo pelo usuário ou após uma ação,Iniciado pelo usuário 69% contra 23% automático (SaaS web),https://produktly.com/research/saas-onboarding-benchmarks-2026
+PT06,padrao,gatilho,Não disparar ao carregar,Disparo imediato ao carregar 39% contra 47% por clique (SaaS web),https://www.chameleon.io/benchmark-report
+PT07,padrao,progresso,Mostrar indicador de progresso no tour e no checklist,Indicador de progresso +12% de conclusão (SaaS web),https://www.chameleon.io/benchmark-report
+PT08,padrao,checklist,Checklist leva direto à ação e abre a dica da tela,Tour aberto a partir de launcher/checklist 67% de conclusão (SaaS web),https://www.chameleon.io/benchmark-report
+PT09,padrao,checklist,Checklist curto e marcado por dado real,Conclusão média de checklist 19.2% e mediana 10.1% (188 empresas; trecho indexado),https://userpilot.com/blog/onboarding-checklist-completion-rate-benchmarks/
+PT10,padrao,texto,Texto curto sem imagem nem vídeo,Modal só texto 44%; texto+imagem 29%; texto+vídeo 21% (SaaS web),https://www.chameleon.io/benchmark-report
+PT11,padrao,frequencia,No máximo 1 descoberta por sessão; dispensou não volta,Guia oficial de feature discovery do Material,https://m1.material.io/growth-communications/feature-discovery.html
+PT12,padrao,aprender fazendo,Ensinar pela interação; tutorial pulável; não mostrar a quem já usa,Apple HIG Onboarding,https://developer.apple.com/design/human-interface-guidelines/onboarding
+PT13,padrao,checklist funcional,Checklist dentro do produto em que o usuário aprende fazendo,Página Getting Started do Notion,https://goodux.appcues.com/blog/notions-lightweight-onboarding
+PT14,padrao,adiar cadastro,Entregar valor antes de pedir cadastro quando possível,Duolingo: adiar o cadastro deu ~+20% de DAU,https://review.firstround.com/the-tenets-of-a-b-testing-from-duolingos-master-growth-hacker
+PT15,padrao,a11y,Contraste de texto 4.5:1,WCAG 2.2 critério 1.4.3,https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum
+PT16,padrao,a11y,Respeitar Reduzir Movimento,useReducedMotion do Reanimated é síncrono,https://docs.swmansion.com/react-native-reanimated/docs/device/useReducedMotion/
+PT17,padrao,a11y,Overlay modal para leitor de tela e anúncio ao abrir,accessibilityViewIsModal; importantForAccessibility; announceForAccessibility,https://reactnative.dev/docs/accessibility
+AP01,antipadrao,carrossel,Carrossel de boas-vindas genérico,Quem leu o tutorial achou as tarefas mais difíceis (SEQ 4.92 vs 5.49; p=0.047); sucesso sem diferença,https://www.nngroup.com/articles/mobile-tutorials/
+AP02,antipadrao,tour longo,Tour com 5+ passos,Com 5+ passos mais da metade abandona (SaaS web),https://www.chameleon.io/benchmark-report
+AP03,antipadrao,abertura,Disparar ao abrir o app,Material: não apresentar na abertura; a pessoa abriu com uma intenção,https://m1.material.io/growth-communications/feature-discovery.html
+AP04,antipadrao,repetir,Repetir para quem já viu ou já usa,Apple HIG: não mostrar automaticamente a quem já é usuário,https://developer.apple.com/design/human-interface-guidelines/onboarding
+AP05,antipadrao,bombardeio,Várias dicas seguidas,NN/g coach marks,https://www.nngroup.com/articles/mobile-instructional-overlay/
+AP06,antipadrao,obvio,Explicar convenção (voltar; busca),NN/g onboarding tutorials,https://www.nngroup.com/articles/onboarding-tutorials/
+AP07,antipadrao,bloquear,Overlay que cobre o alvo ou parece interativo,NN/g coach marks,https://www.nngroup.com/articles/mobile-instructional-overlay/
+AP08,antipadrao,sem pular,Sem botão Pular ou Pular escondido,Appcues mobile onboarding,https://appcues.com/blog/mobile-onboarding-best-practices
+AP09,antipadrao,midia pesada,Imagem ou vídeo na dica,Texto+vídeo 21% contra texto 44% (SaaS web),https://www.chameleon.io/benchmark-report
+AP10,antipadrao,sem rever,Sem caminho para rever a ajuda,NN/g onboarding tutorials,https://www.nngroup.com/articles/onboarding-tutorials/
+AP11,antipadrao,vazio mudo,Empty state só com Nenhum item,NN/g empty states,https://www.nngroup.com/articles/empty-state-interface-design/
