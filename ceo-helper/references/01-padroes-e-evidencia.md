@@ -39,6 +39,6 @@ Cada afirmação com fonte. Linhas resumidas em `data/patterns.csv`. Os benchmar
 | Texto | 1 frase, verbo + benefício, sem jargão, sem imagem nem vídeo. |
 | Acessibilidade | Ver `03`, seção a11y. |
 
-## Exemplo (app de personal trainer)
+## Exemplo ilustrativo (app de personal trainer; troque pelos papéis e passos do seu app)
 
 Personal: checklist de 5 itens (1º aluno, 1ª aula, 1º treino, 1º pacote só depois do 1º aluno, 1ª aula fechada). Dica de 1 passo no "+" da agenda na primeira visita. Aluno: até 3 itens que só aparecem se houver o que fazer (confirmar presença, aceitar contrato, começar treino).

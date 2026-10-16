@@ -1,5 +1,5 @@
 # Deep link com o app fechado e aberto (bugs B28, B29).
-# maestro test -e APP_ID=<bundle> -e LINK="app://class/123" -e TARGET="Aula 123" deep-link-frio-e-quente.yaml
+# maestro test -e APP_ID=<bundle> -e LINK="app://class/123" -e TARGET="Item 123" deep-link-frio-e-quente.yaml
 appId: ${APP_ID}
 ---
 - stopApp

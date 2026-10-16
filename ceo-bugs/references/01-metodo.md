@@ -13,7 +13,7 @@ Script confirma o que já se sabia. A sessão existe para descobrir o que ningu�
 
 ## Ordem dentro do app
 1. **Garbage-collector tour:** abrir cada tela uma vez, print de cada (estado normal). Já pega tela que não abre, texto cortado, inglês, estado vazio pobre.
-2. **Landmark tour:** as 3 a 5 jornadas que pagam a conta (ex.: num app de personal trainer, personal cadastra aluno → marca aula → monta treino → fecha aula; aluno confirma presença → faz treino → aceita contrato).
+2. **Landmark tour:** as 3 a 5 jornadas que pagam a conta (ex.: papel A cadastra a entidade principal → agenda → registra o resultado → fecha; papel B confirma → executa → aceita o vínculo ou a cobrança).
 3. **Money tour:** todo lugar com valor, pacote, pagamento.
 4. **Bad-data tour:** nome gigante, emoji, zero, negativo, colar texto formatado.
 5. **Interruption tour:** background no meio do envio, rede caindo, outro usuário mudando o mesmo dado.

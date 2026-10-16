@@ -7,13 +7,13 @@ Fontes em `_pesquisa.md` §1.5 e §2.
 - Texto: 200 caracteres, acentos, emoji, só espaços, espaço no fim, colar com quebra de linha.
 - Número: 0, negativo, vírgula e ponto, colar "R$ 1.234,50", limite máximo.
 - Máscaras BR: telefone com e sem 9, CPF, moeda; apagar do meio; autofill.
-- Unicidade: mesmo e-mail, mesmo aluno, mesma aula no mesmo horário.
+- Unicidade: mesmo e-mail, mesma entidade com caixa trocada, mesmo agendamento no mesmo horário.
 - Ciclo de vida: criar → ver em outra tela → editar → apagar → conferir que sumiu de todo lugar.
 
 ## Tempo
-- Aula hoje que já passou, que começa em 5 min, às 23:30 (vira outro dia em UTC), na virada do mês.
+- Agendamento de hoje que já passou, que começa em 5 min, às 23:30 (vira outro dia em UTC), na virada do mês.
 - App aberto na virada da meia-noite. Aparelho em outro fuso (Manaus).
-- Coisa que expira: código, convite, contrato no fim, sessão (token).
+- Coisa que expira: código, convite, vínculo ou assinatura no último dia, sessão (token).
 
 ## Ciclo de vida e interrupção
 - Background no meio do envio e volta; matar o app no meio do fluxo e reabrir.
@@ -36,11 +36,11 @@ Dois toques rápidos em todo botão que cria ou cobra (salvar, agendar, aceitar,
 Negar e revogar depois (contatos, câmera, notificações, localização): o app continua útil e explica.
 
 ## Multiusuário
-Personal muda, aluno vê (e vice-versa) sem matar o app. Dois atores no mesmo dado ao mesmo tempo. Ator B por API (`ceo-testes/scripts/phx_actor.mjs` ou curl).
+Papel A muda, papel B vê (e vice-versa) sem matar o app. Dois atores no mesmo dado ao mesmo tempo. Ator B por API: se a skill `ceo-testes` estiver instalada, use o ator dela (`phx_actor.mjs`); senão, curl com o token do ator B (login por API, `Authorization: Bearer <token>`) e confira a mudança no app aberto.
 
 ## API (sem simulador)
 - BINMEN: Boundary, Invalid, Null, Method, Empty, Negative em cada campo.
 - VADER: Verbs, Auth (token de outro usuário, outro papel, sem token), Data, Errors (500 é bug sempre), Responsiveness.
-- Tente ler e alterar recurso de outro personal pelo id: 404/403, nunca 200. 401 também é bug (o app acha que a sessão expirou).
+- Tente ler e alterar recurso de outro usuário (mesmo papel e papel diferente) pelo id: 404/403, nunca 200. 401 também é bug (o app acha que a sessão expirou).
 - Contrato: rode os schemas do app (zod/io-ts) contra a resposta real de cada GET que o app usa. Falha de parse vira tela "não encontrado" ou vazia.
 - 500 é sempre bug: tamanho > coluna, `null` explícito, tipo errado, número que estoura a coluna.

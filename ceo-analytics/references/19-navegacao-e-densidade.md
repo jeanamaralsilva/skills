@@ -7,7 +7,7 @@ O erro mais comum em painel, admin e tela de gestão não é visual: é estrutur
 Transcreva o que a tela mostra, de cima para baixo, e passe pelo script:
 
 ```bash
-python scripts/nav_audit.py - <<'EOF'
+python3 scripts/nav_audit.py - <<'EOF'
 title: Financeiro - Auditoria
 L1: Faturamento do mês | Vínculos | Resumão
 L2: Faturamento do mês | Liberados 0 | Inadimplentes 137 | Cancelados 109

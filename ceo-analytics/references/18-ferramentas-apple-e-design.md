@@ -20,7 +20,7 @@ App gratuito para procurar símbolos, ver pesos, variantes (fill, slash, badge) 
 
 ## TestFlight
 
-Builds internos (até 100 testadores, sem revisão) e externos (até 10 mil, com revisão). Para a análise: feedback com screenshot e crash chegam em App Store Connect > TestFlight > Feedback, e pela API (`ceo-testes/references/10-testflight-e-crashes.md`). O que o CEO vê como "o cliente reclamou" costuma estar lá com print e aparelho. Peça acesso de leitura ao App Store Connect quando a análise é de app já em teste.
+Builds internos (até 100 testadores, sem revisão) e externos (até 10 mil, com revisão). Para a análise: feedback com screenshot e crash chegam em App Store Connect > TestFlight > Feedback, e pela API (`ceo-testes/references/10-testflight-e-crashes.md`, se a skill ceo-testes estiver instalada). O que o CEO vê como "o cliente reclamou" costuma estar lá com print e aparelho. Peça acesso de leitura ao App Store Connect quando a análise é de app já em teste.
 
 ## Pencil (`.pen`)
 

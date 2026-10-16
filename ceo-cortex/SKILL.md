@@ -1,6 +1,7 @@
 ---
 name: ceo-cortex
 description: Write, refactor, and review code like a senior engineer - tight, DRY, efficient, with no dead code and no duplication. Use this whenever writing or refactoring any non-trivial code, reviewing a diff, PR, or file, or asking whether code is correct, efficient, safe, or maintainable, and as the final review gate before shipping AI-written code. It reads the full context instead of just the diff, catches the mistakes AI makes most (duplication, dead or leftover debugging code, missing error handling, convention drift, inefficiency, hallucinated APIs), interrogates every function parameter for scalability, and persists decisions, conventions, patterns, and bugs to cortex - a terminal-native memory network - so knowledge is recalled across sessions instead of re-derived. Bundles the cortex, dup_scan, and context_map command-line tools. Ideal for multi-agent setups where one agent acts as the reviewer or architect.
+compatibility: "Python 3 for the bundled tools (standard library only)."
 ---
 
 # ceo-cortex — senior engineer's brain, with memory
@@ -36,11 +37,11 @@ Before writing or judging anything in an area, ask memory what's already known.
 (it is purpose-built for memory); otherwise, or for terminal/offline use, use the
 bundled `cortex` CLI. The discipline is identical either way:
 ```
-cortex search "auth token storage"
-cortex search "<module-or-area> convention"
+python3 scripts/cortex.py search "auth token storage"
+python3 scripts/cortex.py search "<module-or-area> convention"
 ```
 Treat hits as binding context - follow recorded decisions and conventions instead
-of inventing new ones. From a relevant hit, `cortex neighbors <id>` pulls in the
+of inventing new ones. From a relevant hit, `python3 scripts/cortex.py neighbors <id>` pulls in the
 connected decisions. (Full command guide and the dual-backend note: `references/cortex.md`.)
 
 ### 1. See the whole picture
@@ -48,7 +49,7 @@ Don't review or edit blind. For anything beyond a tiny, self-contained change:
 - Build a structural map of the affected area so you see every symbol, its
   signature, and which symbols are load-bearing:
   ```
-  context_map <path> --top 20
+  python3 scripts/context_map.py <path> --top 20
   ```
 - **Read the full files you're touching, not just the diff.** A one-line change
   can break an invariant established elsewhere; you can only see that with the
@@ -79,7 +80,7 @@ When producing code, hold a senior bar:
 This is where the skill earns its keep. Be the reviewer nothing gets past.
 1. **Run the mechanical check first** so your attention is free for judgment:
    ```
-   dup_scan <path> --min-lines 5
+   python3 scripts/dup_scan.py <path> --min-lines 5
    ```
    For each flagged block, decide: extract a shared unit, or accept with a reason.
 2. **Walk the checklist** in `references/review-checklist.md` - intent → skim →
@@ -116,9 +117,9 @@ This is where the skill earns its keep. Be the reviewer nothing gets past.
 ### 4. Persist what you learned
 Close the loop so the knowledge compounds:
 ```
-cortex remember "Domain layer never imports the web layer" --kind convention --tags arch --source src/domain
-cortex remember "Agents keep re-adding a 2nd logging pkg; reuse src/log.ts" --kind antipattern --tags duplication,logging
-cortex link <antipattern-id> <convention-id> --rel supports
+python3 scripts/cortex.py remember "Domain layer never imports the web layer" --kind convention --tags arch --source src/domain
+python3 scripts/cortex.py remember "Agents keep re-adding a 2nd logging pkg; reuse src/log.ts" --kind antipattern --tags duplication,logging
+python3 scripts/cortex.py link <antipattern-id> <convention-id> --rel supports
 ```
 Record decisions, conventions, patterns, anti-patterns, and non-obvious bugs -
 with `--source` and a `--confidence`, into your Cortex MCP if connected (else the
@@ -132,17 +133,20 @@ All three are zero-dependency (Python 3.8+ stdlib) and live in `scripts/`. Add
 
 | Tool | Purpose | Typical call |
 |------|---------|--------------|
-| `cortex.py` (`cortex.sh`) | terminal memory network: store/recall/link engineering knowledge | `cortex search "auth"` · `cortex remember "..." --kind decision` |
-| `dup_scan.py` | find copy-paste duplication (Type-1/2 clones), report maximal blocks | `dup_scan src/ --min-lines 5` |
-| `context_map.py` | structural map: symbols, signatures, reference counts (load-bearing) | `context_map . --top 20` |
+| `cortex.py` (`cortex.sh`) | terminal memory network: store/recall/link engineering knowledge | `python3 scripts/cortex.py search "auth"` · `python3 scripts/cortex.py remember "..." --kind decision` |
+| `dup_scan.py` | find copy-paste duplication (Type-1/2 clones), report maximal blocks | `python3 scripts/dup_scan.py src/ --min-lines 5` |
+| `context_map.py` | structural map: symbols, signatures, reference counts (load-bearing) | `python3 scripts/context_map.py . --top 20` |
 
-Run as `python3 scripts/cortex.py ...` or, after `chmod +x`, `./scripts/cortex.sh ...`.
+`scripts/` is this skill's own directory (resolve it to an absolute path when the
+shell is in the project under review). Examples use `python3 scripts/<tool>.py`,
+which always works; `./scripts/cortex.sh ...` or the optional `cortex` alias (see
+"First run") are shortcuts.
 The cortex store defaults to `~/.cortex/cortex.db`; set `CORTEX_HOME` to a repo
 path for per-project memory. Full details for cortex: `references/cortex.md`.
 
 ## Review output format
 When delivering a review, keep it scannable and lead with severity. Respond in
-the user's language (for this user, Brazilian Portuguese).
+the user's language.
 
 ```
 ## Review: <subject>
@@ -176,8 +180,8 @@ you recorded it in cortex.
 - Needs `python3` (or `python`) on PATH. No `pip install` - stdlib only.
 - Optional: `chmod +x scripts/cortex.sh scripts/*.py`, and
   `alias cortex="$(pwd)/scripts/cortex.sh"` so any shell (including an agent's)
-  can call `cortex` directly.
-- `cortex init` creates the store; `cortex stats` confirms it's working.
+  can call `cortex ...` instead of `python3 scripts/cortex.py ...`.
+- `python3 scripts/cortex.py init` creates the store; `python3 scripts/cortex.py stats` confirms it's working.
 
 ## Reference files
 - `references/review-checklist.md` - the senior review checklist (eight pillars,

@@ -29,7 +29,7 @@ Curto, de dono para CEO. Modelo: `assets/report-template.md`.
 - "Não verificado" quando a ferramenta não rodou. Nunca "ok" por omissão.
 
 ```bash
-python scripts/lint_report.py - --max-words 400 <<'EOF'
+python3 scripts/lint_report.py - --max-words 400 <<'EOF'
 <texto>
 EOF
 ```

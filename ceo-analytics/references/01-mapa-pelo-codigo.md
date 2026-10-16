@@ -40,7 +40,7 @@ Componente local que repete a função de um do DS vai para a lista "fora do DS"
 
 ## 4. Para cada tela, extraia
 
-- **Objetivo**: uma frase, pela ótica do usuário ("aluno vê o treino do dia").
+- **Objetivo**: uma frase, pela ótica do usuário (ex.: "cliente acompanha o pedido até a entrega").
 - **Elementos interativos**: botões, inputs, listas tocáveis, gestos. Para cada um, a ação que dispara.
 - **Estados**: procure pelo que o código trata de fato.
   - loading: `isLoading`, `isPending`, `isFetching`, `ActivityIndicator`, `Skeleton`

@@ -243,6 +243,12 @@ def test_sim_session_plan_is_dry_run(fake_xcrun, tmp_path):
     assert not fake_xcrun.exists() or fake_xcrun.read_text().count("create") == 0
 
 
+def test_sim_session_plan_two_simulators_only_when_asked():
+    assert sim_session.plan(["admin", "user"], 16).startswith("RAM 16 GB: 1 simulador")
+    assert sim_session.plan(["admin", "user"], 16, max_devices=2).startswith("RAM 16 GB: 2 simulador")
+    assert sim_session.plan(["admin", "user"], 32).startswith("RAM 32 GB: 2 simulador")
+
+
 # ---------- video_frames (ffmpeg optional) ----------
 
 def test_video_frames_builds_commands_without_running():

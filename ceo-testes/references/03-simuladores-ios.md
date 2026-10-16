@@ -14,7 +14,7 @@ Um simulador iOS 26 ocioso usa cerca de 4 GB de RAM (258 processos, medição do
 Com 32 GB ou mais, dois simuladores são rotina e três cabem. A config (`maquina.ram_gb`, `simuladores_max`) decide; sem config, assuma 16 GB.
 
 ```bash
-python scripts/sim_session.py plan --roles admin,user --ram-gb 16
+python3 scripts/sim_session.py plan --roles admin,user --ram-gb 16
 ```
 
 ## Ciclo de vida
@@ -24,14 +24,14 @@ Tudo que a sessão cria leva o prefixo `ceo-`, e só isso é apagado no fim. Os 
 ```bash
 xcrun simctl list devicetypes                       # ids de device type
 xcrun simctl list runtimes                          # ids de runtime
-python scripts/sim_session.py create admin          # cria ceo-admin (iPhone 17, iOS 26) e dá boot
+python3 scripts/sim_session.py create admin          # cria ceo-admin (iPhone 17, iOS 26) e dá boot
 xcrun simctl boot <UDID>; open -a Simulator         # ou abrir o Simulator.app depois do boot
 xcrun simctl install <UDID> build/App.app           # .app do EAS (perfil simulator) ou do Xcode
 xcrun simctl launch --console-pty <UDID> <bundle>   # com stdout do app no terminal
 xcrun simctl launch --terminate-running-process <UDID> <bundle>
 xcrun simctl terminate <UDID> <bundle>              # mata o processo (B17)
 xcrun simctl shutdown <UDID>
-python scripts/sim_session.py cleanup               # shutdown + delete dos ceo-*, apaga runs/
+python3 scripts/sim_session.py cleanup               # shutdown + delete dos ceo-*, apaga runs/
 ```
 
 Sem `.app`: `eas build -p ios --profile preview` com `"ios": {"simulator": true}` no `eas.json` e `eas build:run -p ios --latest` instala no simulador bootado (não compila no Mac). `npx expo run:ios` compila com Xcode localmente e precisa de memória; numa máquina de 16 GB com `build_nativo_local: false`, não.
@@ -72,7 +72,7 @@ Crash reports do simulador: `~/Library/Logs/DiagnosticReports/*.ips`. Abra com C
 ## Limpeza (sempre, mesmo com falha)
 
 ```bash
-python scripts/sim_session.py cleanup          # ceo-* e runs/
+python3 scripts/sim_session.py cleanup          # ceo-* e runs/
 xcrun simctl shutdown all
 xcrun simctl delete unavailable                # simuladores de runtimes que não existem mais
 xcrun simctl runtime list -v

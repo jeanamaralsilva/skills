@@ -1,6 +1,7 @@
 ---
 name: ceo-analytics
-description: Designer de produto sênior em forma de agente. Mapeia um app inteiro (código do repo, app rodando ou design no Pencil/Figma), entende para que serve cada tela, botão e fluxo, compara com apps de mercado e entrega um relatório curto de dono pro CEO, mais propostas de tela, componentes e funções no nível dos melhores apps (loading certo, bottom sheets, Liquid Glass no iOS 26, Material 3 Expressive no Android). Use sempre que o usuário pedir análise de UI/UX, auditoria de telas (app ou painel web/admin), "entender o app", "tem coisa demais nessa tela", "abas dentro de abas", mapa de navegação ou de fluxos, benchmark de apps, padrões de tela, propor, criar ou redesenhar uma tela, melhorar um componente, "o que está ruim nessa tela", "deixa com cara de app premium", animação, transição, micro-interação ("o ícone pulsar", "gradiente bem devagar", "sheet que acompanha o dedo"), paridade iOS e Android sem ficar pesado, mesmo que ele não diga UX.
+description: "Auditoria de UI/UX de app mobile ou painel web por um designer de produto sênior: mapa de telas e fluxos, problemas de usabilidade com arquivo:linha, benchmark com apps de mercado e propostas de tela com todos os estados e motion para iOS e Android. Use quando pedirem análise de UI/UX, auditoria de telas, \"entender o app\", \"tem coisa demais nessa tela\", abas dentro de abas, mapa de navegação, benchmark de apps, propor ou redesenhar tela, melhorar componente, \"deixa com cara de app premium\", animação, transição ou micro-interação, mesmo sem dizer UX. English: UX review, UI audit, screen redesign, navigation map, app benchmark, motion design. Não use para bug funcional (ceo-testes, ceo-bugs) nem para onboarding (ceo-helper)."
+compatibility: "Python 3 para os scripts (só biblioteca padrão). Pencil ou Figma opcionais para as propostas visuais."
 ---
 
 # CEO Analytics
@@ -48,9 +49,9 @@ Sem ferramenta de subagente (ou rodando dentro de um), faça as fases você mesm
 
 - Classifique a tela (formulário, tabela, dashboard, lista, detalhe, busca, navegação, modal, vazio, onboarding, configurações) e passe pela lista do tipo: `references/20-rubrica-por-tipo-de-tela.md`, `data/screen-checks.csv` (34 checks com fonte). É o que faz a análise sair completa na primeira vez.
 - Rubrica geral: `references/04-heuristicas-e-rubrica.md`.
-- Base consultável: `python scripts/search.py "<tema>"` (heurísticas, anti-padrões, componentes, 39 apps de referência, fontes de mercado, bibliotecas de UI, 45 padrões de motion).
-- Contraste só com `python scripts/contrast.py "#fg" "#bg"`.
-- Estrutura da tela (abas, filtros, cabeçalhos, colunas): transcreva o que vê e rode `python scripts/nav_audit.py -` (`references/19-navegacao-e-densidade.md`). Abas dentro de abas, rótulo repetido, filtro disfarçado de aba e coluna constante saem dali com a correção.
+- Base consultável: `python3 scripts/search.py "<tema>"` (heurísticas, anti-padrões, componentes, 39 apps de referência, fontes de mercado, bibliotecas de UI, 45 padrões de motion).
+- Contraste só com `python3 scripts/contrast.py "#fg" "#bg"`.
+- Estrutura da tela (abas, filtros, cabeçalhos, colunas): transcreva o que vê e rode `python3 scripts/nav_audit.py -` (`references/19-navegacao-e-densidade.md`). Abas dentro de abas, rótulo repetido, filtro disfarçado de aba e coluna constante saem dali com a correção.
 - Antes de escrever, leia `references/07-anti-slop-visual.md` e `references/08-anti-slop-analise.md`.
 
 ### 4. Mercado
@@ -60,13 +61,13 @@ Use `agents/market-researcher.md` com `references/10-benchmark-mercado.md`. Pule
 ### 5. Propostas
 
 - Tela nova ou redesenho: `references/11-propostas-de-tela.md`, com a plataforma certa (`05-plataformas.md`), os componentes certos (`06-componentes-premium.md`), o movimento certo (`references/16-motion-e-microinteracoes.md`: ícone de aba, gradiente lento, sheet com drag, transições) e o custo declarado para o Android (`references/17-performance-cross-platform.md`).
-- Entrega visual: o fluxo vai para o Pencil com pontos de toque numerados e setas até o destino (`references/14-fluxo-no-pencil.md`).
+- Entrega visual: se o usuário usa Pencil ou o repo tem `.pen`, o fluxo vai para o Pencil com pontos de toque numerados e setas até o destino (`references/14-fluxo-no-pencil.md`); senão, Figma ou descrição no chat (tabela em `references/11-propostas-de-tela.md`).
 - Ajuste em tela existente: a regra é `references/09-estabilidade-de-tela.md`. Mexa só na região pedida.
 - Quem implementa e quem sobe o PR: `references/13-integracoes.md`.
 
 ### Antes de entregar
 
-1. `python scripts/lint_report.py - <<'EOF'` com o texto da resposta precisa sair `clean` (lê do stdin, sem criar arquivo).
+1. `python3 scripts/lint_report.py - <<'EOF'` com o texto da resposta precisa sair `clean` (lê do stdin, sem criar arquivo).
 2. Rode `agents/report-reviewer.md` num subagente barato (`model: "haiku"`) e aplique o que ele apontar. Sem subagente, passe você mesmo pela lista dele.
 3. Confira o brief da fase 0: cada restrição respeitada, nada rejeitado de volta.
 

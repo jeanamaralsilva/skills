@@ -1,0 +1,26 @@
+{
+  "skill_name": "ceo-helper",
+  "evals": [
+    {
+      "id": 1,
+      "name": "onboarding-do-zero",
+      "prompt": "o usuario novo cai no app e nao sabe o que fazer, as telas ficam todas vazias. quero uma ajuda de primeira vez decente, app expo em apps/mobile e api em apps/server",
+      "expected_output": "Brief em silêncio com papéis e evento de ativação por papel; mapa papel/tela/vazia?/ação; empty state em toda lista vazia antes de checklist ou dica; checklist de 3 a 5 itens marcado por dado do servidor só se a ativação tem 3+ passos; componente próprio sem módulo nativo novo; estado no servidor com cache local e backfill para veteranos; eventos com métrica de tempo até ativação; testes Jest e simulador (VoiceOver, Reduzir Movimento, fonte grande); relatório curto no tom CEO",
+      "files": ["apps/mobile", "apps/server"]
+    },
+    {
+      "id": 2,
+      "name": "dica-de-um-botao",
+      "prompt": "ninguem acha o botao de filtro na lista de pedidos. da pra destacar ele so na primeira vez?",
+      "expected_output": "Confere antes se um empty state ou rótulo resolve; dica de 1 passo com spotlight no botão, gatilho na primeira visita depois do carregamento, texto de 1 frase verbo + benefício, concluída ao usar o filtro; não aparece de novo nem para veterano que já filtrou; respeita leitor de tela e Reduzir Movimento; teste no simulador; relatório curto",
+      "files": ["apps/mobile"]
+    },
+    {
+      "id": 3,
+      "name": "tour-que-irrita-veterano",
+      "prompt": "lancamos um tour de 6 telas e os clientes antigos reclamaram que agora toda vez aparece tutorial. arruma isso",
+      "expected_output": "Identifica antipadrões (tour longo, veterano tratado como novato, estado só local); troca por camadas mais baratas com mini-tour de no máximo 3 passos; estado por usuário e papel no servidor com backfill derivado dos dados; opção de rever dicas; métrica de ativação e retenção, não 'viu a dica'; teste com conta veterana e reinstalação; relatório curto",
+      "files": ["apps/mobile", "apps/server"]
+    }
+  ]
+}

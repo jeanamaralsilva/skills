@@ -1,4 +1,4 @@
-id,app,repo,stack,category,teaches,key_file
+id,app,source,stack,category,teaches,key_file
 R01,Bluesky,https://github.com/bluesky-social/social-app,Expo + RN + React Navigation 7,social/chat,Navegacao central tabs com stacks web+mobile em um codigo,src/Navigation.tsx
 R02,Expensify,https://github.com/Expensify/App,RN + React Navigation 7,finanças/despesas,Catalogo explicito de rotas e telas (modelo de mapa de telas),src/ROUTES.ts src/SCREENS.ts
 R03,Mattermost,https://github.com/mattermost/mattermost-mobile,RN + WatermelonDB,social/chat,App corporativo offline-first,app/screens
@@ -38,3 +38,7 @@ R36,Ignite Boilerplate,https://github.com/infinitered/ignite,Expo/React Native,d
 R37,Compose Samples,https://github.com/android/compose-samples,Kotlin Compose,design system/referência,Apps-modelo do Google: Jetsnack (e-commerce); Jetcaster (podcast); Jetchat,main/Jetsnack/app/src/main/java/com/example/jetsnack/ui/JetsnackApp.kt
 R38,Apple Food Truck,https://github.com/apple/sample-food-truck,SwiftUI,design system/referência,Referência oficial Apple de navegação SwiftUI multiplataforma,main/App/Navigation/ContentView.swift
 R39,Flutter Compass App,https://github.com/flutter/samples,Flutter,design system/referência,Referência oficial de arquitetura e roteamento Flutter,main/compass_app/app/lib/routing/router.dart
+R40,Hevy,https://www.hevyapp.com/features,app comercial (reviews públicas 30/09/2026),fitness/saúde,Última execução ao lado da série atual (coluna Previous); timer de descanso que começa sozinho ao marcar a série com ±15s e pular; PR detectado na hora com gráfico de progressão,-
+R41,Strong,https://www.strong.app,app comercial (reviews públicas 30/09/2026),fitness/saúde,Live Activity / Dynamic Island / relógio para controlar o treino sem abrir o app (recurso mais citado nas reviews),-
+R42,Smart Fit,https://www.smartfit.com.br,app comercial (reviews públicas 30/09/2026),fitness/saúde,Antiexemplo: reclamações de carga que não salva e de perder o progresso ao sair no meio do treino,-
+R43,BTFIT,https://www.btfit.com.br,app comercial (reviews públicas 30/09/2026),fitness/saúde,Antiexemplo: carga que não salva; paywall em recurso que era grátis,-

@@ -8,7 +8,7 @@
 | Bug é de versão: módulo nativo duplicado, lib fora do SDK, CVE, build quebrando | `ceo-deps` | `expo_check.py`, `lock_audit.py`; e a `ceo-deps` chama esta skill (modo regressão) depois de mudar dependência nativa ou central (`13`) |
 | PR aberto: "o que pode quebrar?" | esta skill (`13`) + `ceo-cortex` | regressão do que o diff alcança e revisão do patch num relatório só |
 | Corrigir o bug no código (modo manter) | `ceo-cortex` | revisão sênior do patch; evita corrigir o sintoma |
-| Escrever o teste da correção | skill `tdd` | red-green-refactor: o teste que reproduz o bug falha antes e passa depois; sem isso a correção não está pronta |
+| Escrever o teste da correção | skill de TDD, se houver (ex.: `tdd`); senão, à mão | red-green-refactor: o teste que reproduz o bug falha antes e passa depois; sem isso a correção não está pronta |
 | Elixir/Phoenix a fundo (canal, Ecto, OTP) | plugin phxagents (`/phx:audit`, Iron Laws) | referência de arquitetura; os testes do servidor aqui são o mínimo |
 | Abrir PR com a correção e a evidência | skill de PR da config (`fluxo.pr_skill`) ou `gh pr create` | vídeo antes/depois no corpo |
 | QA exploratório por agente | `dogfood` (Callstack) + `data/tours.csv` | roteiro de exploração com agent-device |
@@ -17,7 +17,7 @@
 ## Ordem típica de um bug reportado pelo cliente (repo próprio: segue até a main, `14`)
 
 1. `ceo-testes` `07`: vídeo → frames → hipótese (`bugs.csv`) → reprodução mínima → causa (`arquivo:linha`).
-2. `tdd`: teste que falha reproduzindo o bug (ExUnit no servidor, Jest/RNTL no app, ou flow Maestro na suíte).
+2. Teste primeiro (skill de TDD se houver): teste que falha reproduzindo o bug (ExUnit no servidor, Jest/RNTL no app, ou flow Maestro na suíte).
 3. `ceo-cortex`: correção revisada.
 4. `ceo-testes` regressão: o flow tocado e o fluxo principal passam; teste novo verde.
 5. PR com vídeo antes/depois.

@@ -5,7 +5,7 @@ Testar "tudo" começa por saber o que existe. O mapa vem do código, não da mem
 ## 1. Telas e ações
 
 ```bash
-python scripts/map_flows.py <mobile> [--screen class] [--json]
+python3 scripts/map_flows.py <mobile> [--screen class] [--json]
 ```
 
 Para cada tela (expo-router em `app/` ou `src/app/`; fallback `*Screen.tsx`): rota, ações tocáveis (Pressable, Touchable*, Button, Link) com rótulo, se a ação **escreve** (useMutation, `channel.push`, `fetch`, `api.post`), e quais estados o arquivo trata (loading, empty, error). Estático: não roda o app, não acha botão renderizado por lista dinâmica. Complete com `maestro hierarchy` na tela rodando quando o rótulo não aparece no código.
@@ -32,8 +32,10 @@ Uma tela com 4 botões que escrevem vira uns 20 casos. Um app de 30 telas vira 3
 
 ## 3. Tempo real
 
+Só para servidor Phoenix (canais). Outro servidor: liste à mão os eventos que o servidor emite e que o app escuta; o ator B vai por API REST/`curl` ou WebSocket genérico.
+
 ```bash
-python scripts/map_realtime.py <mobile> <server> [--json]
+python3 scripts/map_realtime.py <mobile> <server> [--json]
 ```
 
 Pareia `handle_in` e `push/broadcast` do Phoenix com `channel.on` e `channel.push` do app. Os quatro gaps que ele reporta são casos de teste antes de serem bugs:
@@ -51,7 +53,7 @@ Plano de uma sessão cabe em 10 linhas e vai no brief, não no relatório:
 
 ```
 1. login papel A (Maestro login-por-papel)            feliz
-2. fluxo principal A: entrar na aula → responder      feliz + duplo-toque + sem-rede
+2. fluxo principal A: entrar na sala → responder      feliz + duplo-toque + sem-rede
 3. ator B cria pergunta (phx_actor)                   A reflete? ordem? reconexão no meio?
 4. tela /class/[id]: deep link frio e deslogado
 5. tours: after-hours (10 min background), saboteur (toxiproxy timeout)

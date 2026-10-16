@@ -8,7 +8,7 @@ Antes da primeira chamada, leia a skill do Pencil: `pencil__read_skill()` e depo
 
 ```
 Fluxo: <nome>                 frame raiz, layout none, fundo neutro
-├── Título + legenda          "1 Toque em Iniciar treino → Execução"
+├── Título + legenda          ex.: "1 Toque em Rastrear pedido → Rastreamento"
 ├── Tela 1 ... Tela N         cópias ou instâncias das telas, 390x844, lado a lado, gap 160
 ├── Hotspot 1 ... N           círculo 28px numerado, cor de destaque, sobre o elemento tocável
 └── Seta 1 ... N              path do hotspot até a borda esquerda da tela destino
@@ -16,7 +16,7 @@ Fluxo: <nome>                 frame raiz, layout none, fundo neutro
 
 Regras:
 - Telas da esquerda para a direita, na ordem do caminho feliz. Caminho alternativo (erro, vazio) vai numa segunda linha, abaixo da tela onde ele nasce.
-- **O número do hotspot é o mesmo número da linha da legenda.** A legenda diz o gesto e o destino: "2 Arraste a série para a esquerda → Remover".
+- **O número do hotspot é o mesmo número da linha da legenda.** A legenda diz o gesto e o destino: ex.: "2 Arraste o item para a esquerda → Remover".
 - Gesto que não é toque (swipe, long press, pull to refresh) é escrito na legenda, e o hotspot ganha o ícone do gesto.
 - Estados da mesma tela (loading, vazio, erro) ficam empilhados abaixo dela, sem seta: são a mesma tela.
 - Cor do hotspot e da seta fora da paleta do app, para nunca ser confundida com UI.
@@ -28,14 +28,14 @@ Rode num `execute`. Ele recebe as telas já existentes (ids) e os passos. Ajuste
 ```js
 const screens = ["<idTela1>", "<idTela2>", "<idTela3>"]
 const steps = [
-  {from: 0, to: 1, x: 195, y: 780, label: "Toque em Iniciar treino"},
-  {from: 1, to: 2, x: 330, y: 420, label: "Toque em Registrar carga"},
+  {from: 0, to: 1, x: 195, y: 780, label: "Toque em Rastrear pedido"},
+  {from: 1, to: 2, x: 330, y: 420, label: "Toque em Falar com o entregador"},
 ]
 const W = 390, H = 844, GAP = 160, TOP = 140, HOT = "#FF3B6B"
 const pos = FindEmptySpace({width: screens.length * (W + GAP), height: H + 260, padding: 120})
-flowId = Insert(document, {type: "frame", name: "Fluxo: Execução de treino", layout: "none", x: pos.x, y: pos.y,
+flowId = Insert(document, {type: "frame", name: "Fluxo: Rastreamento de pedido", layout: "none", x: pos.x, y: pos.y,
   width: screens.length * (W + GAP) + GAP, height: H + TOP + 120, fill: "#F4F4F5", placeholder: true})
-Insert(flowId, {type: "text", name: "Título", x: GAP, y: 40, content: "Fluxo: Execução de treino", fontFamily: "Inter", fontSize: 28, fontWeight: "700", fill: "#18181B"})
+Insert(flowId, {type: "text", name: "Título", x: GAP, y: 40, content: "Fluxo: Rastreamento de pedido", fontFamily: "Inter", fontSize: 28, fontWeight: "700", fill: "#18181B"})
 Insert(flowId, {type: "text", name: "Legenda", x: GAP, y: 84, fontFamily: "Inter", fontSize: 15, fill: "#3F3F46",
   content: steps.map((s, i) => `${i + 1}  ${s.label} → ${Get(screens[s.to]).name}`).join("     ")})
 const left = i => GAP + i * (W + GAP)

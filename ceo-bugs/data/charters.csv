@@ -1,17 +1,17 @@
-id,area,missao,variar,oraculos,tempo_min
-C01,todas,"Garbage-collector: abrir cada tela uma vez nos dois papéis e tirar print do estado normal",Structure,"Image,Product",60
-C02,jornada personal,"Landmark: cadastrar aluno, marcar aula, montar treino, fechar aula, conferindo cada passo em outra tela e no servidor","Function,Data","Purpose,Claims",90
-C03,jornada aluno,"Landmark: confirmar presença, fazer treino, aceitar contrato, ver histórico","Function,Time","Purpose,User expectations",90
-C04,dinheiro,"Money: todo valor, pacote, contrato e pagamento com centavos, zero, valor grande, renovação","Data,Function","World,Product,Statutes",60
-C05,formularios,"Bad-data: nome gigante, emoji, só espaços, colar formatado, máscaras BR em todo formulário",Data,"Image,World",60
-C06,tempo,"Aula que já passou, em 5 min, às 23:30, remarcada, cancelada; app aberto na virada do dia",Time,"World,Explainability",60
-C07,ciclo de vida,"Interruption: background no meio do envio, matar e reabrir, logout e login de outro papel","Operations,Time","History,User expectations",60
-C08,plataforma,"Fonte máxima, iPhone SE e modo escuro em todas as telas principais",Platform,"Image,Statutes",60
-C09,multiusuario,"Personal muda, aluno vê sem matar o app; dois atores no mesmo dado","Interfaces,Time","Product,Purpose",60
-C10,api,"BINMEN/VADER em toda rota de escrita; recurso de outro usuário pelo id","Interfaces,Data","Statutes,Explainability",45
-C11,concorrencia,"Ator B (API) edita treino, contrato e aula enquanto o outro papel está no meio do fluxo no app","Time,Interfaces","Product,User expectations",45
-C12,historico,"Editar ou apagar entidade e conferir que histórico, recibos e sessões passadas não mudaram","Data,Time","History,World",30
-C13,consistencia,"Para cada status (aula, contrato, cobrança), comparar o rótulo em Home, Agenda, lista e detalhe nos dois papéis",Structure,Product,30
-C14,teclado e rodape,"Em todo sheet e tela com formulário: focar cada campo (inclusive o último), rolar até o fim com o teclado aberto, avançar dicas do guia e fechar o teclado; nada do rodapé ou balão pode cobrir campo ou botão","Interfaces,Platform","Image,Product,User expectations",40
-C15,tamanho de sheet,"Abrir cada sheet curto (ações, confirmações, escolha) e medir no print o vazio abaixo do conteúdo; com fonte máxima, conferir que ainda rola","Structure,Platform","Image,Product",20
-C16,edicao em massa,"Montar treino com 8 exercícios, criar contrato e marcar 5 aulas contando toques por item; registrar onde o usuário precisa abrir um a um","Function,Operations","User expectations,Purpose",30
+id,area,missao,variar,oraculos,tempo_min,source
+C01,todas,"Garbage-collector: abrir cada tela uma vez em todos os papéis e tirar print do estado normal",Structure,"Image,Product",60,https://www.informit.com/store/exploratory-software-testing-tips-tricks-tours-and-9780321636416
+C02,jornada papel A,"Landmark: jornada principal do papel A (ex.: cadastrar a entidade principal, agendar, registrar o resultado, fechar), conferindo cada passo em outra tela e no servidor","Function,Data","Purpose,Claims",90,https://www.informit.com/store/exploratory-software-testing-tips-tricks-tours-and-9780321636416
+C03,jornada papel B,"Landmark: jornada principal do papel B (ex.: confirmar agendamento, executar, aceitar vínculo ou cobrança, ver histórico)","Function,Time","Purpose,User expectations",90,https://www.informit.com/store/exploratory-software-testing-tips-tricks-tours-and-9780321636416
+C04,dinheiro,"Money: todo valor, plano, cobrança e pagamento com centavos, zero, valor grande, renovação ou recorrência","Data,Function","World,Product,Statutes",60,https://www.informit.com/store/exploratory-software-testing-tips-tricks-tours-and-9780321636416
+C05,formularios,"Bad-data: nome gigante, emoji, só espaços, colar formatado, máscaras BR em todo formulário",Data,"Image,World",60,https://pragprog.com/titles/ehxta/explore-it/
+C06,tempo,"Agendamento que já passou, em 5 min, às 23:30, remarcado, cancelado; app aberto na virada do dia",Time,"World,Explainability",60,https://www.ministryoftesting.com/articles/test-heuristics-cheat-sheet
+C07,ciclo de vida,"Interruption: background no meio do envio, matar e reabrir, logout e login de outro papel","Operations,Time","History,User expectations",60,https://www.ministryoftesting.com/articles/test-heuristics-cheat-sheet
+C08,plataforma,"Fonte máxima, iPhone SE e modo escuro em todas as telas principais",Platform,"Image,Statutes",60,https://www.satisfice.com/download/heuristic-test-strategy-model
+C09,multiusuario,"Papel A muda um dado que o papel B vê, sem matar o app; dois atores no mesmo dado","Interfaces,Time","Product,Purpose",60,https://www.satisfice.com/download/heuristic-test-strategy-model
+C10,api,"BINMEN/VADER em toda rota de escrita; recurso de outro usuário pelo id","Interfaces,Data","Statutes,Explainability",45,https://www.ministryoftesting.com/articles/test-heuristics-cheat-sheet
+C11,concorrencia,"Ator B (API) edita a entidade principal, o vínculo e o agendamento enquanto o outro papel está no meio do fluxo no app","Time,Interfaces","Product,User expectations",45,https://www.satisfice.com/download/heuristic-test-strategy-model
+C12,historico,"Editar ou apagar entidade e conferir que histórico, recibos e registros passados não mudaram","Data,Time","History,World",30,https://pragprog.com/titles/ehxta/explore-it/
+C13,consistencia,"Para cada status (agendamento, vínculo, cobrança), comparar o rótulo na Home, lista, calendário e detalhe em todos os papéis",Structure,Product,30,https://developsense.com/resource/Oracles.pdf
+C14,teclado e rodape,"Em todo sheet e tela com formulário: focar cada campo (inclusive o último), rolar até o fim com o teclado aberto, avançar dicas do guia e fechar o teclado; nada do rodapé ou balão pode cobrir campo ou botão","Interfaces,Platform","Image,Product,User expectations",40,https://www.satisfice.com/download/heuristic-test-strategy-model
+C15,tamanho de sheet,"Abrir cada sheet curto (ações, confirmações, escolha) e medir no print o vazio abaixo do conteúdo; com fonte máxima, conferir que ainda rola","Structure,Platform","Image,Product",20,https://www.satisfice.com/download/heuristic-test-strategy-model
+C16,edicao em massa,"Preencher uma lista de 8 itens, criar um vínculo e agendar 5 vezes contando toques por item; registrar onde o usuário precisa abrir um a um","Function,Operations","User expectations,Purpose",30,https://www.satisfice.com/download/session-based-test-management

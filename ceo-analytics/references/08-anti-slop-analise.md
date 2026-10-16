@@ -16,7 +16,7 @@ Para cada linha, pergunte: **se eu tirar isto, o CEO decide diferente?** Se a re
 
 | ID | Vício | Correção |
 |---|---|---|
-| AA01 | "Melhorar a acessibilidade" | Tela + elemento + problema + mudança: "Botão Salvar em `TreinoScreen.tsx:88` tem 32pt; subir para 44pt" |
+| AA01 | "Melhorar a acessibilidade" | Tela + elemento + problema + mudança: ex.: "Botão Pagar em `CheckoutScreen.tsx:88` tem 32pt; subir para 44pt" |
 | AA02 | Achado sem evidência | Arquivo:linha, `[tela: ...]` ou `[print: ...]`. Sem isso, o achado sai |
 | AA03 | Heurística alucinada | Só reportar o que foi visto no código ou no app. Na dúvida, escrever "não verificado" |
 | AA04 | Número inventado | `[medido]` com o script ou a ferramenta, `[fonte: url]`, ou `[estimado]` com a base do cálculo |
@@ -55,7 +55,7 @@ O lint não pega dado óbvio, repetição nem severidade inflada. Isso é julgam
 ## Exemplo
 
 **Ruim:**
-"Analisando a tela de treinos, podemos observar que ela apresenta uma estrutura robusta com cards bem definidos. No entanto, há oportunidades de melhorar a experiência do usuário, tornando-a mais intuitiva. Estudos mostram que 70% dos usuários abandonam apps com carregamento lento."
+"Analisando a tela de pedidos, podemos observar que ela apresenta uma estrutura robusta com cards bem definidos. No entanto, há oportunidades de melhorar a experiência do usuário, tornando-a mais intuitiva. Estudos mostram que 70% dos usuários abandonam apps com carregamento lento."
 
 **Bom:**
-"- **P0** Carga da série não persiste ao sair do app `src/features/workout/useSets.ts:41` (estado só em memória)."
+"- **P0** Endereço novo não persiste ao sair do app `src/features/checkout/useAddress.ts:41` (estado só em memória)."

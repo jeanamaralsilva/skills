@@ -18,8 +18,8 @@ Dois problemas diferentes: **vulnerabilidade conhecida** (CVE num pacote legíti
 ### Sem install ou sem a ferramenta (o caso comum na auditoria)
 
 ```bash
-python scripts/lock_audit.py <repo> --query           # versões exatas do lock contra o OSV
-python scripts/lock_audit.py <repo> --emit batch.json # sem rede: gera o lote para consultar de outra máquina
+python3 scripts/lock_audit.py <repo> --query           # versões exatas do lock contra o OSV
+python3 scripts/lock_audit.py <repo> --emit batch.json # sem rede: gera o lote para consultar de outra máquina
 ```
 
 Lê `mix.lock`, `bun.lock`, `package-lock.json` e `pnpm-lock.yaml` (ignorando lock que está no `.gitignore`). Sem rede para o OSV ele sai com 2 e diz "não verificado". **Não pare aí.** Faça a checagem pela web (WebFetch), nesta ordem de prioridade, só para as versões exatas do lock:

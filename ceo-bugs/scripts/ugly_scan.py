@@ -3,7 +3,7 @@
 
 Uso: python ugly_scan.py <repo-mobile> [--json]
 
-Cada regra nasceu de um bug real (ver references/05-aprendizados.md). Saída é
+Cada regra nasceu de um bug real (ver references/06-aprendizados-exemplo.md). Saída é
 pista, não veredito: confirme lendo o código e, se possível, no print.
 """
 import json
@@ -13,6 +13,10 @@ from pathlib import Path
 
 SKIP_DIRS = {"node_modules", ".git", "ios", "android", "dist", "build", ".expo", "__tests__", "coverage"}
 EXTS = {".ts", ".tsx", ".js", ".jsx"}
+
+# Palavras terminadas em "s" que não são plural de substantivo ("${data} às 10h").
+PLURAL_STOPWORDS = ("às", "as", "os", "das", "dos", "nas", "nos", "pelas", "pelos", "mais", "menos",
+                    "após", "depois", "apenas", "antes", "atrás", "através", "vs", "is", "was", "has")
 
 # (id, severidade, descrição, regex)
 RULES = [
@@ -25,8 +29,8 @@ RULES = [
     ("english-ui", "alta", "Texto em inglês visível",
      re.compile(r">\s*(Loading|Error|Cancel|Submit|Save|Delete|Retry|Something went wrong|No data)\.{0,3}\s*<|"
                 r"(title|label|placeholder|message|text)\s*[:=]\s*[\"'](Loading|Error|Cancel|Submit|Save|Delete|Retry)[\"']")),
-    ("plural-fixed", "baixa", "Plural fixo com número ('1 séries', '1 aulas')",
-     re.compile(r"\$\{[^}]+\}\s+(séries|aulas|alunos|exercícios|treinos|dias|semanas|meses|repetições|minutos|sessões|pacotes|contratos)\b")),
+    ("plural-fixed", "baixa", "Plural fixo com número em template ('1 itens', '1 dias')",
+     re.compile(r"`[^`\n]*\$\{[^}]+\}\s+(?!(?:" + "|".join(PLURAL_STOPWORDS) + r")\b)[a-zà-ú]{2,}s\b")),
     ("missing-accent", "baixa", "Palavra sem acento em texto visível",
      re.compile(r"[\"'`>][^\"'`<\n]*\b(Nao|nao|possivel|Voce|voce|sessao|Sessao|Endereco|endereco|ate|tambem|numero|Numero|codigo|Codigo|horario|Horario|proxima|Proxima|historico|Historico|configuracoes|Configuracoes|informacoes)\b[^\"'`<\n]*[\"'`<]")),
     ("raw-null-ui", "alta", "undefined/null/NaN/Invalid date podem vazar em template",
@@ -85,6 +89,9 @@ def main():
         print(__doc__)
         sys.exit(2)
     root = Path(sys.argv[1]).resolve()
+    if not root.is_dir():
+        print(f"erro: diretório não encontrado: {root}", file=sys.stderr)
+        sys.exit(2)
     hits = scan(root)
     if "--json" in sys.argv:
         print(json.dumps(hits, ensure_ascii=False, indent=1))

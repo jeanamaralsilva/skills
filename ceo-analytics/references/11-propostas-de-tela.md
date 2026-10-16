@@ -4,11 +4,11 @@ Uma proposta boa tem uma hipótese. Três variações de cor não são três pro
 
 ## Quantas e quais
 
-**2 ou 3 alternativas, cada uma apostando numa hipótese diferente.** Exemplo, para a tela "executar treino":
+**2 ou 3 alternativas, cada uma apostando numa hipótese diferente.** Ex.: para a tela "extrato" de um app de finanças:
 
-- **A. Foco na série atual:** um exercício por vez em tela cheia, timer de descanso grande, próximo exercício em prévia. Aposta: menos distração no meio do treino.
-- **B. Lista do treino inteira:** todas as séries visíveis com a coluna "anterior", check por série e timer em barra fixa. Aposta: o aluno quer ver o todo e registrar rápido.
-- **C. Híbrido:** lista com a série ativa expandida e o resto recolhido.
+- **A. Foco no saldo:** saldo disponível e próxima conta a pagar em destaque, só os últimos lançamentos abaixo. Aposta: o usuário abre para saber se pode gastar.
+- **B. Lista completa:** todos os lançamentos agrupados por dia, com busca e filtro por categoria fixos no topo. Aposta: o usuário quer conferir e achar um lançamento específico rápido.
+- **C. Híbrido:** resumo do mês recolhível no topo e a lista agrupada abaixo.
 
 Recomende uma, com o porquê em uma frase ligada a evidência (benchmark, review, heurística).
 
@@ -38,7 +38,7 @@ Use `assets/screen-proposal-template.md`:
 ## Qualidade antes de mostrar
 
 - Passe a proposta pela lista de `07-anti-slop-visual.md`. Troque o logo mentalmente: se servir para qualquer app, está genérica.
-- Use dado realista: nome de exercício longo, 0 itens, 50 itens, texto em pt-BR.
+- Use dado realista: nome longo (ex.: produto com 60 caracteres), 0 itens, 50 itens, texto em pt-BR.
 - Toque mínimo: 44pt no iOS e 48dp no Android. CTA principal na metade de baixo.
 - Contraste de todo texto sobre fundo novo medido com `contrast.py`.
 

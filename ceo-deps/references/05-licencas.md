@@ -3,8 +3,8 @@
 Não é parecer jurídico. É o filtro que separa o que pode seguir do que precisa de alguém de jurídico olhando. A política está em `data/licenses.csv` (31 identificadores SPDX, com uma coluna para SaaS e outra para app de loja).
 
 ```bash
-python scripts/deps_scan.py <repo> --context mobile   # app nas lojas
-python scripts/deps_scan.py <repo> --context saas     # backend/web servido
+python3 scripts/deps_scan.py <repo> --context mobile   # app nas lojas
+python3 scripts/deps_scan.py <repo> --context saas     # backend/web servido
 ```
 
 Lê `node_modules/*/package.json` e `deps/*/hex_metadata.config`. Sem install, use `osv-scanner --licenses .` ou diga "licenças não verificadas".

@@ -1,6 +1,6 @@
 # Outras linguagens
 
-Comandos completos com fonte em `data/checks.csv` (linhas XL01 a XL36). `python scripts/search.py "<linguagem> <tema>" --domain checks` acha a linha certa.
+Comandos completos com fonte em `data/checks.csv` (linhas XL01 a XL37). `python3 scripts/search.py "<linguagem> <tema>" --domain checks` acha a linha certa.
 
 | Ecossistema | Vulnerabilidade | Desatualizado | Sem uso | Licença | Lockfile |
 |---|---|---|---|---|---|

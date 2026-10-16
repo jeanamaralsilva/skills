@@ -1,6 +1,7 @@
 ---
 name: ceo-deps
-description: "Dono técnico das dependências de um app inteiro, em um ou vários repositórios (ex.: mobile Expo + server Phoenix). Inventaria a stack, audita segurança e supply chain, versões e compatibilidade (Expo SDK, React Native, Elixir/OTP), duplicadas e sem uso, licenças para SaaS e lojas, acoplamento, serviços externos e ciclo de vida. Depois mantém tudo funcionando, aplicando as correções seguras e provando com testes e build na nuvem (EAS, CI), sem build nativo local. Reporta curto, no tom CEO. Use sempre que o usuário falar de dependências, pacotes, libs, npm, bun, mix, hex, expo-doctor, 'expo install --fix', versão do SDK, upgrade, CVE, vulnerabilidade, licença, lockfile, duplicata de módulo nativo, Renovate/Dependabot, ou colar a saída de um erro de build ou do expo-doctor, mesmo sem dizer 'dependência'."
+description: "Auditoria e manutenção de dependências em um ou vários repositórios (ex.: app Expo + servidor Phoenix): segurança e supply chain, compatibilidade de versões (Expo SDK, React Native, Elixir/OTP), pacotes duplicados ou sem uso, licenças e upgrades seguros provados com teste e build na nuvem. Use quando falarem de dependências, pacotes, libs, npm, bun, mix, hex, expo-doctor, \"expo install --fix\", versão ou upgrade do SDK, CVE, vulnerabilidade, licença, lockfile, Renovate/Dependabot, ou colarem erro de build ou saída do expo-doctor, mesmo sem dizer dependência. English: dependency audit, supply chain security, CVE, license check, SDK upgrade, lockfile."
+compatibility: "Python 3. Usa as ferramentas de cada ecossistema (npm/bun/pnpm, mix) quando estiverem instaladas; sem elas, marca o item como não verificado."
 ---
 
 # CEO Deps
@@ -14,11 +15,13 @@ Leia `references/00-brief-e-escopo.md`. Defina em silêncio: quais repos, modo (
 
 ### 1. Inventário
 ```bash
-python scripts/detect_stack.py <repo> [<repo2> ...]
+python3 scripts/detect_stack.py <repo> [<repo2> ...]
 ```
 Ecossistemas, gerenciadores, lockfiles, toolchain fixada, deps por git, overrides, bots e CI. Os achados dele já entram no relatório. Detalhes: `references/01-inventario.md`.
 
 ### 2. Auditoria (rode os tracks que se aplicam, em paralelo quando houver subagente)
+
+Com subagentes, um por repo com o briefing de `agents/repo-auditor.md`.
 
 | Track | Ler | Ferramentas |
 |---|---|---|
@@ -29,9 +32,9 @@ Ecossistemas, gerenciadores, lockfiles, toolchain fixada, deps por git, override
 | Arquitetura e acoplamento | `references/06-arquitetura-e-acoplamento.md` | `scripts/deps_scan.py`, `mix xref` |
 | Serviços externos | `references/07-servicos-externos.md` | leitura do código de clientes HTTP |
 | Ciclo de vida e bots | `references/08-ciclo-de-vida-e-bots.md` | `assets/renovate.json`, `assets/dependabot.yml` |
-| Outras linguagens | `references/12-outras-linguagens.md` | `data/checks.csv` (XL01 a XL36) |
+| Outras linguagens | `references/12-outras-linguagens.md` | `data/checks.csv` (XL01 a XL37) |
 
-Para achar o comando certo: `python scripts/search.py "<tema>"` (103 checks, 31 licenças, 23 grupos de libs duplicadas, incidentes reais). Cada linha tem fonte.
+Para achar o comando certo: `python3 scripts/search.py "<tema>"` (105 checks, 31 licenças, 23 grupos de libs duplicadas, incidentes reais). Cada linha tem fonte.
 
 ### 3. Manter (modo manter ou upgrade, repo que não é read-only)
 `references/09-execucao-segura.md`: o seguro você aplica sozinho, em branch; o arriscado vira pedido de decisão. Nunca no repo read-only.
@@ -40,7 +43,7 @@ Para achar o comando certo: `python scripts/search.py "<tema>"` (103 checks, 31 
 `references/10-verificacao-sem-build-local.md`: escada do mais leve ao mais pesado. Se `.ceo/config.md` diz que a máquina não aguenta build nativo (ou não há config e ela tem pouca RAM), build nativo só na nuvem (EAS) e o app vai para o simulador com `eas build:run`. Elixir verifica no CI. Sem verificação, a correção não está pronta, e o relatório diz isso.
 
 ### 5. Relatório
-`references/11-relatorio-ceo.md` e `assets/report-template.md`. Passe por `python scripts/lint_report.py -` antes de entregar.
+`references/11-relatorio-ceo.md` e `assets/report-template.md`. Passe por `python3 scripts/lint_report.py -` antes de entregar e, com subagente, por `agents/report-reviewer.md`.
 
 ## Regras duras
 
@@ -49,7 +52,7 @@ Para achar o comando certo: `python scripts/search.py "<tema>"` (103 checks, 31 
 - **Ferramenta que não roda não encerra o track.** Sem `mix hex.audit` ou sem rede para o OSV, cheque as versões exatas do lock nas páginas de advisory, começando pelo que fica exposto à internet.
 - **Dado ausente não é risco nem saúde.** Sem `node_modules`, sem rede ou sem a ferramenta, diga "não verificado", nunca "ok".
 - **Nada de `npm audit fix --force`, `--legacy-peer-deps` como solução, nem override permanente.** Override é curativo com data para sair.
-- **Verificar antes de dizer que terminou.** Mesma lei do phxagents (Iron Law 22): compile e teste antes de reportar sucesso.
+- **Verificar antes de dizer que terminou.** Compile e teste antes de reportar sucesso.
 - **Read-only é read-only.** Em repo marcado como read-only, nem branch, nem lockfile, nem `git status` que grave trava: use `git --no-optional-locks`.
 - **Licença decide com a versão exata.** Projetos mudam de licença (Redis, Elastic, HashiCorp). Copyleft em app de loja e AGPL em SaaS são P0 até alguém revisar.
 

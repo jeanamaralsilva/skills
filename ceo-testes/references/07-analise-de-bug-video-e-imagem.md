@@ -5,7 +5,7 @@ O cliente manda um vídeo de 40 s e diz "travou". O trabalho é transformar isso
 ## 1. Vídeo → frames
 
 ```bash
-python scripts/video_frames.py bug.mp4 --out runs/frames [--threshold 0.3]
+python3 scripts/video_frames.py bug.mp4 --out runs/frames [--threshold 0.3]
 ```
 
 Gera `sheet.png` (um frame por segundo em grade 4x4: leia primeiro, é o vídeo inteiro numa imagem) e `sc_NNN.png` nas mudanças de cena com o timestamp de cada uma. Mudança de cena é toque, navegação, sheet abrindo, erro aparecendo, crash. Depois, `Read` em cada PNG. Limiar 0,3 pega transições de tela; 0,15 pega sheets e toasts; abaixo disso vira ruído de scroll.
@@ -37,10 +37,10 @@ O que procurar frame a frame, nesta ordem:
 "Trava às vezes", "some", "não atualiza", "mandou duas vezes" mapeiam direto em `data/bugs.csv`:
 
 ```bash
-python scripts/search.py "não atualiza quando o outro envia"      # → B09, B10, B43
-python scripts/search.py "enviou duas vezes"                      # → B01, B41, B24
-python scripts/search.py "spinner infinito offline"               # → B12
-python scripts/search.py "voltou do background e ficou parado"    # → B15, B16, B42
+python3 scripts/search.py "não atualiza quando o outro envia"      # → B09, B10, B43
+python3 scripts/search.py "enviou duas vezes"                      # → B01, B41, B24
+python3 scripts/search.py "spinner infinito offline"               # → B12
+python3 scripts/search.py "voltou do background e ficou parado"    # → B15, B16, B42
 ```
 
 Cada linha tem `how_to_provoke` e `what_to_observe`: é o roteiro de reprodução. Rode as duas ou três hipóteses mais prováveis; a que reproduz é a causa, as outras saem do relatório.

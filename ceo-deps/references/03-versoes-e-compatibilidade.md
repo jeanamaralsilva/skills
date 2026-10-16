@@ -10,7 +10,7 @@ O erro mais caro em dependência não é a versão velha, é a **combinação in
 npx expo-doctor@latest --verbose     # 22 checks; exit 1 se algum falha
 npx expo install --check             # lista desalinhados ao SDK
 npx expo install --fix               # realinha (modo manter)
-python scripts/expo_check.py <app> [--bundled <bundledNativeModules.json>]
+python3 scripts/expo_check.py <app> [--bundled <bundledNativeModules.json>]
 ```
 
 O `expo_check.py` roda sem instalar nada. Sem `node_modules`, baixe o arquivo do SDK:

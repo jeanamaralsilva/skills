@@ -165,10 +165,10 @@ def test_short_reference_names_in_skill_md_resolve():
 
 def test_report_template_example_passes_lint():
     example = (
-        "# App de treino: análise UI/UX\n"
-        "**Veredito:** fluxo de treino funciona. Maior alavanca: registrar carga.\n"
-        "- **P0** Carga não persiste → salvar por série `src/features/workout/useSets.ts:41`\n"
-        "- **P1** Botão Salvar com 3.1:1 [medido] → usar token de texto primário [tela: Treino]\n"
+        "# App de loja: análise UI/UX\n"
+        "**Veredito:** checkout funciona. Maior alavanca: salvar endereço.\n"
+        "- **P0** Endereço não persiste → salvar no envio `src/features/checkout/useAddress.ts:41`\n"
+        "- **P1** Botão Pagar com 3.1:1 [medido] → usar token de texto primário [tela: Checkout]\n"
     )
     assert lint_report.lint(example, max_words=600) == []
 

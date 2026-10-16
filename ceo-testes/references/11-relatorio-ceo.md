@@ -23,7 +23,7 @@ Seções vazias não aparecem. Se há 1 bug, o relatório tem 5 linhas.
 
 | | Critério | Exemplo |
 |---|---|---|
-| **P0** | perde dado, cobra errado, crash no fluxo principal, outro usuário vê o que não devia, loop sem saída | resposta enviada 2x conta 2 pontos; app fecha ao abrir a aula |
+| **P0** | perde dado, cobra errado, crash no fluxo principal, outro usuário vê o que não devia, loop sem saída | resposta enviada 2x conta 2 pontos; app fecha ao abrir a sala |
 | **P1** | fluxo principal degradado, dado velho até refresh, estado quebrado após background, erro sem mensagem | lista não atualiza quando o outro envia; spinner infinito offline |
 | **P2** | fluxo secundário, layout quebrado em fonte grande, animação travando, texto cortado | sheet não fecha com swipe; botão sob o teclado no SE |
 | **P3** | cosmético, inconsistência, sugestão | ícone desalinhado; toast fica 1 s a mais |
@@ -32,7 +32,7 @@ Segurança (token aceito depois de revogado, autorização por objeto falha) é 
 
 ## Bug encontrado: o que acompanha
 
-Em qualquer repo, cada bug reproduzido vem com **teste implementado e rodando** (skill `tdd`: o teste falha no código atual), gravado em `test/ceo/` ou `src/__tests__/ceo/`, e com o **patch** em `runs/patches/<bug>.diff` quando a causa é clara. Em repo próprio o patch pode ser aplicado em branch; em read-only fica como `.diff` para `git apply`. O relatório diz qual é o caso. "Correção sugerida" sem teste não conta como entregue.
+Em qualquer repo, cada bug reproduzido vem com **teste implementado e rodando** (skill de TDD se houver; senão à mão: o teste falha no código atual), gravado em `test/ceo/` ou `src/__tests__/ceo/`, e com o **patch** em `runs/patches/<bug>.diff` quando a causa é clara. Em repo próprio o patch pode ser aplicado em branch; em read-only fica como `.diff` para `git apply`. O relatório diz qual é o caso. "Correção sugerida" sem teste não conta como entregue.
 
 ## Lotes
 
@@ -54,7 +54,7 @@ Rodada longa reporta por lote (~45 min): só o delta, até 150 palavras, mesmo f
 | Caça-bug com vídeo, multiusuário | 300 |
 | Varredura ou estresse completo | 450 (mais a lista de "não testado") |
 
-`python scripts/lint_report.py - < relatorio.md --max-words 300` antes de entregar. Ele acusa travessão, jargão, número sem etiqueta, bug sem evidência e excesso.
+`python3 scripts/lint_report.py - < relatorio.md --max-words 300` antes de entregar. Ele acusa travessão, jargão, número sem etiqueta, bug sem evidência e excesso.
 
 ## O que não entra
 

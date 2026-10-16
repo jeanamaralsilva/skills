@@ -1,0 +1,26 @@
+{
+  "skill_name": "ceo-bugs",
+  "evals": [
+    {
+      "id": 1,
+      "name": "bug-bash-antes-de-soltar",
+      "prompt": "vamos soltar a versão nova do app semana que vem (mobile em apps/mobile, backend em apps/server). faz um teste pesado, caça bug de verdade e o que o cliente vai achar feio. corrige o que for simples e me diz o que precisa de decisão minha",
+      "expected_output": "Ambiente local isolado (nunca produção), lê ou cria .ceo/aprendizados.md a partir do modelo, roda ugly_scan.py e frente de API em paralelo, sessões com charter; cada bug com passos, print, oráculo nomeado e severidade P0-P3; relatório curto com corrigidos, decisões para o CEO e o que não foi testado; ao fim grava aprendizados em .ceo/aprendizados.md, não na pasta da skill",
+      "files": ["apps/mobile", "apps/server"]
+    },
+    {
+      "id": 2,
+      "name": "o-que-o-cliente-acha-feio",
+      "prompt": "sem rodar simulador agora: olha o código do app em src/ e me diz o que o cliente vai achar feio ou amador. texto em inglês, dinheiro errado, plural esquisito, essas coisas",
+      "expected_output": "Roda scripts/ugly_scan.py no diretório, lê o que o scanner não pega (02-feio.md), confirma cada pista no código antes de chamar de bug, lista por severidade com arquivo:linha e oráculo (Image/Product), separa pista não confirmada de bug e diz que nada foi visto em tela",
+      "files": ["src"]
+    },
+    {
+      "id": 3,
+      "name": "dois-papeis-mesmo-dado",
+      "prompt": "o app tem dois tipos de usuário (quem oferece o serviço e quem contrata). desconfio que quando um edita alguma coisa o outro continua vendo dado velho ou consegue fazer ação que não devia. investiga isso no servidor local",
+      "expected_output": "Charter de multiusuário/concorrência com ator B por API (curl com token, ou ceo-testes se instalada), testa recurso de outro usuário pelo id (403/404, nunca 200), regra só no app tentada pela API, dado velho sem matar o app, confere no banco; bugs com reprodução, oráculo e P0-P3; segurança como P0 com detalhes completos",
+      "files": []
+    }
+  ]
+}

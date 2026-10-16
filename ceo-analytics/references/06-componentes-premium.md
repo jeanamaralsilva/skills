@@ -1,6 +1,6 @@
 # Componentes premium
 
-"App premium" não é efeito. É o componente certo para o tempo certo, com todos os estados desenhados e motion que responde ao usuário. A tabela-base é `data/components.csv` (C01 a C15). Consulte com `python scripts/search.py "<tema>" --domain components`.
+"App premium" não é efeito. É o componente certo para o tempo certo, com todos os estados desenhados e motion que responde ao usuário. A tabela-base é `data/components.csv` (C01 a C15). Consulte com `python3 scripts/search.py "<tema>" --domain components`.
 
 ## Todo componente proposto traz os estados
 
@@ -16,7 +16,7 @@ Proposta sem os estados é esboço. O maior vício de UI gerada por IA é desenh
 | 1 a 2s | spinner local no elemento que carrega | NN/g skeleton screens |
 | 2 a 10s, página inteira com layout conhecido | skeleton **estático** e fiel ao layout final | NN/g skeleton screens |
 | > 10s | barra de progresso com estimativa | NN/g response times |
-| Ação reversível (like, favoritar, marcar série) | optimistic UI: mostra o resultado antes da resposta e reverte se falhar | react.dev useOptimistic |
+| Ação reversível (like, favoritar, marcar item como feito) | optimistic UI: mostra o resultado antes da resposta e reverte se falhar | react.dev useOptimistic |
 
 Contraponto honesto: no estudo da Viget (2017, n=136), o skeleton teve o pior tempo percebido. Skeleton não é bala de prata. Ele funciona quando é fiel ao layout e quando o carregamento é de página inteira.
 
@@ -49,7 +49,7 @@ Antes de citar uma lib, confira versão, risco e o que o SDK fixa em `data/ui-li
 
 ## Haptics
 
-Só em confirmação (série concluída, pagamento feito) e em seleção (picker, toggle). Um estudo com 92 pessoas mostrou que quase metade prefere digitar sem feedback, e o feedback não melhorou velocidade nem precisão. Vibrar em todo toque irrita.
+Só em confirmação (tarefa concluída, pagamento feito) e em seleção (picker, toggle). Um estudo com 92 pessoas mostrou que quase metade prefere digitar sem feedback, e o feedback não melhorou velocidade nem precisão. Vibrar em todo toque irrita.
 
 `expo-haptics`: `notificationAsync` para sucesso e erro, `selectionAsync` para seleção, `performAndroidHapticsAsync` no Android.
 
@@ -58,14 +58,6 @@ Só em confirmação (série concluída, pagamento feito) e em seleção (picker
 - **Empty state** (NN/g): comunica o status, ensina o que aparece ali e oferece uma ação direta. Área em branco nunca.
 - **Onboarding:** tutorial em carrossel não melhorou o desempenho nos testes da NN/g. Prefira dica contextual no momento da ação.
 
-## Recursos que usuários citam nas reviews (exemplo: apps de treino)
+## Padrões por domínio
 
-Pesquisa de 30/09/2026 em reviews públicas de Hevy, Strong, Smart Fit e BTFIT. Serve de modelo para buscar o equivalente em outros domínios:
-
-- **Última execução ao lado da série atual** (coluna "Previous" do Hevy). As reclamações de Smart Fit e BTFIT são justamente sobre carga que não salva.
-- **Timer de descanso que começa sozinho** ao marcar a série, com ±15s e pular.
-- **Live Activity / Dynamic Island / relógio**: controlar sem abrir o app. É o recurso mais citado nas reviews do Strong.
-- **PR detectado na hora**, com gráfico de progressão.
-- **Maiores reclamações:** perder dado (sair no meio do treino apaga o progresso) e paywall de recurso que era grátis.
-
-Método: `references/10-benchmark-mercado.md`. Fontes: App Store e Google Play do app, help center do produto.
+Padrões por domínio: veja `data/reference-apps.csv` filtrando por categoria (método em `references/10-benchmark-mercado.md`).

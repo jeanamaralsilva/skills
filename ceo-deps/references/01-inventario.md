@@ -1,8 +1,8 @@
 # Inventário
 
 ```bash
-python scripts/detect_stack.py <repo> [<repo2> ...]          # texto
-python scripts/detect_stack.py <repo> [<repo2> ...] --json   # para subagente
+python3 scripts/detect_stack.py <repo> [<repo2> ...]          # texto
+python3 scripts/detect_stack.py <repo> [<repo2> ...] --json   # para subagente
 ```
 
 Detecta, até 3 níveis de pasta:

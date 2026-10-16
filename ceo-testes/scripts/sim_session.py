@@ -2,7 +2,7 @@
 """iOS simulators for one test session: create with a prefix, cap the count, delete everything after.
 
 Usage:
-  python sim_session.py plan --roles admin,user [--ram-gb 16]        # what to boot (dry run)
+  python sim_session.py plan --roles admin,user [--ram-gb 16] [--max 2]  # what to boot (dry run)
   python sim_session.py create <role> [--device "iPhone 17"] [--runtime "iOS 26.0"] [--no-boot]
   python sim_session.py list
   python sim_session.py cleanup [--artifacts runs/]                    # shutdown+delete ceo-* devices, remove artifacts
@@ -12,7 +12,7 @@ only ever touches devices with that prefix: the developer's own simulators survi
 empties the artifacts folder except `patches/` and `keep/` (what the report needs). The cap
 (`--max`, default 2) exists because each booted simulator costs roughly 3-4 GB of RAM; on a 16 GB
 machine the plan is one simulator plus `phx_actor.mjs` for the second role, never two simulators
-by default. Set CEO_XCRUN to point at a fake xcrun in tests.
+by default (`plan --max 2` asks for two explicitly; with 32 GB or more the plan default is two). Set CEO_XCRUN to point at a fake xcrun in tests.
 """
 import argparse
 import json
@@ -94,17 +94,23 @@ class Session:
         return removed
 
 
-def plan(roles: list[str], ram_gb: int, max_devices: int) -> str:
+def default_plan_max(ram_gb: int) -> int:
+    return 2 if ram_gb >= 32 else 1  # 16 GB: one simulator; a second one only when asked with --max
+
+
+def plan(roles: list[str], ram_gb: int, max_devices=None) -> str:
+    if max_devices is None:
+        max_devices = default_plan_max(ram_gb)
     budget = max(1, min(max_devices, (ram_gb - 8) // RAM_PER_SIM_GB))  # leave ~8 GB for Xcode, Metro and the server
     sims = roles[:budget]
     actors = roles[budget:]
     lines = [f"RAM {ram_gb} GB: {len(sims)} simulador(es) ({', '.join(sims)})" + (f", {len(actors)} papel(is) via phx_actor.mjs ({', '.join(actors)})" if actors else "")]
     for role in sims:
-        lines.append(f"  python scripts/sim_session.py create {role}    # {PREFIX}{role}")
+        lines.append(f"  python3 scripts/sim_session.py create {role}    # {PREFIX}{role}")
     for role in actors:
         lines.append(f"  node scripts/phx_actor.mjs --role {role} --url $WS_URL --topic <topic> --script <steps.json>")
     lines.append("  ... testes ...")
-    lines.append("  python scripts/sim_session.py cleanup     # sempre, mesmo com falha")
+    lines.append("  python3 scripts/sim_session.py cleanup     # sempre, mesmo com falha")
     if not actors and len(roles) > 1:
         lines.append("Dois simuladores juntos: feche o Xcode e o navegador antes; se o Mac começar a paginar, volte para 1 simulador + phx_actor.")
     return "\n".join(lines)
@@ -116,7 +122,7 @@ def main(argv: list[str]) -> int:
     p = sub.add_parser("plan")
     p.add_argument("--roles", required=True)
     p.add_argument("--ram-gb", type=int, default=16)
-    p.add_argument("--max", type=int, default=2)
+    p.add_argument("--max", type=int, default=None, help="simuladores no plano (padrão: 1 abaixo de 32 GB, 2 a partir de 32 GB)")
     c = sub.add_parser("create")
     c.add_argument("role")
     c.add_argument("--device", default="iPhone 17")

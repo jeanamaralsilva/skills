@@ -27,7 +27,7 @@ NN/g, Laws of UX, UI Patterns e Baymard (M01 a M04). Eles abrem com texto comple
 
 - **Página da App Store e do Google Play** (M09, M10). Trazem prints oficiais, nota, contagem e reviews. Para telas de app mobile, é a melhor fonte aberta que sobrou.
 - **Help center e páginas de recurso do produto**, que descrevem o fluxo com print (ex.: hevyapp.com/features).
-- **Apps open source** de `data/reference-apps.csv`, lidos por `raw.githubusercontent.com` (M20).
+- **Apps open source** de `data/reference-apps.csv` (os com `source` no GitHub), lidos por `raw.githubusercontent.com` (M20).
 
 ### 6. Voz do usuário
 

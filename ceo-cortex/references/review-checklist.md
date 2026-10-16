@@ -101,7 +101,7 @@ AI code "looks consistent but violates *local* patterns." Before approving:
 - Naming, file layout, error style, logging style, import order - do they match
   the surrounding code, or just some generic default?
 - Does it use the project's existing abstractions and utilities?
-- Pull conventions from cortex first (`cortex search "<area> convention"`); if a
+- Pull conventions from cortex first (`python3 scripts/cortex.py search "<area> convention"`); if a
   new convention is established here, write it back.
 
 ## The parameter & scalability lens

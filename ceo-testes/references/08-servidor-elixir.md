@@ -62,7 +62,7 @@ Idempotência (B02, B03): mesma `Idempotency-Key` duas vezes → mesma resposta,
 ```elixir
 use Oban.Testing, repo: App.Repo
 
-test "lembrete enfileirado uma vez por aula" do
+test "lembrete enfileirado uma vez por sala" do
   Rooms.schedule_reminder(room); Rooms.schedule_reminder(room)
   assert [_] = all_enqueued(worker: ReminderWorker, args: %{room_id: room.id})   # unique só vale no insert (B07)
 end

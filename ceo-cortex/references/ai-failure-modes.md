@@ -22,7 +22,7 @@ Each entry: **what it is → why AI does it → how to detect → the fix.**
   exists in the codebase or stdlib.
 - **Why**: the model can't see that an equivalent already exists, so it writes a
   fresh one. Copy/paste has overtaken reuse in AI-assisted code.
-- **Detect**: run `dup_scan <path>`. For the "reinvents existing code" variant,
+- **Detect**: run `python3 scripts/dup_scan.py <path>`. For the "reinvents existing code" variant,
   `context_map` + searching cortex for prior art catches it.
 - **Fix**: extract one shared function/module; reuse the existing utility or
   library call; delete the duplicate. Then record the canonical helper in cortex
@@ -35,7 +35,7 @@ Each entry: **what it is → why AI does it → how to detect → the fix.**
 - **Detect**: compare against neighboring files; `cortex search "<area>
   convention"` for recorded rules.
 - **Fix**: conform to the local pattern. If a convention isn't written down yet,
-  capture it: `cortex remember "<rule>" --kind convention`.
+  capture it: `python3 scripts/cortex.py remember "<rule>" --kind convention`.
 
 ## 3. Missing error handling  *(~2x more gaps than human code)*
 - **What**: missing null checks, absent early returns/guard clauses, no timeouts

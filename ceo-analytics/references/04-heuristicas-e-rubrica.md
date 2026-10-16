@@ -23,7 +23,7 @@ A nota não é o produto. O CEO quer os achados. Use a nota numa linha do veredi
 
 | Nível | Critério | Exemplo |
 |---|---|---|
-| **P0** | Impede concluir a tarefa principal ou perde dado | Carga do exercício não salva |
+| **P0** | Impede concluir a tarefa principal ou perde dado | Dado digitado se perde ao sair da tela (ex.: carrinho, transferência) |
 | **P1** | Erro frequente, confusão que gera suporte, acessibilidade que exclui | Botão de 32pt, contraste 2,8:1 [medido] |
 | **P2** | Atrito que o usuário contorna | Tarefa frequente com 5 toques |
 | **P3** | Polimento | Espaçamento inconsistente entre cards |

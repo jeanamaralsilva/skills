@@ -1,6 +1,6 @@
 # Layout com fonte de acessibilidade e modo escuro (bugs B33, B34). Antes: 
 #   xcrun simctl ui <UDID> content_size accessibility-extra-extra-extra-large && xcrun simctl ui <UDID> appearance dark
-# maestro test -e APP_ID=<bundle> -e SCREENS="Início,Aulas,Perfil" fonte-grande-e-escuro.yaml
+# maestro test -e APP_ID=<bundle> -e fonte-grande-e-escuro.yaml   # troque "Início", "Busca" e "Perfil" pelas abas do app
 appId: ${APP_ID}
 ---
 - launchApp
@@ -10,8 +10,8 @@ appId: ${APP_ID}
     commands:
       - tapOn: "Início"
       - takeScreenshot: runs/a11y-inicio
-      - tapOn: "Aulas"
-      - takeScreenshot: runs/a11y-aulas
+      - tapOn: "Busca"
+      - takeScreenshot: runs/a11y-busca
       - tapOn: "Perfil"
       - takeScreenshot: runs/a11y-perfil
 - scrollUntilVisible:

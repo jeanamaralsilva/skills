@@ -53,18 +53,18 @@ Add `--json` to any command for machine-readable output in agent pipelines.
 
 ## Command reference
 ```
-cortex remember "<text>" --kind <kind> [--tags a,b] [--scope <s>]
+python3 scripts/cortex.py remember "<text>" --kind <kind> [--tags a,b] [--scope <s>]
                          [--source <ref>] [--confidence 0.0-1.0] [--force]
-cortex search  "<query>" [--kind k] [--scope s] [--tags a,b] [--limit N]
-cortex recall  <id>                      # one memory + its links
-cortex list    [--kind k] [--scope s] [--limit N]
-cortex link    <src> <dst> --rel <relation>
-cortex unlink  <src> <dst> --rel <relation>
-cortex neighbors <id> [--depth N]        # walk the network from a node
-cortex update  <id> [--text ...] [--confidence ...] [--source ...] [--add-tags ...]
-cortex forget  <id> [--hard]             # soft-delete by default
-cortex stats                             # counts by kind/scope + link total
-cortex export                            # full dump as JSON (backup / migrate)
+python3 scripts/cortex.py search  "<query>" [--kind k] [--scope s] [--tags a,b] [--limit N]
+python3 scripts/cortex.py recall  <id>                      # one memory + its links
+python3 scripts/cortex.py list    [--kind k] [--scope s] [--limit N]
+python3 scripts/cortex.py link    <src> <dst> --rel <relation>
+python3 scripts/cortex.py unlink  <src> <dst> --rel <relation>
+python3 scripts/cortex.py neighbors <id> [--depth N]        # walk the network from a node
+python3 scripts/cortex.py update  <id> [--text ...] [--confidence ...] [--source ...] [--add-tags ...]
+python3 scripts/cortex.py forget  <id> [--hard]             # soft-delete by default
+python3 scripts/cortex.py stats                             # counts by kind/scope + link total
+python3 scripts/cortex.py export                            # full dump as JSON (backup / migrate)
 ```
 
 ## When to remember
@@ -97,14 +97,14 @@ not a bug.
 
 ## Recall discipline
 - **Before** writing or reviewing in an area, search first:
-  `cortex search "auth token storage"` / `cortex search "<module> convention"`.
+  `python3 scripts/cortex.py search "auth token storage"` / `python3 scripts/cortex.py search "<module> convention"`.
   Treat hits as binding context - follow recorded decisions and conventions.
 - Prefer specific, multi-word queries; filter with `--tags`/`--kind`/`--scope`.
-- From a relevant hit, run `cortex neighbors <id>` to pull in connected decisions.
+- From a relevant hit, run `python3 scripts/cortex.py neighbors <id>` to pull in connected decisions.
 
 ## Keeping it healthy (lint)
 The store degrades if it becomes a junk drawer. Periodically:
-- `cortex stats` for a sense of size and shape.
+- `python3 scripts/cortex.py stats` for a sense of size and shape.
 - Resolve `contradicts` links - decide which note wins, `supersede` the loser, or
   lower its confidence.
 - Demote/forget stale notes (`forget` is a soft-delete; `--hard` is permanent).

@@ -17,7 +17,7 @@ Três tipos de "a mais", com custos diferentes:
 ## Duas libs para a mesma função
 
 ```bash
-python scripts/deps_scan.py <repo>
+python3 scripts/deps_scan.py <repo>
 ```
 
 Usa `data/functional-groups.csv` (23 grupos: cliente HTTP, datas, utilitários, estado, cache de servidor, validação, formulários, estilo RN, ícones, navegação, bottom sheet, listas, armazenamento, animação, toast, uuid; em Elixir: HTTP, JSON, hash de senha, auth, jobs, e-mail, CSV).

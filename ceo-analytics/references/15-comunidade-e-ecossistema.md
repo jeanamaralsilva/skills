@@ -1,6 +1,6 @@
 # Comunidade e ecossistema
 
-Duas perguntas aparecem em quase toda proposta: "o pessoal gosta disso?" e "dá para construir isso hoje?". Este arquivo responde as duas com o que foi pesquisado em out/2026. Os dados consultáveis estão em `data/ui-libraries.csv`, `data/reference-apps.csv` (39 apps) e `data/market-sources.csv`.
+Duas perguntas aparecem em quase toda proposta: "o pessoal gosta disso?" e "dá para construir isso hoje?". Este arquivo responde as duas com o que foi pesquisado em out/2026. Os dados consultáveis estão em `data/ui-libraries.csv`, `data/reference-apps.csv` (43 apps) e `data/market-sources.csv`.
 
 ## 1. Voz da comunidade: como usar
 
@@ -19,7 +19,7 @@ Duas perguntas aparecem em quase toda proposta: "o pessoal gosta disso?" e "dá 
 | Premium | Velocidade percebida (Linear é o exemplo mais citado) | HN 48437609 |
 | Irritações | Trial que vira cobrança cara, paywall no primeiro toque, onboarding que ninguém lê, cancelamento escondido, gesto escondido | HN 45396520, 46952714, 42786335; unstar.app (1-star reviews) |
 | Loading | Skeleton elogiado por não empurrar o layout; spinner em lista finita criticado | HN 45834949, 48478450 |
-| Treino | Migração Strong para Hevy; pedidos: menos toques por série, gráfico de progressão, auto progressão, free tier sem bloquear o básico | HN 49036005, 46371564; gymnoteplus.com/blog/hevy-vs-strong |
+| Por domínio (ex.: treino) | Migração Strong para Hevy; pedidos: menos toques por série, gráfico de progressão, auto progressão, free tier sem bloquear o básico | HN 49036005, 46371564; gymnoteplus.com/blog/hevy-vs-strong |
 
 Implicação prática: Liquid Glass e M3 Expressive são o padrão de cada plataforma, mas a crítica cai sempre no mesmo lugar (legibilidade, blur, perder função). Use os dois, sem blur gratuito e sem esconder informação que existia.
 
@@ -51,7 +51,7 @@ Use quando estiverem instaladas. Não copie as regras delas, chame a skill.
 - Troca de tab sem animação de slide. Toggle com efeito imediato.
 - Um háptico por ação, no mesmo frame do visual, nunca como único feedback.
 - Animar só transform e opacity. Nunca `setState` em handler de gesto ou scroll.
-- Números tabulares em timer, carga e tabela.
+- Números tabulares em timer, valor e tabela.
 - Ação destrutiva pede confirmação ou oferece Desfazer. Gesto sempre tem alternativa por toque.
 - Botão em loading mantém o rótulo. Erro inline junto do campo.
 - Sem área morta entre itens de lista.

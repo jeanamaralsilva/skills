@@ -5,7 +5,7 @@ A pergunta é: **se essa lib sumir amanhã, quantos arquivos eu reescrevo?**
 ## Medir
 
 ```bash
-python scripts/deps_scan.py <repo> --spread 10
+python3 scripts/deps_scan.py <repo> --spread 10
 ```
 
 Conta quantos arquivos de produção (testes fora) importam cada lib de terceiro. Frameworks de base (react, react-native, expo-*, phoenix, ecto, oban) ficam fora: trocar framework é outro projeto. O número é heurística, não métrica formal.

@@ -1,0 +1,26 @@
+{
+  "skill_name": "ceo-deps",
+  "evals": [
+    {
+      "id": 1,
+      "name": "auditoria-expo-mais-phoenix",
+      "prompt": "audita as dependencias do app todo: o mobile Expo fica em apps/mobile e o servidor Phoenix em apps/server. quero saber se ta saudavel e o que eu preciso decidir. nao mexe em nada, so relatorio",
+      "expected_output": "Modo auditar com os dois repos tratados como read-only (nenhuma branch, lockfile ou arquivo alterado); detect_stack.py rodado nos dois repos; tracks de segurança/supply chain, versões e compatibilidade (expo-doctor/expo_check.py e mix hex.outdated), duplicadas e sem uso, e licenças com contexto app de loja + SaaS; o que não rodou aparece como 'não verificado', nunca 'ok'; relatório CEO com veredito em 2 frases, uma linha por repo com números, até 7 achados P0-P3 cada um com correção e evidência (arquivo:linha, [cmd: ...] ou [fonte: ...]) e 'Pendente do CEO' só com decisões de trade-off; até 400 palavras, sem seção de metodologia, passado no lint_report.py",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "saida-do-expo-doctor-colada",
+      "prompt": "o build do EAS quebrou e o expo-doctor deu isso:\n\n✖ Check that no duplicate native modules are installed\nFound duplicates for @expo/ui:\n  ├─ @expo/ui@57.0.4 (at: node_modules/@expo/ui)\n  └─ @expo/ui@57.0.18 (at: node_modules/expo-widgets/node_modules/@expo/ui)\n✖ Check that packages match versions required by installed Expo SDK\nMinor version mismatches\n  package                      expected  found\n  @shopify/flash-list          2.0.2     2.3.2\n\nresolve pra mim",
+      "expected_output": "Identifica a duplicata nativa de @expo/ui como P1 e acha quem puxa a segunda cópia (npm why / bun pm why) em vez de chutar; corrige alinhando o range no package.json e deduplicando, sem --legacy-peer-deps, sem npm audit fix --force e sem override permanente; para o mismatch usa npx expo install --fix (versão do bundledNativeModules do SDK, não o latest do npm); confere se há mais de um lockfile; aplica em branch e verifica rodando expo-doctor de novo e testes, com build nativo só na nuvem (EAS), sem build nativo local; se não deu para verificar, o relatório diz que não está pronto; relatório curto no tom CEO com evidência [cmd: npx expo-doctor]",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "upgrade-de-sdk-expo",
+      "prompt": "quero subir o app de Expo SDK 55 pra 57. faz o upgrade e me diz o que quebrou",
+      "expected_output": "Modo upgrade em branch, um SDK por vez (55 -> 56 -> 57) com npx expo install expo@^N --fix e leitura do changelog de cada um, sem atualizar tudo para o latest e sem usar bot; expo-doctor depois de cada degrau; checa runtimeVersion (policy sdkVersion vs fingerprint) por causa de OTA; verificação pela escada de 10-verificacao-sem-build-local (typecheck/testes, build na nuvem via EAS, nada de build nativo local); mudança arriscada (lib central sem New Architecture, troca de lib) vira decisão do CEO em vez de ser aplicada; relatório com o que foi feito, até que degrau foi verificado e o que ficou pendente",
+      "files": []
+    }
+  ]
+}

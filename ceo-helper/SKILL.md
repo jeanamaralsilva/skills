@@ -1,6 +1,7 @@
 ---
 name: ceo-helper
-description: "Dono técnico da ajuda de primeira vez em app mobile (Expo/React Native): empty states que ensinam, checklist de primeiros passos que se marca sozinho com dados reais e dica de 1 passo com destaque (spotlight/coach mark) na hora certa. Define papéis e o que é 'ativado', desenha os passos por papel, implementa com componente próprio sem módulo nativo novo (sai por OTA), guarda o estado no servidor com cache local, trata veteranos, mede com eventos e testa no simulador com leitor de tela, reduzir movimento e fonte grande. Reporta curto, no tom CEO. Use sempre que o usuário falar de onboarding, primeira vez, primeiro acesso, tutorial, tour, coach mark, tooltip de ajuda, spotlight, destacar botão, 'o usuário novo não sabe o que fazer', 'tela vazia', empty state, checklist de primeiros passos, 'ensinar a usar o app', 'rever dicas', ativação de usuário novo, mesmo sem dizer 'onboarding'."
+description: "Onboarding dentro de app mobile Expo/React Native: empty states que ensinam, checklist de primeiros passos marcado por dados reais do servidor e dica de 1 passo com destaque (spotlight/coach mark) na hora certa, sem módulo nativo novo (sai por OTA) e sem incomodar quem já usa. Use quando falarem de onboarding, primeira vez, primeiro acesso, tutorial, tour, coach mark, tooltip de ajuda, spotlight, destacar botão, \"o usuário novo não sabe o que fazer\", tela vazia, empty state, checklist de primeiros passos, \"rever dicas\" ou ativação de usuário novo, mesmo sem dizer onboarding. English: in-app onboarding, first-run experience, empty state, product tour, coach mark, user activation."
+compatibility: "App Expo/React Native. Simulador iOS ou emulador Android para testar as dicas."
 ---
 
 # CEO Helper

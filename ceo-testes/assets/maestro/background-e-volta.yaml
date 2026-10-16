@@ -1,5 +1,5 @@
 # Home no meio do fluxo e volta (bugs B15, B18, B42). Use com o app numa tela de tempo real.
-# maestro test -e APP_ID=<bundle> -e SCREEN_TEXT="Aula ao vivo" background-e-volta.yaml
+# maestro test -e APP_ID=<bundle> -e SCREEN_TEXT="Sala ao vivo" background-e-volta.yaml
 appId: ${APP_ID}
 ---
 - launchApp

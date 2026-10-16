@@ -2,7 +2,9 @@
 
 Dois papéis na mesma sala (ex.: quem conduz e quem participa, atendente e cliente, dois jogadores) é onde os bugs mais caros moram e onde quase ninguém testa, porque exige dois clientes. Aqui são dois clientes sempre: o app no simulador (ator A) e um segundo ator que pode ser outro simulador ou um cliente por API.
 
-## Ator B por API: `phx_actor.mjs`
+## Ator B por API: `phx_actor.mjs` (servidor Phoenix)
+
+Se o servidor não for Phoenix, o ator B é um script com `curl` na API REST ou um cliente WebSocket genérico com a mesma saída JSON, e a matriz do `map_realtime.py` não se aplica: derive os eventos do código do servidor à mão.
 
 Cliente Phoenix Channels sem dependências (protocolo v2 sobre o WebSocket nativo do Node 22+). Faz join, push, espera evento, derruba e reconecta, e imprime um log JSON.
 
@@ -30,7 +32,7 @@ Para Socket.IO ou outro protocolo, o ator não serve; escreva um script equivale
 
 ## Os sete testes que valem a sessão
 
-Derivados da matriz do `map_realtime.py`. Oráculo escrito antes de rodar.
+Derivados da matriz do `map_realtime.py` (Phoenix) ou da lista de eventos do servidor. Oráculo escrito antes de rodar.
 
 | # | Teste | Como | Esperado | Bug |
 |---|---|---|---|---|

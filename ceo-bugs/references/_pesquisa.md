@@ -17,10 +17,10 @@ Digest de pesquisa (10/10/2026). Cada linha = ideia acionável + fonte. "Verific
 - **Data**: entrada/saída, preset/default, persistente, interdependente, sequência/ordem, cardinalidade (0, 1, muitos, máximo), grande/pequeno, inválido/ruído, ciclo de vida (criar→editar→apagar). Fonte: idem
 - **Interfaces**: UI, interfaces de sistema (rede, logs), API, importar/exportar (ex.: contatos da agenda). Fonte: idem
 - **Platform**: SO e versão, fontes do sistema, libs embutidas, consumo de memória/bateria. Fonte: idem
-- **Operations**: tipos de usuário, ambiente físico (sol, uma mão, academia), uso comum, uso "desfavorecido" (descuidado/malicioso), uso extremo. Fonte: idem
+- **Operations**: tipos de usuário, ambiente físico (sol, uma mão, em movimento), uso comum, uso "desfavorecido" (descuidado/malicioso), uso extremo. Fonte: idem
 - **Time**: rápido/lento, rajadas, travamentos, concorrência (dois atores no mesmo dado). Fonte: idem
 - Critérios de qualidade do HTSM para classificar achado: Capability, Reliability (inclui integridade de dados), Usability (inclui acessibilidade), **Charisma** (estética, "imagem de qualidade" = o "feio" do cliente), Security, Compatibility, Performance. Fonte: idem
-- Uso prático: no charter, escolha 2-3 letras do SFDIPOT para variar; travou no meio, percorra as letras atrás de ideias. Fonte: https://tessl.io/registry/testland/sfdpot-exploratory-heuristic
+- Uso prático: no charter, escolha 2-3 letras do SFDIPOT para variar; travou no meio, percorra as letras atrás de ideias. Fonte: https://www.satisfice.com/download/heuristic-test-strategy-model
 
 ### 1.3 Oráculos FEW HICCUPPS (como reconhecer que é bug)
 - **History**: inconsistente com a versão anterior do app (regressão). Fonte: https://developsense.com/resource/Oracles.pdf
@@ -31,12 +31,12 @@ Digest de pesquisa (10/10/2026). Cada linha = ideia acionável + fonte. "Verific
 - **Product**: inconsistente consigo mesmo (botão igual com estilo diferente, termo diferente para a mesma coisa, data em dois formatos). Fonte: idem
 - **Purpose**: inconsistente com o propósito explícito ou implícito da função. Fonte: idem
 - **Statutes/Standards**: inconsistente com lei ou norma (LGPD, HIG, Material, WCAG). Fonte: idem
-- **F/E/W**: Familiar problems (padrão de bug conhecido), Explainability (comportamento que ninguém consegue explicar), World (inconsistente com o mundo real, ex.: aula às 25h). Fonte: https://infinum.com/handbook/qa/testing/heuristics-in-testing
+- **F/E/W**: Familiar problems (padrão de bug conhecido), Explainability (comportamento que ninguém consegue explicar), World (inconsistente com o mundo real, ex.: horário 25h). Fonte: https://infinum.com/handbook/qa/testing/heuristics-in-testing
 - Quando oráculos se contradizem, o papel do testador não é decidir: é mostrar o conflito. Fonte: https://developsense.com/resource/Oracles.pdf
 
 ### 1.4 Tours (Whittaker, Kelly)
-- Whittaker (2009), 7 tours canônicos: Feature, Money (todo lugar com dinheiro/preço), Landmark (jornadas-herói), Intellectual (parte mais difícil), Bad-data, Configuration, Garbage-collector (visitar cada tela uma vez só para ver se existe e abre). Fonte: https://tessl.io/registry/testland/exploratory-tours-reference/files/references/tours-catalog.md
-- Kelly, FCC CUTS VIDS (reconhecimento de app desconhecido): Feature, Complexity ("5 coisas mais complexas"), Claims, Configuration (o que o app guarda de config), User (5 personas), Testability, Scenario (5 cenários reais), Variability, Interoperability, Data, Structure. Fonte: https://tessl.io/registry/testland/exploratory-testing/files/references/fcc-cuts-vids.md
+- Whittaker (2009), 7 tours canônicos: Feature, Money (todo lugar com dinheiro/preço), Landmark (jornadas-herói), Intellectual (parte mais difícil), Bad-data, Configuration, Garbage-collector (visitar cada tela uma vez só para ver se existe e abre). Fonte: https://www.informit.com/store/exploratory-software-testing-tips-tricks-tours-and-9780321636416
+- Kelly, FCC CUTS VIDS (reconhecimento de app desconhecido): Feature, Complexity ("5 coisas mais complexas"), Claims, Configuration (o que o app guarda de config), User (5 personas), Testability, Scenario (5 cenários reais), Variability, Interoperability, Data, Structure. Fonte: http://michaeldkelly.com/blog/2005/9/20/touring-heuristic.html
 - Mobile, Kohl "I SLICED UP FUN": Inputs, Store, Location, Interactions/Interruptions, Communication (ligação, SMS no meio), Ergonomics, Data, Usability, Platform, Function, User scenarios, Network (troca de rede). Fonte: https://infinum.com/handbook/qa/testing/heuristics-in-testing
 
 ### 1.5 Test Heuristics Cheat Sheet (Hendrickson / Ministry of Testing)
@@ -73,7 +73,7 @@ Digest de pesquisa (10/10/2026). Cada linha = ideia acionável + fonte. "Verific
 ### 2.2 Rede
 - Perfis Network Link Conditioner: 3G, Edge, LTE, Very Bad Network, 100% Loss; no device iOS 17+: Ajustes → Desenvolvedor. No simulador afeta o Mac inteiro. Fonte: https://www.avanderlee.com/debugging/network-link-conditioner-utility/
 - Testar: offline na abertura, cair rede no meio do envio, voltar rede, trocar Wi-Fi↔4G. Fonte: https://infinum.com/handbook/qa/testing/heuristics-in-testing
-- Retry de POST sem chave de idempotência cria duplicado (cobrança/aula dupla). Teste: enviar, cortar rede antes da resposta, reenviar; conferir no banco quantos registros nasceram. Fonte: https://docs.stripe.com/api/idempotent_requests
+- Retry de POST sem chave de idempotência cria duplicado (cobrança ou agendamento duplo). Teste: enviar, cortar rede antes da resposta, reenviar; conferir no banco quantos registros nasceram. Fonte: https://docs.stripe.com/api/idempotent_requests
 - Startup lento: se passa de 2 s, tem que haver indicador de progresso. Fonte: https://developer.android.com/docs/quality-guidelines/core-app-quality
 
 ### 2.3 Datas, fusos, virada do dia
@@ -87,7 +87,7 @@ Digest de pesquisa (10/10/2026). Cada linha = ideia acionável + fonte. "Verific
 - Strings: muito longa, acentos, emoji, colar texto com quebra de linha/espaço no fim, só espaços. Fonte: https://www.ministryoftesting.com/articles/test-heuristics-cheat-sheet
 - Números: 0, negativo, decimal com vírgula e com ponto, limite, colar "R$ 1.234,50". Fonte: idem
 - Máscaras BR (telefone com/sem 9, CPF com/sem pontuação, moeda): colar valor formatado, apagar do meio, autofill do iOS. Regra de domínio (dígito verificador) = "domain rule violation". Fonte: idem
-- Unicidade: cadastrar o mesmo e-mail/aluno duas vezes. Fonte: idem
+- Unicidade: cadastrar o mesmo e-mail/entidade duas vezes. Fonte: idem
 
 ### 2.5 Listas
 - 0, 1, muitos itens; primeiro/meio/último; scroll até o fim (paginação, item duplicado ou faltando na emenda). Fonte: https://www.ministryoftesting.com/articles/test-heuristics-cheat-sheet
@@ -151,8 +151,8 @@ Digest de pesquisa (10/10/2026). Cada linha = ideia acionável + fonte. "Verific
 
 ### 3.4 Texto e localização pt-BR
 - Capitalização consistente: Material manda sentence case em tudo (títulos, botões, abas); o importante no app é escolher um padrão e não misturar. Fontes: https://m3.material.io/foundations/content-design/style-guide ; https://developer.apple.com/videos/play/wwdc2022/10037/
-- Plural: usar `Intl.PluralRules`; atenção que em pt-BR o CLDR classifica **0 e 1 como "one"** (então "0 aula" sai se o código confiar só na regra; decida o texto do zero à parte). Fonte: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules ; verificado local (Node: 0→one, 1→one, 2→other).
-- "1 aulas", "1 alunos" = plural feito com `n + " aulas"`: grep por template literal com número + substantivo no plural. Fonte: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules
+- Plural: usar `Intl.PluralRules`; atenção que em pt-BR o CLDR classifica **0 e 1 como "one"** (então "0 item" sai se o código confiar só na regra; decida o texto do zero à parte). Fonte: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules ; verificado local (Node: 0→one, 1→one, 2→other).
+- "1 itens", "1 pedidos" = plural feito com `n + " itens"`: grep por template literal com número + substantivo no plural. Fonte: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules
 - Moeda: `Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"})` dá "R$ 1.234,50" com **espaço não separável (U+00A0)** depois de R$; comparação de texto em teste falha se usar espaço comum. Fonte: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat ; verificado local.
 - Sinais de bug de texto: inglês no meio do português (labels de lib, "Cancel", "Loading...", data "Oct"), ponto decimal, data MM/DD, "e.g."/"etc." em botões. Fonte: https://m3.material.io/foundations/content-design/global-writing/word-choice
 - Abreviações dificultam leitura e leitor de tela: preferir palavra por extenso. Fonte: https://m3.material.io/foundations/content-design/style-guide
@@ -174,10 +174,10 @@ Digest de pesquisa (10/10/2026). Cada linha = ideia acionável + fonte. "Verific
 
 ### 4.2 Severidade x prioridade
 - Severidade = grau de impacto do defeito; prioridade = importância de negócio/urgência. Eixos independentes (logo errado: baixa severidade, alta prioridade). Fonte: https://contextqa.com/blog/difference-between-severity-and-priority/
-- Escala Mozilla: S1 catastrófico (bloqueia, perda de dados, >25% usuários, sem contorno); S2 sério (função principal comprometida, sem contorno satisfatório); S3 normal (função não crítica ou com contorno); S4 trivial/cosmético. Fonte: https://wiki.mozilla.org/BMO/UserGuide/BugFields
+- Escala Mozilla (a skill usa P0-P3 com S1→P0, S2→P1, S3→P2, S4→P3): S1 catastrófico (bloqueia, perda de dados, >25% usuários, sem contorno); S2 sério (função principal comprometida, sem contorno satisfatório); S3 normal (função não crítica ou com contorno); S4 trivial/cosmético. Fonte: https://wiki.mozilla.org/BMO/UserGuide/BugFields
 - Exemplos S1 do Firefox: crash com perda de dados, função central fora para todos; S2: problema que faria o usuário trocar de produto. Fonte: https://firefox-source-docs.mozilla.org/bug-mgmt/guides/severity.html
 - Em Mozilla, severidade é definida na triagem, não por quem reporta: a IA propõe severidade e justifica; quem decide é o dono. Fonte: https://wiki.mozilla.org/BMO/UserGuide/BugFields
-- Polimento visual costuma ser S4 em severidade, mas pode ser prioridade alta se o cliente vê em toda tela (oráculo Image). Fonte: https://contextqa.com/blog/difference-between-severity-and-priority/
+- Polimento visual costuma ser S4 (P3) em severidade, mas pode ser prioridade alta se o cliente vê em toda tela (oráculo Image). Fonte: https://contextqa.com/blog/difference-between-severity-and-priority/
 
 ---
 
@@ -209,4 +209,4 @@ Digest de pesquisa (10/10/2026). Cada linha = ideia acionável + fonte. "Verific
 - Divergência de opinião (é bug ou é feature?) vira pergunta ao dono, não bug: oráculos diferentes, ninguém está errado. Fonte: https://developsense.com/resource/Oracles.pdf
 
 ### 5.4 Receita de sessão para o agente (síntese das fontes acima)
-- 1) Recon com FCC CUTS VIDS/garbage collector: abrir toda tela uma vez, print de cada. 2) Charter por risco (SFDIPOT). 3) Sessão time-boxed com notas. 4) Cada suspeita passa por um oráculo FEW HICCUPPS nomeado. 5) RIMGEA antes de reportar. 6) Severidade proposta S1-S4. 7) Debrief PROOF com cobertura e lacunas. Fontes: https://en.wikipedia.org/wiki/Session-based_testing ; https://developsense.com/resource/Oracles.pdf ; https://spin.atomicobject.com/rimgea-testing-mnemonic/
+- 1) Recon com FCC CUTS VIDS/garbage collector: abrir toda tela uma vez, print de cada. 2) Charter por risco (SFDIPOT). 3) Sessão time-boxed com notas. 4) Cada suspeita passa por um oráculo FEW HICCUPPS nomeado. 5) RIMGEA antes de reportar. 6) Severidade proposta P0-P3 (mapa de S1-S4 da Mozilla). 7) Debrief PROOF com cobertura e lacunas. Fontes: https://en.wikipedia.org/wiki/Session-based_testing ; https://developsense.com/resource/Oracles.pdf ; https://spin.atomicobject.com/rimgea-testing-mnemonic/

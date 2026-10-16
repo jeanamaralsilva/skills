@@ -1,6 +1,6 @@
 # Motion e micro-interações
 
-Movimento é o que separa o app que "parece premium" do que "parece template". Mas movimento sem regra vira ruído e jank. Esta referência diz **o que** animar, **quanto** e **com qual API em cada plataforma**. O catálogo consultável está em `data/motion-patterns.csv` (MO01 a MO45): `python scripts/search.py "ícone de aba pulsar"`.
+Movimento é o que separa o app que "parece premium" do que "parece template". Mas movimento sem regra vira ruído e jank. Esta referência diz **o que** animar, **quanto** e **com qual API em cada plataforma**. O catálogo consultável está em `data/motion-patterns.csv` (MO01 a MO45): `python3 scripts/search.py "ícone de aba pulsar"`.
 
 ## Princípios (valem nas três plataformas)
 
@@ -21,7 +21,7 @@ Movimento é o que separa o app que "parece premium" do que "parece template". M
 | Android (Compose) | `AnimatedImageVector` com `rememberAnimatedVectorPainter(image, atEnd = selected)` (MO32); ou `scale` por `animateFloatAsState` com `MotionScheme.expressive()` (MO23) | M3 Expressive já anima o indicador da navigation bar |
 | React Native (Expo) | `NativeTabs` do Expo Router com `Icon sf= md=` dá a tab bar nativa (MO42); `expo-symbols` `SymbolView animationSpec={{ effect: { type: 'bounce' } }}` para o pulo no iOS (MO41, iOS only, beta); animação própria com Reanimated `withSequence(withSpring(1.15), withSpring(1))` em `transform: scale` (MO35) | Não há animação de seleção documentada no NativeTabs: se o CEO quer o pulso, é componente próprio por cima |
 
-Regra: pulso único na seleção (≤ 250 ms). Pulso contínuo só em estado "ao vivo" (gravando, aula em andamento), e pausado quando a aba não está visível.
+Regra: pulso único na seleção (≤ 250 ms). Pulso contínuo só em estado "ao vivo" (gravando, entrega a caminho), e pausado quando a aba não está visível.
 
 ### Gradiente lento, quase imperceptível, atrás do ícone
 

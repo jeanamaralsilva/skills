@@ -1,6 +1,6 @@
 # Rubrica por tipo de tela
 
-Toda tela é de um ou dois tipos. Cada tipo tem os erros que sempre aparecem. Antes de opinar, classifique a tela e passe pela lista do tipo: é isso que faz a análise sair completa na primeira vez, sem o CEO ter que apontar o que faltou. A base consultável é `data/screen-checks.csv` (SC01 a SC34, cada linha com fonte): `python scripts/search.py "<tema>" --domain screen-checks`.
+Toda tela é de um ou dois tipos. Cada tipo tem os erros que sempre aparecem. Antes de opinar, classifique a tela e passe pela lista do tipo: é isso que faz a análise sair completa na primeira vez, sem o CEO ter que apontar o que faltou. A base consultável é `data/screen-checks.csv` (SC01 a SC34, cada linha com fonte): `python3 scripts/search.py "<tema>" --domain screen-checks`.
 
 ## Classifique primeiro
 

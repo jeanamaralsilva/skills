@@ -15,7 +15,7 @@
 ```bash
 gh pr list --state open --json number,title,headRefName,files --jq '.[] | "\(.number) \(.title) \(.headRefName) \([.files[].path] | join(","))"'
 gh pr diff 42 --name-only                              # ou: git diff --name-only origin/main...origin/<branch>
-python scripts/map_flows.py <mobile> --json > runs/map.json
+python3 scripts/map_flows.py <mobile> --json > runs/map.json
 ```
 
 Cruze os arquivos do diff com `screens[].file` e com os imports que eles alcançam (hooks, componentes compartilhados, `src/lib/socket.ts`). Regra prática:

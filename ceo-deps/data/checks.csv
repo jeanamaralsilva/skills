@@ -103,4 +103,4 @@ IN03,infra,Circuit breaker em dependência crítica,grep fuse/circuit,serviço e
 IN04,infra,Wrapper para SDK de terceiro,scripts/deps_scan.py (coupling),lib externa espalhada em muitos arquivos (vendor lock-in),medium,https://learn.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer
 IN05,infra,Envio de e-mail e jobs confiáveis,grep Oban / deliver_later,e-mail ou webhook síncrono no request,medium,https://swoosh.hexdocs.pm/Swoosh.html
 JS34,expo,Policy do runtimeVersion,grep policy app.config.* (scripts/detect_stack.py),sdkVersion deixa OTA chegar a binário sem o nativo novo,high,https://docs.expo.dev/eas-update/runtime-versions/
-XL37,todos,Versões exatas do lock contra OSV,python scripts/lock_audit.py <repo> --query,CVE nas versões que realmente vão para produção,high,https://google.github.io/osv-scanner/usage/
+XL37,todos,Versões exatas do lock contra OSV,python3 scripts/lock_audit.py <repo> --query,CVE nas versões que realmente vão para produção,high,https://google.github.io/osv-scanner/usage/

@@ -7,7 +7,7 @@ Dependência envelhece sozinha. Sem bot, ninguém fica sabendo de CVE nova nem d
 | Sinal | Como ver |
 |---|---|
 | Depreciada pelo autor | `npm view <pkg> deprecated`; Hex: `mix hex.audit` (retirada); `dotnet package list --deprecated`; `go list -m -u all` (retracted) |
-| Sem release há mais de 12 meses | `npm view <pkg> time.modified`; página do Hex; `data/ui-libraries.csv` da ceo-analytics para libs de UI |
+| Sem release há mais de 12 meses | `npm view <pkg> time.modified`; página do Hex; `data/ui-libraries.csv` da ceo-analytics (se instalada) para libs de UI |
 | Marcada unmaintained | React Native Directory; `cargo deny` (advisories unmaintained); `composer audit --abandoned=report` |
 | Não acompanha o framework | peerDependencies que não aceitam o React/RN/Elixir atual; sem suporte à New Architecture |
 | Ecossistema fechando | CocoaPods trunk fica read-only em 2026-12-02: pods novos e atualizações param de chegar pelo trunk |
