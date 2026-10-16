@@ -16,11 +16,11 @@ Nenhuma skill depende de um projeto específico. O que varia por projeto (repos,
 
 | Skill | Pergunta que responde | Tamanho |
 |---|---|---|
-| [ceo-analytics](ceo-analytics/) | O app está bom de usar? O que propor? Como fica a animação no iOS e no Android? | 19 guias, 7 CSVs (heurísticas, anti-padrões, componentes, 39 apps de referência, fontes de mercado, libs de UI, 45 padrões de motion), 4 scripts |
+| [ceo-analytics](ceo-analytics/) | O app está bom de usar? O que propor? Como fica a animação no iOS e no Android? | 21 guias, 8 CSVs (heurísticas, anti-padrões, componentes, 43 apps de referência, fontes de mercado, libs de UI, 45 padrões de motion, 34 checks por tipo de tela), 5 scripts |
 | [ceo-deps](ceo-deps/) | As dependências estão seguras, compatíveis e mantidas? | 14 guias, 105 checks com fonte em 12 ecossistemas, 31 licenças, incidentes reais, 6 scripts |
 | [ceo-cortex](ceo-cortex/) | O código está certo, limpo e sem repetição? | guias por linguagem (Elixir com as Iron Laws do phxagents, RN, TS/Node, Python, Go, Kotlin, Swift, Java, SQL), memória entre sessões, detector de duplicação |
 | [ceo-testes](ceo-testes/) | O app funciona de verdade, com dois usuários, sem rede, depois do background? Onde está o bug do vídeo que o cliente mandou? | 13 guias, 50 bugs reproduzíveis, 66 receitas de comando, 26 tours, 5 scripts, 7 flows Maestro |
-| [ceo-bugs](ceo-bugs/) | Onde o app quebra ou fica feio antes do cliente ver? | 5 guias + pesquisa com fonte, 13 charters, scanner de "feio" (moeda, plural, inglês, erro técnico), aprendizados por rodada |
+| [ceo-bugs](ceo-bugs/) | Onde o app quebra ou fica feio antes do cliente ver? | 6 guias + pesquisa com fonte, 16 charters, scanner de "feio" (moeda, plural, inglês, erro técnico), aprendizados por rodada em `.ceo/aprendizados.md` do seu repo |
 | [ceo-helper](ceo-helper/) | O usuário novo sabe o que fazer sem incomodar quem já usa? Como implementar empty state, checklist e dica com destaque? | 8 guias, 28 padrões e antipadrões com fonte, 7 libs RN avaliadas, 2 templates |
 
 ## ceo-analytics

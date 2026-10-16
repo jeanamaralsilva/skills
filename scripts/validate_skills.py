@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Checks every skill folder before publishing: frontmatter, size limits and marketplace entries."""
+import csv
 import json
 import re
 import sys
@@ -7,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 NAME_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
-MAX_NAME, MAX_DESCRIPTION, MAX_SKILL_LINES = 64, 1024, 500
+MAX_NAME, MAX_DESCRIPTION, MAX_COMPATIBILITY, MAX_SKILL_LINES = 64, 1024, 500, 500
 
 
 def frontmatter(text):
@@ -39,11 +40,18 @@ def main():
             errors.append(f"{where}: name must be kebab-case, up to {MAX_NAME} chars")
         if not description or len(description) > MAX_DESCRIPTION:
             errors.append(f"{where}: description must have 1 to {MAX_DESCRIPTION} chars (has {len(description)})")
+        if len(fields.get("compatibility", "")) > MAX_COMPATIBILITY:
+            errors.append(f"{where}: compatibility over {MAX_COMPATIBILITY} chars")
         if text.count("\n") > MAX_SKILL_LINES:
             errors.append(f"{where}: over {MAX_SKILL_LINES} lines, move detail to references/")
         for ref in re.findall(r"`((?:references|scripts|assets|agents|data)/[\w./-]+)`", text):
             if not (skill / ref).exists():
                 errors.append(f"{where}: points to missing file {ref}")
+        for data_file in sorted(skill.glob("data/*.csv")):
+            with data_file.open(encoding="utf-8") as handle:
+                header = next(csv.reader(handle), [])
+            if "source" not in header:
+                errors.append(f"{skill.name}/data/{data_file.name}: needs a 'source' column")
 
     marketplace = json.loads((ROOT / ".claude-plugin/marketplace.json").read_text(encoding="utf-8"))
     listed = {path.removeprefix("./") for plugin in marketplace["plugins"] for path in plugin["skills"]}
