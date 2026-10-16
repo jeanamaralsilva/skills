@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  skills:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate skills and marketplace
+        run: python scripts/validate_skills.py
+      - name: Skills CLI finds every skill
+        run: |
+          found=$(NO_COLOR=1 npx -y skills add ./ --list | grep -cE '^│    [a-z0-9-]+$')
+          expected=$(ls -d */SKILL.md | wc -l)
+          echo "found=$found expected=$expected"
+          test "$found" -eq "$expected"
+      - name: Script tests
+        run: |
+          pip install -q pytest pyyaml
+          for tests in */scripts/tests; do
+            (cd "$(dirname "$tests")" && python -m pytest tests -q -p no:cacheprovider)
+          done

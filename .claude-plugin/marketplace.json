@@ -1,0 +1,116 @@
+{
+  "name": "ceo-skills",
+  "description": "Skills que cuidam de um app mobile com servidor como um dono técnico: UX, dependências, código, testes, bugs e onboarding.",
+  "owner": {
+    "name": "Jean Amaral Silva",
+    "url": "https://github.com/jeanamaralsilva"
+  },
+  "plugins": [
+    {
+      "name": "ceo-analytics",
+      "description": "Auditoria de UI/UX de app mobile e web: mapa de telas, heurísticas, benchmark, propostas e motion.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./ceo-analytics"
+      ],
+      "homepage": "https://github.com/jeanamaralsilva/skills/tree/main/ceo-analytics",
+      "repository": "https://github.com/jeanamaralsilva/skills",
+      "license": "MIT",
+      "keywords": [
+        "ux",
+        "ui",
+        "design-review",
+        "mobile"
+      ]
+    },
+    {
+      "name": "ceo-deps",
+      "description": "Dependências em um ou vários repos: segurança, supply chain, Expo SDK, Elixir/OTP, licenças e upgrades seguros.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./ceo-deps"
+      ],
+      "homepage": "https://github.com/jeanamaralsilva/skills/tree/main/ceo-deps",
+      "repository": "https://github.com/jeanamaralsilva/skills",
+      "license": "MIT",
+      "keywords": [
+        "dependencies",
+        "security",
+        "supply-chain",
+        "expo"
+      ]
+    },
+    {
+      "name": "ceo-cortex",
+      "description": "Revisão e escrita de código no nível sênior, com memória entre sessões e detector de duplicação.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./ceo-cortex"
+      ],
+      "homepage": "https://github.com/jeanamaralsilva/skills/tree/main/ceo-cortex",
+      "repository": "https://github.com/jeanamaralsilva/skills",
+      "license": "MIT",
+      "keywords": [
+        "code-review",
+        "refactoring",
+        "memory"
+      ]
+    },
+    {
+      "name": "ceo-testes",
+      "description": "QA de app mobile (iOS primeiro): matriz de casos, dois usuários em tempo real, estresse e prova de bug com vídeo.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./ceo-testes"
+      ],
+      "homepage": "https://github.com/jeanamaralsilva/skills/tree/main/ceo-testes",
+      "repository": "https://github.com/jeanamaralsilva/skills",
+      "license": "MIT",
+      "keywords": [
+        "qa",
+        "testing",
+        "maestro",
+        "ios"
+      ]
+    },
+    {
+      "name": "ceo-bugs",
+      "description": "Bug bash exploratório em app React Native/Expo, incluindo o que o cliente acha feio.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./ceo-bugs"
+      ],
+      "homepage": "https://github.com/jeanamaralsilva/skills/tree/main/ceo-bugs",
+      "repository": "https://github.com/jeanamaralsilva/skills",
+      "license": "MIT",
+      "keywords": [
+        "qa",
+        "bug-bash",
+        "react-native"
+      ]
+    },
+    {
+      "name": "ceo-helper",
+      "description": "Onboarding dentro do app Expo/React Native: empty states, checklist de primeiros passos e coach marks.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./ceo-helper"
+      ],
+      "homepage": "https://github.com/jeanamaralsilva/skills/tree/main/ceo-helper",
+      "repository": "https://github.com/jeanamaralsilva/skills",
+      "license": "MIT",
+      "keywords": [
+        "onboarding",
+        "react-native",
+        "expo",
+        "activation"
+      ]
+    }
+  ]
+}

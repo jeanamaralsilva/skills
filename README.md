@@ -1,6 +1,16 @@
 # CEO skills
 
-Quatro skills para o Claude (Cowork, Claude Code e qualquer agente que leia `SKILL.md`) que cuidam de um app mobile com servidor como um dono técnico cuidaria: UX, dependências, código e testes. Cada uma reporta curto, no tom de quem responde ao CEO: o que está bom, o que quebrou, o que já foi resolvido e o que só o dono decide. Sem narrar processo, sem inventar resultado, sem esconder erro ou risco de segurança.
+[![CI](https://github.com/jeanamaralsilva/skills/actions/workflows/ci.yml/badge.svg)](https://github.com/jeanamaralsilva/skills/actions/workflows/ci.yml)
+[![skills.sh](https://img.shields.io/badge/skills.sh-jeanamaralsilva%2Fskills-black)](https://skills.sh/jeanamaralsilva/skills)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+```bash
+npx skills add jeanamaralsilva/skills
+```
+
+> **English:** six agent skills (Claude Code, Cursor, Codex, Gemini CLI, Copilot and any agent that reads `SKILL.md`) that look after a mobile app and its server the way a technical owner would: UX review, dependency audit, senior code review, mobile QA, bug bash and in-app onboarding. Every data row cites its source. The skills are written in Brazilian Portuguese; agents follow them fine in any language and reply in yours.
+
+Seis skills para o Claude (Cowork, Claude Code e qualquer agente que leia `SKILL.md`) que cuidam de um app mobile com servidor como um dono técnico cuidaria: UX, dependências, código, testes e ajuda de primeira vez. Cada uma reporta curto, no tom de quem responde ao CEO: o que está bom, o que quebrou, o que já foi resolvido e o que só o dono decide. Sem narrar processo, sem inventar resultado, sem esconder erro ou risco de segurança.
 
 Nenhuma skill depende de um projeto específico. O que varia por projeto (repos, read-only, limites da máquina, design system, papéis de teste, credenciais por variável de ambiente) vai em `.ceo/config.md` na raiz do repo. Modelo em qualquer `*/assets/ceo-config.example.md`.
 
@@ -10,6 +20,8 @@ Nenhuma skill depende de um projeto específico. O que varia por projeto (repos,
 | [ceo-deps](ceo-deps/) | As dependências estão seguras, compatíveis e mantidas? | 14 guias, 105 checks com fonte em 12 ecossistemas, 31 licenças, incidentes reais, 6 scripts |
 | [ceo-cortex](ceo-cortex/) | O código está certo, limpo e sem repetição? | guias por linguagem (Elixir com as Iron Laws do phxagents, RN, TS/Node, Python, Go, Kotlin, Swift, Java, SQL), memória entre sessões, detector de duplicação |
 | [ceo-testes](ceo-testes/) | O app funciona de verdade, com dois usuários, sem rede, depois do background? Onde está o bug do vídeo que o cliente mandou? | 13 guias, 50 bugs reproduzíveis, 66 receitas de comando, 26 tours, 5 scripts, 7 flows Maestro |
+| [ceo-bugs](ceo-bugs/) | Onde o app quebra ou fica feio antes do cliente ver? | 5 guias + pesquisa com fonte, 13 charters, scanner de "feio" (moeda, plural, inglês, erro técnico), aprendizados por rodada |
+| [ceo-helper](ceo-helper/) | O usuário novo sabe o que fazer sem incomodar quem já usa? Como implementar empty state, checklist e dica com destaque? | 8 guias, 28 padrões e antipadrões com fonte, 7 libs RN avaliadas, 2 templates |
 
 ## ceo-analytics
 
@@ -47,16 +59,64 @@ QA de app mobile (iOS primeiro) que acha e prova bug:
 - **Limpeza:** tudo que a sessão cria tem prefixo `ceo-` e é apagado no fim (`sim_session.py cleanup`).
 - **Servidor:** testes ExUnit de canal com dois clientes, corridas, jobs e propriedades antes de abrir simulador.
 
+## ceo-helper
+
+Ajuda de primeira vez (onboarding dentro do app) para app mobile Expo/React Native:
+
+- **Brief e ativação:** papéis, tarefa principal de cada um e o dado no servidor que prova que o usuário foi ativado.
+- **Três camadas, nesta ordem:** empty state que ensina, checklist de primeiros passos marcado por dados reais, dica de 1 passo com destaque na hora certa. Nada de carrossel de boas-vindas.
+- **Regras com fonte:** 1 dica automática por sessão, nunca ao abrir o app, alvo sempre tocável, sempre dá para pular e rever, tour de no máximo 3 passos.
+- **Implementação:** componente próprio com máscara SVG, `measureInWindow` e Reanimated, sem módulo nativo novo (sai por OTA); comparação com as libs e plano B.
+- **Servidor e veteranos:** estado por usuário e papel, endpoint idempotente, cache local e backfill para quem já usa não ver "primeiro X".
+- **Medir e testar:** eventos, ativação em 24 h e 7 dias, matriz de simulador com VoiceOver, Reduzir Movimento, fonte grande e Android edge-to-edge.
+
 ## Instalar
 
-Copie a pasta da skill para `~/.claude/skills/` (ou crie um link: `ln -s <este repo>/<skill> ~/.claude/skills/<skill>`), ou instale o `.skill` pelo app do Claude. Depois, no seu projeto, copie `ceo-testes/assets/ceo-config.example.md` para `.ceo/config.md` e preencha o que souber.
+**Qualquer agente (Claude Code, Cursor, Codex, Gemini CLI, Copilot, OpenCode e outros)** pelo [skills.sh](https://skills.sh):
+
+```bash
+npx skills add jeanamaralsilva/skills                         # escolhe skills e agentes no menu
+npx skills add jeanamaralsilva/skills --skill ceo-analytics   # só uma
+npx skills add jeanamaralsilva/skills --all -g                # todas, em todos os agentes, para o usuário
+npx skills add jeanamaralsilva/skills --list                  # só listar
+npx skills update                                             # atualizar depois
+```
+
+**Claude Code como plugin** (um passo, Claude Code 2.1.275+; atualiza junto com o marketplace):
+
+```
+/plugin install ceo-analytics --marketplace jeanamaralsilva/skills
+/plugin install ceo-deps --marketplace jeanamaralsilva/skills
+/plugin install ceo-cortex --marketplace jeanamaralsilva/skills
+/plugin install ceo-testes --marketplace jeanamaralsilva/skills
+/plugin install ceo-bugs --marketplace jeanamaralsilva/skills
+/plugin install ceo-helper --marketplace jeanamaralsilva/skills
+```
+
+Em versões anteriores: `/plugin marketplace add jeanamaralsilva/skills` e depois `/plugin install ceo-analytics@ceo-skills`.
+
+**Manual:** copie a pasta da skill para `~/.claude/skills/` (ou `ln -s <este repo>/<skill> ~/.claude/skills/<skill>`).
+
+`ceo-bugs` usa a receita de simulador da `ceo-testes`; instale as duas juntas.
+
+### Configurar no seu projeto
+
+Copie `ceo-testes/assets/ceo-config.example.md` para `.ceo/config.md` na raiz do seu repo e preencha o que souber (repos, o que é só leitura, limites da máquina, papéis de teste). Credenciais vão por variável de ambiente, nunca no arquivo.
+
+### Requisitos
+
+Python 3 para os scripts (só biblioteca padrão). Cada skill diz no `SKILL.md` o que mais usa (Maestro, simulador iOS, `gh`, Node) e funciona em modo reduzido quando falta algo.
 
 ## Testar
 
 ```bash
-for s in ceo-analytics ceo-deps ceo-cortex ceo-testes; do (cd $s/scripts && python3 -m pytest tests -q); done
+python3 scripts/validate_skills.py   # frontmatter, limites, links internos e marketplace
+pip install pytest pyyaml
+for t in */scripts/tests; do (cd "$(dirname "$t")" && python3 -m pytest tests -q); done
 ```
+
+O CI roda os dois em todo push e PR.
 
 ## Contribuir
 
-Cada linha de dado (`data/*.csv`) tem uma coluna `source` com a URL. Achado sem fonte não entra. Scripts têm teste. Nome de projeto, pessoa ou empresa não entra nas skills: o que é seu vai em `.ceo/config.md`.
+Cada linha de dado (`data/*.csv`) tem uma coluna `source` com a URL. Achado sem fonte não entra. Scripts têm teste. Skill nova: pasta com `SKILL.md` (nome igual ao da pasta) e entrada em `.claude-plugin/marketplace.json`; o `validate_skills.py` cobra os dois. Nome de projeto, pessoa ou empresa não entra nas skills: o que é seu vai em `.ceo/config.md`.
