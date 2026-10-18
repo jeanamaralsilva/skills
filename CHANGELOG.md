@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.0 (2026-10-18)
+
+- Nomes que dizem o que a skill faz: `ceo-analytics` → `ceo-ux`, `ceo-testes` → `ceo-mobile-qa`, `ceo-helper` → `ceo-onboarding`, `ceo-bugs` → `ceo-bug-bash`, `ceo-cortex` → `ceo-code-review`. `ceo-deps` não muda. Quem instalou com o nome antigo: remova e instale de novo (passo a passo no README).
+
 ## 1.0.0 (2026-10-16)
 
 - Instalação pelo [skills.sh](https://skills.sh) (`npx skills add jeanamaralsilva/skills`) e como marketplace de plugins do Claude Code.

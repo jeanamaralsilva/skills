@@ -57,4 +57,4 @@ Para achar o comando certo: `python3 scripts/search.py "<tema>"` (105 checks, 31
 - **Licença decide com a versão exata.** Projetos mudam de licença (Redis, Elastic, HashiCorp). Copyleft em app de loja e AGPL em SaaS são P0 até alguém revisar.
 
 ## Quando chamar outras skills
-`references/13-integracoes.md`. Em resumo: revisão do código que a correção tocou vai para `ceo-cortex`; regressão no app depois de mudar dependência nativa ou central vai para `ceo-testes`; PR pela skill de PR da config ou `gh pr create`; Elixir/Phoenix a fundo, o plugin do phxagents (`/phx:audit`, `/phx:deps-audit`).
+`references/13-integracoes.md`. Em resumo: revisão do código que a correção tocou vai para `ceo-code-review`; regressão no app depois de mudar dependência nativa ou central vai para `ceo-mobile-qa`; PR pela skill de PR da config ou `gh pr create`; Elixir/Phoenix a fundo, o plugin do phxagents (`/phx:audit`, `/phx:deps-audit`).

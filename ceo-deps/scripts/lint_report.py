@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Lints a ceo-analytics report for the AI tells the user does not want.
+"""Lints a ceo-ux report for the AI tells the user does not want.
 
 Usage: python lint_report.py report.md [--max-words 350]
        python lint_report.py - <<'EOF' ... EOF    (reads stdin, no file needed)

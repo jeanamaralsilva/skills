@@ -16,14 +16,14 @@ Nenhuma skill depende de um projeto específico. O que varia por projeto (repos,
 
 | Skill | Pergunta que responde | Tamanho |
 |---|---|---|
-| [ceo-analytics](ceo-analytics/) | O app está bom de usar? O que propor? Como fica a animação no iOS e no Android? | 21 guias, 8 CSVs (heurísticas, anti-padrões, componentes, 43 apps de referência, fontes de mercado, libs de UI, 45 padrões de motion, 34 checks por tipo de tela), 5 scripts |
+| [ceo-ux](ceo-ux/) | O app está bom de usar? O que propor? Como fica a animação no iOS e no Android? | 21 guias, 8 CSVs (heurísticas, anti-padrões, componentes, 43 apps de referência, fontes de mercado, libs de UI, 45 padrões de motion, 34 checks por tipo de tela), 5 scripts |
 | [ceo-deps](ceo-deps/) | As dependências estão seguras, compatíveis e mantidas? | 14 guias, 105 checks com fonte em 12 ecossistemas, 31 licenças, incidentes reais, 6 scripts |
-| [ceo-cortex](ceo-cortex/) | O código está certo, limpo e sem repetição? | guias por linguagem (Elixir com as Iron Laws do phxagents, RN, TS/Node, Python, Go, Kotlin, Swift, Java, SQL), memória entre sessões, detector de duplicação |
-| [ceo-testes](ceo-testes/) | O app funciona de verdade, com dois usuários, sem rede, depois do background? Onde está o bug do vídeo que o cliente mandou? | 13 guias, 50 bugs reproduzíveis, 66 receitas de comando, 26 tours, 5 scripts, 7 flows Maestro |
-| [ceo-bugs](ceo-bugs/) | Onde o app quebra ou fica feio antes do cliente ver? | 6 guias + pesquisa com fonte, 16 charters, scanner de "feio" (moeda, plural, inglês, erro técnico), aprendizados por rodada em `.ceo/aprendizados.md` do seu repo |
-| [ceo-helper](ceo-helper/) | O usuário novo sabe o que fazer sem incomodar quem já usa? Como implementar empty state, checklist e dica com destaque? | 8 guias, 28 padrões e antipadrões com fonte, 7 libs RN avaliadas, 2 templates |
+| [ceo-code-review](ceo-code-review/) | O código está certo, limpo e sem repetição? | guias por linguagem (Elixir com as Iron Laws do phxagents, RN, TS/Node, Python, Go, Kotlin, Swift, Java, SQL), memória entre sessões, detector de duplicação |
+| [ceo-mobile-qa](ceo-mobile-qa/) | O app funciona de verdade, com dois usuários, sem rede, depois do background? Onde está o bug do vídeo que o cliente mandou? | 13 guias, 50 bugs reproduzíveis, 66 receitas de comando, 26 tours, 5 scripts, 7 flows Maestro |
+| [ceo-bug-bash](ceo-bug-bash/) | Onde o app quebra ou fica feio antes do cliente ver? | 6 guias + pesquisa com fonte, 16 charters, scanner de "feio" (moeda, plural, inglês, erro técnico), aprendizados por rodada em `.ceo/aprendizados.md` do seu repo |
+| [ceo-onboarding](ceo-onboarding/) | O usuário novo sabe o que fazer sem incomodar quem já usa? Como implementar empty state, checklist e dica com destaque? | 8 guias, 28 padrões e antipadrões com fonte, 7 libs RN avaliadas, 2 templates |
 
-## ceo-analytics
+## ceo-ux
 
 Designer de produto sênior em forma de agente. Recebe um app (código, app rodando ou design no Pencil/Figma) e entrega:
 
@@ -44,11 +44,11 @@ Dono técnico das dependências de um app inteiro, em um ou vários repos (ex.: 
 - **Duplicadas e sem uso, licenças (SaaS e lojas), acoplamento, serviços externos e ciclo de vida.**
 - **Manter:** aplica o que é seguro em branch e verifica em degraus, com o build nativo na nuvem (EAS) e no CI quando a máquina não aguenta.
 
-## ceo-cortex
+## ceo-code-review
 
-Revisão e escrita de código no nível de engenheiro sênior, com memória entre sessões (`cortex`), detector de duplicação e mapa de símbolos. Guias de armadilhas por linguagem. Antes se chamava code-cortex.
+Revisão e escrita de código no nível de engenheiro sênior, com memória entre sessões (`cortex`), detector de duplicação e mapa de símbolos. Guias de armadilhas por linguagem. Antes se chamava ceo-cortex (e, antes, code-cortex).
 
-## ceo-testes
+## ceo-mobile-qa
 
 QA de app mobile (iOS primeiro) que acha e prova bug:
 
@@ -59,7 +59,7 @@ QA de app mobile (iOS primeiro) que acha e prova bug:
 - **Limpeza:** tudo que a sessão cria tem prefixo `ceo-` e é apagado no fim (`sim_session.py cleanup`).
 - **Servidor:** testes ExUnit de canal com dois clientes, corridas, jobs e propriedades antes de abrir simulador.
 
-## ceo-helper
+## ceo-onboarding
 
 Ajuda de primeira vez (onboarding dentro do app) para app mobile Expo/React Native:
 
@@ -76,7 +76,7 @@ Ajuda de primeira vez (onboarding dentro do app) para app mobile Expo/React Nati
 
 ```bash
 npx skills add jeanamaralsilva/skills                         # escolhe skills e agentes no menu
-npx skills add jeanamaralsilva/skills --skill ceo-analytics   # só uma
+npx skills add jeanamaralsilva/skills --skill ceo-ux   # só uma
 npx skills add jeanamaralsilva/skills --all -g                # todas, em todos os agentes, para o usuário
 npx skills add jeanamaralsilva/skills --list                  # só listar
 npx skills update                                             # atualizar depois
@@ -85,23 +85,40 @@ npx skills update                                             # atualizar depois
 **Claude Code como plugin** (um passo, Claude Code 2.1.275+; atualiza junto com o marketplace):
 
 ```
-/plugin install ceo-analytics --marketplace jeanamaralsilva/skills
+/plugin install ceo-ux --marketplace jeanamaralsilva/skills
 /plugin install ceo-deps --marketplace jeanamaralsilva/skills
-/plugin install ceo-cortex --marketplace jeanamaralsilva/skills
-/plugin install ceo-testes --marketplace jeanamaralsilva/skills
-/plugin install ceo-bugs --marketplace jeanamaralsilva/skills
-/plugin install ceo-helper --marketplace jeanamaralsilva/skills
+/plugin install ceo-code-review --marketplace jeanamaralsilva/skills
+/plugin install ceo-mobile-qa --marketplace jeanamaralsilva/skills
+/plugin install ceo-bug-bash --marketplace jeanamaralsilva/skills
+/plugin install ceo-onboarding --marketplace jeanamaralsilva/skills
 ```
 
-Em versões anteriores: `/plugin marketplace add jeanamaralsilva/skills` e depois `/plugin install ceo-analytics@ceo-skills`.
+Em versões anteriores: `/plugin marketplace add jeanamaralsilva/skills` e depois `/plugin install ceo-ux@ceo-skills`.
 
 **Manual:** copie a pasta da skill para `~/.claude/skills/` (ou `ln -s <este repo>/<skill> ~/.claude/skills/<skill>`).
 
-`ceo-bugs` usa a receita de simulador da `ceo-testes`; instale as duas juntas.
+`ceo-bug-bash` usa a receita de simulador da `ceo-mobile-qa`; instale as duas juntas.
+
+### Veio da versão 1 (nomes antigos)?
+
+| Antes | Agora |
+|---|---|
+| `ceo-analytics` | `ceo-ux` |
+| `ceo-testes` | `ceo-mobile-qa` |
+| `ceo-helper` | `ceo-onboarding` |
+| `ceo-bugs` | `ceo-bug-bash` |
+| `ceo-cortex` | `ceo-code-review` |
+
+```bash
+npx skills remove ceo-analytics ceo-testes ceo-helper ceo-bugs ceo-cortex
+npx skills add jeanamaralsilva/skills
+```
+
+No plugin do Claude Code: `/plugin uninstall <nome-antigo>@ceo-skills` e instale o nome novo. O `.ceo/config.md` do seu projeto continua igual.
 
 ### Configurar no seu projeto
 
-Copie `ceo-testes/assets/ceo-config.example.md` para `.ceo/config.md` na raiz do seu repo e preencha o que souber (repos, o que é só leitura, limites da máquina, papéis de teste). Credenciais vão por variável de ambiente, nunca no arquivo.
+Copie `ceo-mobile-qa/assets/ceo-config.example.md` para `.ceo/config.md` na raiz do seu repo e preencha o que souber (repos, o que é só leitura, limites da máquina, papéis de teste). Credenciais vão por variável de ambiente, nunca no arquivo.
 
 ### Requisitos
 

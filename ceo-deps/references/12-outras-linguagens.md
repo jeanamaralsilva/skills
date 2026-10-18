@@ -23,4 +23,4 @@ Avisos:
 - **CocoaPods:** trunk read-only a partir de 2026-12-02. App com pods novos precisa planejar SPM.
 - **.NET 10:** o comando é `dotnet package list`; no 9 ou anterior, `dotnet list package`.
 
-Para revisão de código nessas linguagens (não de dependências), a `ceo-cortex` tem guias por linguagem.
+Para revisão de código nessas linguagens (não de dependências), a `ceo-code-review` tem guias por linguagem.

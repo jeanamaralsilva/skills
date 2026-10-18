@@ -38,4 +38,4 @@ Formato: uma linha com a decisão, o custo e a sua recomendação.
 - **Sem `--force`, sem `--legacy-peer-deps` como solução.**
 - **Verifique antes de dizer pronto** (`references/10-verificacao-sem-build-local.md`). Se o degrau de build não pôde rodar, o relatório diz "não verificado em build".
 - **PR:** pela skill de PR da config (`fluxo.pr_skill`), se houver; senão `gh pr create` com os checks do CI passando e a evidência no corpo.
-- **Revisão do código tocado:** se mexeu em código (API nova de lib), passe por `ceo-cortex`.
+- **Revisão do código tocado:** se mexeu em código (API nova de lib), passe por `ceo-code-review`.
