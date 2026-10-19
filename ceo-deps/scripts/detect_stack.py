@@ -72,7 +72,7 @@ def read_json(path: str) -> dict:
 
 def js_details(root: str, manifest: str) -> dict:
     data = read_json(os.path.join(root, manifest))
-    deps = {**data.get("dependencies", {}), **data.get("devDependencies", {})}
+    deps = {**(data.get("dependencies") or {}), **(data.get("devDependencies") or {})}  # null counts as empty
     return {
         "manifest": manifest,
         "expo": deps.get("expo"),
@@ -83,8 +83,8 @@ def js_details(root: str, manifest: str) -> dict:
         "packageManager": data.get("packageManager"),
         "overrides": sorted({**data.get("overrides", {}), **data.get("resolutions", {})}),
         "git_deps": sorted(name for name, spec in deps.items() if isinstance(spec, str) and GIT_SPEC.match(spec) and not spec[:1].isdigit()),
-        "dependency_count": len(data.get("dependencies", {})),
-        "dev_dependency_count": len(data.get("devDependencies", {})),
+        "dependency_count": len(data.get("dependencies") or {}),
+        "dev_dependency_count": len(data.get("devDependencies") or {}),
     }
 
 

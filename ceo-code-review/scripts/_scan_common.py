@@ -36,7 +36,8 @@ def iter_files(root: Path, exts: set[str], ignores: set[str]):
             yield root
         return
     for path in sorted(root.rglob("*")):
-        if path.is_dir() or any(part in ignores for part in path.parts):
+        # only the part below root: a repo cloned inside ~/build/ must still be scanned
+        if path.is_dir() or any(part in ignores for part in path.relative_to(root).parts):
             continue
         if path.suffix in exts:
             yield path
@@ -68,6 +69,15 @@ def resolve_filters(ext_arg: str | None, ignore_arg: str | None,
     ignores = DEFAULT_IGNORES | (
         {d.strip() for d in ignore_arg.split(",")} if ignore_arg else set())
     return exts, ignores
+
+
+def exit_code(prog: str, root: Path, files_scanned: int) -> int:
+    """0 normally; 2 with a stderr note when nothing was scanned, so an empty scan never reads as clean."""
+    if files_scanned:
+        return 0
+    print(f"{prog}: 0 files scanned under {root} (check the path, --ext and --ignore); "
+          "nothing was analyzed, this is not a clean result", file=sys.stderr)
+    return 2
 
 
 def run_cli(main_func: Callable[[], int]) -> None:

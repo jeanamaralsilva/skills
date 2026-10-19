@@ -36,3 +36,52 @@ def test_cortex_remember_and_search_roundtrip(tmp_path):
     found = run("cortex.py", "--db", db, "--json", "search", "Req client")
     assert found.returncode == 0, found.stderr
     assert "lib/app/http.ex" in found.stdout
+
+
+def test_scanners_ignore_dirs_only_below_the_scanned_root(tmp_path):
+    repo = tmp_path / "build" / "app"  # repo cloned inside ~/build/
+    (repo / "dist").mkdir(parents=True)
+    (repo / "m.py").write_text("def used():\n    return 1\n\ndef caller():\n    return used()\n")
+    (repo / "dist" / "bundle.py").write_text("def generated():\n    return 2\n")
+    result = run("context_map.py", str(repo), "--json")
+    assert result.returncode == 0, result.stderr
+    files = json.loads(result.stdout)["loc_by_file"]
+    assert list(files) == ["m.py"]
+
+
+def test_scanners_exit_2_when_nothing_was_scanned(tmp_path):
+    (tmp_path / "notes.txt").write_text("not code\n")
+    for tool in ("dup_scan.py", "context_map.py"):
+        result = run(tool, str(tmp_path))
+        assert result.returncode == 2, tool
+        assert "0 files scanned" in result.stderr and "not a clean result" in result.stderr
+
+
+def test_cortex_update_refuses_secret_like_remember(tmp_path):
+    db = str(tmp_path / "c.db")
+    created = json.loads(run("cortex.py", "--db", db, "--json", "remember", "Req client lives in http.ex").stdout)
+    leaked = run("cortex.py", "--db", db, "update", created["uid"], "--text", "api_key = sk_live_abcdef123456")
+    assert leaked.returncode == 1 and "secret" in leaked.stderr
+    found = run("cortex.py", "--db", db, "--json", "recall", created["uid"])
+    assert "sk_live" not in found.stdout
+    forced = run("cortex.py", "--db", db, "update", created["uid"], "--text", "api_key = sk_live_abcdef123456", "--force")
+    assert forced.returncode == 0, forced.stderr
+
+
+def test_cortex_default_store_is_per_project(tmp_path):
+    env = {k: v for k, v in os.environ.items() if k not in ("CORTEX_HOME", "CORTEX_DB")}
+    for name in ("a", "b"):
+        (tmp_path / name / "src").mkdir(parents=True)
+        subprocess.run(["git", "init", "-q", str(tmp_path / name)], check=True)
+    def cortex(cwd, *args, extra=None):
+        return subprocess.run([sys.executable, os.path.join(SCRIPTS, "cortex.py"), *args], cwd=cwd,
+                              capture_output=True, text=True, env={**env, **(extra or {})})
+    assert cortex(tmp_path / "a" / "src", "remember", "cliente A usa Stripe").returncode == 0
+    assert (tmp_path / "a" / ".cortex" / "cortex.db").exists()
+    assert (tmp_path / "a" / ".cortex" / ".gitignore").read_text() == "*\n"
+    status = subprocess.run(["git", "status", "--porcelain"], cwd=tmp_path / "a", capture_output=True, text=True).stdout
+    assert ".cortex" not in status
+    assert "Stripe" not in cortex(tmp_path / "b", "--json", "search", "Stripe").stdout
+    shared = {"CORTEX_HOME": str(tmp_path / "shared")}
+    assert cortex(tmp_path / "a", "remember", "global note", extra=shared).returncode == 0
+    assert "global note" in cortex(tmp_path / "b", "--json", "search", "global", extra=shared).stdout

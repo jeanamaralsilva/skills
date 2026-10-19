@@ -172,6 +172,13 @@ def test_map_realtime_matrix_targets_two_actors(tmp_path):
     assert "B41" in q["bugs"] or "B43" in q["bugs"]
 
 
+def test_map_realtime_exit_code_is_the_same_in_text_and_json(tmp_path):
+    (tmp_path / "m").mkdir()
+    (tmp_path / "s").mkdir()
+    codes = {flag: map_realtime.main([str(tmp_path / "m"), str(tmp_path / "s"), *flag]) for flag in ((), ("--json",))}
+    assert codes[()] == codes[("--json",)] == 1
+
+
 # ---------- sim_session (fake xcrun) ----------
 
 @pytest.fixture
@@ -228,6 +235,37 @@ def test_sim_session_creates_prefixed_devices_and_cleans_only_its_own(fake_xcrun
     assert (tmp_path / "runs" / "keep" / "bug-00-12.mov").exists() and (tmp_path / "runs" / "patches" / "fix.diff").exists()
 
 
+def test_sim_session_cleanup_keeps_what_was_already_in_artifacts(fake_xcrun, tmp_path):
+    runs = tmp_path / "runs"
+    runs.mkdir()
+    (runs / "projeto.txt").write_text("do projeto")  # the project's own runs/ before the session
+    session = sim_session.Session(prefix="ceo-", artifacts=str(runs))
+    session.create("a", device_type="iPhone 17", runtime="iOS 26.0", boot=False)
+    (runs / "clip.mov").write_bytes(b"0")
+    removed = session.cleanup()
+    assert [os.path.basename(p) for p in removed["artifacts"]] == ["clip.mov"]
+    assert (runs / "projeto.txt").exists()
+    # without the marker written by create, cleanup touches no file
+    (runs / "outro.mov").write_bytes(b"0")
+    assert session.cleanup()["artifacts"] == [] and (runs / "outro.mov").exists()
+
+
+def test_sim_session_refuses_dangerous_artifacts_folder(fake_xcrun, tmp_path, monkeypatch):
+    repo = tmp_path / "repo"
+    (repo / "src").mkdir(parents=True)
+    subprocess.run(["git", "init", "-q", str(repo)], check=True)
+    (repo / "src" / "app.ts").write_text("x")
+    monkeypatch.chdir(repo / "src")
+    for bad in [".", "..", str(repo)]:  # inside tmp_path: a regression here can only wipe the fixture
+        with pytest.raises(ValueError):
+            sim_session.Session(artifacts=bad).cleanup()
+        assert sim_session.main(["cleanup", "--artifacts", bad]) == 2
+    assert (repo / "src" / "app.ts").exists()
+    for bad in ["/", os.path.expanduser("~")]:  # only the check, never a real cleanup of these
+        with pytest.raises(ValueError):
+            sim_session.check_artifacts(bad)
+
+
 def test_sim_session_refuses_more_than_max(fake_xcrun, tmp_path):
     session = sim_session.Session(prefix="ceo-", artifacts=str(tmp_path / "r"), max_devices=1)
     session.create("a", device_type="iPhone 17", runtime="iOS 26.0")
@@ -272,6 +310,23 @@ def test_video_frames_extracts_scene_changes(tmp_path):
     assert result["scene_times"][0] == pytest.approx(2.0, abs=0.2)
 
 
+@pytest.mark.skipif(subprocess.run(["which", "ffmpeg"], capture_output=True).returncode != 0, reason="no ffmpeg")
+def test_video_frames_drops_frames_of_a_previous_run(tmp_path):
+    import video_frames
+    out = tmp_path / "out"
+    out.mkdir()
+    for n in range(1, 6):
+        (out / f"sc_{n:03d}.png").write_bytes(b"old")  # previous run, more scenes than this video
+    (out / "notes.txt").write_text("keep")
+    video = tmp_path / "v.mp4"
+    subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "lavfi", "-i", "color=red:s=64x64:d=2", "-f", "lavfi", "-i",
+                    "color=blue:s=64x64:d=2", "-filter_complex", "[0][1]concat=n=2:v=1", "-pix_fmt", "yuv420p", str(video)], check=True)
+    result = video_frames.extract(str(video), str(out), threshold=0.3)
+    assert len(result["scene_frames"]) == len(result["scene_times"]) < 5
+    assert all(open(f, "rb").read() != b"old" for f in result["scene_frames"])
+    assert (out / "notes.txt").exists()
+
+
 # ---------- phx_actor (node, fake ws server) ----------
 
 @pytest.mark.skipif(subprocess.run(["which", "node"], capture_output=True).returncode != 0, reason="no node")
@@ -284,6 +339,16 @@ def test_phx_actor_joins_pushes_and_records_events(tmp_path):
     assert log["pushed"][0]["event"] == "send_answer" and log["pushed"][0]["status"] == "ok"
     assert any(e["event"] == "question_created" for e in log["received"])
     assert log["script_steps_ok"] >= 2
+
+
+@pytest.mark.skipif(subprocess.run(["which", "node"], capture_output=True).returncode != 0, reason="no node")
+def test_phx_actor_one_event_does_not_satisfy_two_waits():
+    script = json.dumps([{"wait": "question_created", "timeout": 2000}, {"wait": "question_created", "timeout": 1000}])
+    out = subprocess.run(["node", os.path.join(SCRIPTS, "tests", "fake_phoenix.mjs"), os.path.join(SCRIPTS, "phx_actor.mjs"), script],
+                         capture_output=True, text=True, timeout=60)
+    log = json.loads(out.stdout.strip().splitlines()[-1])
+    assert out.returncode == 1, log
+    assert log["script_steps_ok"] == 1 and "timeout waiting question_created" in log["errors"][0]
 
 
 # ---------- search / lint / packaging ----------

@@ -21,7 +21,9 @@ Quick start:
     cortex stats
 
 Storage location (first match wins):
-    --db PATH  >  $CORTEX_DB  >  $CORTEX_HOME/cortex.db  >  ~/.cortex/cortex.db
+    --db PATH  >  $CORTEX_DB  >  $CORTEX_HOME/cortex.db  >  <git root of cwd>/.cortex/cortex.db
+    (no git repo: <cwd>/.cortex/cortex.db). The default is per project so one repo's
+    memories never surface in another; a shared store only with an explicit CORTEX_HOME.
 Add `--json` to any command for machine-readable output (for agent pipelines).
 """
 
@@ -114,6 +116,16 @@ class CortexError(Exception):
     """User-facing error: print the message, exit non-zero, no traceback."""
 
 
+def _refuse_secret(text: str, force: bool) -> None:
+    leaked = _find_secret(text)
+    if leaked and not force:
+        raise CortexError(
+            f"text looks like it contains a secret ({leaked}). cortex is read "
+            "back verbatim by agents - do not store credentials. Re-run with "
+            "--force only if you are certain it is safe."
+        )
+
+
 # --- Storage -----------------------------------------------------------------
 def resolve_db_path(explicit: Optional[str]) -> Path:
     if explicit:
@@ -122,11 +134,30 @@ def resolve_db_path(explicit: Optional[str]) -> Path:
         return Path(os.environ["CORTEX_DB"]).expanduser()
     if os.environ.get("CORTEX_HOME"):
         return Path(os.environ["CORTEX_HOME"]).expanduser() / "cortex.db"
-    return Path.home() / ".cortex" / "cortex.db"
+    return _project_root() / ".cortex" / "cortex.db"
+
+
+def _project_root() -> Path:
+    """Git root of the cwd, or the cwd itself outside a repo."""
+    cwd = Path.cwd()
+    for folder in (cwd, *cwd.parents):
+        if (folder / ".git").exists():
+            return folder
+    return cwd
 
 
 def connect(db_path: Path) -> sqlite3.Connection:
+    is_new = not db_path.exists()
     db_path.parent.mkdir(parents=True, exist_ok=True)
+    if db_path.parent.name == ".cortex":
+        # Memories are project notes, never something to commit by accident.
+        ignore = db_path.parent / ".gitignore"
+        if not ignore.exists():
+            ignore.write_text("*\n", encoding="utf-8")
+    legacy = Path("~/.cortex/cortex.db").expanduser()
+    if is_new and legacy.exists() and db_path != legacy:
+        print(f"cortex: new per-project store at {db_path}; your old global memories are in {legacy} "
+              "(use CORTEX_HOME=~/.cortex to keep using them)", file=sys.stderr)
     conn = sqlite3.connect(str(db_path))
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
@@ -233,13 +264,7 @@ def cmd_remember(conn: sqlite3.Connection, args: argparse.Namespace) -> dict[str
     if args.kind not in KINDS:
         raise CortexError(f"unknown --kind '{args.kind}'. valid: {', '.join(KINDS)}")
 
-    leaked = _find_secret(text)
-    if leaked and not args.force:
-        raise CortexError(
-            f"text looks like it contains a secret ({leaked}). cortex is read "
-            "back verbatim by agents - do not store credentials. Re-run with "
-            "--force only if you are certain it is safe."
-        )
+    _refuse_secret(text, args.force)
 
     if not 0.0 <= args.confidence <= 1.0:
         raise CortexError("--confidence must be between 0.0 and 1.0")
@@ -373,6 +398,7 @@ def cmd_update(conn: sqlite3.Connection, args: argparse.Namespace) -> dict[str, 
     sets: list[str] = []
     params: list[Any] = []
     if args.text is not None:
+        _refuse_secret(args.text, args.force)
         sets.append("text = ?")
         params.append(args.text.strip())
     if args.confidence is not None:
@@ -486,7 +512,8 @@ def render(result: Any, command: str) -> str:
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="cortex", description="Terminal memory network for coding agents.")
-    p.add_argument("--db", help="path to the SQLite store (overrides env vars)")
+    p.add_argument("--db", help="path to the SQLite store (overrides env vars; default "
+                   "<git root>/.cortex/cortex.db, shared only via $CORTEX_HOME)")
     p.add_argument("--json", action="store_true",
                    help="emit JSON instead of human-readable text")
     sub = p.add_subparsers(dest="command", required=True)
@@ -544,6 +571,8 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--confidence", type=float)
     s.add_argument("--source")
     s.add_argument("--add-tags", dest="add_tags")
+    s.add_argument("--force", action="store_true",
+                   help="store even if the new text looks like a secret")
     s.set_defaults(func=cmd_update)
 
     s = sub.add_parser("forget", help="soft-delete (or --hard delete) a memory")

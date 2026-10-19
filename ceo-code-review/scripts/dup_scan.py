@@ -27,7 +27,7 @@ import re
 from pathlib import Path
 from typing import Any, Optional
 
-from _scan_common import (DEFAULT_CODE_EXTS, add_common_filter_args, iter_files,
+from _scan_common import (DEFAULT_CODE_EXTS, add_common_filter_args, exit_code, iter_files,
                           resolve_filters, resolve_root, run_cli)
 
 # Duplication is worth catching in shell and SQL too, not just app languages.
@@ -163,7 +163,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     exts, ignores = resolve_filters(args.ext, args.ignore, DUP_EXTS)
     report = scan(root, exts, ignores, max(2, args.min_lines), args.min_chars)
     print(json.dumps(report, indent=2, ensure_ascii=False) if args.json else render(report))
-    return 0
+    return exit_code("dup_scan", root, report["files_scanned"])
 
 
 if __name__ == "__main__":

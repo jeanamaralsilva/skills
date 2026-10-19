@@ -4,7 +4,7 @@ Três tipos de "a mais", com custos diferentes:
 
 | Tipo | Exemplo | Custo |
 |---|---|---|
-| **Mesma lib, duas versões** | `@expo/ui` 57.0.4 e 57.0.18 | build nativo quebra ou se comporta errado; bundle maior |
+| **Mesma lib, duas versões** | ex.: `@expo/ui` em duas versões de patch do mesmo SDK | build nativo quebra ou se comporta errado; bundle maior |
 | **Duas libs para a mesma função** | axios + fetch; moment + dayjs; flash-list + legend-list | dois jeitos de fazer a mesma coisa, bugs diferentes, bundle maior |
 | **Lib declarada e não usada** | dependência que ninguém importa | superfície de ataque e update sem motivo |
 
@@ -39,4 +39,4 @@ Antes de remover, confirme:
 - Elixir: busque o módulo e o nome do app (`grep -rn "Timex\|:timex"`); `mix deps.unlock --check-unused` só olha o lock, não o uso.
 - Busque também em config, scripts do package.json e CI.
 
-Caso real (app Expo + server Phoenix, out/2026): mobile com `@legendapp/list` e `@legendapp/state` sem import (e `@shopify/flash-list` em 11 telas, provável troca de lista que ficou pela metade); server com `timex` e `waffle_ecto` sem referência.
+Padrão comum: duas libs de lista ou de estado instaladas e só uma importada (troca que ficou pela metade); no servidor, lib de data ou de upload sem nenhuma referência.

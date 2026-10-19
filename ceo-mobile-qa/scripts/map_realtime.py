@@ -120,10 +120,11 @@ def main(argv: list[str]) -> int:
     args = parser.parse_args(argv)
     result = scan(args.mobile, args.server)
     rows = matrix(result)
+    found = result["topics"] or result["mobile_listeners"]  # same exit code in text and --json
     if args.json:
         print(json.dumps({**result, "matrix": rows}, ensure_ascii=False, indent=2))
-        return 0
-    if not result["topics"] and not result["mobile_listeners"]:
+        return 0 if found else 1
+    if not found:
         print("nenhum canal Phoenix encontrado (procurei `channel \"...\"` no server e `.on(`/`.push(` no mobile)")
         return 1
     print("tópicos do server:", ", ".join(f"{t} ({m})" for t, m in ((t, w[0]) for t, w in result["topics"].items())) or "-")

@@ -159,9 +159,12 @@ def scan(root: str, spread: int, context: str) -> dict:
     result = {"project": os.path.abspath(root), "ecosystems": [], "coupling": [], "duplicates": [], "unused": [], "licenses": {}}
     package = os.path.join(root, "package.json")
     if os.path.isfile(package):
-        data = json.load(open(package, encoding="utf-8"))
-        runtime = list(data.get("dependencies", {}))
-        dev = list(data.get("devDependencies", {}))
+        try:
+            data = json.load(open(package, encoding="utf-8"))
+        except ValueError as error:
+            raise ValueError(f"{package} não é JSON válido: {error}") from None
+        runtime = list(data.get("dependencies") or {})  # "dependencies": null is an empty list, not a crash
+        dev = list(data.get("devDependencies") or {})
         usage = js_usage(root, runtime + dev)
         config_text = "".join(open(os.path.join(root, c), encoding="utf-8", errors="ignore").read() for c in APP_CONFIGS if os.path.isfile(os.path.join(root, c)))
         for dep in usage:
@@ -225,7 +228,11 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--spread", type=int, default=10, help="files touching a lib before it counts as spread coupling")
     parser.add_argument("--context", choices=("saas", "mobile"), default="mobile")
     args = parser.parse_args(argv)
-    result = scan(args.project, args.spread, args.context)
+    try:
+        result = scan(args.project, args.spread, args.context)
+    except ValueError as error:
+        print(f"erro: {error}", file=sys.stderr)
+        return 2
     print(json.dumps(result, indent=2, ensure_ascii=False) if args.json else render(result, args.context))
     if not result["ecosystems"]:
         return 2

@@ -39,6 +39,9 @@ def commands(video: str, out: str, threshold: float = 0.3, fps: float = 1.0) -> 
 
 def extract(video: str, out: str, threshold: float = 0.3, fps: float = 1.0) -> dict:
     os.makedirs(out, exist_ok=True)
+    for stale in os.listdir(out):  # frames of a previous run in the same --out would mix into this one
+        if stale.startswith("sc_") and stale.endswith(".png"):
+            os.remove(os.path.join(out, stale))
     scene_cmd, sheet_cmd = commands(video, out, threshold, fps)
     scene_run = subprocess.run(scene_cmd, capture_output=True, text=True)
     if scene_run.returncode != 0:

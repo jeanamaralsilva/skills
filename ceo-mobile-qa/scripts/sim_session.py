@@ -9,7 +9,9 @@ Usage:
 
 Every device the session creates is named `<prefix><role>` (default prefix `ceo-`), so cleanup
 only ever touches devices with that prefix: the developer's own simulators survive. Cleanup also
-empties the artifacts folder except `patches/` and `keep/` (what the report needs). The cap
+removes what the session added to the artifacts folder (`create` writes a `.ceo-session.json` marker listing
+what was already there; without the marker nothing is removed), except `patches/` and `keep/` (what the
+report needs). An artifacts folder that is `.`, `/`, the home, a git repo root or an ancestor of the cwd is refused. The cap
 (`--max`, default 2) exists because each booted simulator costs roughly 3-4 GB of RAM; on a 16 GB
 machine the plan is one simulator plus `phx_actor.mjs` for the second role, never two simulators
 by default (`plan --max 2` asks for two explicitly; with 32 GB or more the plan default is two). Set CEO_XCRUN to point at a fake xcrun in tests.
@@ -25,6 +27,7 @@ XCRUN = os.environ.get("CEO_XCRUN", "xcrun")
 PREFIX = "ceo-"
 KEEP_DIRS = {"patches", "keep"}  # runs/patches (diffs) and runs/keep (clips cited in the report) are never deleted
 RAM_PER_SIM_GB = 4
+MARKER = ".ceo-session.json"  # written by create: what the artifacts folder held before the session
 
 
 class TooManySimulators(RuntimeError):
@@ -59,6 +62,24 @@ def resolve(kind: str, wanted: str) -> str:
     raise RuntimeError(f"{kind}: '{wanted}' não encontrado; veja `xcrun simctl list {kind}`")
 
 
+def git_root(path: str):
+    result = subprocess.run(["git", "-C", path, "rev-parse", "--show-toplevel"], capture_output=True, text=True)
+    return os.path.realpath(result.stdout.strip()) if result.returncode == 0 else None
+
+
+def check_artifacts(path: str) -> str:
+    """Real path of the artifacts folder, or ValueError if cleaning it could wipe the project or the home."""
+    real = os.path.realpath(path)
+    cwd = os.path.realpath(os.getcwd())
+    existing = real
+    while not os.path.isdir(existing):
+        existing = os.path.dirname(existing)
+    forbidden = {"/", os.path.realpath(os.path.expanduser("~")), git_root(cwd), git_root(existing)}
+    if real in forbidden or cwd == real or cwd.startswith(real.rstrip(os.sep) + os.sep):
+        raise ValueError(f"--artifacts {path} recusado: é a raiz, a home, a raiz do repo ou contém o diretório atual; use uma subpasta como runs/")
+    return real
+
+
 class Session:
     def __init__(self, prefix: str = PREFIX, artifacts: str = "runs", max_devices: int = 2):
         self.prefix = prefix
@@ -69,28 +90,38 @@ class Session:
         return [d for d in list_devices() if d["name"].startswith(self.prefix)]
 
     def create(self, role: str, device_type: str = "iPhone 17", runtime: str = "iOS 26", boot: bool = True) -> str:
+        check_artifacts(self.artifacts)  # refuse before creating anything
         if len(self.mine()) >= self.max_devices:
             raise TooManySimulators(f"já existem {self.max_devices} simuladores {self.prefix}*; use phx_actor.mjs para o outro papel ou suba --max")
         udid = simctl("create", f"{self.prefix}{role}", resolve("devicetypes", device_type), resolve("runtimes", runtime))
         if boot:
             simctl("boot", udid)
         os.makedirs(self.artifacts, exist_ok=True)
+        marker = os.path.join(self.artifacts, MARKER)
+        if not os.path.exists(marker):  # first create of the session: remember what was already there
+            with open(marker, "w") as f:
+                json.dump({"preexisting": sorted(os.listdir(self.artifacts))}, f)
         return udid
 
     def cleanup(self) -> dict:
         removed = {"devices": [], "artifacts": []}
+        check_artifacts(self.artifacts)
         for device in self.mine():
             if device["state"] == "Booted":
                 simctl("shutdown", device["udid"])
             simctl("delete", device["udid"])
             removed["devices"].append(device["udid"])
-        if os.path.isdir(self.artifacts):
+        marker = os.path.join(self.artifacts, MARKER)
+        if os.path.isfile(marker):  # no marker: the folder is not ours, nothing in it is removed
+            with open(marker) as f:
+                preexisting = set(json.load(f).get("preexisting", []))
             for name in sorted(os.listdir(self.artifacts)):
-                if name in KEEP_DIRS:
-                    continue  # patches and the clips the report cites survive the cleanup
+                if name in KEEP_DIRS or name in preexisting or name == MARKER:
+                    continue  # patches, the clips the report cites and what was there before survive the cleanup
                 path = os.path.join(self.artifacts, name)
                 removed["artifacts"].append(path)
                 shutil.rmtree(path) if os.path.isdir(path) else os.remove(path)
+            os.remove(marker)
         return removed
 
 
@@ -134,6 +165,12 @@ def main(argv: list[str]) -> int:
     k = sub.add_parser("cleanup")
     k.add_argument("--artifacts", default="runs")
     args = parser.parse_args(argv)
+    if getattr(args, "artifacts", None) is not None:
+        try:
+            check_artifacts(args.artifacts)
+        except ValueError as error:
+            print(error, file=sys.stderr)
+            return 2
     if args.cmd == "plan":
         print(plan([r.strip() for r in args.roles.split(",") if r.strip()], args.ram_gb, args.max))
     elif args.cmd == "create":

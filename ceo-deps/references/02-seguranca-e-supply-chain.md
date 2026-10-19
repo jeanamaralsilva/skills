@@ -31,14 +31,14 @@ Lê `mix.lock`, `bun.lock`, `package-lock.json` e `pnpm-lock.yaml` (ignorando lo
 
 Fontes: `https://osv.dev/list?ecosystem=Hex&q=<pacote>` (ou `ecosystem=npm`), `https://github.com/advisories?query=ecosystem%3Aerlang+<pacote>` e a página de advisories do pacote no hex.pm. Para cada CVE, anote a versão corrigida e se cabe no requisito atual do `mix.exs`/`package.json` (update seguro) ou exige major (decisão).
 
-Numa auditoria de teste de um app Phoenix (out/2026), essa checagem apontou CVEs em bandit 1.10.3, plug 1.19.1, phoenix 1.8.5, mint 1.7.1, postgrex 0.22.0, guardian 2.4.0, oban_web 2.12.3 e req 0.5.17, quase todas corrigidas dentro dos requisitos atuais (lista não reconferida item a item: confirme cada advisory antes de agir). Uma auditoria que só tentou `mix hex.audit` e parou deixou tudo isso de fora.
+Num servidor Phoenix típico, essa checagem costuma achar advisories em várias libs da lista acima ao mesmo tempo, quase sempre corrigidos dentro dos requisitos atuais do `mix.exs` (basta `mix deps.update`). Uma auditoria que só tenta `mix hex.audit` e para deixa tudo isso de fora: `hex.audit` só olha pacotes retirados, não CVEs.
 
 Regras:
 - **Não use `npm audit fix --force`.** A própria doc avisa que pode instalar major. Corrija com upgrade dirigido e verificação.
 - **Vulnerabilidade em devDependency** pesa menos que em produção, mas ferramenta de build comprometida também é porta de entrada. Marque P2, não ignore.
 - **Alcançabilidade:** prefira ferramenta que diz se o código chama a função vulnerável (govulncheck no Go). Sem isso, diga "presente no lock, alcançabilidade não verificada".
 
-Caso real: `req` abaixo de 0.6.1 tem CVE-2026-49755 (extração de arquivo compactado sem limite, High) e CVE-2026-49756 (CRLF em multipart). O assent usa Req quando ele está presente, então o risco chega também pelo OAuth. `data/incidents.csv` IC06.
+Exemplo de advisory público: `req` abaixo de 0.6.1 tem CVE-2026-49755 (extração de arquivo compactado sem limite, High) e CVE-2026-49756 (CRLF em multipart). O assent usa Req quando ele está presente, então o risco chega também pelo OAuth. `data/incidents.csv` IC06.
 
 ## Pacote malicioso: o que prevenir
 

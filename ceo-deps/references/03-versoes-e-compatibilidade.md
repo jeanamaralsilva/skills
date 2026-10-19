@@ -29,7 +29,7 @@ O `expo_check.py` roda sem instalar nada. Sem `node_modules`, baixe o arquivo do
 | `StoreCompatibilityCheck` | targetSdkVersion abaixo do mínimo da Play | subir pelo `expo-build-properties` |
 | `VectorIconsCheck` / `ExpoRouterReactNavigationCheck` | dois sets de ícones; react-navigation direto junto do expo-router | ficar com um |
 
-Caso real (expo 57.0.4): `@expo/ui` 57.0.4 na raiz e 57.0.18 dentro de `expo-widgets`, regressão Hermes, flash-list 2.3.2 contra 2.0.2 exigido e 25 patches atrás. A causa da duplicata estava no `package.json`: `expo-widgets` fixo em 57.0.19 pedia o próprio `@expo/ui` 57.0.18. Subir `@expo/ui` e `expo-widgets` juntos para o patch atual do SDK deixou uma cópia só. Havia também um `package-lock.json` local, ignorado pelo git, com versões diferentes do `bun.lock`: não era a causa, mas é armadilha para quem rodar `npm i`.
+Padrão comum: uma lib do SDK aparece em duas versões (uma na raiz, outra dentro de outro pacote do SDK fixado numa versão exata no `package.json`), junto com lib de lista fora da versão exigida e o `expo` vários patches atrás. A causa costuma estar no próprio `package.json`: um pacote fixo numa versão exata puxa a sua cópia da dependência. Subir os dois juntos para o patch atual do SDK deixa uma cópia só. Confira também se existe um lockfile de outro gerenciador (ex.: `package-lock.json` local, ignorado pelo git, ao lado do `bun.lock`): não causa a duplicata, mas é armadilha para quem rodar `npm i`.
 
 ### Update OTA e runtimeVersion
 

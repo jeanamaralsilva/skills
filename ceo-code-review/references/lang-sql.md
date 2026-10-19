@@ -2,7 +2,7 @@
 
 The errors that bite hardest in SQL are silent: wrong results, data leaks, and
 queries that work on 100 rows and collapse on 100k. Below: the ones to check
-first, with the Supabase/Postgres specifics that matter for a SaaS like FloraCRM.
+first, with the Supabase/Postgres specifics that matter for a typical SaaS.
 
 ## SQL (any database)
 

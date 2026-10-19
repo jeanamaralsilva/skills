@@ -91,8 +91,15 @@ def native_copies(project: str, names: set[str]) -> dict[str, list[tuple[str, st
 
 
 def check(project: str, bundled_path: str | None) -> dict:
-    package = read_json(os.path.join(project, "package.json"))
-    declared = {**package.get("dependencies", {}), **package.get("devDependencies", {})}
+    manifest = os.path.join(project, "package.json")
+    try:  # missing or malformed manifest: nothing to compare, never "ok"
+        with open(manifest, encoding="utf-8") as handle:
+            package = json.load(handle)
+    except OSError:
+        raise ValueError(f"sem package.json em {os.path.abspath(project)}") from None
+    except ValueError as error:
+        raise ValueError(f"{manifest} não é JSON válido: {error}") from None
+    declared = {**(package.get("dependencies") or {}), **(package.get("devDependencies") or {})}
     excluded = set(package.get("expo", {}).get("install", {}).get("exclude", []))
     bundled_path = bundled_path or os.path.join(project, "node_modules", "expo", "bundledNativeModules.json")
     bundled = read_json(bundled_path)
@@ -140,7 +147,11 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--bundled")
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args(argv)
-    result = check(args.project, args.bundled)
+    try:
+        result = check(args.project, args.bundled)
+    except ValueError as error:
+        print(f"erro: {error}", file=sys.stderr)
+        return 2
     print(json.dumps(result, indent=2, ensure_ascii=False) if args.json else render(result))
     if not result["bundled_source"]:
         return 2

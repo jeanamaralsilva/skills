@@ -18,9 +18,9 @@ Conta quantos arquivos de produção (testes fora) importam cada lib de terceiro
 
 Regra (phxagents Iron Law 20, vale para qualquer stack): **encapsule a API de lib de terceiro num módulo seu.** Padrões: Adapter, Repository, Anti-corruption layer. O ACL custa uma camada a mais e não deve ter regra de negócio.
 
-Exemplos reais (app Expo + server Phoenix, out/2026):
-- mobile: `@lodev09/react-native-true-sheet` direto em 42 arquivos; `sonner-native` em 29. Um wrapper `Sheet` e um `toast()` próprios reduzem cada troca futura a um arquivo.
-- server: `Guardian` em 6 arquivos e `Req` em 4. Aceitável; vale centralizar o `Req` num cliente com timeout e retry configurados.
+Exemplos de como ler o resultado:
+- mobile: lib de bottom sheet ou de toast importada direto em dezenas de arquivos. Um wrapper `Sheet` e um `toast()` próprios reduzem cada troca futura a um arquivo.
+- server: lib de auth ou cliente HTTP em poucos arquivos é aceitável; vale centralizar o cliente HTTP num módulo com timeout e retry configurados.
 
 ## Elixir: acoplamento de compilação
 

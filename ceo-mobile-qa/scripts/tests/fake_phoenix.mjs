@@ -1,5 +1,5 @@
 // Minimal Phoenix-like WebSocket server (no deps) used to test phx_actor.mjs.
-// Usage: node fake_phoenix.mjs <path to phx_actor.mjs>
+// Usage: node fake_phoenix.mjs <path to phx_actor.mjs> [script JSON]
 // Accepts phx_join on any topic, replies ok to "send_answer", broadcasts "question_created" 300 ms
 // after the join, then runs the actor as a child with a 3-step script and relays its JSON log.
 import http from "node:http";
@@ -63,7 +63,7 @@ server.on("upgrade", (req, socket) => {
 
 server.listen(0, "127.0.0.1", () => {
   const port = server.address().port;
-  const script = JSON.stringify([
+  const script = process.argv[3] || JSON.stringify([
     { push: "send_answer", payload: { text: "4" } },
     { wait: "question_created", timeout: 3000 },
     { repeat: 3, push: "send_answer", payload: { text: "burst" }, interval: 20 },

@@ -230,3 +230,70 @@ def test_detect_stack_flags_gitignored_lock_and_sdk_runtime_policy(tmp_path):
     assert report["lockfiles"] == ["bun.lock"] and report["ignored_lockfiles"] == ["package-lock.json"]
     assert "mais de um gerenciador" not in findings
     assert "está no .gitignore" in findings and "policy sdkVersion" in findings
+
+
+def test_lock_audit_bun_nested_and_scoped_names_come_from_the_value(tmp_path):
+    write(tmp_path, "bun.lock", '''{
+  "lockfileVersion": 1,
+  "packages": {
+    "@babel/core": ["@babel/core@7.26.0", "", {}, "sha512-a"],
+    "@babel/core/semver": ["semver@6.3.0", "", {}, "sha512-b"],
+    "@expo/cli/@expo/config": ["@expo/config@11.0.0", "", {}, "sha512-c"],
+    "semver": ["semver@7.6.3", "", {}, "sha512-d"],
+  }
+}
+''')
+    found = {(p["name"], p["version"]) for p in lock_audit.lock_packages(str(tmp_path))}
+    assert found == {("@babel/core", "7.26.0"), ("semver", "6.3.0"), ("@expo/config", "11.0.0"), ("semver", "7.6.3")}
+
+
+def test_lock_audit_reads_package_lock_v1_recursively(tmp_path):
+    write(tmp_path, "package-lock.json", {"lockfileVersion": 1, "dependencies": {
+        "left-pad": {"version": "1.0.0"},
+        "@scope/a": {"version": "2.0.0", "dependencies": {"left-pad": {"version": "0.9.0"}}}}})
+    found = {(p["name"], p["version"]) for p in lock_audit.lock_packages(str(tmp_path))}
+    assert found == {("left-pad", "1.0.0"), ("@scope/a", "2.0.0"), ("left-pad", "0.9.0")}
+
+
+def test_lock_audit_skip_scope_keeps_private_packages_off_osv(tmp_path, monkeypatch, capsys):
+    write(tmp_path, "bun.lock", '''{
+  "packages": {
+    "@empresa/core": ["@empresa/core@1.2.0", "", {}, "sha512-a"],
+    "@empresa-labs/x": ["@empresa-labs/x@1.0.0", "", {}, "sha512-b"],
+    "axios": ["axios@1.14.1", "", {}, "sha512-c"],
+  }
+}
+''')
+    sent = []
+
+    def fake_query(packages, timeout=30):
+        sent.extend(p["name"] for p in packages)
+        return []
+
+    monkeypatch.setattr(lock_audit, "query_osv", fake_query)
+    emit = tmp_path / "batch.json"
+    assert lock_audit.main([str(tmp_path), "--query", "--skip-scope", "@empresa", "--emit", str(emit)]) == 0
+    assert sorted(sent) == ["@empresa-labs/x", "axios"]
+    assert "@empresa/core" not in emit.read_text()
+    assert "2 para o OSV, 1 pulados" in capsys.readouterr().out
+
+
+def test_expo_check_requires_package_json(tmp_path):
+    write(tmp_path, "bundled.json", BUNDLED)
+    for project in (tmp_path / "nao-existe", tmp_path):
+        out = subprocess.run([sys.executable, os.path.join(SCRIPTS, "expo_check.py"), str(project), "--bundled", str(tmp_path / "bundled.json")],
+                             capture_output=True, text=True)
+        assert out.returncode == 2 and "package.json" in out.stderr and "ok:" not in out.stdout
+
+
+def test_malformed_or_null_dependencies_do_not_crash(tmp_path):
+    bad = tmp_path / "bad"
+    write(bad, "package.json", "{ not json")
+    for tool in ("deps_scan.py", "expo_check.py"):
+        out = subprocess.run([sys.executable, os.path.join(SCRIPTS, tool), str(bad)], capture_output=True, text=True)
+        assert out.returncode == 2 and "Traceback" not in out.stderr and "JSON" in out.stderr, tool
+    null = tmp_path / "null"
+    write(null, "package.json", {"dependencies": None, "devDependencies": None})
+    assert deps_scan.scan(str(null), 10, "mobile")["ecosystems"] == ["javascript"]
+    assert detect_stack.js_details(str(null), "package.json")["dependency_count"] == 0
+    assert expo_check.check(str(null), str(write(null, "b.json", BUNDLED)))["mismatches"] == []

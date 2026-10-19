@@ -11,7 +11,7 @@
     {
       "id": 2,
       "name": "saida-do-expo-doctor-colada",
-      "prompt": "o build do EAS quebrou e o expo-doctor deu isso:\n\n✖ Check that no duplicate native modules are installed\nFound duplicates for @expo/ui:\n  ├─ @expo/ui@57.0.4 (at: node_modules/@expo/ui)\n  └─ @expo/ui@57.0.18 (at: node_modules/expo-widgets/node_modules/@expo/ui)\n✖ Check that packages match versions required by installed Expo SDK\nMinor version mismatches\n  package                      expected  found\n  @shopify/flash-list          2.0.2     2.3.2\n\nresolve pra mim",
+      "prompt": "o build do EAS quebrou e o expo-doctor deu isso:\n\n✖ Check that no duplicate native modules are installed\nFound duplicates for @expo/ui:\n  ├─ @expo/ui@57.0.2 (at: node_modules/@expo/ui)\n  └─ @expo/ui@57.0.11 (at: node_modules/expo-widgets/node_modules/@expo/ui)\n✖ Check that packages match versions required by installed Expo SDK\nMinor version mismatches\n  package                      expected  found\n  @shopify/flash-list          2.0.2     2.3.2\n\nresolve pra mim",
       "expected_output": "Identifica a duplicata nativa de @expo/ui como P1 e acha quem puxa a segunda cópia (npm why / bun pm why) em vez de chutar; corrige alinhando o range no package.json e deduplicando, sem --legacy-peer-deps, sem npm audit fix --force e sem override permanente; para o mismatch usa npx expo install --fix (versão do bundledNativeModules do SDK, não o latest do npm); confere se há mais de um lockfile; aplica em branch e verifica rodando expo-doctor de novo e testes, com build nativo só na nuvem (EAS), sem build nativo local; se não deu para verificar, o relatório diz que não está pronto; relatório curto no tom CEO com evidência [cmd: npx expo-doctor]",
       "files": []
     },

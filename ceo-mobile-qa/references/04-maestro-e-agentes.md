@@ -11,7 +11,7 @@ Três jeitos de tocar no app. Escolha pelo que o caso pede, não pelo hábito.
 
 ## Maestro
 
-Instalação: `curl -fsSL "https://get.maestro.mobile.dev" | bash` (precisa de Java 17+). Verifique com `maestro --version`.
+Instalação (pergunte ao usuário antes; script oficial que roda na máquina dele): `curl -fsSL "https://get.maestro.mobile.dev" | bash` (precisa de Java 17+). Verifique com `maestro --version`.
 
 ```bash
 maestro --device <UDID> test .maestro/login.yaml                 # um device

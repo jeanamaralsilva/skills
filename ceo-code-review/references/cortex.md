@@ -28,11 +28,13 @@ authoritative and periodically export the CLI store into it.
 
 ## Storage & invocation
 Resolution order for the database file:
-`--db PATH` → `$CORTEX_DB` → `$CORTEX_HOME/cortex.db` → `~/.cortex/cortex.db`.
+`--db PATH` → `$CORTEX_DB` → `$CORTEX_HOME/cortex.db` → `<git root of cwd>/.cortex/cortex.db` (no git: `<cwd>/.cortex/cortex.db`).
 
-A global store at `~/.cortex/cortex.db` ("remember everything across projects") is
-the default. For project-scoped memory, set `CORTEX_HOME` to the repo (e.g.
-`export CORTEX_HOME="$PWD/.cortex"`) so each project keeps its own brain. The
+The default is per project, so a convention planted in one repo (or one client's
+data) never shows up in another. The `.cortex/` folder gets its own `.gitignore`
+(`*`), so it is never committed; in a read-only repo point `CORTEX_HOME` elsewhere. A
+global store is opt-in: `export CORTEX_HOME=~/.cortex`; use it only for knowledge
+that is safe to share across every project. The
 `scope` field on each memory also separates `global` knowledge from per-project
 knowledge inside one store.
 

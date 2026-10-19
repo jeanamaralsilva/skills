@@ -34,7 +34,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Any, Optional
 
-from _scan_common import (DEFAULT_CODE_EXTS, add_common_filter_args, iter_files,
+from _scan_common import (DEFAULT_CODE_EXTS, add_common_filter_args, exit_code, iter_files,
                           resolve_filters, resolve_root, run_cli)
 
 _IDENT = re.compile(r"[A-Za-z_][A-Za-z0-9_]*")
@@ -180,7 +180,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     exts, ignores = resolve_filters(args.ext, args.ignore, DEFAULT_CODE_EXTS)
     m = build_map(root, exts, ignores)
     print(json.dumps(m, indent=2, ensure_ascii=False) if args.json else render(m, args.top))
-    return 0
+    return exit_code("context_map", root, m["files_scanned"])
 
 
 if __name__ == "__main__":

@@ -62,8 +62,10 @@ class Actor {
       return;
     }
     if (topic !== args.topic) return;
-    log.received.push({ event, at: Date.now(), payload });
-    this.waiters = this.waiters.filter((w) => (w.event === event ? (w.resolve(payload), false) : true));
+    const entry = { event, at: Date.now(), payload };
+    log.received.push(entry);
+    const waiter = this.waiters.findIndex((w) => w.event === event);
+    if (waiter >= 0) { entry.consumed = true; this.waiters.splice(waiter, 1)[0].resolve(payload); }  // one event answers one wait
   }
   request(event, payload, timeout = 10000) {
     const ref = this.nextRef();

@@ -55,13 +55,19 @@ FILE_RULES = [
 ]
 
 
-def scan(root: Path):
-    hits = []
+def source_files(root: Path):
     for path in root.rglob("*"):
-        if path.suffix not in EXTS or any(p in SKIP_DIRS for p in path.parts):
+        # só o caminho relativo: um repo dentro de ~/build/ não pode sumir inteiro
+        if path.suffix not in EXTS or any(p in SKIP_DIRS for p in path.relative_to(root).parts):
             continue
         if ".test." in path.name:
             continue
+        yield path
+
+
+def scan(root: Path):
+    hits = []
+    for path in source_files(root):
         try:
             lines = path.read_text(encoding="utf-8").splitlines()
         except (UnicodeDecodeError, OSError):
@@ -91,6 +97,9 @@ def main():
     root = Path(sys.argv[1]).resolve()
     if not root.is_dir():
         print(f"erro: diretório não encontrado: {root}", file=sys.stderr)
+        sys.exit(2)
+    if next(source_files(root), None) is None:
+        print(f"erro: nenhum arquivo {'/'.join(sorted(EXTS))} varrido em {root}; nada foi analisado", file=sys.stderr)
         sys.exit(2)
     hits = scan(root)
     if "--json" in sys.argv:

@@ -11,7 +11,7 @@ Formato de cada linha: `- [AAAA-MM-DD] padrão → onde procurar da próxima vez
 - **onde procurar:** a busca ou o passo que acha o próximo (arquivo, grep, tela, ação).
 - **evidência:** print, PR ou sessão de onde veio. Sem evidência, não entra.
 
-Se um tipo de defeito aparece 2 vezes, ele vira regra do projeto (um grep ou lint em `.ceo/` ou no CI do app, não no `ugly_scan.py` instalado, que é sobrescrito no update; regra que serve a qualquer app vira PR no repo da skill) ou charter novo nas notas do projeto.
+Se um tipo de defeito aparece 2 vezes, ele vira regra do projeto (um grep ou lint em `.ceo/` ou no CI do app, não no `ugly_scan.py` instalado, que é sobrescrito no update; regra que serve a qualquer app vira sugestão ao usuário, sem dado do projeto; nunca PR público por conta própria) ou charter novo nas notas do projeto.
 
 ---
 
