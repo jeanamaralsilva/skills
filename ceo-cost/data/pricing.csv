@@ -1,0 +1,110 @@
+id,service,category,plan,metric,included,price_low,price_high,currency,unit,includes,source,checked_on
+EAS-FREE,Expo EAS,build e update,Free,base,,0,0,USD,month,15 builds Android e 15 iOS por mês; updates para 1.000 MAU; fila de baixa prioridade; sem excedente,https://expo.dev/pricing,2026-10-19
+EAS-STARTER,Expo EAS,build e update,Starter,base,,19,19,USD,month,US$19 mais uso; US$45 de crédito de build por mês; 3.000 MAU de update; 100 GiB de banda; 20 GiB de storage,https://expo.dev/pricing,2026-10-19
+EAS-STARTER-BUILD,Expo EAS,build e update,Starter,builds,0,1,4,USD,build,Android médio 1; Android grande 2; iOS médio 2; iOS grande 4; o crédito de US$45 abate antes,https://docs.expo.dev/billing/usage-based-pricing/,2026-10-19
+EAS-STARTER-CREDIT,Expo EAS,build e update,Starter,credit,,45,45,USD,builds,crédito mensal de build que abate o custo de builds; não vira dinheiro nem acumula,https://expo.dev/pricing,2026-10-19
+EAS-STARTER-MAU,Expo EAS,build e update,Starter,mau,3000,0.005,0.005,USD,mau,usuário que recebeu update no mês acima da franquia; cada um traz 40 MiB de banda,https://docs.expo.dev/billing/usage-based-pricing/,2026-10-19
+EAS-STARTER-EGRESS,Expo EAS,build e update,Starter,egress_gb,100,0.10,0.10,USD,GiB,banda de update acima da franquia,https://expo.dev/pricing,2026-10-19
+EAS-STARTER-STORAGE,Expo EAS,build e update,Starter,storage_gb,20,0.05,0.05,USD,GiB,storage de build e update acima da franquia,https://expo.dev/pricing,2026-10-19
+EAS-PROD,Expo EAS,build e update,Production,base,,199,199,USD,month,US$199 mais uso; US$225 de crédito de build por mês; 50.000 MAU de update; 1 TiB de banda; 1 TiB de storage,https://expo.dev/pricing,2026-10-19
+EAS-PROD-BUILD,Expo EAS,build e update,Production,builds,0,1,4,USD,build,mesmo preço por build; o crédito de US$225 abate antes,https://docs.expo.dev/billing/usage-based-pricing/,2026-10-19
+EAS-PROD-CREDIT,Expo EAS,build e update,Production,credit,,225,225,USD,builds,crédito mensal de build que abate o custo de builds e expira no ciclo,https://expo.dev/pricing,2026-10-19
+EAS-PROD-MAU,Expo EAS,build e update,Production,mau,50000,0.005,0.005,USD,mau,usuário que recebeu update acima da franquia,https://docs.expo.dev/billing/usage-based-pricing/,2026-10-19
+EAS-PROD-EGRESS,Expo EAS,build e update,Production,egress_gb,1024,0.10,0.10,USD,GiB,banda de update acima de 1 TiB,https://expo.dev/pricing,2026-10-19
+EAS-PROD-STORAGE,Expo EAS,build e update,Production,storage_gb,1024,0.05,0.05,USD,GiB,storage acima de 1 TiB,https://expo.dev/pricing,2026-10-19
+EAS-ENT,Expo EAS,build e update,Enterprise,base,,1000,1000,USD,month,a partir de US$1.000; customizável,https://expo.dev/pricing,2026-10-19
+APPLE-DEV,Apple App Store,conta de loja,Apple Developer Program,base,,99,99,USD,year,anuidade da conta de desenvolvedor; isenção para ONG; educação e governo,https://developer.apple.com/programs/whats-included/,2026-10-19
+PLAY-REG,Google Play,conta de loja,Play Console,base,,25,25,USD,once,taxa única de registro da conta (não é mensal),https://support.google.com/googleplay/android-developer/answer/6112435?hl=en,2026-10-19
+GHA-FREE-LINUX,GitHub Actions,CI,Free,ci_minutes,2000,0.006,0.006,USD,minute,repo privado; runner Linux 2-core; repo público em runner padrão não cobra,https://docs.github.com/en/billing/concepts/product-billing/github-actions,2026-10-19
+GHA-PRO-LINUX,GitHub Actions,CI,Pro,ci_minutes,3000,0.006,0.006,USD,minute,repo privado; runner Linux 2-core,https://docs.github.com/en/billing/concepts/product-billing/github-actions,2026-10-19
+GHA-TEAM-LINUX,GitHub Actions,CI,Team,ci_minutes,3000,0.006,0.006,USD,minute,repo privado; runner Linux 2-core,https://docs.github.com/en/billing/concepts/product-billing/github-actions,2026-10-19
+GHA-MACOS,GitHub Actions,CI,Qualquer plano,ci_minutes_macos,0,0.062,0.062,USD,minute,runner macOS 3 ou 4-core; a doc não diz se a franquia cobre macOS: aqui fica fora (pior caso),https://docs.github.com/en/billing/concepts/product-billing/github-actions,2026-10-19
+GHA-STORAGE,GitHub Actions,CI,Free,storage_gb,0.5,0.25,0.25,USD,GB-month,artifacts e Packages acima da franquia,https://docs.github.com/en/billing/concepts/product-billing/github-actions,2026-10-19
+FLY-256,Fly.io,hospedagem,shared-cpu-1x 256MB,compute_month,0,2.19,2.19,USD,instance-month,ligada o mês todo em iad ou ewr (as regiões mais baratas); outras regiões custam mais; cobra por segundo ligada,https://fly.io/docs/about/pricing/,2026-10-19
+FLY-1GB,Fly.io,hospedagem,shared-cpu-1x 1GB,compute_month,0,6.70,6.70,USD,instance-month,ligada o mês todo em iad ou ewr; outras regiões custam mais,https://fly.io/docs/about/pricing/,2026-10-19
+FLY-EGRESS,Fly.io,hospedagem,Pay as you go,egress_gb,0,0.02,0.04,USD,GB,0.02 América do Norte e Europa; 0.04 América do Sul e Ásia-Pacífico; 0.12 África e Índia; entrada grátis,https://fly.io/docs/about/pricing/,2026-10-19
+FLY-VOLUME,Fly.io,hospedagem,Pay as you go,storage_gb,0,0.15,0.15,USD,GB-month,volume provisionado; cobra mesmo com a máquina parada,https://fly.io/docs/about/pricing/,2026-10-19
+FLY-MPG,Fly.io,banco,Managed Postgres Basic,db_month,0,38,38,USD,db-month,plano mais barato; storage à parte,https://fly.io/docs/about/pricing/,2026-10-19
+FLY-MPG-DISK,Fly.io,banco,Managed Postgres Basic,db_disk_gb,0,0.28,0.28,USD,GB-month,disco do Postgres gerenciado,https://fly.io/docs/about/pricing/,2026-10-19
+RW-FREE,Railway,hospedagem,Free,base,,0,0,USD,month,US$1 de uso incluído por mês; trial com crédito único de US$5 por 30 dias,https://railway.com/pricing,2026-10-19
+RW-HOBBY,Railway,hospedagem,Hobby,base,,5,5,USD,month,US$5 de uso incluído por mês (abate RAM; CPU; egress e volume),https://railway.com/pricing,2026-10-19
+RW-PRO,Railway,hospedagem,Pro,base,,20,20,USD,month,US$20 de uso incluído por mês; assentos ilimitados; preço por workspace,https://railway.com/pricing,2026-10-19
+RW-RAM,Railway,hospedagem,Uso,ram_gb_month,0,10,10,USD,GB-month,cobrado por segundo; serviço dormindo não cobra,https://railway.com/pricing,2026-10-19
+RW-CPU,Railway,hospedagem,Uso,vcpu_month,0,20,20,USD,vCPU-month,cobrado por segundo,https://railway.com/pricing,2026-10-19
+RW-EGRESS,Railway,hospedagem,Uso,egress_gb,0,0.05,0.05,USD,GB,preço único,https://railway.com/pricing,2026-10-19
+RW-VOLUME,Railway,hospedagem,Uso,storage_gb,0,0.15,0.15,USD,GB-month,volume; object storage custa 0.015 por GB-mês com egress grátis,https://railway.com/pricing,2026-10-19
+RENDER-FREE,Render,hospedagem,Free web service,compute_month,0,0,0,USD,instance-month,750 h por mês por workspace; dorme após 15 min sem tráfego; acorda em cerca de 1 min,https://render.com/docs/free,2026-10-19
+RENDER-STARTER,Render,hospedagem,Starter,compute_month,0,7,7,USD,instance-month,0.5 CPU e 512 MB,https://render.com/pricing,2026-10-19
+RENDER-STANDARD,Render,hospedagem,Standard,compute_month,0,25,25,USD,instance-month,1 CPU e 2 GB,https://render.com/pricing,2026-10-19
+RENDER-PG-256,Render,banco,Postgres Basic-256mb,db_month,0,6,6,USD,db-month,0.1 CPU e 256 MB; 100 conexões; disco à parte,https://render.com/pricing,2026-10-19
+RENDER-PG-1GB,Render,banco,Postgres Basic-1gb,db_month,0,19,19,USD,db-month,0.5 CPU e 1 GB; 100 conexões; disco à parte,https://render.com/pricing,2026-10-19
+RENDER-PG-FREE,Render,banco,Postgres Free,db_month,0,0,0,USD,db-month,expira em 30 dias; 14 dias de carência antes de apagar,https://render.com/docs/free,2026-10-19
+RENDER-PRO,Render,hospedagem,Pro workspace,base,,25,25,USD,month,fixo; membros ilimitados; computação à parte,https://render.com/changelog/updated-plans-for-render-workspaces,2026-10-19
+RENDER-EGRESS,Render,hospedagem,Hobby workspace,egress_gb,5,0.15,0.15,USD,GB,incluído: Hobby 5 GB; Pro 25 GB; Scale 1 TB,https://render.com/docs/outbound-bandwidth,2026-10-19
+VERCEL-HOBBY,Vercel,hospedagem,Hobby,base,,0,0,USD,month,grátis; para no limite incluído; 100 GB de Fast Data Transfer,https://vercel.com/pricing,2026-10-19
+VERCEL-PRO,Vercel,hospedagem,Pro,base,,20,20,USD,month,taxa da plataforma com US$20 de crédito de uso; excedente sem teto se não configurar orçamento,https://vercel.com/pricing,2026-10-19
+VERCEL-PRO-SEAT,Vercel,hospedagem,Pro,seats,0,20,20,USD,seat-month,cada assento Developer adicional,https://vercel.com/pricing,2026-10-19
+VERCEL-PRO-FDT,Vercel,hospedagem,Pro,egress_gb,1000,0.15,0.15,USD,GB,Fast Data Transfer: 1 TB incluído; excedente a partir de 0.15 por GB,https://vercel.com/pricing,2026-10-19
+HEROKU-ECO,Heroku,hospedagem,Eco,base,,5,5,USD,month,dyno que dorme após 30 min sem atividade,https://www.heroku.com/pricing,2026-10-19
+HEROKU-BASIC,Heroku,hospedagem,Basic,compute_month,0,7,7,USD,instance-month,dyno que não dorme,https://www.heroku.com/pricing,2026-10-19
+HEROKU-STD1X,Heroku,hospedagem,Standard-1X,compute_month,0,25,25,USD,instance-month,dyno de produção,https://www.heroku.com/pricing,2026-10-19
+HEROKU-PG-E0,Heroku,banco,Postgres Essential-0,db_month,0,5,5,USD,db-month,1 GB de storage; Essential-1 custa US$9 com 10 GB,https://elements.heroku.com/addons/heroku-postgresql,2026-10-19
+SUPA-FREE,Supabase,backend,Free,base,,0,0,USD,month,2 projetos; pausa após 1 semana sem atividade; 500 MB de banco; 1 GB de arquivos; 50.000 MAU; 5 GB de egress,https://supabase.com/pricing,2026-10-19
+SUPA-PRO,Supabase,backend,Pro,base,,25,25,USD,month,a partir de US$25; US$10 de crédito de compute (1 instância Micro); spend cap ligado por padrão,https://supabase.com/pricing,2026-10-19
+SUPA-PRO-MAU,Supabase,backend,Pro,mau,100000,0.00325,0.00325,USD,mau,MAU de Auth acima da franquia,https://supabase.com/pricing,2026-10-19
+SUPA-PRO-EGRESS,Supabase,backend,Pro,egress_gb,250,0.03,0.09,USD,GB,0.09 sem cache; 0.03 com cache (mais 250 GB de egress em cache incluídos),https://supabase.com/pricing,2026-10-19
+SUPA-PRO-DBDISK,Supabase,backend,Pro,db_disk_gb,8,0.125,0.125,USD,GB-month,disco do banco por projeto,https://supabase.com/pricing,2026-10-19
+SUPA-PRO-FILES,Supabase,backend,Pro,storage_gb,100,0.0213,0.0213,USD,GB-month,armazenamento de arquivos,https://supabase.com/pricing,2026-10-19
+FB-SPARK,Firebase,backend,Spark,base,,0,0,USD,month,cotas grátis; no Blaze o excedente segue o preço do Google Cloud; FCM sem custo,https://firebase.google.com/pricing,2026-10-19
+FB-FS-READS,Firebase,backend,Firestore Blaze,reads_100k,15,0.03,0.06,USD,100k leituras,50 mil por dia grátis (cerca de 1.5 milhão por mês); 0.03 em us-central1; até 0.06 conforme a região,https://cloud.google.com/firestore/pricing,2026-10-19
+FB-FS-WRITES,Firebase,backend,Firestore Blaze,writes_100k,6,0.09,0.18,USD,100k escritas,20 mil por dia grátis (cerca de 600 mil por mês); 0.09 em us-central1; até 0.18 conforme a região,https://cloud.google.com/firestore/pricing,2026-10-19
+FB-FS-EGRESS,Firebase,backend,Firestore Blaze,egress_gb,10,0.12,0.12,USD,GiB,10 GiB por mês grátis; 0.12 de 10 a 1024 GiB,https://cloud.google.com/firestore/pricing,2026-10-19
+FB-AUTH-IP,Firebase,backend,Auth com Identity Platform,mau,50000,0.0046,0.0055,USD,mau,0.0055 de 50 mil a 100 mil; 0.0046 de 100 mil a 1 milhão; SMS à parte,https://cloud.google.com/identity-platform/pricing,2026-10-19
+S3-STORAGE,AWS S3,arquivos,S3 Standard,storage_gb,0,0.023,0.023,USD,GB-month,us-east-1 primeiros 50 TB por mês,https://aws.amazon.com/s3/pricing/,2026-10-19
+S3-EGRESS,AWS S3,arquivos,S3 Standard,egress_gb,100,0.09,0.15,USD,GB,100 GB por mês grátis somando todos os serviços AWS; 0.09 us-east-1; 0.15 São Paulo (até 10 TB),https://aws.amazon.com/s3/pricing/,2026-10-19
+CF-PAYG,AWS CloudFront,CDN,Pay as you go,egress_gb,1000,0.085,0.110,USD,GB,1 TB e 10 milhões de requisições grátis por mês; 0.085 EUA; 0.110 América do Sul (até 10 TB),https://aws.amazon.com/cloudfront/pricing/pay-as-you-go/,2026-10-19
+CF-FLAT-FREE,AWS CloudFront,CDN,Flat-rate Free,base,,0,0,USD,month,1 milhão de requisições; 100 GB de transferência; 5 GB de S3; sem cobrança de excedente,https://aws.amazon.com/cloudfront/pricing/,2026-10-19
+CF-FLAT-PRO,AWS CloudFront,CDN,Flat-rate Pro,base,,15,15,USD,month,10 milhões de requisições; 50 TB de transferência; 50 GB de S3; sem cobrança de excedente,https://aws.amazon.com/cloudfront/pricing/,2026-10-19
+SENTRY-DEV,Sentry,monitoramento,Developer,base,,0,0,USD,month,grátis; 5.000 erros por mês,https://sentry.io/pricing/,2026-10-19
+SENTRY-TEAM,Sentry,monitoramento,Team,base,,26,29,USD,month,26 no anual; 29 no mensal; 50 mil erros; teto e aviso de gasto,https://sentry.io/pricing/,2026-10-19
+SENTRY-BUSINESS,Sentry,monitoramento,Business,base,,80,89,USD,month,80 no anual; 89 no mensal; 50 mil erros,https://sentry.io/pricing/,2026-10-19
+DD-FREE,Datadog,monitoramento,Free,hosts,5,0,0,USD,host-month,até 5 hosts; retenção de métricas de 1 dia,https://www.datadoghq.com/pricing/,2026-10-19
+DD-PRO,Datadog,monitoramento,Infrastructure Pro,hosts,0,15,18,USD,host-month,15 no anual; 18 sob demanda,https://www.datadoghq.com/pricing/,2026-10-19
+DD-LOGS,Datadog,monitoramento,Logs,logs_gb,0,0.10,0.10,USD,GB,a partir de 0.10 por GB ingerido por mês,https://www.datadoghq.com/pricing/,2026-10-19
+ANT-FABLE-IN,Anthropic API,ia,Claude Fable 5.1,input_mtok,0,10,10,USD,MTok,entrada,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-19
+ANT-FABLE-OUT,Anthropic API,ia,Claude Fable 5.1,output_mtok,0,50,50,USD,MTok,saída,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-19
+ANT-FABLE-CR,Anthropic API,ia,Claude Fable 5.1,cache_read_mtok,0,0.25,0.25,USD,MTok,leitura de cache,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-19
+ANT-FABLE-CW,Anthropic API,ia,Claude Fable 5.1,cache_write_mtok,0,12.50,20,USD,MTok,escrita de cache: 5 min (baixo) e 1 h (alto),https://platform.claude.com/docs/en/about-claude/pricing,2026-10-19
+ANT-OPUS-IN,Anthropic API,ia,Claude Opus 5.5,input_mtok,0,4,4,USD,MTok,entrada,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-19
+ANT-OPUS-OUT,Anthropic API,ia,Claude Opus 5.5,output_mtok,0,20,20,USD,MTok,saída,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-19
+ANT-OPUS-CR,Anthropic API,ia,Claude Opus 5.5,cache_read_mtok,0,0.20,0.20,USD,MTok,leitura de cache,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-19
+ANT-OPUS-CW,Anthropic API,ia,Claude Opus 5.5,cache_write_mtok,0,5,8,USD,MTok,escrita de cache: 5 min (baixo) e 1 h (alto),https://platform.claude.com/docs/en/about-claude/pricing,2026-10-19
+ANT-SONNET-IN,Anthropic API,ia,Claude Sonnet 5.5,input_mtok,0,2,2,USD,MTok,entrada,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-19
+ANT-SONNET-OUT,Anthropic API,ia,Claude Sonnet 5.5,output_mtok,0,10,10,USD,MTok,saída,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-19
+ANT-SONNET-CR,Anthropic API,ia,Claude Sonnet 5.5,cache_read_mtok,0,0.10,0.10,USD,MTok,leitura de cache,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-19
+ANT-SONNET-CW,Anthropic API,ia,Claude Sonnet 5.5,cache_write_mtok,0,2.50,4,USD,MTok,escrita de cache: 5 min (baixo) e 1 h (alto),https://platform.claude.com/docs/en/about-claude/pricing,2026-10-19
+ANT-HAIKU-IN,Anthropic API,ia,Claude Haiku 5.5,input_mtok,0,0.10,0.50,USD,MTok,baixo: prompt até 100 mil tokens; alto: acima,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-19
+ANT-HAIKU-OUT,Anthropic API,ia,Claude Haiku 5.5,output_mtok,0,0.50,2.50,USD,MTok,baixo: prompt até 100 mil tokens; alto: acima,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-19
+ANT-HAIKU-CR,Anthropic API,ia,Claude Haiku 5.5,cache_read_mtok,0,0.01,0.05,USD,MTok,baixo: prompt até 100 mil tokens; alto: acima,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-19
+ANT-HAIKU-CW,Anthropic API,ia,Claude Haiku 5.5,cache_write_mtok,0,0.125,1,USD,MTok,baixo: 5 min até 100 mil tokens; alto: 1 h acima,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-19
+OAI-ASTRA-IN,OpenAI API,ia,gpt-6-astra,input_mtok,0,10,20,USD,MTok,baixo: contexto curto; alto: contexto longo,https://developers.openai.com/api/docs/pricing,2026-10-19
+OAI-ASTRA-OUT,OpenAI API,ia,gpt-6-astra,output_mtok,0,50,75,USD,MTok,baixo: contexto curto; alto: contexto longo,https://developers.openai.com/api/docs/pricing,2026-10-19
+OAI-ASTRA-CR,OpenAI API,ia,gpt-6-astra,cache_read_mtok,0,1,2,USD,MTok,cached input curto e longo,https://developers.openai.com/api/docs/pricing,2026-10-19
+OAI-ASTRA-CW,OpenAI API,ia,gpt-6-astra,cache_write_mtok,0,12.50,25,USD,MTok,cache write curto e longo,https://developers.openai.com/api/docs/pricing,2026-10-19
+OAI-SOL-IN,OpenAI API,ia,gpt-6.1-sol,input_mtok,0,2,4,USD,MTok,baixo: contexto curto; alto: contexto longo,https://developers.openai.com/api/docs/pricing,2026-10-19
+OAI-SOL-OUT,OpenAI API,ia,gpt-6.1-sol,output_mtok,0,10,15,USD,MTok,baixo: contexto curto; alto: contexto longo,https://developers.openai.com/api/docs/pricing,2026-10-19
+OAI-SOL-CR,OpenAI API,ia,gpt-6.1-sol,cache_read_mtok,0,0.10,0.20,USD,MTok,cached input curto e longo,https://developers.openai.com/api/docs/pricing,2026-10-19
+OAI-SOL-CW,OpenAI API,ia,gpt-6.1-sol,cache_write_mtok,0,2.50,5,USD,MTok,cache write curto e longo,https://developers.openai.com/api/docs/pricing,2026-10-19
+OAI-LUNA-IN,OpenAI API,ia,gpt-6-luna,input_mtok,0,0.10,0.20,USD,MTok,baixo: contexto curto; alto: contexto longo,https://developers.openai.com/api/docs/pricing,2026-10-19
+OAI-LUNA-OUT,OpenAI API,ia,gpt-6-luna,output_mtok,0,0.50,0.75,USD,MTok,baixo: contexto curto; alto: contexto longo,https://developers.openai.com/api/docs/pricing,2026-10-19
+OAI-LUNA-CR,OpenAI API,ia,gpt-6-luna,cache_read_mtok,0,0.01,0.02,USD,MTok,cached input curto e longo,https://developers.openai.com/api/docs/pricing,2026-10-19
+OAI-LUNA-CW,OpenAI API,ia,gpt-6-luna,cache_write_mtok,0,0.125,0.25,USD,MTok,cache write curto e longo,https://developers.openai.com/api/docs/pricing,2026-10-19
+GEM-ARGON-IN,Gemini API,ia,gemini-4-argon,input_mtok,0,2,4,USD,MTok,baixo até 30/11/2026; alto a partir de 01/12/2026 (aumento anunciado na página); sem tier grátis,https://ai.google.dev/gemini-api/docs/pricing,2026-10-19
+GEM-ARGON-OUT,Gemini API,ia,gemini-4-argon,output_mtok,0,10,20,USD,MTok,inclui tokens de raciocínio; baixo até 30/11/2026; alto a partir de 01/12/2026,https://ai.google.dev/gemini-api/docs/pricing,2026-10-19
+GEM-ARGON-CR,Gemini API,ia,gemini-4-argon,cache_read_mtok,0,0.10,0.20,USD,MTok,só cache implícito; baixo até 30/11/2026; alto a partir de 01/12/2026,https://ai.google.dev/gemini-api/docs/pricing,2026-10-19
+GEM-FLASH-IN,Gemini API,ia,gemini-3.8-flash,input_mtok,0,0.75,1.50,USD,MTok,tier grátis existe; baixo até 31/12/2026; alto a partir de 01/01/2027,https://ai.google.dev/gemini-api/docs/pricing,2026-10-19
+GEM-FLASH-OUT,Gemini API,ia,gemini-3.8-flash,output_mtok,0,3.75,7.50,USD,MTok,inclui tokens de raciocínio; baixo até 31/12/2026; alto a partir de 01/01/2027,https://ai.google.dev/gemini-api/docs/pricing,2026-10-19
+GEM-FLASH-CR,Gemini API,ia,gemini-3.8-flash,cache_read_mtok,0,0.075,0.15,USD,MTok,mais armazenamento do cache por hora; baixo até 31/12/2026,https://ai.google.dev/gemini-api/docs/pricing,2026-10-19
+GEM-LITE-IN,Gemini API,ia,gemini-3.1-flash-lite,input_mtok,0,0.25,0.50,USD,MTok,baixo texto; imagem e vídeo; alto áudio; tier grátis existe,https://ai.google.dev/gemini-api/docs/pricing,2026-10-19
+GEM-LITE-OUT,Gemini API,ia,gemini-3.1-flash-lite,output_mtok,0,1.50,1.50,USD,MTok,inclui tokens de raciocínio,https://ai.google.dev/gemini-api/docs/pricing,2026-10-19
+GEM-LITE-CR,Gemini API,ia,gemini-3.1-flash-lite,cache_read_mtok,0,0.025,0.05,USD,MTok,baixo texto; alto áudio; mais armazenamento do cache por hora,https://ai.google.dev/gemini-api/docs/pricing,2026-10-19

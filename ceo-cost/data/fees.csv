@@ -1,0 +1,22 @@
+id,provider,product,condition,fee_pct,fee_fixed,currency,notes,source,checked_on
+APPLE-SBP,Apple App Store,app pago e compra no app,Small Business Program: até 1 milhão de USD de proceeds no ano anterior ou dev novo,15,,USD,precisa se inscrever; passou de 1 milhão no ano volta à taxa padrão nas vendas seguintes,https://developer.apple.com/app-store/small-business-program/,2026-10-19
+APPLE-SUB-Y1,Apple App Store,assinatura,primeiro ano de assinatura paga (fora do Small Business Program),30,,USD,dev recebe 70%,https://developer.apple.com/app-store/subscriptions/,2026-10-19
+APPLE-SUB-Y2,Apple App Store,assinatura,depois de 1 ano de serviço pago do mesmo assinante,15,,USD,dev recebe 85%; período de teste grátis não conta,https://developer.apple.com/app-store/subscriptions/,2026-10-19
+APPLE-STD,Apple App Store,app pago e compra no app,taxa padrão fora do Small Business Program,,,USD,a página oficial lida só diz taxa padrão sem número; confira o contrato no App Store Connect antes de citar,https://developer.apple.com/app-store/small-business-program/,2026-10-19
+PLAY-1M,Google Play,compra no app e app pago,primeiro 1 milhão de USD de receita no ano,15,,USD,acima de 1 milhão no ano paga 30%; mercados fora do modelo novo,https://support.google.com/googleplay/android-developer/answer/112622?hl=en,2026-10-19
+PLAY-OVER1M,Google Play,compra no app e app pago,receita acima de 1 milhão de USD no ano,30,,USD,mercados fora do modelo novo,https://support.google.com/googleplay/android-developer/answer/112622?hl=en,2026-10-19
+PLAY-SUB,Google Play,assinatura auto-renovável,qualquer receita anual,15,,USD,mercados fora do modelo novo,https://support.google.com/googleplay/android-developer/answer/112622?hl=en,2026-10-19
+PLAY-NEW-SUB,Google Play,assinatura,modelo novo (EEE; Reino Unido; EUA desde 30/06/2026; Austrália e Japão desde 30/09/2026),10,,USD,mais 5% de billing; outras transações 20% mais 5% (install novo) ou 25% mais 5% (install antigo),https://support.google.com/googleplay/android-developer/answer/112622?hl=en,2026-10-19
+STRIPE-CARD,Stripe,cartão nacional,preço padrão por transação,3.99,0.39,BRL,sem mensalidade nem setup no preço padrão,https://stripe.com/br/pricing,2026-10-19
+STRIPE-INTL,Stripe,cartão internacional,adicional sobre o cartão nacional,2.00,,BRL,soma aos 3.99%; a página não diz se os R$0.39 se aplicam,https://stripe.com/br/pricing,2026-10-19
+STRIPE-PIX,Stripe,Pix,por Pix pago,1.19,,BRL,somente por convite,https://stripe.com/br/pricing,2026-10-19
+STRIPE-BOLETO,Stripe,boleto,por boleto pago,,3.45,BRL,tarifa fixa,https://stripe.com/br/pricing,2026-10-19
+STRIPE-DISPUTE,Stripe,contestação,por contestação recebida,,55.00,BRL,chargeback,https://stripe.com/br/pricing,2026-10-19
+MP-CREDITO-HORA,Mercado Pago,checkout cartão de crédito,recebimento na hora,4.98,,BRL,taxa pode variar por perfil do vendedor; confira o simulador da conta,https://www.mercadopago.com.br/ferramentas-para-vender/check-out,2026-10-19
+MP-CREDITO-14,Mercado Pago,checkout cartão de crédito,recebimento em 14 dias,4.49,,BRL,,https://www.mercadopago.com.br/ferramentas-para-vender/check-out,2026-10-19
+MP-CREDITO-30,Mercado Pago,checkout cartão de crédito,recebimento em 30 dias,3.98,,BRL,,https://www.mercadopago.com.br/ferramentas-para-vender/check-out,2026-10-19
+MP-PIX,Mercado Pago,checkout Pix,recebimento na hora,0.99,,BRL,,https://www.mercadopago.com.br/ferramentas-para-vender/check-out,2026-10-19
+MP-BOLETO,Mercado Pago,checkout boleto,recebimento em até 3 dias,,3.49,BRL,tarifa fixa,https://www.mercadopago.com.br/ferramentas-para-vender/check-out,2026-10-19
+MP-SALDO,Mercado Pago,checkout saldo Mercado Pago,recebimento na hora,4.99,,BRL,,https://www.mercadopago.com.br/ferramentas-para-vender/check-out,2026-10-19
+PIX-PF,Pix (Banco Central),Pix pessoa natural,envio para transferência ou compra,0,,BRL,Res. BCB 19/2020 art. 3 veda tarifa a pessoa natural e empresário individual; recebimento para compra pode ser tarifado (art. 4),https://www.bcb.gov.br/api/conteudo/app/normativos/exibenormativo?p1=Resolu%C3%A7%C3%A3o%20BCB&p2=19,2026-10-19
+PIX-PJ,Pix (Banco Central),Pix pessoa jurídica,envio e recebimento,,,BRL,Res. BCB 19/2020 art. 4 permite tarifar PJ; valor livre definido por cada banco; veja o contrato do seu banco,https://www.bcb.gov.br/api/conteudo/app/normativos/exibenormativo?p1=Resolu%C3%A7%C3%A3o%20BCB&p2=19,2026-10-19
