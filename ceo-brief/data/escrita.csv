@@ -1,0 +1,25 @@
+id,regra,exemplo,source
+E01,A conclusão vem na primeira frase; detalhe depois,"""Semana boa: o pagamento por Pix está no ar. Um risco: ...""",https://www.nngroup.com/articles/inverted-pyramid/
+E02,Quem parar de ler em qualquer ponto já entendeu o principal,o resumo de 3 linhas basta sozinho,https://www.nngroup.com/articles/inverted-pyramid/
+E03,Pontos-chave nos 2 primeiros parágrafos; títulos começam pela palavra que informa,"""Risco: login do Android"" e não ""Sobre o login""",https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/
+E04,Listas para itens e etapas,um item por linha,https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/
+E05,Linguagem simples serve até para quem é especialista; direto não é tratar como bobo,sem rodeio e sem explicar o óbvio,https://www.nngroup.com/articles/plain-language-experts/
+E06,Termo técnico só se o leitor conhece; senão o termo familiar,"""versão do app"" e não ""build""",https://www.nngroup.com/articles/plain-language-experts/
+E07,Números em dígitos,"""3 correções"" e não ""três correções""",https://www.nngroup.com/articles/web-writing-show-numbers-as-numerals/
+E08,Porcentagem sempre em dígitos; não abrevie mil e milhão como K e M,"""1.200 usuários"" e não ""1,2K""",https://learn.microsoft.com/en-us/style-guide/numbers
+E09,Frase com mais de 25 palavras: divida,duas frases curtas,https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/writing-guidelines/clear-language/
+E10,Voz ativa: diga quem faz o quê,"""o time corrigiu"" e não ""foi corrigido""",https://digital.gov/guides/plain-language/writing
+E11,Uma ideia por frase; um assunto por seção,cada bloco do brief responde uma pergunta,https://digital.gov/guides/plain-language/writing/clear-short
+E12,Tabela para comparação; lista para o que se lê de passagem,tabela só para frentes x situação,https://digital.gov/guides/plain-language/design
+E13,Nome completo antes da sigla; jargão trocado por sinônimo ou explicado,"""integração contínua (verificação automática do código)""",https://www2.camara.leg.br/legin/fed/lei/2025/lei-15263-14-novembro-2025-798293-publicacaooriginal-177011-pl.html
+E14,Corte palavras: só o necessário para decidir com segurança,brief cabe numa tela de celular,https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice
+E15,Escreva para quem não tem contexto; ao citar PR ou issue diga em 1 linha do que se trata,"""#42 (cadastro com CPF)"" e não só ""#42""",https://handbook.gitlab.com/handbook/communication/
+E16,O resumo aponta para a fonte; ele não é a fonte,link do PR ou da issue ao lado do item,https://handbook.gitlab.com/handbook/communication/
+E17,BLUF: conclusão; impacto; próximos passos; detalhes,ordem do brief diário,https://afrotc.asu.edu/sites/default/files/afh33-337.pdf
+E18,Mesmos itens toda vez e não tire o que piorou,a seção de riscos aparece mesmo vazia,https://web.archive.org/web/20201202112659/https://www.aaronkharris.com/investor-updates
+E19,Pedidos perto do topo,"""Decisão sua"" logo depois do resumo",https://web.archive.org/web/20201202112659/https://www.aaronkharris.com/investor-updates
+E20,O que foi bem; o que não foi; onde precisamos de ajuda,estrutura do update para sócio,https://www.saastr.com/10-hacks-to-have-happier-investors
+E21,Sem surpresa: conte o problema cedo e não pare de mandar update na fase ruim,risco entra no brief no dia em que aparece,https://www.saastr.com/10-hacks-to-have-happier-investors
+E22,Mostre desafios e não só vitórias; peça coisas específicas,"""preciso de 2 clientes para testar"" e não ""ajuda""",https://review.firstround.com/you-arent-getting-the-most-out-of-your-investors-this-is-how-to-start/
+E23,Texto corrido para raciocínio; reescreva e peça revisão,update para investidor é texto e não slide,https://www.aboutamazon.com/news/company-news/2017-letter-to-shareholders
+E24,Quanto falta: diga o que ainda é incerto e o que já está resolvido,"""falta descobrir X; o resto é execução""",https://basecamp.com/shapeup/3.4-chapter-13
