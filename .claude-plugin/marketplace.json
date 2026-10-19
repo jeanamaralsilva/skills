@@ -183,6 +183,24 @@
         "gdpr",
         "data-protection"
       ]
+    },
+    {
+      "name": "ceo-cost",
+      "description": "Custo de manter app mobile com servidor no ar: inventário de serviços pagos pelo código, custo por usuário em faixa com preço oficial datado, ralos, taxas de loja e pagamento, IA e plano de corte.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./ceo-cost"
+      ],
+      "homepage": "https://github.com/jeanamaralsilva/skills/tree/main/ceo-cost",
+      "repository": "https://github.com/jeanamaralsilva/skills",
+      "license": "MIT",
+      "keywords": [
+        "cost",
+        "finops",
+        "pricing",
+        "llm-cost"
+      ]
     }
   ]
 }

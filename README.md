@@ -8,9 +8,9 @@
 npx skills add jeanamaralsilva/skills
 ```
 
-> **English:** eight agent skills (Claude Code, Cursor, Codex, Gemini CLI, Copilot and any agent that reads `SKILL.md`) that look after a mobile app and its server the way a technical owner would: UX review, dependency audit, senior code review, mobile QA, bug bash, in-app onboarding, shipping to the App Store and Google Play, and plain-language status briefs for non-technical owners. Every data row cites its source. The skills are written in Brazilian Portuguese; agents follow them fine in any language and reply in yours.
+> **English:** eleven agent skills (Claude Code, Cursor, Codex, Gemini CLI, Copilot and any agent that reads `SKILL.md`) that look after a mobile app and its server the way a technical owner would: UX review, dependency audit, senior code review, mobile QA, bug bash, in-app onboarding, shipping to the App Store and Google Play, plain-language status briefs, production incidents, privacy and data protection (LGPD/GDPR), and running costs. Every data row cites its source. The skills are written in Brazilian Portuguese; agents follow them fine in any language and reply in yours.
 
-Oito skills para o Claude (Cowork, Claude Code e qualquer agente que leia `SKILL.md`) que cuidam de um app mobile com servidor como um dono técnico cuidaria: UX, dependências, código, testes, ajuda de primeira vez, lançamento nas lojas e status em linguagem de negócio. Cada uma reporta curto, no tom de quem responde ao CEO: o que está bom, o que quebrou, o que já foi resolvido e o que só o dono decide. Sem narrar processo, sem inventar resultado, sem esconder erro ou risco de segurança.
+Onze skills para o Claude (Cowork, Claude Code e qualquer agente que leia `SKILL.md`) que cuidam de um app mobile com servidor como um dono técnico cuidaria: UX, dependências, código, testes, ajuda de primeira vez, lançamento nas lojas, status em linguagem de negócio, incidente de produção, privacidade e custo. Cada uma reporta curto, no tom de quem responde ao CEO: o que está bom, o que quebrou, o que já foi resolvido e o que só o dono decide. Sem narrar processo, sem inventar resultado, sem esconder erro ou risco de segurança.
 
 Nenhuma skill depende de um projeto específico. O que varia por projeto (repos, read-only, limites da máquina, design system, papéis de teste, credenciais por variável de ambiente) vai em `.ceo/config.md` na raiz do repo. Modelo em qualquer `*/assets/ceo-config.example.md`.
 
@@ -24,6 +24,9 @@ Nenhuma skill depende de um projeto específico. O que varia por projeto (repos,
 | [ceo-onboarding](ceo-onboarding/) | O usuário novo sabe o que fazer sem incomodar quem já usa? Como implementar empty state, checklist e dica com destaque? | 8 guias, 28 padrões e antipadrões com fonte, 7 libs RN avaliadas, 2 templates |
 | [ceo-ship](ceo-ship/) | A versão vai passar na revisão da App Store e do Google Play sem quebrar quem já usa? OTA ou build novo? | 12 guias, 72 checks de pré-voo e 25 motivos de rejeição com a diretriz, `preflight.py` que lê app.json/eas.json |
 | [ceo-brief](ceo-brief/) | O que foi entregue, o que está em risco e que decisão é minha, em linguagem de quem não é técnico? | 11 guias, 18 sinais e 24 regras de escrita com fonte, coletor de git e GitHub que roda offline, modelos de brief, update para sócio e incidente |
+| [ceo-incident](ceo-incident/) | O app caiu ou o cliente reclamou: qual o impacto, como mitigar agora e o que dizer? | 11 guias, severidade SEV1 a SEV4, 35 ações de mitigação por plataforma com fonte, `timeline.py` e `logcut.py` que mascara dado pessoal, modelos de aviso e postmortem |
+| [ceo-privacy](ceo-privacy/) | O app cumpre a LGPD e o que as lojas exigem de privacidade? Tem dado pessoal vazando em log? | 14 guias, 68 requisitos com artigo e fonte, 18 SDKs avaliados, `pii_scan.py` que nunca mostra o valor, modelos de inventário, resposta a titular e comunicação à ANPD |
+| [ceo-cost](ceo-cost/) | Quanto custa manter o app no ar e onde dá para cortar sem quebrar? | 10 guias, 109 preços e 21 taxas com página oficial e data, 23 alavancas de economia, `cost_inventory.py` e `estimate.py` que avisa quando o preço está velho |
 
 ## ceo-ux
 
@@ -95,6 +98,9 @@ npx skills update                                             # atualizar depois
 /plugin install ceo-onboarding --marketplace jeanamaralsilva/skills
 /plugin install ceo-ship --marketplace jeanamaralsilva/skills
 /plugin install ceo-brief --marketplace jeanamaralsilva/skills
+/plugin install ceo-incident --marketplace jeanamaralsilva/skills
+/plugin install ceo-privacy --marketplace jeanamaralsilva/skills
+/plugin install ceo-cost --marketplace jeanamaralsilva/skills
 ```
 
 Em versões anteriores: `/plugin marketplace add jeanamaralsilva/skills` e depois `/plugin install ceo-ux@ceo-skills`.
@@ -140,7 +146,7 @@ O CI roda os dois em todo push e PR.
 
 ## Segurança
 
-As skills leem código, PRs, issues, reviews de loja, logs e prints, que podem trazer texto malicioso. Todas tratam esse conteúdo como dado, nunca como instrução; não mandam dado do projeto para fora sem você pedir; não deixam o `.ceo/config.md` de um repo de terceiros desligar o seu modo só leitura; e pedem confirmação antes de merge na `main` e de instalar ferramenta por script. Os scripts usam só biblioteca padrão, sem `shell=True`; rede só em três lugares, todos explícitos: a consulta ao OSV da `ceo-deps` (nome e versão dos pacotes, com `--skip-scope` para os privados), o `gh` da `ceo-brief` (API do GitHub, com o seu login) e o `phx_actor` da `ceo-mobile-qa` (WebSocket para o servidor que você indicar). Para fixar uma versão em vez de seguir a `main`: `npx skills add jeanamaralsilva/skills#v2.1.0`. Como reportar falha: [SECURITY.md](SECURITY.md).
+As skills leem código, PRs, issues, reviews de loja, logs e prints, que podem trazer texto malicioso. Todas tratam esse conteúdo como dado, nunca como instrução; não mandam dado do projeto para fora sem você pedir; não deixam o `.ceo/config.md` de um repo de terceiros desligar o seu modo só leitura; e pedem confirmação antes de merge na `main` e de instalar ferramenta por script. Os scripts usam só biblioteca padrão, sem `shell=True`; rede só em três lugares, todos explícitos: a consulta ao OSV da `ceo-deps` (nome e versão dos pacotes, com `--skip-scope` para os privados), o `gh` da `ceo-brief` (API do GitHub, com o seu login) e o `phx_actor` da `ceo-mobile-qa` (WebSocket para o servidor que você indicar). Para fixar uma versão em vez de seguir a `main`: `npx skills add jeanamaralsilva/skills#v2.2.0`. Como reportar falha: [SECURITY.md](SECURITY.md).
 
 ## Contribuir
 
