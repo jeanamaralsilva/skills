@@ -21,6 +21,7 @@ Nunca em produção nem com dado real. Servidor local com banco próprio, dados 
 ### 2. Três frentes em paralelo
 - **Estática (sem simulador):** `python3 scripts/ugly_scan.py <repo-mobile>` acha texto em inglês na UI, plural fixo, dinheiro sem pt-BR, data em inglês, erro técnico na tela. Depois um subagente lê o que o scanner não pega (`references/02-feio.md`, seção "o que ler no código").
 - **API (sem simulador):** BINMEN/VADER contra o servidor local (`references/03-funcional.md`, seção API). Duplo POST, campo vazio, outro usuário, valor extremo.
+- **Dados (sem simulador):** invariantes de regra de negócio como `SELECT` que lista quem viola (saldo salvo x calculado, um ativo por dono, status x data, job x estado), primeiro no banco local (`references/07-invariantes-de-dados.md`).
 - **Simulador:** uma sessão por charter de `data/charters.csv`, em série no mesmo simulador, cada uma num subagente com o briefing `agents/hunter.md`.
 
 ### 3. Sessão (60 a 120 min cada)
@@ -53,4 +54,5 @@ Ao fechar a rodada, acrescente em `.ceo/aprendizados.md` do repo do app (nunca n
 | Atacar função, dado, rede, ciclo de vida, API | `03-funcional.md` |
 | Escrever bug e relatório | `04-relatorio.md` |
 | Briefing de subagente de sessão | `agents/hunter.md` |
+| Invariantes de dados (SQL só leitura) | `references/07-invariantes-de-dados.md` |
 | Fontes de tudo | `references/_pesquisa.md` |
