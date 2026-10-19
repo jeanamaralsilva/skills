@@ -1,0 +1,8 @@
+nivel,criterio,exemplo_app_servidor,resposta,postmortem,source
+SEV1,"Crítico: muitos clientes afetados, perda severa e prolongada, dado de cliente exposto; pede aviso público",app fecha ao abrir para a maioria; login ou pagamento fora para todos; vazamento de dado,todos os papéis agora; update ao dono a cada ~30 min; aviso ao cliente se ele pedir,obrigatório,https://response.pagerduty.com/before/severity_levels/
+SEV2,Grave: uso muito prejudicado para muitos clientes (fora ou muito degradado para a maioria),fluxo principal quebrado em uma plataforma; erro 500 em parte grande das chamadas,comandante + registro; mitigar já,obrigatório,https://response.pagerduty.com/before/severity_levels/
+SEV3,"Menor: perda parcial para uma minoria ou instabilidade com risco de escalar; se um deploy recente for a causa, rollback",uma tela quebrada; recurso secundário fora; crash em um modelo de aparelho,horário comercial; rollback se a causa for deploy recente,opcional,https://response.pagerduty.com/before/severity_levels/
+SEV4,"Problema que exige ação mas não impede o uso (lentidão, um host fora, tarefa agendada falhando)",lentidão; job de fundo falhando sem efeito visível,vira tarefa; sem incidente aberto,opcional,https://response.pagerduty.com/before/severity_levels/
+DUVIDA,"Na dúvida entre dois níveis, trate como o mais alto; não discuta severidade durante o incidente, reveja no postmortem",,,,https://response.pagerduty.com/before/severity_levels/
+ATLASSIAN,SEV1 e SEV2 acionam o plantão para correção imediata; SEV3 é tratado em horário comercial,,,,https://www.atlassian.com/incident-management/handbook/incident-response
+POSTMORTEM,Postmortem para SEV1 e SEV2; opcional nos demais,,,SEV1 e SEV2,https://www.atlassian.com/incident-management/handbook/postmortems

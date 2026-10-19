@@ -1,0 +1,36 @@
+id,alvo,plataforma,acao,comando_ou_passo,le_ou_muda,cuidado,source
+SV01,servidor,fly,listar releases com a imagem de cada um,fly releases --app <app> --image,le,,https://docs.fly.io/flyctl/cmd/fly_releases
+SV02,servidor,fly,voltar para a imagem do release anterior,fly deploy --image registry.fly.io/<app>:deployment-<ID>,muda,não desfaz migração de banco; não reverte secrets nem fly.toml; imagem antiga pode não existir mais; confirme com fly logs e fly status,https://docs.fly.io/blueprints/rollback-guide
+SV03,servidor,fly,ver logs,fly logs --app <app> --no-tail,le,sem --no-tail fica em streaming,https://docs.fly.io/flyctl/cmd/fly_logs
+SV04,servidor,fly,ver estado das máquinas,fly status --app <app>,le,,https://docs.fly.io/flyctl/cmd/fly_status
+SV05,servidor,railway,voltar para um deployment anterior,painel: Service > Deployments > menu do deployment anterior > Rollback,muda,restaura imagem e variáveis; deploys mais velhos que a retenção do plano não têm a opção,https://docs.railway.com/deployments/deployment-actions
+SV06,servidor,railway,ver logs filtrando erro,railway logs --since 1h --filter @level:error,le,sem --lines/--since fica em streaming,https://docs.railway.com/cli/logs
+SV07,servidor,railway,refazer o deploy atual (não é rollback),railway redeploy,muda,mesmo código; não volta versão,https://docs.railway.com/cli/redeploy
+SV08,servidor,render,voltar para um deploy anterior,painel: Deploys > deploy com sucesso > Rollback,muda,desliga o auto-deploy pelo painel (religar depois); não reverte disco nem domínios; usa as variáveis do deploy de destino,https://render.com/docs/rollbacks
+SV09,servidor,render,ver logs,painel: página Logs do serviço,le,retenção depende do plano,https://render.com/docs/logging
+SV10,servidor,vercel,voltar produção para um deploy anterior,vercel rollback <deployment-id|url>,muda,no Hobby só volta ao imediatamente anterior; não atualiza variáveis; desliga a atribuição automática de domínio até vercel promote,https://vercel.com/docs/cli/rollback
+SV11,servidor,vercel,desfazer o rollback quando a correção estiver no ar,vercel promote <deployment-id|url>,muda,,https://vercel.com/docs/cli/promote
+SV12,servidor,vercel,ver logs de erro,vercel logs --environment production --query 'level:error' --since 1h,le,,https://vercel.com/docs/cli/logs
+SV13,servidor,heroku,listar releases,heroku releases,le,,https://devcenter.heroku.com/articles/releases
+SV14,servidor,heroku,voltar um release,heroku rollback vNN,muda,não reverte banco nem add-ons; config vars voltam junto; releases antigos expiram,https://devcenter.heroku.com/articles/releases
+SV15,servidor,heroku,ver logs,heroku logs --tail,le,,https://devcenter.heroku.com/articles/logging
+SV16,servidor,heroku,modo manutenção (bloqueia HTTP),heroku maintenance:on,muda,workers e agendador continuam rodando,https://devcenter.heroku.com/articles/maintenance-mode
+SV17,servidor,elixir,shell no sistema rodando (só leitura por padrão desta skill),bin/<app> remote,le,qualquer expressão roda em produção: só com confirmação,https://mix.hexdocs.pm/Mix.Tasks.Release.html
+SV18,servidor,fly+elixir,shell remoto no app Elixir no Fly,"fly ssh console --pty -C ""/app/bin/<app> remote""",le,mesmo cuidado de SV17,https://docs.fly.io/elixir/the-basics/iex-into-running-app
+SV19,servidor,rails,nível de log em produção,config.log_level em config/environments/production.rb (padrão :info),le,mudar exige deploy,https://guides.rubyonrails.org/debugging_rails_applications.html
+SV20,servidor,qualquer,desligar uma função com kill switch (flag de operação),flag do próprio app ou serviço de flags,muda,só existe se foi construída antes do incidente,https://martinfowler.com/articles/feature-toggles.html
+SV21,servidor,qualquer,reverter a release quando a falha coincide com ela,rollback da plataforma (linhas acima),muda,mitigação genérica é instrumento grosso: pode causar outra falha,https://sre.google/workbook/incident-response/
+OT01,app,eas-update,ver updates publicados no canal ou branch,eas update:list --branch <branch>,le,,https://docs.expo.dev/eas/cli/
+OT02,app,eas-update,ver lançamentos e crashes de um update,eas update:insights <GROUPID> --days 1,le,,https://docs.expo.dev/eas/cli/
+OT03,app,eas-update,ver qual branch o canal serve,eas channel:view <canal>,le,,https://docs.expo.dev/eas/cli/
+OT04,app,eas-update,voltar para um update anterior ou para o JS do build (assistente),eas update:rollback,muda,avalie estado salvo no aparelho incompatível com a versão antiga; sem update seguro a saída é corrigir para frente,https://docs.expo.dev/eas-update/rollbacks/
+OT05,app,eas-update,republicar um update anterior (rollback),eas update:republish --group <GROUPID> --message <motivo>,muda,só chega a builds com o mesmo runtimeVersion,https://docs.expo.dev/eas/cli/
+OT06,app,eas-update,voltar para o JS que veio embutido no build,eas update:roll-back-to-embedded --channel <canal> --runtime-version <versao> --message <motivo>,muda,quem já baixou recebe na próxima abertura ou reinício,https://docs.expo.dev/eas/cli/
+OT07,app,eas-update,desfazer rollout gradual de update,eas update:revert-update-rollout --group <GROUPID>,muda,,https://docs.expo.dev/eas-update/rollouts/
+OT08,app,eas-update,update e build precisam do mesmo runtimeVersion,conferir runtimeVersion do build da loja,le,update com runtime diferente não chega ao build,https://docs.expo.dev/eas-update/runtime-versions/
+LJ01,app,app-store,pausar phased release,App Store Connect > versão > Phased Release for Automatic Updates > Pause Phased Release > Save,muda,pausa soma até 30 dias; quem procurar na loja ainda baixa a versão nova,https://developer.apple.com/help/app-store-connect/update-your-app/release-a-version-update-in-phases
+LJ02,app,app-store,tornar uma versão indisponível para download,Pricing and Availability > Last-Compatible Version Settings > desmarcar a versão > Done > Save,muda,exige papel Account Holder; Admin ou App Manager,https://developer.apple.com/help/app-store-connect/manage-your-apps-availability/make-a-version-unavailable-for-download
+LJ03,app,app-store,pedir revisão expressa da versão corrigida,formulário de expedite com passos para reproduzir no campo Notes,muda,só para build já enviado à revisão e urgência real,https://developer.apple.com/help/app-review/after-submitting-for-review/request-expedited-review
+LJ04,app,google-play,parar o lançamento gradual,Play Console > Releases da faixa > Manage rollout > Halt rollout,muda,quem já recebeu fica com a versão,https://support.google.com/googleplay/android-developer/answer/6346149
+LJ05,app,google-play,parar release já em 100% (volta a servir a 100% anterior),Play Console > Manage rollout > Halt rollout,muda,não vale para a primeira release da faixa nem teste interno nem se a anterior viola política,https://support.google.com/googleplay/android-developer/answer/16285429
+LJ06,app,google-play,corrigir com nova release,novo bundle com versionCode maior,muda,versionCode só sobe,https://developer.android.com/studio/publish/versioning

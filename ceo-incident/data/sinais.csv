@@ -1,0 +1,25 @@
+id,fonte,o_que_olhar,como_ler,source
+CR01,Sentry,crash-free sessions e crash-free users da release,sessão crashed = terminou em crash; users = pessoas distintas sem crash; queda logo após uma release aponta para ela,https://docs.sentry.io/product/releases/health/
+CR02,Sentry,issues por release (release:latest; first-release:latest),first-release mostra o que nasceu na versão nova,https://docs.sentry.io/concepts/search/searchable-properties/issues/
+CR03,Sentry + Expo Updates,tags expo.updates.update_id; expo.updates.channel; expo.updates.runtime_version,separa crash do update OTA novo do crash do build; emergency launch = app caiu para o JS embutido,https://docs.sentry.io/platforms/react-native/guides/expo/manual-setup/expo/expo-updates/
+CR04,Sentry,monitor sobre a taxa crash-free,alerta quando a taxa de crash passa do limite escolhido,https://docs.sentry.io/product/monitors-and-alerts/monitors/
+CR05,Crashlytics,crash-free users e crash-free sessions por build,só eventos fatais contam; agregação no período e não média,https://firebase.google.com/docs/crashlytics/crash-free-metrics
+CR06,Crashlytics,alertas velocity; regressed; new fatal; trending,velocity = um tipo de crash atinge uma % de usuários em 30 min numa versão,https://firebase.google.com/docs/crashlytics/alerts
+CR07,Crashlytics,issue fechado que volta numa versão nova,é reaberto como regressão,https://firebase.google.com/docs/crashlytics/troubleshooting
+CR08,Xcode Organizer,Crashes da App Store e do TestFlight,só de quem aceitou compartilhar diagnóstico,https://developer.apple.com/documentation/xcode/acquiring-crash-reports-and-diagnostic-logs
+CR09,Android vitals,user-perceived crash rate e ANR rate,acima de 1.09% de crash ou 0.47% de ANR no geral (8% por modelo) o Play pode reduzir a visibilidade,https://developer.android.com/topic/performance/vitals
+OT01,EAS Update,lançamentos e crashes por update,eas update:insights <GROUPID>,https://docs.expo.dev/eas/cli/
+DP01,mudança recente,início do impacto coincide com deploy; OTA ou versão na loja,anote a coincidência: é a primeira candidata a reverter,https://www.atlassian.com/incident-management/handbook/incident-response
+ST01,Expo,status da plataforma,https://status.expo.dev/,https://status.expo.dev/
+ST02,Apple Developer,status de App Store Connect; TestFlight; push,https://developer.apple.com/system-status/,https://developer.apple.com/system-status/
+ST03,Apple,status de serviços para usuário final,https://www.apple.com/support/systemstatus/,https://www.apple.com/support/systemstatus/
+ST04,Google Play,status do Play,https://status.play.google.com/,https://status.play.google.com/
+ST05,Firebase,status do Firebase (Crashlytics; FCM; Auth),https://status.firebase.google.com/,https://status.firebase.google.com/
+ST06,GitHub,status do GitHub (CI; Actions),https://www.githubstatus.com/,https://www.githubstatus.com/
+ST07,AWS,status da AWS,https://health.aws.amazon.com/health/status,https://health.aws.amazon.com/health/status
+ST08,Sentry,status do Sentry,https://status.sentry.io/,https://status.sentry.io/
+ST09,Fly.io,status da plataforma,https://status.flyio.net/,https://status.flyio.net/
+ST10,Railway,status da plataforma,https://status.railway.com/,https://status.railway.com/
+ST11,Render,status da plataforma,https://status.render.com/,https://status.render.com/
+ST12,Vercel,status da plataforma,https://www.vercel-status.com/,https://www.vercel-status.com/
+ST13,Heroku,status da plataforma,https://status.heroku.com/,https://status.heroku.com/

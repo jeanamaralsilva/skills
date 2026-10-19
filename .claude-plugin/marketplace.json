@@ -147,6 +147,24 @@
         "investor-update",
         "git"
       ]
+    },
+    {
+      "name": "ceo-incident",
+      "description": "Incidente de produção em app mobile com servidor: impacto, triagem, mitigação com rollback do servidor, OTA e lojas, comunicação, linha do tempo e postmortem sem culpa.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./ceo-incident"
+      ],
+      "homepage": "https://github.com/jeanamaralsilva/skills/tree/main/ceo-incident",
+      "repository": "https://github.com/jeanamaralsilva/skills",
+      "license": "MIT",
+      "keywords": [
+        "incident-response",
+        "postmortem",
+        "rollback",
+        "expo"
+      ]
     }
   ]
 }
