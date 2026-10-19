@@ -427,6 +427,8 @@ class Scanner:
         self.repos = repos
         self.include_tests = include_tests
         self.files = 0
+        self.read_by_repo = {}
+        self.cut_at = None
         self.findings = []
         self.map = {}
         self.sdks = []
@@ -476,16 +478,24 @@ class Scanner:
     def run(self):
         for repo in self.repos:
             state = {"auth": [], "ui": [], "code": [], "route": [], "policy": [], "mobile": False, "server": False}
+            name = os.path.basename(os.path.abspath(repo))
+            self.read_by_repo[name] = 0
+            complete = True
             for path in self.walk(repo):
                 if self.files >= MAX_FILES:
+                    self.cut_at = self.cut_at or name
+                    complete = False
                     break
                 text = self.read(path)
                 if text is None:
                     continue
                 self.files += 1
+                self.read_by_repo[name] += 1
                 self.scan_file(repo, path, text, state)
-            self.deletion[os.path.basename(os.path.abspath(repo))] = state
-            self.judge_deletion(repo, state)
+            self.deletion[name] = state
+            # "Not found" only means something after a full read; a cut or unread repo is never judged.
+            if complete and self.read_by_repo[name]:
+                self.judge_deletion(repo, state)
         return self
 
     def scan_file(self, repo, path, text, state):
@@ -680,6 +690,8 @@ class Scanner:
                            "politica_no_app": s["policy"][:3], "app_mobile": s["mobile"], "servidor": s["server"]}
                     for repo, s in self.deletion.items()}
         return {"repos": [os.path.basename(os.path.abspath(r)) for r in self.repos], "arquivos": self.files,
+                "por_repo": self.read_by_repo, "cortado_em": self.cut_at,
+                "nao_varridos": [repo for repo, count in self.read_by_repo.items() if count == 0],
                 "achados": findings, "mapa": data_map, "sdks": self.sdks, "exclusao_conta": deletion,
                 "permissoes": self.permissions, "armazenamento_seguro_usos": self.secure_uses}
 
@@ -687,6 +699,11 @@ class Scanner:
 def render(result, limit):
     out = [f"pii_scan: {', '.join(result['repos'])} | {result['arquivos']} arquivos lidos",
            "Valores nunca são exibidos: só arquivo:linha, categoria e nome do campo ou da chave."]
+    if result["cortado_em"]:
+        out.append(f"AVISO: varredura cortada no limite de {MAX_FILES} arquivos, no repo {result['cortado_em']};"
+                   " o resto não foi lido e a exclusão de conta não foi julgada ali nem depois.")
+    for repo in result["nao_varridos"]:
+        out.append(f"AVISO: repo {repo} não varrido (0 arquivos lidos); ausência de achado ali não prova nada.")
     findings = result["achados"]
     out.append(f"\n## Achados ({len(findings)})")
     if not findings:
@@ -720,6 +737,9 @@ def render(result, limit):
     out.append("\n## Exclusão de conta e política")
     for repo, state in result["exclusao_conta"].items():
         kind = "app" if state["app_mobile"] else ("servidor" if state["servidor"] else "repo")
+        if repo in result["nao_varridos"] or repo == result["cortado_em"]:
+            out.append(f"- {repo}: NÃO VERIFICADO (repo não lido por inteiro; nada foi julgado)")
+            continue
         out.append(f"- {repo} ({kind}): conta={'sim' if state['tem_conta'] else 'não achei'}"
                    f" | tela={state['tela'][0] if state['tela'] else 'não achei'}"
                    f" | código={state['codigo'][0] if state['codigo'] else 'não achei'}"
@@ -750,7 +770,8 @@ def main(argv=None):
         return 2
     result = Scanner(args.repos, args.include_tests).run().result()
     if result["arquivos"] == 0:
-        print("error: 0 arquivos varridos; confira o caminho (pastas como node_modules e _build são ignoradas)", file=sys.stderr)
+        print(f"error: 0 arquivos varridos (não varrido: {', '.join(result['nao_varridos'])}); confira o caminho"
+              " (pastas como node_modules e _build são ignoradas)", file=sys.stderr)
         return 2
     print(json.dumps(result, ensure_ascii=False, indent=2) if args.json else render(result, args.max))
     return 1 if any(f["severidade"] == "P1" for f in result["achados"]) else 0

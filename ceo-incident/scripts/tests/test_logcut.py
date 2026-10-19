@@ -124,3 +124,11 @@ def test_bad_json_timestamps_do_not_crash():
     text = '{"ts": NaN, "level": "error", "message": "x"}\n{"ts": 1e300, "level": "error", "message": "x"}\n'
     stats, groups = run(text, "warn")
     assert groups[0]["total"] == 2 and stats["sem_hora"] == 2
+
+
+def test_stdin_non_utf8_does_not_crash():
+    raw = b"2026-10-19 10:00:00 [error] falha no pagamento \xe7\xe3o\xff\n"
+    env = dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONUTF8="1")
+    proc = subprocess.run([sys.executable, os.path.join(SCRIPTS, "logcut.py"), "-"], input=raw, capture_output=True, env=env)
+    assert proc.returncode == 0, proc.stderr.decode()
+    assert b"falha no pagamento" in proc.stdout

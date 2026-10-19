@@ -17,6 +17,7 @@ Exit code: 0 ok, 2 bad input.
 """
 import argparse
 import datetime as dt
+import io
 import json
 import os
 import re
@@ -231,7 +232,8 @@ def main(argv=None):
         parser.error("--top precisa ser 1 ou mais")
     try:
         if args.path == "-":
-            stats, groups = analyze(sys.stdin, args.min_level, args.grep)
+            stdin = io.TextIOWrapper(sys.stdin.buffer, encoding="utf-8", errors="replace")
+            stats, groups = analyze(stdin, args.min_level, args.grep)
         else:
             if not os.path.isfile(args.path):
                 print(f"erro: arquivo não encontrado: {args.path}", file=sys.stderr)

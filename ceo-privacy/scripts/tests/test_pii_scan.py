@@ -249,3 +249,42 @@ def test_sdk_csv_rows_have_source():
     with open(os.path.join(SKILL, "data", "sdks.csv"), encoding="utf-8") as handle:
         rows = list(csv.DictReader(handle))
     assert rows and all(r["source"].startswith("https://") and r["ecossistema"] in ("npm", "hex") for r in rows)
+
+
+def test_max_files_cut_warns_and_skips_judging_unread_repo(tmp_path, monkeypatch, capsys):
+    first, app = tmp_path / "first", mobile_app(tmp_path / "app")
+    for i in range(3):
+        write(first, f"f{i}.ts", "export const x = 1;\n")
+    monkeypatch.setattr(pii_scan, "MAX_FILES", 2)
+    result = scan(first, app)
+    assert result["cortado_em"] == "first"
+    assert result["nao_varridos"] == ["app"]
+    assert not [f for f in result["achados"] if f["repo"] == "app"]
+    pii_scan.main([str(first), str(app)])
+    out = capsys.readouterr().out
+    assert "cortada" in out and "first" in out and "app" in out and "não varrido" in out
+    assert "- app: NÃO VERIFICADO" in out
+
+
+def test_cut_inside_repo_does_not_judge_deletion(tmp_path, monkeypatch):
+    app = mobile_app(tmp_path / "app")
+    assert "PRV-CTA" in {f["id"] for f in scan(app)["achados"]}
+    monkeypatch.setattr(pii_scan, "MAX_FILES", 3)
+    result = scan(app)
+    assert result["cortado_em"] == "app"
+    assert not {f["id"] for f in result["achados"]} & {"PRV-CTA", "PRV-CTA2", "PRV-POL"}
+
+
+def test_repo_with_zero_files_read_is_flagged_per_repo(tmp_path, capsys):
+    app = mobile_app(tmp_path / "app")
+    images = tmp_path / "images"
+    (images).mkdir()
+    (images / "logo.png").write_bytes(b"\x89PNG")
+    result = scan(app, images)
+    assert result["nao_varridos"] == ["images"]
+    assert pii_scan.main([str(app), str(images)]) in (0, 1)
+    assert "images" in capsys.readouterr().out.split("## Achados")[0]
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    assert pii_scan.main([str(images), str(empty)]) == 2
+    assert "não varrido" in capsys.readouterr().err
