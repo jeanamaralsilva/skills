@@ -45,6 +45,26 @@ Ordem de cortes, do que mais devolve espaço ao que menos:
 
 Antes e depois esperados: 8 blocos acima da tabela viram 3 (título com período e métrica; abas de entidade; linha de filtros e busca). A primeira linha de dado sobe uns 200 px em desktop.
 
+## Estado selecionado: um tratamento só
+
+Dois controles de seleção na mesma tela (segmented control, abas, chips de filtro) com "selecionado" desenhado de jeito diferente parecem duas famílias de componente e fazem a de menor contraste parecer desligada.
+
+- **Mesmo tipo, mesmo token.** Controles do mesmo tipo na mesma tela usam a mesma superfície de ativo, altura, raio, padding e cor de texto. Se os dois níveis precisam se distinguir (navegação em cima, conteúdo embaixo), a diferença vem do tipo de componente (segmented em cima, abas com sublinhado ou chips embaixo), nunca de uma tinta improvisada no mesmo componente.
+- **Cor de status vai num indicador pequeno.** Ponto, ícone ou contador com a cor semântica, mais o rótulo. Não pinte a superfície inteira do item ativo com a cor do status: cor não pode ser o único sinal (WCAG 1.4.1) e cada aba vira uma cor de ativo diferente.
+- **Tinta saturada com alpha baixo sobre fundo escuro fica suja.** Amarelo, laranja ou vermelho a 8-20% sobre cinza escuro vira um marrom barrento; cor saturada sobre fundo escuro também vibra e cansa a vista. Use superfície neutra elevada para o ativo ou uma versão dessaturada da cor, e confira o contraste do texto em cima.
+- **Rótulo inativo legível.** Texto pequeno de aba inativa precisa de 4,5:1 contra o fundo (WCAG 1.4.3). Branco a 30% sobre fundo escuro costuma ficar abaixo disso; meça com `python3 scripts/contrast.py`, passando a cor já composta sobre o fundo real (branco a 30% sobre `#111111` vira cerca de `#585858`).
+
+Como achar no código (React Native/web), no repo do app:
+
+```bash
+# cor com alpha montada em template (`${cor}18`) ou hex de 8 dígitos, inclusive dentro de ternário
+grep -rnE "\`\$\{[^}]+\}[0-9a-fA-F]{2}\`|['\"]#[0-9a-fA-F]{8}['\"]" src app | grep -iE "background|tint|fill"
+# telas com dois controles de seleção: compare o estilo de "ativo" de cada um
+grep -rlE "SegmentedControl|Tabs|TabBar|Chip" src app | xargs grep -cE "active|selected|isActive" | grep -v ":[01]$"
+```
+
+Cada tela com 2 ou mais controles entra na tabela do relatório: controle, estilo de ativo (superfície, alpha, altura, raio) e contraste do rótulo inativo. Diferença sem motivo de tipo de componente é achado P2; rótulo inativo abaixo de 4,5:1 é P1 de acessibilidade.
+
 ## Mobile
 
 As mesmas regras, com dois agravantes: largura e polegar. Tab bar inferior é o único nível de abas; qualquer segundo nível dentro de uma aba vira segmented control (iOS) ou chips roláveis (Android), nunca uma segunda tab bar. Filtros entram num sheet quando passam de 3. Tabela vira lista de cards com os 2 ou 3 números que decidem, e o resto no detalhe.
@@ -60,3 +80,8 @@ As mesmas regras, com dois agravantes: largura e polegar. Tab bar inferior é o 
 - NN/g, Tabs, Used Right (2024, revisado 2026): uma linha de abas, rótulos de 1 a 2 palavras, não misturar navegação e conteúdo no mesmo controle, aba não serve para comparar: https://www.nngroup.com/articles/tabs-used-right/
 - NN/g, Filters vs. Facets: filtro reduz o mesmo conjunto; só vale quando bate com a dimensão que o usuário usa: https://www.nngroup.com/articles/filters-vs-facets/
 - NN/g, 10 heurísticas (visibilidade, reconhecimento em vez de memória, minimalismo): https://www.nngroup.com/articles/ten-usability-heuristics/
+- WCAG 2.2, 1.4.1 Uso de cor (cor não pode ser o único meio de passar informação): https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html
+- WCAG 2.2, 1.4.3 Contraste mínimo (4,5:1 para texto normal): https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html
+- Material Design, Dark theme: cor saturada vibra contra fundo escuro e cansa a vista; use versão dessaturada: https://m2.material.io/design/color/dark-theme
+- Material 3, State layers (estado selecionado como camada sobre a superfície, igual em todo componente): https://m3.material.io/foundations/interaction/states/state-layers
+- Carbon, Status indicators (status com forma, cor, ícone e rótulo, não só cor): https://carbondesignsystem.com/patterns/status-indicator-pattern/

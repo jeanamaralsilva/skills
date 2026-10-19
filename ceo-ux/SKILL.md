@@ -51,7 +51,7 @@ Sem ferramenta de subagente (ou rodando dentro de um), faça as fases você mesm
 - Rubrica geral: `references/04-heuristicas-e-rubrica.md`.
 - Base consultável: `python3 scripts/search.py "<tema>"` (heurísticas, anti-padrões, componentes, 39 apps de referência, fontes de mercado, bibliotecas de UI, 45 padrões de motion).
 - Contraste só com `python3 scripts/contrast.py "#fg" "#bg"`.
-- Estrutura da tela (abas, filtros, cabeçalhos, colunas): transcreva o que vê e rode `python3 scripts/nav_audit.py -` (`references/19-navegacao-e-densidade.md`). Abas dentro de abas, rótulo repetido, filtro disfarçado de aba e coluna constante saem dali com a correção.
+- Estrutura da tela (abas, filtros, cabeçalhos, colunas): transcreva o que vê e rode `python3 scripts/nav_audit.py -` (`references/19-navegacao-e-densidade.md`). Abas dentro de abas, rótulo repetido, filtro disfarçado de aba, coluna constante e dois controles com "selecionado" desenhado diferente (cor de status tingindo o fundo, rótulo inativo apagado) saem dali com a correção e o grep para achar.
 - Antes de escrever, leia `references/07-anti-slop-visual.md` e `references/08-anti-slop-analise.md`.
 
 ### 4. Mercado
