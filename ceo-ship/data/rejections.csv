@@ -1,0 +1,26 @@
+id,store,guideline,reason,fix,source
+R01,apple,2.1,"Crash, bug óbvio, link quebrado ou conteúdo placeholder",rode o smoke test antes (ceo-mobile-qa) e revise links,https://developer.apple.com/distribute/app-review/
+R02,apple,2.1(a),Login sem conta demo ou com backend fora do ar,conta demo nas informações para revisão e servidor ligado,https://developer.apple.com/app-store/review/guidelines/
+R03,apple,2.3.1(a),Notas para revisão genéricas,descreva cada novidade com detalhe,https://developer.apple.com/app-store/review/guidelines/
+R04,apple,2.3.3,"Screenshot que só mostra splash, login ou arte",prints do app em uso,https://developer.apple.com/app-store/review/guidelines/
+R05,apple,2.3.10,Nome ou imagem de outra plataforma nos metadados,tire prints e textos de Android,https://developer.apple.com/app-store/review/guidelines/
+R06,apple,2.5.4,Modo de segundo plano usado fora do propósito,desligue o modo ou justifique nas notas,https://developer.apple.com/app-store/review/guidelines/
+R07,apple,3.1.1,Recurso digital vendido fora da compra dentro do app,use compra dentro do app,https://developer.apple.com/app-store/review/guidelines/
+R08,apple,4.2,Funcionalidade mínima: parece site empacotado,entregue recursos próprios de app,https://developer.apple.com/app-store/review/guidelines/
+R09,apple,4.3,Spam: igual a outro app já disponível,diferencie ou junte os apps,https://developer.apple.com/app-store/review/guidelines/
+R10,apple,4.8,Login social sem opção equivalente que proteja o e-mail,adicione Sign in with Apple ou serviço equivalente,https://developer.apple.com/app-store/review/guidelines/
+R11,apple,5.1.1(i),Sem link de política de privacidade no App Store Connect ou no app,link nos dois lugares,https://developer.apple.com/app-store/review/guidelines/
+R12,apple,5.1.1(ii),Texto de permissão vago ou que só repete o nome do recurso,diga para que usa e o benefício,https://developer.apple.com/help/app-review/guideline-reference/5-1-1-purpose-strings
+R13,apple,5.1.1(v),Cria conta mas não deixa excluir dentro do app; ou exige login sem necessidade,fluxo de exclusão no app; login só onde a conta importa,https://developer.apple.com/support/offering-account-deletion-in-your-app/
+R14,apple,ITMS-90683,Upload recusado: falta texto de permissão no Info.plist,adicione a chave NS...UsageDescription e gere build novo,https://developer.apple.com/documentation/uikit/requesting-access-to-protected-resources
+R15,apple,Required reason API,Upload recusado: API de motivo obrigatório sem motivo no privacy manifest,declare em PrivacyInfo.xcprivacy ou `ios.privacyManifests`,https://developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api
+G01,google,Target API,Update recusado por mirar API abaixo da exigida,suba o targetSdkVersion (SDK do Expo),https://support.google.com/googleplay/android-developer/answer/11926878
+G02,google,Data safety,Declaração não bate com o que o app ou os SDKs coletam,revise o formulário com a lista de SDKs,https://support.google.com/googleplay/android-developer/answer/10787469
+G03,google,Account deletion,Sem caminho de exclusão no app ou sem link web,"os dois, e o link no Console",https://support.google.com/googleplay/android-developer/answer/13327111
+G04,google,Background location,Localização em segundo plano sem declaração ou sem aviso destacado,"declaração, aviso antes do pedido e vídeo",https://support.google.com/googleplay/android-developer/answer/9799150
+G05,google,Photo and video,READ_MEDIA_IMAGES/VIDEO sem necessidade,use o seletor do sistema,https://support.google.com/googleplay/android-developer/answer/14115180
+G06,google,App access,Revisor não consegue entrar,dados em Sign-in details,https://support.google.com/googleplay/android-developer/answer/9859455
+G07,google,Privacy policy,Sem política no Console ou no app,link nos dois lugares,https://support.google.com/googleplay/android-developer/answer/9888076
+G08,google,Exact alarm,USE_EXACT_ALARM sem ser função principal,troque por SCHEDULE_EXACT_ALARM,https://support.google.com/googleplay/android-developer/answer/13161072
+G09,google,Foreground service,Tipo de foreground service sem declaração,declare os tipos no Console,https://support.google.com/googleplay/android-developer/answer/13392821
+G10,google,QUERY_ALL_PACKAGES,Visibilidade ampla de apps sem justificativa,remova ou declare,https://support.google.com/googleplay/android-developer/answer/10158779

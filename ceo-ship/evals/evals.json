@@ -1,0 +1,26 @@
+{
+  "skill_name": "ceo-ship",
+  "evals": [
+    {
+      "id": 1,
+      "name": "preflight-antes-de-subir-versao",
+      "prompt": "vou subir a versão 2.3 do app (Expo, apps/mobile) pra App Store e Play amanhã. ve se ta tudo certo e o que pode dar rejeição. nao mexe em nada",
+      "expected_output": "Modo pré-voo sem editar nada; roda scripts/preflight.py no app e, se houver app.config.ts, pede o JSON de `npx expo config --json` em vez de adivinhar (itens não avaliados aparecem como 'não verificado'); lista o que mudou desde a última versão na loja para decidir build novo ou OTA (fingerprint); cada achado com id do data/checks.csv e fonte (ex.: texto de permissão padrão em inglês, exclusão de conta, target API 36, runtimeVersion); checklist manual só com o que se aplica (conta demo para o revisor, App Privacy, Data safety, screenshots, notas para revisão); sugere chamar ceo-mobile-qa para smoke test do build de produção, se instalada; relatório CEO com veredito sobe/sobe com risco/não sobe, até 350 palavras, nenhuma regra de loja sem [fonte: url]",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "ota-ou-build-novo",
+      "prompt": "corrigi um bug no carrinho e também instalei o expo-camera pra leitura de QR. dá pra mandar tudo por update OTA hoje sem passar pela loja?",
+      "expected_output": "Responde não: expo-camera é lib nativa e permissão nova (NSCameraUsageDescription), que só chegam com build novo e revisão (fontes: docs.expo.dev/eas-update/faq e guides/permissions); propõe separar: a correção do carrinho pode ir por OTA só se o commit não inclui a lib nativa e o fingerprint bate com o build da loja (eas fingerprint:compare), com eas update --channel ... --environment ... (obrigatório no SDK 55+) e rollout gradual (--rollout-percentage); a câmera vai em build novo com texto de permissão próprio no idioma do app e runtimeVersion que mude (recomenda policy fingerprint); explica o risco de update incompatível para quem já usa; não inventa flag de CLI",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "primeira-publicacao-play-conta-pessoal",
+      "prompt": "nunca publiquei no google play. criei minha conta de desenvolvedor pessoal mês passado. quero o app android na loja semana que vem, o que eu preciso fazer?",
+      "expected_output": "Diz logo que semana que vem não dá para produção: conta pessoal criada depois de 13/11/2023 exige teste fechado com 12 testers inscritos por 14 dias seguidos antes de pedir produção, com fonte (support.google.com/googleplay/android-developer/answer/14151465) e data mínima calculada; lista o caminho: app criado no Console, verificação de desenvolvedor, AAB, target API 36, Data safety, política de privacidade, exclusão de conta no app e por link web, Sign-in details para o revisor, página da loja com limites (título 30, curta 80, ícone 512, destaque 1024x500, 2 a 8 screenshots); primeira submissão com eas submit vai para teste interno e exige chave da conta de serviço; roda preflight.py; revisão pode levar até 7 dias; tom CEO, curto, cada regra com fonte",
+      "files": []
+    }
+  ]
+}
