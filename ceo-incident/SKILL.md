@@ -21,7 +21,7 @@ O que o cliente não consegue fazer, se é real, desde quando, quem e quantos, o
 
 ```bash
 python3 scripts/logcut.py <log> [--min-level error] [--grep TEXTO] [--top 20] [--json]
-python3 scripts/timeline.py --events .ceo/incidents/<data>.md --repo <repo> [--ref origin/main] [--tz -03:00]
+python3 scripts/timeline.py --events .ceo/incidents/<data>.md --repo <repo> [--ref origin/main] [--tz=-03:00]
 ```
 `logcut.py` agrupa erros por assinatura com contagem e primeiro e último horário, mascarando dados pessoais e tokens. `timeline.py` junta eventos anotados, commits e tags da janela e calcula tempo até detectar, mitigar e resolver. Ambos só leem.
 

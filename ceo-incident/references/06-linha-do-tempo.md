@@ -20,7 +20,7 @@ Tipos: inicio, detectado, declarado, comunicado, decisao, mitigado, deploy, ota,
 
 ```bash
 python3 scripts/timeline.py --events .ceo/incidents/2026-10-19.md \
-  --repo apps/server --repo apps/mobile --ref origin/main --tz -03:00
+  --repo apps/server --repo apps/mobile --ref origin/main --tz=-03:00
 ```
 
 - Junta eventos, commits do ramo e tags criadas na janela; ordena por hora.

@@ -3,7 +3,7 @@
 
 Usage:
   python3 timeline.py [--events .ceo/incidents/AAAA-MM-DD.md] [--repo PATH ...] [--ref REF]
-                      [--since AAAA-MM-DD[THH:MM]] [--until ...] [--tz -03:00] [--json]
+                      [--since AAAA-MM-DD[THH:MM]] [--until ...] [--tz=-03:00] [--json]
 
 Sources:
   - events file: lines the agent writes while handling the incident, one per event:

@@ -70,7 +70,7 @@ def run_json(*args):
 
 
 def test_events_and_git_merge_sorted_with_milestones(repo, events):
-    result, _ = run_json("--events", str(events), "--repo", str(repo), "--tz", "-03:00")
+    result, _ = run_json("--events", str(events), "--repo", str(repo), "--tz=-03:00")
     kinds = [(item["at"][11:16], item["type"]) for item in result["itens"]]
     assert kinds[0] == ("13:40", "commit") and kinds[1] == ("13:40", "tag")
     assert ("13:50", "inicio") in kinds and ("14:20", "commit") in kinds
@@ -82,13 +82,13 @@ def test_events_and_git_merge_sorted_with_milestones(repo, events):
 
 
 def test_masks_untrusted_text(repo, events):
-    _, raw = run_json("--events", str(events), "--repo", str(repo), "--tz", "-03:00")
+    _, raw = run_json("--events", str(events), "--repo", str(repo), "--tz=-03:00")
     assert "maria@example.com" not in raw
     assert "ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZ0123" not in raw
 
 
 def test_deterministic_markdown(repo, events):
-    cmd = [sys.executable, os.path.join(SCRIPTS, "timeline.py"), "--events", str(events), "--repo", str(repo), "--tz", "-03:00"]
+    cmd = [sys.executable, os.path.join(SCRIPTS, "timeline.py"), "--events", str(events), "--repo", str(repo), "--tz=-03:00"]
     first = subprocess.run(cmd, capture_output=True, text=True, timeout=60, check=True).stdout
     second = subprocess.run(cmd, capture_output=True, text=True, timeout=60, check=True).stdout
     assert first == second
@@ -97,7 +97,7 @@ def test_deterministic_markdown(repo, events):
 
 
 def test_explicit_window_filters_git(repo):
-    result, _ = run_json("--repo", str(repo), "--since", "2026-10-19T14:00", "--tz", "-03:00")
+    result, _ = run_json("--repo", str(repo), "--since", "2026-10-19T14:00", "--tz=-03:00")
     assert [item["type"] for item in result["itens"]] == ["commit"]
     assert any("sem arquivo de eventos" in w for w in result["warnings"])
 
