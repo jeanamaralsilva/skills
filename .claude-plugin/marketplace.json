@@ -165,6 +165,24 @@
         "rollback",
         "expo"
       ]
+    },
+    {
+      "name": "ceo-privacy",
+      "description": "Privacidade e proteção de dados de app mobile com servidor: mapa de dados pelo código, LGPD e GDPR, exclusão de conta, App Privacy e Data safety, SDKs, logs, incidente com dado pessoal e menores.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./ceo-privacy"
+      ],
+      "homepage": "https://github.com/jeanamaralsilva/skills/tree/main/ceo-privacy",
+      "repository": "https://github.com/jeanamaralsilva/skills",
+      "license": "MIT",
+      "keywords": [
+        "privacy",
+        "lgpd",
+        "gdpr",
+        "data-protection"
+      ]
     }
   ]
 }

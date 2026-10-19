@@ -1,0 +1,22 @@
+id,label,exemplos_de_campo,sensivel,lgpd,observacao,source
+nome,nome,full_name; first_name; nome; display_name; username,nao,art. 5º I,identifica a pessoa sozinho ou com outro dado,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
+email,e-mail,email; email_address,nao,art. 5º I,identificador direto; aparece em log e em SDK com frequência,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
+telefone,telefone,phone; telefone; celular; whatsapp,nao,art. 5º I,identificador direto,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
+documento,documento (CPF; RG; CNH; passaporte),cpf; rg; cnh; passport; document,nao,art. 5º I,não é sensível na lei mas expõe a pessoa a fraude; mascare sempre,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
+nascimento,data de nascimento ou idade,birth_date; date_of_birth; dob; idade,nao,art. 5º I e art. 14,revela se é criança ou adolescente (art. 14),https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
+endereco,endereço,address; street; cep; bairro; cidade,nao,art. 5º I,,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
+localizacao,localização (GPS),latitude; longitude; lat; lng; location,nao,art. 5º I,localização precisa mostra rotina e casa da pessoa; prefira menos precisão,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
+ip,endereço IP,ip; remote_ip; last_sign_in_ip,nao,art. 5º I,identificável quando ligado à conta,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
+foto,foto ou imagem do rosto,avatar; photo; picture; selfie,nao,art. 5º I e II,foto usada para reconhecimento facial vira dado biométrico (sensível),https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
+aparelho,identificador de aparelho ou push,device_id; push_token; idfa; advertising_id; installation_id,nao,art. 5º I e art. 12 §2º,usado para perfil comportamental pode ser considerado dado pessoal,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
+genero,gênero ou sexo,gender; sexo; genero,nao,art. 5º I,,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
+financeiro,dado financeiro (cartão; conta; Pix),card_number; bank_account; pix_key,nao,art. 5º I,não é sensível na lei; incidente com ele é de comunicação obrigatória na ANPD (Res. 15/2024 art. 5º),https://www.in.gov.br/en/web/dou/-/resolucao-cd/anpd-n-15-de-24-de-abril-de-2024-556243024
+credencial,credencial (senha; token; sessão),password; token; refresh_token; session,nao,art. 46,não é categoria da lei; vazamento de senha ou token é de comunicação obrigatória (Res. 15/2024 art. 5º),https://www.in.gov.br/en/web/dou/-/resolucao-cd/anpd-n-15-de-24-de-abril-de-2024-556243024
+saude,saúde,health; diagnosis; allergy; blood_type; medication,sim,art. 5º II e art. 11,consentimento específico e destacado ou hipótese do art. 11 II,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
+biometria,biometria,biometric; face_template,sim,art. 5º II e art. 11,,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
+origem_racial,origem racial ou étnica,race; ethnicity; raca; etnia,sim,art. 5º II e art. 11,,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
+religiao,convicção religiosa,religion; religiao,sim,art. 5º II e art. 11,,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
+opiniao_politica,opinião política,political_*,sim,art. 5º II e art. 11,,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
+vida_sexual,vida ou orientação sexual,sexual_orientation; orientacao_sexual,sim,art. 5º II e art. 11,,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
+genetico,dado genético,genetic; dna,sim,art. 5º II e art. 11,,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
+filiacao_sindical,filiação a sindicato ou organização,union_member; sindicato,sim,art. 5º II e art. 11,,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm
