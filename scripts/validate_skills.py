@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 NAME_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
+DANGEROUS = re.compile(r"\|\s*(ba|z)?sh\b|rm\s+-rf\s+[/~]|\$\((curl|wget)|base64\s+(-d|--decode)|ignore (all|previous|the above) instructions", re.I)
 MAX_NAME, MAX_DESCRIPTION, MAX_COMPATIBILITY, MAX_SKILL_LINES = 64, 1024, 500, 500
 
 
@@ -52,6 +53,10 @@ def main():
                 header = next(csv.reader(handle), [])
             if "source" not in header:
                 errors.append(f"{skill.name}/data/{data_file.name}: needs a 'source' column")
+            with data_file.open(encoding="utf-8") as handle:
+                for line_number, line in enumerate(handle, start=1):
+                    if DANGEROUS.search(line):
+                        errors.append(f"{skill.name}/data/{data_file.name}:{line_number}: pipe-to-shell, destructive command or injected instruction in data")
 
     marketplace = json.loads((ROOT / ".claude-plugin/marketplace.json").read_text(encoding="utf-8"))
     listed = {path.removeprefix("./") for plugin in marketplace["plugins"] for path in plugin["skills"]}

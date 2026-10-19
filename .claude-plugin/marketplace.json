@@ -111,6 +111,42 @@
         "expo",
         "activation"
       ]
+    },
+    {
+      "name": "ceo-ship",
+      "description": "Lançar versão na App Store e no Google Play: pré-voo, rejeições, privacidade, OTA ou build, lançamento gradual e rollback.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./ceo-ship"
+      ],
+      "homepage": "https://github.com/jeanamaralsilva/skills/tree/main/ceo-ship",
+      "repository": "https://github.com/jeanamaralsilva/skills",
+      "license": "MIT",
+      "keywords": [
+        "release",
+        "app-store",
+        "google-play",
+        "expo"
+      ]
+    },
+    {
+      "name": "ceo-brief",
+      "description": "Brief de status em linguagem de negócio para o dono não técnico: o que chegou ao cliente, riscos, quanto falta e decisões, a partir de git, PRs, CI e deploys.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./ceo-brief"
+      ],
+      "homepage": "https://github.com/jeanamaralsilva/skills/tree/main/ceo-brief",
+      "repository": "https://github.com/jeanamaralsilva/skills",
+      "license": "MIT",
+      "keywords": [
+        "status-update",
+        "stakeholder",
+        "investor-update",
+        "git"
+      ]
     }
   ]
 }
