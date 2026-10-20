@@ -36,7 +36,7 @@ python3 scripts/search.py "<sintoma>"                 # bugs.csv (50), recipes.c
 ```
 
 ### 3. Ambiente
-`references/03-simuladores-ios.md`. Um simulador com prefixo `ceo-` mais o ator por API é o padrão em 16 GB; dois simuladores só quando o oráculo é visual nos dois lados.
+`references/03-simuladores-ios.md`. Um simulador com prefixo `ceo-` mais o ator por API é o padrão em 16 GB; dois simuladores só quando o oráculo é visual nos dois lados. PWA ou painel web usado no iPhone: seção "PWA e painel web" da mesma reference, no Safari do simulador.
 ```bash
 python3 scripts/sim_session.py plan --roles admin,user --ram-gb 16
 python3 scripts/sim_session.py create admin

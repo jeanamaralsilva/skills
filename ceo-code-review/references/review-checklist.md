@@ -45,6 +45,9 @@ not a recitation - skip what doesn't apply.
   duplicate keys, concurrent callers, partial failure.
 - Off-by-one, boundary conditions, integer/float overflow, timezone/locale.
 - Are invariants preserved? Did the change weaken a guarantee elsewhere relies on?
+- Did a range replacement delete code it was not asked to touch? Compare the
+  list of functions/exports before and after, and run the main flow in the
+  browser or app before shipping (see ai-failure-modes #10).
 
 ### 2. Error handling & resilience  *(AI omits this ~2x more than humans)*
 - Are failures caught at the right layer and either handled or propagated - never

@@ -108,7 +108,22 @@ Each entry: **what it is → why AI does it → how to detect → the fix.**
 - **Fix**: restore the invariant; record the security decision in cortex so later
   edits (by you or another agent) don't undo it.
 
+## 10. Range edits that delete the code in between
+- **What**: an edit replaces a span ("from the start of function A to the start
+  of function C") with a new A, and function B, which sat in that span, is gone.
+  Nothing fails at write time; the caller of B breaks at runtime. In a field
+  report on a PWA panel, this removed the handler of the main button in
+  production.
+- **Why**: the model rewrites what it was asked about and treats the rest of the
+  span as noise; a large diff hides one missing function.
+- **Detect**: list functions, classes and exports before and after the edit and
+  diff the two lists (`git show HEAD:<file>` vs the working file, then `comm -23`).
+  Any name that vanished without being asked for is a defect. In the diff, a
+  removed block with no matching addition is the tell.
+- **Fix**: restore the lost code, prefer edits anchored on a unique snippet over
+  ranges, and exercise the main flow in the real browser or app before shipping.
+
 ## How to use this catalog in review
-Don't recite all nine. Sweep, then go deep where the change lives. Always run the
+Don't recite all ten. Sweep, then go deep where the change lives. Always run the
 mechanical checks first (`dup_scan`, `context_map`) so your attention is free for
 the judgment calls - logic, design, scaling - that tools can't make.

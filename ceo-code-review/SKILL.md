@@ -87,7 +87,7 @@ This is where the skill earns its keep. Be the reviewer nothing gets past.
    deep dive (correctness, security, performance, scaling) → polish. Apply the
    **parameter & scalability lens** to non-trivial signatures.
 3. **Apply the AI-failure-modes lens** in `references/ai-failure-modes.md` -
-   sweep for the nine recurring AI mistakes; go deep where the change lives.
+   sweep for the ten recurring AI mistakes; go deep where the change lives.
    Use `context_map` to spot **0-reference symbols** (dead-code suspects).
    Then, for the stack in front of you, also read the matching language guide -
    it lists the concrete, real-world traps for that ecosystem:
@@ -191,7 +191,7 @@ you recorded it in cortex.
 ## Reference files
 - `references/review-checklist.md` - the senior review checklist (eight pillars,
   severity, the parameter/scaling lens). Read before a deep review.
-- `references/ai-failure-modes.md` - the nine recurring AI code mistakes, how to
+- `references/ai-failure-modes.md` - the ten recurring AI code mistakes, how to
   detect and fix each. Read when reviewing AI-written code.
 - `references/cortex.md` - full cortex command reference, data model, the
   remember/recall discipline, and the dual-backend (MCP + CLI) note.

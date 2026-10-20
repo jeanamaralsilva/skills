@@ -69,6 +69,17 @@ xcrun simctl diagnose --no-archive --output runs/diag                  # logs do
 
 Crash reports do simulador: `~/Library/Logs/DiagnosticReports/*.ips`. Abra com Console.app ou `plutil -p`.
 
+## PWA e painel web no Safari do simulador
+
+Web app instalável usado no iPhone se testa no WebKit iOS. Chrome headless não reproduz layout, zoom nem input de data do iPhone.
+
+- Abrir: com argent, `boot-device`, `open-url http://localhost:<porta>`, `screenshot` e `describe` (T68). Sem argent, `xcrun simctl openurl <UDID> http://localhost:<porta>`. Console e Web Inspector: Safari > Develop > simulador (T69).
+- Servidor local e dados de teste, como no resto da skill (`references/01-estrategia-e-risco.md`). Nunca produção com dado real, nem "só para ver no iPhone".
+- Input date ou time num grid de 2 colunas (B51): sem largura fixa, o tema iOS do WebKit põe `min-width` igual à maior data estimada e `box-sizing: content-box`. O campo passa da borda e o Safari reduz a página. Correção: `-webkit-appearance: none` e `min-width: 0` no input e nos filhos do grid; colunas `minmax(0, 1fr)`, porque `1fr` sozinho tem mínimo `auto` (B52).
+- Zoom ao focar campo (B53): o WebKit iOS calcula o zoom como 16 dividido pela fonte do campo. Fonte do campo >= 16px resolve. `maximum-scale=1` no viewport também limita esse zoom; o pinch do usuário continua, porque desde o iOS 10 o Safari permite pinch em toda página.
+- Service worker com `clients.claim()` (B54): sem claim, a página só passa pelo SW depois de recarregar. Com claim, o SW assume a página aberta no meio do caminho (`controllerchange`), e o que já estava em andamento corre contra essa troca. Relato de campo: na primeira visita no Safari iOS, os PUT da fila offline não chegaram ao servidor até recarregar. Em app com fila offline, não use claim, ou só comece a fila com `navigator.serviceWorker.controller` definido.
+- Fila offline com IndexedDB e outbox (B55): `fetch` não tem opção de timeout, então use `AbortSignal.timeout(15000)`. Retry com intervalo. Salve local sem esperar a rede. Mostre "N pendentes" tocável, com o motivo. Nunca `confirm()` nem logout dentro do processamento da fila. 401 só pede login de novo e mantém a fila. Para provocar: Network Link Conditioner ou Toxiproxy (`references/06-estresse-e-caos.md`).
+
 ## Limpeza (sempre, mesmo com falha)
 
 ```bash
@@ -90,3 +101,10 @@ O `cleanup` preserva `runs/patches/` e `runs/keep/` (clipes de até 15 s citados
 - TZ no simulador (Apple DTS): https://developer.apple.com/forums/thread/86951
 - Runtimes: https://developer.apple.com/forums/thread/773153
 - EAS simulator build: https://docs.expo.dev/build-reference/simulators/
+- argent, ferramentas: https://github.com/software-mansion/argent/blob/main/packages/docs/docs/reference/tools.mdx
+- Web Inspector no simulador: https://developer.apple.com/documentation/safari-developer-tools/inspecting-ios
+- Input de data no iOS (min-width estimado): https://github.com/WebKit/WebKit/blob/main/Source/WebCore/rendering/ios/RenderThemeIOS.mm ; https://bugs.webkit.org/show_bug.cgi?id=301648
+- `1fr` = `minmax(auto, 1fr)`: https://www.w3.org/TR/css-grid-1/#track-sizes
+- Zoom ao focar (16 / fonte, limitado por maximum-scale): https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/ios/WKWebViewIOS.mm ; pinch no iOS 10: https://webkit.org/blog/7367/new-interaction-behaviors-in-ios-10/
+- `clients.claim()`: https://developer.mozilla.org/en-US/docs/Web/API/Clients/claim ; https://web.dev/articles/service-worker-lifecycle
+- `AbortSignal.timeout()`: https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal/timeout_static ; `confirm()` é modal: https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm
